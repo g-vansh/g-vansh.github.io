@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/Sponsoring-Innovation
 excerpt: 'This paper seeks to understand the effects of the introduction of GitHub Sponsorships on digital innovation.'
 date: 2022-03-01
-venue: 'Working Paper'
+venue: 
 ---
 This paper seeks to understand the effects of the introduction of GitHub Sponsorships on digital innovation. 
 
