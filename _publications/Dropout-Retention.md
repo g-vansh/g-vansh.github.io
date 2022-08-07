@@ -10,7 +10,7 @@ authors:
 venue: 
 ---
 This paper seeks to indexing the potential number of dropouts from a particular governmental school in a given year using statistical learning and logistic modelling.
-<br>
+<br><br>
 **This was an independent research project, carried out when I was a senior in high school.**
 
 **I worked to execute a complete research project from scratch, and did the following:**
