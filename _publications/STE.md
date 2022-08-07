@@ -4,6 +4,9 @@ collection: publications
 permalink: /publication/STE
 excerpt: 'This paper seeks to formalize the treatment effects of strategic choices under the Rubin Causal Model.'
 date: 2022-07-01
+author: 'Jorge Guzman'
+authorurl: https://www.jorgeguzman.co/
+authors:
 venue: 
 paperurl: 'http://dx.doi.org/10.2139/ssrn.3915606'
 citation: 'Guzman, Jorge, Treatment Effects in Managerial Strategies (September 1, 2021).'
