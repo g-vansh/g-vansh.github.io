@@ -1,0 +1,18 @@
+---
+title: "Data Reproducibility - American Economic Association"
+collection: publications
+permalink: /publication/AEA-Data
+excerpt: 'Worked as a Data Reproducibility Researcher to run reproducibility checks for manuscripts submitted to the AEA.'
+date: 2021-05-01
+author: 'Lars Vilhuber'
+authorurl: https://www.vilhuber.com/lars/
+authors:
+venue: 
+---
+**I worked at the Labour Dynamics Institute at Cornell University, with Lars Vilhuber - the Data Editor for the American Economic Association.**
+
+As a data reproducibility researcher, I was tasked to do the following for manuscripts submitted for review to the AEA Journals:
+1. Web-scrape differently-structured ~5500 Brazilian municipality websites written in Portuguese, and download all the PDFs available (approximately 25 million PDFs).
+2. The pipeline not only adapted to different website structures, but also evaded CAPTCHA issues using various techniques.
+3. Using PDF plumber, I converted information from these differently structured PDFs into usefully structured Excel files.
+4. Additionally, I did some geospatial data visualization in Python & Tableau to create interactive graphics for this project.
