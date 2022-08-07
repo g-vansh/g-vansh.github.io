@@ -42,6 +42,8 @@
       <p>Under the guidance of <a href="{{post.authorurl}}">{{post.author}}</a>.</p>
     {% elsif post.authors %}
       <p>Under the guidance of {{post.authors}}.</p>
+    {% elsif post.author == 'Independent' %}
+      <p>Independent Project.</p>
     {% endif %}
 
         {% if post.collection == 'teaching' %}
