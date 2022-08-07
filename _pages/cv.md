@@ -19,7 +19,7 @@ Research Experience
 * Summer 2022: Dean's Summer Research Fellow, Columbia Business School
   * Worked under the guidance of [Jorge Guzman](https://www.jorgeguzman.co/), collaborating with [Maria Roche](https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955) and [Annamaria Conti](https://sites.google.com/view/annamariaconti/home-page).
   * Created data pipelines and authored an [open-source R package (STE)](vanshg.me/STE).
-  * Worked on projects in [Strategy, Entrepreneurship](vanshg.me/publication/STE), and [Digital Innovation](vanshg.me/publication/Sponsoring-Innovation).
+  * Worked on projects in [Strategy, Entrepreneurship](http://vanshg.me/publication/STE), and [Digital Innovation](vanshg.me/publication/Sponsoring-Innovation).
 
 * Summer 2021: Data Reproducibility Researcher, American Economic Association
   * Github University
