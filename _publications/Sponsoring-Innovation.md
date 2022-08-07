@@ -4,6 +4,9 @@ collection: publications
 permalink: /publication/Sponsoring-Innovation
 excerpt: 'This paper seeks to understand the effects of the introduction of GitHub Sponsorships on digital innovation.'
 date: 2022-03-01
+author: 
+authorurl: 
+authors: 'Jorge Guzman (Columbia Business School), Maria Roche (Harvard Business School), Annamaria Conti (IE Business School)'
 venue: 
 ---
 This paper seeks to understand the effects of the introduction of GitHub Sponsorships on digital innovation. 
