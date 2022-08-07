@@ -4,6 +4,9 @@ collection: publications
 permalink: /publication/Diario-Municipal
 excerpt: 'This paper seeks to understand the effects of climate shocks on firms and labor markets in Brazil.'
 date: 2021-02-01
+author: 'Daniela Scur'
+authorurl: https://www.danielascur.com/
+authors:
 venue: 
 ---
 This paper seeks to understand the effects of climate shocks on firms and labor markets in Brazil.
