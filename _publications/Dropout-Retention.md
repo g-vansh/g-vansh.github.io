@@ -25,5 +25,3 @@ This paper seeks to indexing the potential number of dropouts from a particular 
 My research aims to perform quantitative analysis on the various factors that influence the number of dropouts from governmental schools across the country to create a ‘dropout index’ which predicts, based on various objective factors, how many students from a government school will drop out in that year.
 
 **The paper can be downloaded from [this link](http://vanshg.me/files/Dropout-Mitigation).**
-
-
