@@ -14,14 +14,14 @@ Education
 * B.S. in Applied Economics and Management, Cornell University, 2023 (Expected)
 * B.S. in Biometry and Statistics, Cornell University, 2023 (Expected)
 
-Work Experience
+Research Experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Summer 2022: Dean's Summer Research Fellow, Columbia Business School
+  * Worked under the guidance of [Jorge Guzman](https://www.jorgeguzman.co/), collaborating with [Maria Roche](https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955) and [Annamaria Conti](https://sites.google.com/view/annamariaconti/home-page).
+  * Created data pipelines and authored an [open-source R package (STE)](vanshg.me/STE).
+  * Worked on projects in [Strategy, Entrepreneurship](vanshg.me/publication/STE), and [Digital Innovation](vanshg.me/publication/Sponsoring-Innovation).
 
-* Fall 2015: Research Assistant
+* Summer 2021: Data Reproducibility Researcher, American Economic Association
   * Github University
   * Duties included: Merging pull requests
   * Supervisor: Professor Hub
@@ -53,6 +53,6 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Service and leadership
+Service and Leadership
 ======
 * Currently signed in to 43 different slack teams
