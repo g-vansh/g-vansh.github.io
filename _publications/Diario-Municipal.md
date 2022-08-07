@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/Diario-Municipal
 excerpt: 'This paper seeks to understand the effects of climate shocks on firms and labor markets in Brazil.'
 date: 2021-02-01
-venue: 'Working Paper'
+venue: 
 ---
 This paper seeks to understand the effects of climate shocks on firms and labor markets in Brazil.
 
