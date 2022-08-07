@@ -1,11 +1,29 @@
 ---
-title: "Bounded Rationality in Las Vegas: Probabilistic Finite Automata Play Multi-Armed Bandits"
+title: "Dropout Mitigation: A Logistic Modelling Approach"
 collection: publications
-permalink: /publication/UAI
-excerpt: 'In this paper, we propose a finite-state protocol that captures a resource-bounded agent in a multi-armed bandit setting. The proposed protoal is nearly-optimal and human-like.'
-date: 2020-5-14
-venue: '36th Conference on Uncertainty in Artificial Intelligence (UAI)'
-prof: "Joseph Y. Halpern"
-profurl: "https://www.cs.cornell.edu/home/halpern/"
+permalink: /publication/Dropout-Retention
+excerpt: 'This paper seeks to understand and mitigate the determinants of dropout-likelihood in rural Indian schools.'
+date: 2019-06-01
+author: 'Independent'
+authorurl: 
+authors:
+venue: 
 ---
-While traditional economics assumes that humans are fully rational agents who always maximize their expected utility, in practice, we constantly observe apparently irrational behavior. One explanation is that people have limited computational power, so that they are, quite rationally, making the best decisions they can, given their computational limitations. To test this hypothesis, we consider the multi-armed bandit (MAB) problem. We examine a simple strategy for playing an MAB that can be implemented easily by a probabilistic finite automaton (PFA). Roughly speaking, the PFA sets certain expectations, and plays an arm as long as it meets them. If the PFA has sufficiently many states, it performs near-optimally. Its performance degrades gracefully as the number of states decreases. Moreover, the PFA acts in a "human-like" way, exhibiting a number of standard human biases, like an optimism bias and a negativity bias.
+This paper seeks to indexing the potential number of dropouts from a particular governmental school in a given year using statistical learning and logistic modelling.
+**This was an independent research project, carried out when I was a senior in high school.**
+
+**I worked to execute a complete research project from scratch, and did the following:**
+1. Ideate the research, and design what I could study.
+2. Create, conduct, and digitize field surveys (using an iterative feedback mechanism).
+3. Carry out a comprehensive literature review, and incorporate the findings into my research.
+4. Create a logistic model to calculate the propensity of students dropping out from the government school.
+5. Create and distribute free software that helps schools identify 'at-risk' students.
+6. Consult with school administrations and parents to mitigate school dropouts. 
+7. Document the determinants of dropout risk, and help schools best utilise thier resources to target the improvement of the determinants.
+
+**Abstract:**
+My research aims to perform quantitative analysis on the various factors that influence the number of dropouts from governmental schools across the country to create a ‘dropout index’ which predicts, based on various objective factors, how many students from a government school will drop out in that year.
+
+**The paper can be downloaded from [this link](http://vanshg.me/files/Dropout-Mitigation).**
+
+
