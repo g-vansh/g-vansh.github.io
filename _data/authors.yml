@@ -1,18 +1,10 @@
 # Authors
 
-Name Name:
-  name        : "Name Name"
-  uri         : "http://name.com"
-  email       : "name@name.com"
-  bio         : "This is the first name."
-  avatar      : "bio-photo-2.jpg"
-  twitter     : "name"
-  google_plus : "Name"
-
-Name2 Name2:
-  name        : "Name2 Name2"
-  email       : "name2@name2.com"
-  bio         : "I ordered what?"
-  avatar      : "bio-photo.jpg"
-  twitter     : "name2"
-  google_plus : "Name"
+Vansh Gupta:
+  name        : "Vansh Gupta"
+  uri         : "vanshg.me"
+  email       : "vg224@cornell.edu"
+  bio         : "Hi! I am Vansh. I am interested in applying my knowledge of strategy, econometrics, and computer science to study the interplay of firm resources in non-profit and developmental contexts."
+  avatar      : "profile.png"
+  twitter     : "Vanshg_"
+  google_plus : 
