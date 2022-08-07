@@ -39,7 +39,7 @@
     {% endif %}
         
     {% if post.author and post.authorurl %}
-      <p>Under the guidance of <a href="{{post.authorurl}}"><u>{{post.author}}</u></a>.</p>
+      <p>Under the guidance of <a href="{{post.authorurl}}">{{post.author}}</a>.</p>
     {% elsif post.authors %}
       <p>Under the guidance of {{post.authors}}.</p>
     {% endif %}
