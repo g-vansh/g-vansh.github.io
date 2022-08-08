@@ -96,8 +96,29 @@ Teaching
   
 Professional Work Experience
 ======
-* Currently signed in to 43 different slack teams
+* Ascenta Management Consulting
+  * _Founder & CEO_
+  * Recognized as [India’s Top 10 Consultants (CEOInsights Mag)](www.bit.ly/3PapBDy)
+  * Head teams of volunteer consultants working pro-bono with local Indian Small and Medium Enterprises to improve their operations workflows, cut costs, expand their clientele, and provide effective data-driven marketing strategies.
+  * Consulted 20+ local businesses using data-backed insights to aid resource mobilization and advance the expansion of revenue streams for the firms – raising revenues for our customers by an average of 28% in a 4-month project period.
+* Cornell Business Analytics
+  * _Vice President_
+  * Motivate team-members to ensure the nurturing of innovative ideas and the timely delivery of deliverables.
+  * Lead a team of 30 analysts to organize the recruitment screening of 180+ applicants, designing innovative challenges.
+  * Optimized inventory management for an MNC using management science theory and MS Excel and JavaScript.
+  * Leveraged data to create visual insights and Tableau dashboards for a startup to establish hotspots for its launch.
+* Meta
+  * _Big Data & Market Intelligence Analyst Extern_
+  * Collaborated with teams to use data-driven insights for suggesting clients to Meta’s Global Business Group.
+  * Innovated machine learning models (k-means clustering & random forests) for insights and predictive analytics.
+  * Consulted for internal teams in Meta, curating a client acquisition strategy for the Small Business Clients Group.
+* Grant Thornton International LLP
+  * _Research Trainee – Global Research Centre_
+  * Developed a database of client information in order to streamline communication across Grant Thornton India by leveraging Capital-IQ and Avention databases, implementing a heavy use of SQL and VBA for business analytics.
+  * Analyzed companies to profile their strategies and risks to produce thorough SWOT analyses for industries GT India’s clients operate in, while consulting with Australian clients and compiling market-competition research reports for them.
 
 Honors & Media Coverage
 ======
+* Top 10
+  * 
 * 
