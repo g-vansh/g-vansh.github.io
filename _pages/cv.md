@@ -13,6 +13,9 @@ Education
 ======
 * B.S. in Applied Economics and Management, Cornell University, 2023 (Expected)
 * B.S. in Biometry and Statistics, Cornell University, 2023 (Expected)
+  * Concentrations:
+    * Computer Science & Machine Learning
+    * Computational Statistics & Data Management
 
 Research Experience
 ======
@@ -36,14 +39,32 @@ Research Experience
   * Carried out literature reviews for the paper, studying NLP algorithms to understand which one would be the most effective for our use case.
   * Helped in the development of Python code to collect the data and conduct the analysis.
   
-Skills
+Coding Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Scripting Languages
+  * Python
+  * R
+  * Java
+  * Visual Basic (VBA)
+  * JavaScript (Intermediate)
+* Statistical Analysis
+  * STATA
+  * MATLAB
+* Data Scraping
+  * PDFPlumber
+  * BeautifulSoup
+  * Selenium
+  * Google Geocode API
+* Data Management
+  * SQL
+  * GraphQL
+  * Excel
+  * Microsoft PowerBI (Intermediate)
+  * AWS (Exposure)
+  * Google Cloud (Exposure)
+* Data Visualisation
+  * Tableau
+  * Adobe InDesign
 
 Publications
 ======
