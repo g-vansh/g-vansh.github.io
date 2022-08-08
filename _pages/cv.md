@@ -22,9 +22,9 @@ Research Experience
   * Worked on projects in [Strategy, Entrepreneurship](http://vanshg.me/publication/STE), and [Digital Innovation](http://vanshg.me/publication/Sponsoring-Innovation).
 
 * Summer 2021: Data Reproducibility Researcher, American Economic Association
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+  * Responsible for reproducing results in manuscripts submitted for review to AEA journals under the [AEA Data Editor, Lars Vilhuber](https://www.vilhuber.com/lars).
+  * [Debugged and reproduced code](http://vanshg.me/publications/AEA-Data) in 30+ manuscripts, and verified the validity of the data. Generated reports of the replication process, which were then used to make the review decision for the manuscripts.  
+  * Authored an open-source data utility tool which is used by AEA to upload their reproduction files to Zenodo. 
   
 Skills
 ======
