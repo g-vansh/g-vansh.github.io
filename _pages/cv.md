@@ -12,6 +12,8 @@ redirect_from:
 Education
 ======
 * B.S. in Applied Economics and Management, Cornell University, 2023 (Expected)
+  * Dyson Diversity Scholar
+  * Research Honors in Social Science
 * B.S. in Biometry and Statistics, Cornell University, 2023 (Expected)
   * Concentrations:
     * Computer Science & Machine Learning
@@ -66,6 +68,14 @@ Coding Skills
   * Tableau
   * Adobe InDesign
 
+Open-Source Software
+======
+* [R Package: STE](http://vanshg.me/STE)
+  * R Package to implement the framework developed in [Treatment Effects in Managerial Strategies](http://vanshg.me/publications/STE), using machine learning in a causal inference setup.
+* [Python: Upload-To-Zenodo](https://github.com/AEADataEditor/Upload-to-Zenodo)
+  * Python code to parse directories and upload the code to Zenodo. This is used by the AEA replication team for smoother synchronisation of their files. 
+
+
 Publications
 ======
   <ul>{% for post in site.publications %}
@@ -84,6 +94,10 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Service and Leadership
+Professional Work Experience
 ======
 * Currently signed in to 43 different slack teams
+
+Honors & Media Coverage
+======
+* 
