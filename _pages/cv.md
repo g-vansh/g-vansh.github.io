@@ -19,6 +19,22 @@ Education
     * Computer Science & Machine Learning
     * Computational Statistics & Data Management
 
+Relevant Coursework
+======
+* [Real Analysis](https://classes.cornell.edu/browse/roster/FA22/class/MATH/6110) (Ongoing)
+* [Honors Introduction to Analysis](https://classes.cornell.edu/browse/roster/SP22/class/MATH/4130) (A+)
+* [Stochastic Processes](https://classes.cornell.edu/browse/roster/SP22/class/ORIE/3510)
+* [Econometrics](https://classes.cornell.edu/browse/roster/SP22/class/ECON/3140)
+* [Intro to Probability & Statistical Inference](https://classes.cornell.edu/browse/roster/FA21/class/ECON/3130)
+* Linear Algebra
+* Multivariable Calculus
+* Object-Oriented Programming & Data Structures
+* Computing using MATLAB 
+* Strategy
+* Finance
+* Statistical Computing (Spring 2023)
+* Python Programming for Statistics (Spring 2023)
+
 Research Experience
 ======
 * Spring 2021 - Present: Research Assistant, Cornell University
@@ -119,6 +135,5 @@ Professional Work Experience
 
 Honors & Media Coverage
 ======
-* Top 10
-  * 
-* 
+* Recognised as one of [India’s Top 10 Business Consultants](https://www.ceoinsightsindia.com/magazines/leaders-in-business-consultants-june-2022/#page=42) by CEOInsights Magazine India for my work with Ascenta Consulting. 
+* Dean’s List for all my semesters at Cornell University. 
