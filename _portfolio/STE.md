@@ -1,6 +1,6 @@
 ---
-title: "Portfolio item number 1"
-excerpt: "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+title: "Strategic Treatment Effects"
+excerpt: "R Package to Estimate The Strategic Treatment Effects of an experiment using High Dimensional Data<br/><img src='/images/500x300.png'>"
 collection: portfolio
 ---
 
