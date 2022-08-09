@@ -11,10 +11,12 @@ redirect_from:
 
 Education
 ======
-* B.S. in Applied Economics and Management, Cornell University, 2023 (Expected)
+* B.S. in Applied Economics and Management, Cornell University, 2023 (Expected) 
+  * GPA - 3.93
   * Dyson Diversity Scholar
   * Research Honors in Social Science
-* B.S. in Biometry and Statistics, Cornell University, 2023 (Expected)
+* B.S. in Biometry and Statistics, Cornell University, 2023 (Expected) 
+  * GPA - 3.95
   * Concentrations:
     * Computer Science & Machine Learning
     * Computational Statistics & Data Management
@@ -131,7 +133,7 @@ Professional Work Experience
 * [Grant Thornton International LLP](https://www.grantthornton.in)
   * _Research Trainee – Global Research Centre_ (December 2018 - January 2019)
   * Developed a database of client information in order to streamline communication across Grant Thornton India by leveraging Capital-IQ and Avention databases, implementing a heavy use of SQL and VBA for business analytics.
-  * Analyzed companies to profile their strategies and risks to produce thorough SWOT analyses for industries GT India’s clients operate in, while consulting with Australian clients and compiling market-competition research reports for them.
+  * Analysed companies to profile their strategies and risks to produce thorough SWOT analyses for industries GT India’s clients operate in, while consulting with Australian clients and compiling market-competition research reports for them.
 
 Honors & Media Coverage
 ======
