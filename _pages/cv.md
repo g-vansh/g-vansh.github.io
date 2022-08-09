@@ -26,12 +26,12 @@ Relevant Coursework
 * [Stochastic Processes](https://classes.cornell.edu/browse/roster/SP22/class/ORIE/3510)
 * [Econometrics](https://classes.cornell.edu/browse/roster/SP22/class/ECON/3140)
 * [Intro to Probability & Statistical Inference](https://classes.cornell.edu/browse/roster/FA21/class/ECON/3130)
-* Linear Algebra
-* Multivariable Calculus
-* Object-Oriented Programming & Data Structures
-* Computing using MATLAB 
-* Strategy
-* Finance
+* [Linear Algebra](https://classes.cornell.edu/browse/roster/FA20/class/MATH/2210)
+* [Multivariable Calculus](https://classes.cornell.edu/browse/roster/SP21/class/MATH/2220)
+* [Object-Oriented Programming & Data Structures](https://classes.cornell.edu/browse/roster/FA21/class/CS/2110)
+* [Computing using MATLAB](https://classes.cornell.edu/browse/roster/FA20/class/CS/1112)
+* [Strategy](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2601)
+* [Finance](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2240)
 * Statistical Computing (Spring 2023)
 * Python Programming for Statistics (Spring 2023)
 
