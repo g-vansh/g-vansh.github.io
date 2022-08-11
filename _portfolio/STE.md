@@ -1,6 +1,6 @@
 ---
 title: "Strategic Treatment Effects"
-excerpt: "R Package to Estimate The Strategic Treatment Effects of an experiment using High Dimensional Data<br/><img src='/images/STE.jpeg'>"
+excerpt: "R Package to Estimate The Strategic Treatment Effects of an experiment using High Dimensional Data<br/><br/><img src='/images/STE.jpeg'>"
 collection: portfolio
 ---
 
