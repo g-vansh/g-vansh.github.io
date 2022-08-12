@@ -16,4 +16,4 @@ I like to apply what I have learned in classroom to solve real-world problems. I
 
 Teaching is another excellent way of learning for me and I have greatly enjoyed and benefited from being an undergraduate [teaching assistant](http://vanshg.me/teaching/) for various CS courses at Cornell.
 
-Outside of academia, I am passionate about studying and exploring cities & transit systems. Please do visit [this map](http://vanshg.me/portfolio/) for my to see all the cities I have been to!
+Outside of academia, I am passionate about studying and exploring cities & transit systems. 
