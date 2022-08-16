@@ -94,7 +94,7 @@ Open-Source Software
   * Python code to parse directories and upload the code to Zenodo. This is used by the AEA replication team for smoother synchronisation of their files. 
 
 
-Publications
+Research Projects
 ======
   <ul>{% for post in site.publications %}
     {% include archive-single-cv.html %}
