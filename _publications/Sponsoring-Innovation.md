@@ -6,7 +6,8 @@ excerpt: 'This paper seeks to understand the effects of the introduction of GitH
 date: 2022-03-01
 author: 
 authorurl: 
-authors: <a href="https://www.jorgeguzman.co/">Jorge Guzman</a>, <a href="https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955">Maria Roche</a>, & <a href="https://sites.google.com/view/annamariaconti/home-page">Annamaria Conti</a>
+authors:
+coauthors: <a href="https://sites.google.com/view/annamariaconti/home-page">Annamaria Conti</a>, <a href="https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955">Maria Roche</a>, & <a href="https://www.jorgeguzman.co/">Jorge Guzman</a>
 venue: 
 ---
 This paper seeks to understand the effects of the introduction of GitHub Sponsorships on digital innovation. 
