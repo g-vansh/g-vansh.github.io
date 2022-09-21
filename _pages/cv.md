@@ -116,7 +116,7 @@ Professional Work Experience
 ======
 * Ascenta Management Consulting
   * _Founder & CEO_ (August 2019 - Present)
-  * Recognized as [India’s Top 10 Consultants (CEOInsights Mag)](www.bit.ly/3PapBDy)
+  * Recognized as [India’s Top 10 Consultants (CEOInsights Mag)](https://www.bit.ly/3PapBDy)
   * Head teams of volunteer consultants working pro-bono with local Indian Small and Medium Enterprises to improve their operations workflows, cut costs, expand their clientele, and provide effective data-driven marketing strategies.
   * Consulted 20+ local businesses using data-backed insights to aid resource mobilization and advance the expansion of revenue streams for the firms – raising revenues for our customers by an average of 28% in a 4-month project period.
 * [Cornell Business Analytics](https://www.cornellbusinessanalytics.com)
