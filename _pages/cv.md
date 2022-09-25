@@ -40,7 +40,7 @@ Relevant Coursework
 Research Experience
 ======
 * Spring 2021 - Present: Research Assistant, Cornell University
-  * Worked under the guidance of [Daniela Scur](https://www.danielascur.com), leading the data collection and processing for [Dampening Natural Disasters’ Disruptive Effects on Firms and Labor Markets](http://http://vanshg.me/publication/Diario-Municipal).
+  * Worked under the guidance of [Daniela Scur](https://www.danielascur.com), leading the data collection and processing for [Dampening Natural Disasters’ Disruptive Effects on Firms and Labor Markets](http://vanshg.me/publication/Diario-Municipal).
   * Successfully web-scraped ~25 million PDF files in Portuguese, and processed them.
   * Converted the complicated and unstructured PDFs into more accessible .csv files for further analysis.
 
