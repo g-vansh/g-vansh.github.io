@@ -23,19 +23,20 @@ Education
 
 Relevant Coursework
 ======
-* [Real Analysis](https://classes.cornell.edu/browse/roster/FA22/class/MATH/6110) (Ongoing)
+* [Real Analysis](https://classes.cornell.edu/browse/roster/FA22/class/MATH/6110) (A)
 * [Honors Introduction to Analysis](https://classes.cornell.edu/browse/roster/SP22/class/MATH/4130) (A+)
 * [Stochastic Processes](https://classes.cornell.edu/browse/roster/SP22/class/ORIE/3510)
-* [Econometrics](https://classes.cornell.edu/browse/roster/SP22/class/ECON/3140)
-* [Intro to Probability & Statistical Inference](https://classes.cornell.edu/browse/roster/FA21/class/ECON/3130)
+* [Econometrics](https://classes.cornell.edu/browse/roster/SP22/class/ECON/3140) 
+* [Statistical Computing](https://classes.cornell.edu/browse/roster/SP23/class/STSCI/4520)
+* [Theory of Statistics](https://classes.cornell.edu/browse/roster/SP23/class/BTRY/4090)
+* [Risk Simulation & Monte Carlo Methods](https://classes.cornell.edu/browse/roster/SP23/class/AEM/4060)
+* [Intro to Probability & Statistical Inference](https://classes.cornell.edu/browse/roster/FA21/class/ECON/3130) 
 * [Linear Algebra](https://classes.cornell.edu/browse/roster/FA20/class/MATH/2210)
 * [Multivariable Calculus](https://classes.cornell.edu/browse/roster/SP21/class/MATH/2220)
 * [Object-Oriented Programming & Data Structures](https://classes.cornell.edu/browse/roster/FA21/class/CS/2110)
 * [Computing using MATLAB](https://classes.cornell.edu/browse/roster/FA20/class/CS/1112)
 * [Strategy](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2601)
 * [Finance](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2240)
-* Statistical Computing (Spring 2023)
-* Python Programming for Statistics (Spring 2023)
 
 Research Experience
 ======
@@ -43,9 +44,10 @@ Research Experience
   * Worked under the guidance of [Daniela Scur](https://www.danielascur.com), leading the data collection and processing for [Dampening Natural Disasters’ Disruptive Effects on Firms and Labor Markets](http://vanshg.me/publication/Diario-Municipal).
   * Successfully web-scraped ~25 million PDF files in Portuguese, and processed them.
   * Converted the complicated and unstructured PDFs into more accessible .csv files for further analysis.
+  * Created topic models to classify text data using the LDA algorithm.
 
-* Summer 2022: Dean's Summer Research Fellow, Columbia Business School
-  * Worked under the guidance of [Jorge Guzman](https://www.jorgeguzman.co/), collaborating with [Maria Roche](https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955) and [Annamaria Conti](https://sites.google.com/view/annamariaconti/home-page).
+* Summer 2022 - Present: Dean's Summer Research Fellow, Columbia Business School
+  * Worked under the guidance of [Jorge Guzman (Columbia Business School)](https://www.jorgeguzman.co/), co-authoring with [Maria Roche (Harvard Business School)](https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955) and [Annamaria Conti (IE Business School)](https://sites.google.com/view/annamariaconti/home-page).
   * Created data pipelines and authored an [open-source R package (STE)](http://vanshg.me/STE).
   * Worked on projects in [Strategy, Entrepreneurship](http://vanshg.me/publication/STE), and [Digital Innovation](http://vanshg.me/publication/Sponsoring-Innovation).
 
