@@ -9,7 +9,7 @@ wp: true
 authorurl: 
 authors:
 paperurl: https://www.nber.org/papers/w31668
-citation: Conti, A., Gupta, V., Guzman, J., & Roche, M. (2023). Incentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program. National Bureau of Economic Research. https://doi.org/10.3386/w31668
+citation: 'Conti, A., Gupta, V., Guzman, J., & Roche, M. (2023). Incentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program. National Bureau of Economic Research. https://doi.org/10.3386/w31668'
 coauthors: <a href="https://sites.google.com/view/annamariaconti/home-page">Annamaria Conti</a>, <a href="https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955">Maria Roche</a>, & <a href="https://www.jorgeguzman.co/">Jorge Guzman</a>
 venue: National Bureau of Economic Research (Working Paper)
 ---
