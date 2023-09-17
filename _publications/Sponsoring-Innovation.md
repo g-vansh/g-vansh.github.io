@@ -9,7 +9,7 @@ wp: true
 authorurl: 
 authors:
 coauthors: <a href="https://sites.google.com/view/annamariaconti/home-page">Annamaria Conti</a>, <a href="https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955">Maria Roche</a>, & <a href="https://www.jorgeguzman.co/">Jorge Guzman</a>
-venue: 
+venue: <a href="https://www.nber.org/papers/w31668">National Bureau of Economic Research</a>
 ---
 This paper seeks to understand the effects of the introduction of GitHub Sponsorships on digital innovation. 
 
