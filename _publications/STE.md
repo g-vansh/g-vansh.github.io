@@ -7,7 +7,7 @@ date: 2022-07-01
 author: 'Jorge Guzman'
 authorurl: https://www.jorgeguzman.co/
 authors:
-venue: 
+venue: Social Science Research Network (Working Paper)
 wp: true
 paperurl: 'http://dx.doi.org/10.2139/ssrn.3915606'
 citation: 'Guzman, Jorge, Treatment Effects in Managerial Strategies (September 1, 2021).'
