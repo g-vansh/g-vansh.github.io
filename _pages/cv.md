@@ -101,9 +101,10 @@ Open-Source Software
 
 Research Projects
 ======
-  <ul>{% for post in site.publications %}
-    {% include archive-single.html %}
-  {% endfor %}</ul>
+  <ul>{% assign sorted_publications = site.publications | sort: 'date' | reverse %}
+{% for post in sorted_publications %}
+  {% include archive-single.html %}
+{% endfor %}</ul>
   
 Talks
 ======
