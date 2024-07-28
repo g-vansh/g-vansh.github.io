@@ -11,15 +11,15 @@ redirect_from:
 
 Education
 ======
-* B.S. in Applied Economics and Management, Cornell University, 2023
-  * GPA - 3.92
-  * Dyson Diversity Scholar
-  * Research Honors in Social Science
 * B.S. in Biometry and Statistics, Cornell University, 2023
-  * GPA - 3.95
+  * GPA - 3.95 (Magna Cum Laude)
   * Concentrations:
     * Mathematical Statistics
     * Computational Statistics & Data Management
+* B.S. in Applied Economics and Management, Cornell University, 2023
+  * GPA - 3.92 (Magna Cum Laude)
+  * Dyson Diversity Scholar
+  * Research Honors (Distinction) in Social Science
 
 Relevant Coursework
 ======
@@ -48,7 +48,7 @@ Research Experience
   * Created topic models to classify text data using the LDA algorithm.
 
 * Summer 2022 - Present: Dean's Summer Research Fellow, Columbia Business School
-  * Worked under the guidance of [Jorge Guzman (Columbia Business School)](https://www.jorgeguzman.co/), co-authoring with [Maria Roche (Harvard Business School)](https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955) and [Annamaria Conti (IE Business School)](https://sites.google.com/view/annamariaconti/home-page) for [ncentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program](https://www.nber.org/papers/w31668).
+  * Worked under the guidance of [Jorge Guzman (Columbia Business School)](https://www.jorgeguzman.co/), co-authoring with [Maria Roche (Harvard Business School)](https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955) and [Annamaria Conti (IE Business School)](https://sites.google.com/view/annamariaconti/home-page) for [Incentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program](https://www.nber.org/papers/w31668).
   * Created data pipelines and authored an [open-source R package (STE)](/STE).
   * Worked on projects in [Strategy, Entrepreneurship](/publication/STE), and [Digital Innovation](/publication/Sponsoring-Innovation).
 
@@ -99,7 +99,6 @@ Open-Source Software
 * [Python: Upload-To-Zenodo](https://github.com/AEADataEditor/Upload-to-Zenodo)
   * Python code to parse directories and upload the code to Zenodo. This is used by the AEA replication team for smoother synchronisation of their files. 
 
-
 Research Projects
 ======
   <ul>{% for post in site.publications %}
@@ -120,10 +119,16 @@ Teaching
   
 Professional Work Experience
 ======
+* [Charles River Associates (Antitrust & Competition Economics)](https://www.crai.com/)
+  * _Associate & Data Scientist_ (June 2023 - Present)
+  * Produce economic analyses evaluating the competitive effects of healthcare mergers in the US, building on research from industrial economics, urban economics, and healthcare economics.
+  * Author white-papers presented to the U.S. Department of Justice and juries to discuss the efficacy of legal frameworks that govern antitrust enforecement policies in the US for the healthcare industry.
+  * Hold a dual role as a data scientist/software engineer as well, creating interactive EXE tools to enable economic analyses with large scale data with ease.
+  * Assist with the adoption of cloud computing practices for economic analyses involving big data. 
 * Ascenta Management Consulting
   * _Founder & CEO_ (August 2019 - May 2023)
   * Recognized as [India’s Top 10 Consultants (CEOInsights Mag)](https://www.bit.ly/3PapBDy)
-  * Head teams of volunteer consultants working pro-bono with local Indian Small and Medium Enterprises to improve their operations workflows, cut costs, expand their clientele, and provide effective data-driven marketing strategies.
+  * Headed teams of volunteer consultants working pro-bono with local Indian Small and Medium Enterprises to improve their operations workflows, cut costs, expand their clientele, and provide effective data-driven marketing strategies.
   * Consulted 20+ local businesses using data-backed insights to aid resource mobilization and advance the expansion of revenue streams for the firms – raising revenues for our customers by an average of 28% in a 4-month project period.
 * [Cornell Business Analytics](https://www.cornellbusinessanalytics.com)
   * _Vice President_ (August 2020 - May 2023)
@@ -143,5 +148,6 @@ Professional Work Experience
 
 Honors & Media Coverage
 ======
-* Recognised as one of [India’s Top 10 Business Consultants](https://www.ceoinsightsindia.com/magazines/leaders-in-business-consultants-june-2022/#page=42) by CEOInsights Magazine India for my work with Ascenta Consulting. 
+* Recognised as one of [India’s Top 10 Business Consultants](https://www.ceoinsightsindia.com/magazines/leaders-in-business-consultants-june-2022/#page=42) by CEOInsights Magazine India for my work with Ascenta Consulting.
+* Distinction in Social Science research, with Magna Cum Laude honors at Cornell University.
 * Dean’s List for all my semesters at Cornell University. 
