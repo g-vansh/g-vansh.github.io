@@ -48,17 +48,17 @@ Research Experience
   * Created topic models to classify text data using the LDA algorithm.
 
 * Summer 2022 - Present: Dean's Summer Research Fellow, Columbia Business School
-  * Worked under the guidance of [Jorge Guzman (Columbia Business School)](https://www.jorgeguzman.co/), co-authoring with [Maria Roche (Harvard Business School)](https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955) and [Annamaria Conti (IE Business School)](https://sites.google.com/view/annamariaconti/home-page).
-  * Created data pipelines and authored an [open-source R package (STE)](http://vanshg.me/STE).
-  * Worked on projects in [Strategy, Entrepreneurship](http://vanshg.me/publication/STE), and [Digital Innovation](http://vanshg.me/publication/Sponsoring-Innovation).
+  * Worked under the guidance of [Jorge Guzman (Columbia Business School)](https://www.jorgeguzman.co/), co-authoring with [Maria Roche (Harvard Business School)](https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955) and [Annamaria Conti (IE Business School)](https://sites.google.com/view/annamariaconti/home-page) for [ncentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program](https://www.nber.org/papers/w31668).
+  * Created data pipelines and authored an [open-source R package (STE)](/STE).
+  * Worked on projects in [Strategy, Entrepreneurship](/publication/STE), and [Digital Innovation](/publication/Sponsoring-Innovation).
 
 * Summer 2021: Data Reproducibility Researcher, American Economic Association
   * Responsible for reproducing results in manuscripts submitted for review to AEA journals under the [AEA Data Editor, Lars Vilhuber](https://www.vilhuber.com/lars).
-  * [Debugged and reproduced code](http://vanshg.me/publications/AEA-Data) in 30+ manuscripts, and verified the validity of the data. Generated reports of the replication process, which were then used to make the review decision for the manuscripts.  
+  * [Debugged and reproduced code](/publications/AEA-Data) in 30+ manuscripts, and verified the validity of the data. Generated reports of the replication process, which were then used to make the review decision for the manuscripts.  
   * Authored an [open-source data utility tool](https://github.com/AEADataEditor/Upload-to-Zenodo) which is used by AEA to upload their reproduction files to Zenodo. 
 
 * Spring 2021: Research Assistant, Cornell University
-  * Worked under the guidance of [Reza Moghimi](https://dyson.cornell.edu/faculty-research/faculty/am2393/), studying [Twitter sentiment’s effects on the financial markets](http://http://vanshg.me/publication/NLP). 
+  * Worked under the guidance of [Reza Moghimi](https://dyson.cornell.edu/faculty-research/faculty/am2393/), studying [Twitter sentiment’s effects on the financial markets](/publication/NLP). 
   * Carried out literature reviews for the paper, studying NLP algorithms to understand which one would be the most effective for our use case.
   * Helped in the development of Python code to collect the data and conduct the analysis.
   
@@ -73,26 +73,29 @@ Coding Skills
 * Statistical Analysis
   * STATA
   * MATLAB
+* Mapping & Spatial Data
+  * ArcGIS Pro
+  * Google Maps API
+  * Folium/Leaflet (Interactive Maps)
 * Data Scraping
   * PDFPlumber
   * BeautifulSoup
   * Selenium
-  * Google Geocode API
 * Data Management
   * SQL
   * GraphQL
   * Excel
+  * Google Cloud
   * Microsoft PowerBI (Intermediate)
   * AWS (Exposure)
-  * Google Cloud (Exposure)
 * Data Visualisation
   * Tableau
   * Adobe InDesign
 
 Open-Source Software
 ======
-* [R Package: STE](http://vanshg.me/STE)
-  * R Package to implement the framework developed in [Treatment Effects in Managerial Strategies](http://vanshg.me/publication/STE), using machine learning in a causal inference setup.
+* [R Package: STE](/STE)
+  * R Package to implement the framework developed in [Treatment Effects in Managerial Strategies](/publication/STE), using machine learning in a causal inference setup.
 * [Python: Upload-To-Zenodo](https://github.com/AEADataEditor/Upload-to-Zenodo)
   * Python code to parse directories and upload the code to Zenodo. This is used by the AEA replication team for smoother synchronisation of their files. 
 
@@ -118,12 +121,12 @@ Teaching
 Professional Work Experience
 ======
 * Ascenta Management Consulting
-  * _Founder & CEO_ (August 2019 - Present)
+  * _Founder & CEO_ (August 2019 - May 2023)
   * Recognized as [India’s Top 10 Consultants (CEOInsights Mag)](https://www.bit.ly/3PapBDy)
   * Head teams of volunteer consultants working pro-bono with local Indian Small and Medium Enterprises to improve their operations workflows, cut costs, expand their clientele, and provide effective data-driven marketing strategies.
   * Consulted 20+ local businesses using data-backed insights to aid resource mobilization and advance the expansion of revenue streams for the firms – raising revenues for our customers by an average of 28% in a 4-month project period.
 * [Cornell Business Analytics](https://www.cornellbusinessanalytics.com)
-  * _Vice President_ (August 2020 - Present)
+  * _Vice President_ (August 2020 - May 2023)
   * Motivate team-members to ensure the nurturing of innovative ideas and the timely delivery of deliverables.
   * Lead a team of 30 analysts to organize the recruitment screening of 180+ applicants, designing innovative challenges.
   * Optimized inventory management for an MNC using management science theory and MS Excel and JavaScript.
