@@ -11,12 +11,12 @@ redirect_from:
 
 Education
 ======
-* B.S. in Biometry and Statistics, Cornell University, 2023
+* **B.S. in Biometry and Statistics, Cornell University, 2023**
   * GPA - 3.95 (Magna Cum Laude)
   * Concentrations:
     * Mathematical Statistics
     * Computational Statistics & Data Management
-* B.S. in Applied Economics and Management, Cornell University, 2023
+* **B.S. in Applied Economics and Management, Cornell University, 2023**
   * GPA - 3.92 (Magna Cum Laude)
   * Dyson Diversity Scholar
   * Research Honors (Distinction) in Social Science
@@ -41,54 +41,54 @@ Relevant Coursework
 
 Research Experience
 ======
-* Spring 2021 - Present: Research Assistant, Cornell University
+* **Research Assistant, Cornell University** (Spring 2021 - Present)
   * Worked under the guidance of [Daniela Scur](https://www.danielascur.com), co-authoring with [Michel Best](https://blogs.cuit.columbia.edu/mcb2270/) and [Renata Lemos](https://renatalemos.com/), leading the data collection and processing for [State Capacity and Responses to Natural Disasters: Evidence from Brazilian Municipalities](/publication/Diario-Municipal).
   * Successfully web-scraped ~25 million PDF files in Portuguese, and processed them.
   * Converted the complicated and unstructured PDFs into more accessible .csv files for further analysis.
   * Created topic models to classify text data using the LDA algorithm.
 
-* Summer 2022 - Present: Dean's Summer Research Fellow, Columbia Business School
+* **Dean's Summer Research Fellow, Columbia Business School** (Summer 2022 - Present)
   * Worked under the guidance of [Jorge Guzman (Columbia Business School)](https://www.jorgeguzman.co/), co-authoring with [Maria Roche (Harvard Business School)](https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955) and [Annamaria Conti (IE Business School)](https://sites.google.com/view/annamariaconti/home-page) for [Incentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program](https://www.nber.org/papers/w31668).
   * Created data pipelines and authored an [open-source R package (STE)](/STE).
   * Worked on projects in [Strategy, Entrepreneurship](/publication/STE), and [Digital Innovation](/publication/Sponsoring-Innovation).
 
-* Summer 2021: Data Reproducibility Researcher, American Economic Association
+* **Data Reproducibility Researcher, American Economic Association** (Summer 2021)
   * Responsible for reproducing results in manuscripts submitted for review to AEA journals under the [AEA Data Editor, Lars Vilhuber](https://www.vilhuber.com/lars).
   * [Debugged and reproduced code](/publications/AEA-Data) in 30+ manuscripts, and verified the validity of the data. Generated reports of the replication process, which were then used to make the review decision for the manuscripts.  
   * Authored an [open-source data utility tool](https://github.com/AEADataEditor/Upload-to-Zenodo) which is used by AEA to upload their reproduction files to Zenodo. 
 
-* Spring 2021: Research Assistant, Cornell University
+* **Research Assistant, Cornell University** (Spring 2021)
   * Worked under the guidance of [Reza Moghimi](https://dyson.cornell.edu/faculty-research/faculty/am2393/), studying [Twitter sentiment’s effects on the financial markets](/publication/NLP). 
   * Carried out literature reviews for the paper, studying NLP algorithms to understand which one would be the most effective for our use case.
   * Helped in the development of Python code to collect the data and conduct the analysis.
   
 Coding Skills
 ======
-* Scripting Languages
+* **Scripting Languages**
   * Python
   * R
   * Java
   * Visual Basic (VBA)
   * JavaScript (Intermediate)
-* Statistical Analysis
+* **Statistical Analysis**
   * STATA
   * MATLAB
-* Mapping & Spatial Data
+* **Mapping & Spatial Data**
   * ArcGIS Pro
   * Google Maps API
   * Folium/Leaflet (Interactive Maps)
-* Data Scraping
+* **Data Scraping**
   * PDFPlumber
   * BeautifulSoup
   * Selenium
-* Data Management
+* **Data Management**
   * SQL
   * GraphQL
   * Excel
   * Google Cloud
   * Microsoft PowerBI (Intermediate)
   * AWS (Exposure)
-* Data Visualisation
+* **Data Visualisation**
   * Tableau
   * Adobe InDesign
 
@@ -120,29 +120,29 @@ Teaching
 Professional Work Experience
 ======
 * [Charles River Associates (Antitrust & Competition Economics)](https://www.crai.com/)
-  * _Associate & Data Scientist_ (June 2023 - Present)
+  * **_Associate & Data Scientist_** (June 2023 - Present)
   * Produce economic analyses evaluating the competitive effects of healthcare mergers in the US, building on research from industrial economics, urban economics, and healthcare economics.
   * Author white-papers presented to the U.S. Department of Justice and juries to discuss the efficacy of legal frameworks that govern antitrust enforecement policies in the US for the healthcare industry.
   * Hold a dual role as a data scientist/software engineer as well, creating interactive EXE tools to enable economic analyses with large scale data with ease.
   * Assist with the adoption of cloud computing practices for economic analyses involving big data. 
 * Ascenta Management Consulting
-  * _Founder & CEO_ (August 2019 - May 2023)
+  * **_Founder & CEO_** (August 2019 - May 2023)
   * Recognized as [India’s Top 10 Consultants (CEOInsights Mag)](https://www.bit.ly/3PapBDy)
   * Headed teams of volunteer consultants working pro-bono with local Indian Small and Medium Enterprises to improve their operations workflows, cut costs, expand their clientele, and provide effective data-driven marketing strategies.
   * Consulted 20+ local businesses using data-backed insights to aid resource mobilization and advance the expansion of revenue streams for the firms – raising revenues for our customers by an average of 28% in a 4-month project period.
 * [Cornell Business Analytics](https://www.cornellbusinessanalytics.com)
-  * _Vice President_ (August 2020 - May 2023)
+  * **_Vice President_** (August 2020 - May 2023)
   * Motivate team-members to ensure the nurturing of innovative ideas and the timely delivery of deliverables.
   * Lead a team of 30 analysts to organize the recruitment screening of 180+ applicants, designing innovative challenges.
   * Optimized inventory management for an MNC using management science theory and MS Excel and JavaScript.
   * Leveraged data to create visual insights and Tableau dashboards for a startup to establish hotspots for its launch.
 * [Meta](https://about.facebook.com)
-  * _Big Data & Market Intelligence Analyst Extern_ (February 2022 - May 2022)
+  * **_Big Data & Market Intelligence Analyst Extern_** (February 2022 - May 2022)
   * Collaborated with teams to use data-driven insights for suggesting clients to Meta’s Global Business Group.
   * Innovated machine learning models (k-means clustering & random forests) for insights and predictive analytics.
   * Consulted for internal teams in Meta, curating a client acquisition strategy for the Small Business Clients Group.
 * [Grant Thornton International LLP](https://www.grantthornton.in)
-  * _Research Trainee – Global Research Centre_ (December 2018 - January 2019)
+  * **_Research Trainee – Global Research Centre_** (December 2018 - January 2019)
   * Developed a database of client information in order to streamline communication across Grant Thornton India by leveraging Capital-IQ and Avention databases, implementing a heavy use of SQL and VBA for business analytics.
   * Analysed companies to profile their strategies and risks to produce thorough SWOT analyses for industries GT India’s clients operate in, while consulting with Australian clients and compiling market-competition research reports for them.
 
