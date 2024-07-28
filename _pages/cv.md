@@ -61,43 +61,6 @@ Research Experience
   * Worked under the guidance of [Reza Moghimi](https://dyson.cornell.edu/faculty-research/faculty/am2393/), studying [Twitter sentiment’s effects on the financial markets](/publication/NLP). 
   * Carried out literature reviews for the paper, studying NLP algorithms to understand which one would be the most effective for our use case.
   * Helped in the development of Python code to collect the data and conduct the analysis.
-  
-Coding Skills
-======
-* **Scripting Languages**
-  * Python
-  * R
-  * Java
-  * Visual Basic (VBA)
-  * JavaScript (Intermediate)
-* **Statistical Analysis**
-  * STATA
-  * MATLAB
-* **Mapping & Spatial Data**
-  * ArcGIS Pro
-  * Google Maps API
-  * Folium/Leaflet (Interactive Maps)
-* **Data Scraping**
-  * PDFPlumber
-  * BeautifulSoup
-  * Selenium
-* **Data Management**
-  * SQL
-  * GraphQL
-  * Excel
-  * Google Cloud
-  * Microsoft PowerBI (Intermediate)
-  * AWS (Exposure)
-* **Data Visualisation**
-  * Tableau
-  * Adobe InDesign
-
-Open-Source Software
-======
-* [R Package: STE](/STE)
-  * R Package to implement the framework developed in [Treatment Effects in Managerial Strategies](/publication/STE), using machine learning in a causal inference setup.
-* [Python: Upload-To-Zenodo](https://github.com/AEADataEditor/Upload-to-Zenodo)
-  * Python code to parse directories and upload the code to Zenodo. This is used by the AEA replication team for smoother synchronisation of their files. 
 
 Research Projects
 ======
@@ -117,7 +80,14 @@ Teaching
   <ul>{% for post in site.teaching %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
+
+Open-Source Software
+======
+* [R Package: STE](/STE)
+  * R Package to implement the framework developed in [Treatment Effects in Managerial Strategies](/publication/STE), using machine learning in a causal inference setup.
+* [Python: Upload-To-Zenodo](https://github.com/AEADataEditor/Upload-to-Zenodo)
+  * Python code to parse directories and upload the code to Zenodo. This is used by the AEA replication team for smoother synchronisation of their files. 
+
 Professional Work Experience
 ======
 * [Charles River Associates (Antitrust & Competition Economics)](https://www.crai.com/)
@@ -146,6 +116,21 @@ Professional Work Experience
   * **_Research Trainee – Global Research Centre_** (December 2018 - January 2019)
   * Developed a database of client information in order to streamline communication across Grant Thornton India by leveraging Capital-IQ and Avention databases, implementing a heavy use of SQL and VBA for business analytics.
   * Analysed companies to profile their strategies and risks to produce thorough SWOT analyses for industries GT India’s clients operate in, while consulting with Australian clients and compiling market-competition research reports for them.
+
+Coding Skills
+======
+* **Scripting Languages**
+  * Python | Java | Visual Basic (VBA) | JavaScript (Intermediate)
+* **Statistical Analysis**
+  * STATA | MATLAB | R
+* **Mapping & Spatial Data**
+  * ArcGIS Pro | Google Maps API | Folium/Leaflet (Interactive Maps)
+* **Data Scraping**
+  * PDFPlumber | BeautifulSoup | Selenium
+* **Data Management**
+  * SQL | GraphQL | Excel | Google Cloud | Microsoft PowerBI (Intermediate)
+* **Data Visualisation**
+  * Tableau | Adobe InDesign
 
 Honors & Media Coverage
 ======
