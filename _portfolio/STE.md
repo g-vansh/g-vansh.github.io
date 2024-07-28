@@ -4,7 +4,7 @@ excerpt: "R Package to Estimate The Strategic Treatment Effects of an experiment
 collection: portfolio
 ---
 
-Created an [open-source R package](http://vanshg.me/STE) from scratch to apply the causal framework developed in [Treatment Effects in Managerial Strategies (Guzman, 2021)](http://vanshg.me/publication/STE).
+Created an [open-source R package](/STE) from scratch to apply the causal framework developed in [Treatment Effects in Managerial Strategies (Guzman, 2021)](/publication/STE).
 
 The R package does the following:
 1. Estimates the propensity of a firm to select into choosing a strategy using a custom-tuned Random Forest model’s 10 fold out-of-fold predictions. 
