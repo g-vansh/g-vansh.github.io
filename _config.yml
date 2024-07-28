@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Vansh Gupta"
 title_separator          : "-"
 name                     : &name "Vansh Gupta"
-description              : &description "Senior at Cornell University, studying Management, Economics, and Biostatistics"
+description              : &description "Economics researcher with interests in innovation, urban, & development topics."
 url                      : https://g-vansh.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "g-vansh/g-vansh.github.io"
@@ -57,7 +57,7 @@ yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               : &twitter
+  username               : &twitter "VanshG_"
 facebook:
   username               :
   app_id                 :
@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Vansh Gupta"
   avatar           : "profile.png"
-  bio              : "Cornell '23 | Innovation, Urban, Health & Development Econ"
+  bio              : "Cornell '23 | Innovation, Urban, & Development Econ"
   location         : "Cambridge, MA"
   employer         : 
   pubmed           : 
