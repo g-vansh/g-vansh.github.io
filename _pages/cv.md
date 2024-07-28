@@ -120,17 +120,17 @@ Professional Work Experience
 Coding Skills
 ======
 * **Scripting Languages**
-  * Python | Java | Visual Basic (VBA) | JavaScript (Intermediate)
+  * Python \| Java \| Visual Basic (VBA) \| JavaScript (Intermediate)
 * **Statistical Analysis**
-  * STATA | MATLAB | R
+  * STATA \| MATLAB \| R
 * **Mapping & Spatial Data**
-  * ArcGIS Pro | Google Maps API | Folium/Leaflet (Interactive Maps)
+  * ArcGIS Pro \| Google Maps API \| Folium/Leaflet (Interactive Maps)
 * **Data Scraping**
-  * PDFPlumber | BeautifulSoup | Selenium
+  * PDFPlumber \| BeautifulSoup \| Selenium
 * **Data Management**
-  * SQL | GraphQL | Excel | Google Cloud | Microsoft PowerBI (Intermediate)
+  * SQL \| GraphQL \| Excel \| Google Cloud \| Microsoft PowerBI (Intermediate)
 * **Data Visualisation**
-  * Tableau | Adobe InDesign
+  * Tableau \| Adobe InDesign
 
 Honors & Media Coverage
 ======
