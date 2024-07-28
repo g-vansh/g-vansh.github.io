@@ -11,14 +11,14 @@ redirect_from:
 
 Education
 ======
-* B.S. in Applied Economics and Management, Cornell University, 2023 (Expected) 
-  * GPA - 3.93
+* B.S. in Applied Economics and Management, Cornell University, 2023
+  * GPA - 3.92
   * Dyson Diversity Scholar
   * Research Honors in Social Science
-* B.S. in Biometry and Statistics, Cornell University, 2023 (Expected) 
+* B.S. in Biometry and Statistics, Cornell University, 2023
   * GPA - 3.95
   * Concentrations:
-    * Computer Science & Machine Learning
+    * Mathematical Statistics
     * Computational Statistics & Data Management
 
 Relevant Coursework
@@ -30,6 +30,7 @@ Relevant Coursework
 * [Statistical Computing](https://classes.cornell.edu/browse/roster/SP23/class/STSCI/4520)
 * [Theory of Statistics](https://classes.cornell.edu/browse/roster/SP23/class/BTRY/4090)
 * [Risk Simulation & Monte Carlo Methods](https://classes.cornell.edu/browse/roster/SP23/class/AEM/4060)
+* [Advanced Biological Statistics](https://classes.cornell.edu/browse/roster/SP23/class/BTRY/3020)
 * [Intro to Probability & Statistical Inference](https://classes.cornell.edu/browse/roster/FA21/class/ECON/3130) 
 * [Linear Algebra](https://classes.cornell.edu/browse/roster/FA20/class/MATH/2210)
 * [Multivariable Calculus](https://classes.cornell.edu/browse/roster/SP21/class/MATH/2220)
@@ -41,7 +42,7 @@ Relevant Coursework
 Research Experience
 ======
 * Spring 2021 - Present: Research Assistant, Cornell University
-  * Worked under the guidance of [Daniela Scur](https://www.danielascur.com), leading the data collection and processing for [Dampening Natural Disasters’ Disruptive Effects on Firms and Labor Markets](http://vanshg.me/publication/Diario-Municipal).
+  * Worked under the guidance of [Daniela Scur](https://www.danielascur.com), co-authoring with [Michel Best](https://blogs.cuit.columbia.edu/mcb2270/) and [Renata Lemos](https://renatalemos.com/), leading the data collection and processing for [State Capacity and Responses to Natural Disasters: Evidence from Brazilian Municipalities](/publication/Diario-Municipal).
   * Successfully web-scraped ~25 million PDF files in Portuguese, and processed them.
   * Converted the complicated and unstructured PDFs into more accessible .csv files for further analysis.
   * Created topic models to classify text data using the LDA algorithm.
