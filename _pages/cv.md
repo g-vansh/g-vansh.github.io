@@ -134,6 +134,8 @@ Coding Skills
 
 Honors & Media Coverage
 ======
-* Recognised as one of [India’s Top 10 Business Consultants](https://www.ceoinsightsindia.com/magazines/leaders-in-business-consultants-june-2022/#page=42) by CEOInsights Magazine India for my work with Ascenta Consulting.
 * Distinction in Social Science research, with Magna Cum Laude honors at Cornell University.
+* Recognised as one of [India’s Top 10 Business Consultants](https://www.ceoinsightsindia.com/magazines/leaders-in-business-consultants-june-2022/#page=42) by CEOInsights Magazine India for my work with Ascenta Consulting.
+* Research covered in the [NBER Bulletin on Entrepreneurship](https://www.nber.org/be/20241/open-source-software-creators-its-not-just-about-money).
+* Research covered in the [Harvard Business School Working Knowledge Newsletter](https://hbswk.hbs.edu/item/intrinsic-joy-sparks-ideas-better-than-cash).
 * Dean’s List for all my semesters at Cornell University. 
