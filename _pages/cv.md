@@ -21,6 +21,12 @@ Education
   * Dyson Diversity Scholar
   * Research Honors (Distinction) in Social Science
 
+Research Interests & Experience
+======
+* **Innovation | Strategy** \[2 Projects; 2 Years\]
+* **Urban & Transport | Industrial Organization** \[2 Projects; 2 Years\]
+* **Development | Education | Healthcare** \[4 Projects; 4 Years\]
+
 Relevant Coursework
 ======
 * [Real Analysis](https://classes.cornell.edu/browse/roster/FA22/class/MATH/6110) (A)
