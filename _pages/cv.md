@@ -81,11 +81,11 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
 
-Open-Source Software
+Software Development
 ======
-* [R Package: STE](/STE)
+* [\[Open Source\] R Package: STE](/STE)
   * R Package to implement the framework developed in [Treatment Effects in Managerial Strategies](/publication/STE), using machine learning in a causal inference setup.
-* [Python: Upload-To-Zenodo](https://github.com/AEADataEditor/Upload-to-Zenodo)
+* [\[Open Source\] Python: Upload-To-Zenodo](https://github.com/AEADataEditor/Upload-to-Zenodo)
   * Python code to parse directories and upload the code to Zenodo. This is used by the AEA replication team for smoother synchronisation of their files. 
 
 Professional Work Experience
