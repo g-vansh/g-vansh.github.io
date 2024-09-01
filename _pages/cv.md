@@ -29,21 +29,18 @@ Research Interests & Experience
 
 Relevant Coursework
 ======
-* [Real Analysis](https://classes.cornell.edu/browse/roster/FA22/class/MATH/6110) (A)
-* [Honors Introduction to Analysis](https://classes.cornell.edu/browse/roster/SP22/class/MATH/4130) (A+)
-* [Stochastic Processes](https://classes.cornell.edu/browse/roster/SP22/class/ORIE/3510)
-* [Econometrics](https://classes.cornell.edu/browse/roster/SP22/class/ECON/3140) 
-* [Statistical Computing](https://classes.cornell.edu/browse/roster/SP23/class/STSCI/4520)
-* [Theory of Statistics](https://classes.cornell.edu/browse/roster/SP23/class/BTRY/4090)
-* [Risk Simulation & Monte Carlo Methods](https://classes.cornell.edu/browse/roster/SP23/class/AEM/4060)
-* [Advanced Biological Statistics](https://classes.cornell.edu/browse/roster/SP23/class/BTRY/3020)
-* [Intro to Probability & Statistical Inference](https://classes.cornell.edu/browse/roster/FA21/class/ECON/3130) 
+* **Graduate Mathematics**
+  * [Real Analysis](https://classes.cornell.edu/browse/roster/FA22/class/MATH/6110) (A) \| [Honors Introduction to Analysis](https://classes.cornell.edu/browse/roster/SP22/class/MATH/4130) (A+) \| [Stochastic Processes](https://classes.cornell.edu/browse/roster/SP22/class/ORIE/3510)
+* **(Theory) Statistics**
+  * [Econometrics](https://classes.cornell.edu/browse/roster/SP22/class/ECON/3140) \| [Theory of Statistics](https://classes.cornell.edu/browse/roster/SP23/class/BTRY/4090) \| [Advanced Biological Statistics](https://classes.cornell.edu/browse/roster/SP23/class/BTRY/3020) \| [Probability & Statistical Inference](https://classes.cornell.edu/browse/roster/FA21/class/ECON/3130) 
+* **(Applied) Statistics**
+  * [Statistical Computing](https://classes.cornell.edu/browse/roster/SP23/class/STSCI/4520) \| [Risk Simulation & Monte Carlo Methods](https://classes.cornell.edu/browse/roster/SP23/class/AEM/4060)
+*  **Computer Science**
+  *  [Object-Oriented Programming & Data Structures](https://classes.cornell.edu/browse/roster/FA21/class/CS/2110) \| [Computing using MATLAB](https://classes.cornell.edu/browse/roster/FA20/class/CS/1112)
 * [Linear Algebra](https://classes.cornell.edu/browse/roster/FA20/class/MATH/2210)
 * [Multivariable Calculus](https://classes.cornell.edu/browse/roster/SP21/class/MATH/2220)
-* [Object-Oriented Programming & Data Structures](https://classes.cornell.edu/browse/roster/FA21/class/CS/2110)
-* [Computing using MATLAB](https://classes.cornell.edu/browse/roster/FA20/class/CS/1112)
-* [Strategy](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2601)
-* [Finance](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2240)
+* **Strategy & Business**
+  * [Strategy](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2601) \| [Finance](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2240)
 
 Research Experience
 ======
