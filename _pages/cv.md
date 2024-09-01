@@ -127,8 +127,8 @@ Coding Skills
   * ArcGIS Pro \| Google Maps API \| Folium/Leaflet (Interactive Maps)
 * **Data Scraping**
   * PDFPlumber \| BeautifulSoup \| Selenium
-* **Data Management**
-  * SQL \| GraphQL \| Excel \| Google Cloud \| Microsoft PowerBI (Intermediate)
+* **Big Data & Data Management**
+  * Microsoft Azure \| Databricks \| SQL \| GraphQL \| Excel \| Google Cloud \| Microsoft PowerBI (Intermediate)
 * **Data Visualisation**
   * Tableau \| Adobe InDesign
 
