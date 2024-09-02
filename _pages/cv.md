@@ -34,13 +34,13 @@ Relevant Coursework
 * **(Theory) Statistics**
   * [Econometrics](https://classes.cornell.edu/browse/roster/SP22/class/ECON/3140) \| [Theory of Statistics](https://classes.cornell.edu/browse/roster/SP23/class/BTRY/4090) \| [Advanced Biological Statistics](https://classes.cornell.edu/browse/roster/SP23/class/BTRY/3020) \| [Probability & Statistical Inference](https://classes.cornell.edu/browse/roster/FA21/class/ECON/3130) 
 * **(Applied) Statistics**
-  * [Statistical Computing](https://classes.cornell.edu/browse/roster/SP23/class/STSCI/4520) \| [Risk Simulation & Monte Carlo Methods](https://classes.cornell.edu/browse/roster/SP23/class/AEM/4060)
-*  **Computer Science**
-  *  [Object-Oriented Programming & Data Structures](https://classes.cornell.edu/browse/roster/FA21/class/CS/2110) \| [Computing using MATLAB](https://classes.cornell.edu/browse/roster/FA20/class/CS/1112)
-* [Linear Algebra](https://classes.cornell.edu/browse/roster/FA20/class/MATH/2210)
-* [Multivariable Calculus](https://classes.cornell.edu/browse/roster/SP21/class/MATH/2220)
-* **Strategy & Business**
-  * [Strategy](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2601) \| [Finance](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2240)
+  * [Statistical Computing](https://classes.cornell.edu/browse/roster/SP23/class/STSCI/4520) \| [Risk Simulation & Monte Carlo Methods](https://classes.cornell.edu/browse/roster/SP23/class/AEM/4060) \| [Computing using MATLAB](https://classes.cornell.edu/browse/roster/FA20/class/CS/1112) \| [Analytic Modelling](https://test-classes.ssit.cucloud.net/browse/roster/FA22/class/AEM/3030)
+* **Computer Science**
+  *  [Object-Oriented Programming & Data Structures](https://classes.cornell.edu/browse/roster/FA21/class/CS/2110) \| [Database Management](https://classes.cornell.edu/browse/roster/FA21/class/AEM/2820) 
+* **Fundamental Mathematics & Economics** 
+  * [Linear Algebra](https://classes.cornell.edu/browse/roster/FA20/class/MATH/2210) \| [Multivariable Calculus](https://classes.cornell.edu/browse/roster/SP21/class/MATH/2220) \| [International Trade & Finance](https://classes.cornell.edu/browse/roster/SP23/class/AEM/2300) \| [Intermediate Microeconomics](https://classes.cornell.edu/browse/roster/FA22/class/AEM/4100) \| [Intro Microeconomics](https://classes.cornell.edu/browse/roster/FA20/class/ECON/1110) \| [Intro Macroeconomics](https://www3.tc3.edu/mcs/2023-24/ECON121.pdf)
+* **Strategy, Business, & Law**
+  * [Strategy](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2601) \| [Finance](https://classes.cornell.edu/browse/roster/SP22/class/AEM/2240) \| [Business Law](https://classes.cornell.edu/browse/roster/FA22/class/AEM/3200)
 
 Research Experience
 ======
