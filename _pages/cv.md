@@ -9,6 +9,8 @@ redirect_from:
 
 {% include base_path %}
 
+[View A PDF Copy]()
+
 Education
 ======
 * **B.S. in Biometry and Statistics, Cornell University, 2023**
