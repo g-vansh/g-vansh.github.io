@@ -9,10 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-[View A PDF Copy](/files/CV___Vansh_Gupta.pdf){:target="_blank"} 
-<a href="/files/CV___Vansh_Gupta.pdf" 
-           target="_blank">View A PDF Copy
-        </a>
+<a href="/files/CV___Vansh_Gupta.pdf" target="_blank">View A PDF Copy</a>
 
 Education
 ======
