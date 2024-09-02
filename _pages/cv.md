@@ -23,9 +23,9 @@ Education
 
 Research Interests & Experience
 ======
-* **Innovation | Strategy** \[2 Projects; 2 Years\]
-* **Urban & Transport | Industrial Organization** \[2 Projects; 2 Years\]
-* **Development | Education | Healthcare** \[4 Projects; 4 Years\]
+* **Innovation \| Strategy** \[2 Projects; 2 Years\]
+* **Urban & Transport \| Industrial Organization** \[2 Projects; 2 Years\]
+* **Development \| Education \| Healthcare** \[4 Projects; 4 Years\]
 
 Relevant Coursework
 ======
