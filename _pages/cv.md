@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-[View A PDF Copy]()
+[View A PDF Copy](/files/CV___Vansh_Gupta.pdf)
 
 Education
 ======
