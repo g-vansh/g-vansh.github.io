@@ -95,7 +95,7 @@ Software Development
 * **\[Commercial\]** Python Package, STATA Package, EXE: Google Maps API - Geocoding & Distance Matrix Calculator
   * Used Python, Azure, and Google Cloud to create and maintain a secure environment that authenticates a user within the organization and provides them an easy interface to do geocoding and routing calculations for coordinates.
 * **\[Commercial\]** Python Package: Divestment Optimization Calculator
-  * Worked on the development of an internal tool that proprietary algorithms to compute large-scale optimization solutions and recommend divestiture packages for multi-market mergers - especially the ones that rely on geographic market definitions (such as hospitals). 
+  * Worked on the development of an internal tool that leverages proprietary algorithms to compute large-scale optimization solutions and recommend divestiture packages for multi-market mergers - especially the ones that rely on geographic market definitions (such as hospitals). 
 * **\[Commercial\]** Python Package, EXE: Interactive Map Creator
   * Pioneered the use of fully-customizable and native interactive maps as legal support exhibits. Innovated internal tools that make this technology readily available to all employees within the firm without any prior training necessary. 
 
