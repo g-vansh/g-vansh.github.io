@@ -13,32 +13,24 @@ author_profile: true
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-.filters {
-    margin-bottom: 20px;
-    display: flex;
-    gap: 20px;
-}
-.filter-group {
-    flex: 1;
-}
-.filter-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-}
-.filter-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
+.map-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #00008B;
+    color: white;
+    text-decoration: none;
     border-radius: 6px;
-    background-color: white;
-    font-size: 14px;
+    font-weight: bold;
+    margin: 20px 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-.filter-group select:focus {
-    outline: none;
-    border-color: #00008B;
-    box-shadow: 0 0 0 2px rgba(0,0,139,0.1);
+.map-button:hover {
+    background-color: #000066;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: white;
+    text-decoration: none;
 }
 .disclaimer {
     margin: 30px 0;
@@ -54,20 +46,10 @@ author_profile: true
 }
 </style>
 
-<div class="filters">
-    <div class="filter-group">
-        <label for="houseFilter">Filter by House:</label>
-        <select id="houseFilter">
-            <option value="">All Houses</option>
-            <option value="Hyderabad">Hyderabad</option>
-        </select>
-    </div>
-    <div class="filter-group">
-        <label for="batchFilter">Filter by Batch:</label>
-        <select id="batchFilter">
-            <option value="">All Batches</option>
-        </select>
-    </div>
+<div style="text-align: center;">
+    <a href="/community-map-form/" class="map-button">
+        <i class="fas fa-map-marker-alt"></i> Put yourself on the map!
+    </a>
 </div>
 
 <iframe id="mapFrame" src="/assets/maps/community_map.html" class="map-container"></iframe>
