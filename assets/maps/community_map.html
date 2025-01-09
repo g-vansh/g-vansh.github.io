@@ -32,6 +32,26 @@
         .leaflet-tooltip-right:before {
             border-right-color: #00008B;
         }
+        .filter-control {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 10px;
+        }
+        .filter-control select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 120px;
+        }
+        .filter-control label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
     </style>
     
     
@@ -56,7 +76,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_263e83b5d31f930d9f8caa4b9af27428 {
+                #map_95ca263d068b885aac779ff5eb71e6ea {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -79,19 +99,51 @@
 <body>
     
     
+    <div class="filter-control leaflet-control">
+        <label for="batchFilter">Filter by Batch:</label>
+        <select id="batchFilter" onchange="filterMarkers(this.value)">
+            <option value="">All Batches</option>
+            <option value="2020">2020</option>
+        </select>
+    </div>
+    
+    <script>
+    function filterMarkers(batch) {
+        var markers = document.querySelectorAll('.leaflet-marker-icon');
+        if (batch === '') {
+            markers.forEach(function(marker) {
+                marker.style.display = '';
+            });
+            return;
+        }
+        
+        var markerData = [{"batch": "2020", "element": "marker_0"}];
+        markerData.forEach(function(data, index) {
+            var marker = markers[index];
+            if (marker) {
+                if (data.batch === batch) {
+                    marker.style.display = '';
+                } else {
+                    marker.style.display = 'none';
+                }
+            }
+        });
+    }
+    </script>
+    
     <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(255,255,255,0.8); padding: 2px 5px; border-radius: 3px; font-size: 10px; color: #666;">
-        Last updated: 2025-01-09 18:27:57 UTC
+        Last updated: 2025-01-09 18:33:55 UTC
     </div>
     
     
-            <div class="folium-map" id="map_263e83b5d31f930d9f8caa4b9af27428" ></div>
+            <div class="folium-map" id="map_95ca263d068b885aac779ff5eb71e6ea" ></div>
         
 </body>
 <script>
     
     
-            var map_263e83b5d31f930d9f8caa4b9af27428 = L.map(
-                "map_263e83b5d31f930d9f8caa4b9af27428",
+            var map_95ca263d068b885aac779ff5eb71e6ea = L.map(
+                "map_95ca263d068b885aac779ff5eb71e6ea",
                 {
                     center: [42.37039685, -71.0741553533449],
                     crs: L.CRS.EPSG3857,
@@ -108,7 +160,7 @@
 
         
     
-            var tile_layer_74d86d19c3c71c281f586a13ade3eda8 = L.tileLayer(
+            var tile_layer_af2b73a74b49cbf6ac33c710f9e2effa = L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 {
   "minZoom": 0,
@@ -125,7 +177,7 @@
             );
         
     
-            tile_layer_74d86d19c3c71c281f586a13ade3eda8.addTo(map_263e83b5d31f930d9f8caa4b9af27428);
+            tile_layer_af2b73a74b49cbf6ac33c710f9e2effa.addTo(map_95ca263d068b885aac779ff5eb71e6ea);
         
     
             L.control.fullscreen(
@@ -135,10 +187,10 @@
   "titleCancel": "Exit fullscreen",
   "forceSeparateButton": true,
 }
-            ).addTo(map_263e83b5d31f930d9f8caa4b9af27428);
+            ).addTo(map_95ca263d068b885aac779ff5eb71e6ea);
         
     
-            var mouse_position_da7f40a7bab340eae7ed0a4624102138 = new L.Control.MousePosition(
+            var mouse_position_81bfdaaf9779ea3b359f3e45d504ff58 = new L.Control.MousePosition(
                 {
   "position": "bottomright",
   "separator": " : ",
@@ -148,15 +200,15 @@
   "prefix": "",
 }
             );
-            mouse_position_da7f40a7bab340eae7ed0a4624102138.options["latFormatter"] =
+            mouse_position_81bfdaaf9779ea3b359f3e45d504ff58.options["latFormatter"] =
                 undefined;
-            mouse_position_da7f40a7bab340eae7ed0a4624102138.options["lngFormatter"] =
+            mouse_position_81bfdaaf9779ea3b359f3e45d504ff58.options["lngFormatter"] =
                 undefined;
-            map_263e83b5d31f930d9f8caa4b9af27428.addControl(mouse_position_da7f40a7bab340eae7ed0a4624102138);
+            map_95ca263d068b885aac779ff5eb71e6ea.addControl(mouse_position_81bfdaaf9779ea3b359f3e45d504ff58);
         
     
 
-            var geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd = {
+            var geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353 = {
   "collapsed": true,
   "position": "topright",
   "defaultMarkGeocode": false,
@@ -167,23 +219,23 @@
 };
 
             // note: geocoder name should start with lowercase
-            var geocoderName_geocoder_b6348356f480aec0d7268301795ed2fd = geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd["provider"];
+            var geocoderName_geocoder_2cc4b7302346d4e316819dfadeeb9353 = geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353["provider"];
 
-            var customGeocoder_geocoder_b6348356f480aec0d7268301795ed2fd = L.Control.Geocoder[ geocoderName_geocoder_b6348356f480aec0d7268301795ed2fd ](
-                geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd['providerOptions']
+            var customGeocoder_geocoder_2cc4b7302346d4e316819dfadeeb9353 = L.Control.Geocoder[ geocoderName_geocoder_2cc4b7302346d4e316819dfadeeb9353 ](
+                geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353['providerOptions']
             );
-            geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd["geocoder"] = customGeocoder_geocoder_b6348356f480aec0d7268301795ed2fd;
+            geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353["geocoder"] = customGeocoder_geocoder_2cc4b7302346d4e316819dfadeeb9353;
 
             L.Control.geocoder(
-                geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd
+                geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353
             ).on('markgeocode', function(e) {
-                var zoom = geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd['zoom'] || map_263e83b5d31f930d9f8caa4b9af27428.getZoom();
-                map_263e83b5d31f930d9f8caa4b9af27428.setView(e.geocode.center, zoom);
-            }).addTo(map_263e83b5d31f930d9f8caa4b9af27428);
+                var zoom = geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353['zoom'] || map_95ca263d068b885aac779ff5eb71e6ea.getZoom();
+                map_95ca263d068b885aac779ff5eb71e6ea.setView(e.geocode.center, zoom);
+            }).addTo(map_95ca263d068b885aac779ff5eb71e6ea);
 
         
     
-            var marker_cluster_09e240b8c8a7ca54fc36b165960dec80 = L.markerClusterGroup(
+            var marker_cluster_c9024c13824abfcc7f8079f4d1939b91 = L.markerClusterGroup(
                 {
   "maxClusterRadius": 35,
   "spiderfyOnMaxZoom": true,
@@ -192,7 +244,7 @@
   "disableClusteringAtZoom": 15,
 }
             );
-            marker_cluster_09e240b8c8a7ca54fc36b165960dec80.options.iconCreateFunction =
+            marker_cluster_c9024c13824abfcc7f8079f4d1939b91.options.iconCreateFunction =
                 function(cluster) {
             var count = cluster.getChildCount();
             var size = count < 10 ? 30 : (count < 50 ? 35 : 40);
@@ -204,40 +256,40 @@
         };
         
     
-            var marker_5bb27c55e39d9901f9d2a414033dc456 = L.marker(
+            var marker_66a94ef52230aadfb162f5271b90cc40 = L.marker(
                 [42.37039685, -71.0741553533449],
                 {
 }
-            ).addTo(marker_cluster_09e240b8c8a7ca54fc36b165960dec80);
+            ).addTo(marker_cluster_c9024c13824abfcc7f8079f4d1939b91);
         
     
-            var div_icon_449eed1d7c63d562f830c3f8d4ebf5f5 = L.divIcon({
+            var div_icon_9cddde564ef7f4b2f64c9d6ef7d43d84 = L.divIcon({
   "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
   "iconSize": [24, 24],
   "iconAnchor": [12, 12],
   "className": "empty",
 });
-            marker_5bb27c55e39d9901f9d2a414033dc456.setIcon(div_icon_449eed1d7c63d562f830c3f8d4ebf5f5);
+            marker_66a94ef52230aadfb162f5271b90cc40.setIcon(div_icon_9cddde564ef7f4b2f64c9d6ef7d43d84);
         
     
-        var popup_3e271a590bdbcc70aa5d1825c2c9d45a = L.popup({
+        var popup_acbbf9e24499a9b121673ff3888688ea = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_3d1734c07b5ff51816d1530013c01f98 = $(`<div id="html_3d1734c07b5ff51816d1530013c01f98" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Vansh Gupta             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 87</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>             <p style="margin: 5px 0;"><strong>Address:</strong> 2 Leighton St, Cambridge, MA, USA</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:vg224@cornell.edu" style="color: #00008B;">vg224@cornell.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 9176159773" style="color: #00008B;">+1 9176159773</a></p></div></div></div>`)[0];
-                popup_3e271a590bdbcc70aa5d1825c2c9d45a.setContent(html_3d1734c07b5ff51816d1530013c01f98);
+                var html_d7eb928b6541bf728f4ae289b5cca9cd = $(`<div id="html_d7eb928b6541bf728f4ae289b5cca9cd" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Vansh Gupta             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 87</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>             <p style="margin: 5px 0;"><strong>Address:</strong> 2 Leighton St, Cambridge, MA, USA</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:vg224@cornell.edu" style="color: #00008B;">vg224@cornell.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 9176159773" style="color: #00008B;">+1 9176159773</a></p></div></div></div>`)[0];
+                popup_acbbf9e24499a9b121673ff3888688ea.setContent(html_d7eb928b6541bf728f4ae289b5cca9cd);
             
         
 
-        marker_5bb27c55e39d9901f9d2a414033dc456.bindPopup(popup_3e271a590bdbcc70aa5d1825c2c9d45a)
+        marker_66a94ef52230aadfb162f5271b90cc40.bindPopup(popup_acbbf9e24499a9b121673ff3888688ea)
         ;
 
         
     
     
-            marker_5bb27c55e39d9901f9d2a414033dc456.bindTooltip(
+            marker_66a94ef52230aadfb162f5271b90cc40.bindTooltip(
                 `<div>
                      Vansh Gupta - 2020 - Hyderabad
                  </div>`,
@@ -247,7 +299,7 @@
             );
         
     
-            marker_cluster_09e240b8c8a7ca54fc36b165960dec80.addTo(map_263e83b5d31f930d9f8caa4b9af27428);
+            marker_cluster_c9024c13824abfcc7f8079f4d1939b91.addTo(map_95ca263d068b885aac779ff5eb71e6ea);
         
 </script>
 </html>
