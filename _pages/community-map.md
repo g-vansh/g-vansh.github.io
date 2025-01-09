@@ -80,7 +80,7 @@ author_profile: true
 
 <div class="page-container">
     <div class="map-wrapper">
-        <iframe id="mapFrame" class="map-container" frameborder="0"></iframe>
+        <iframe id="mapFrame" src="{{ site.baseurl }}/assets/maps/community_map.html" class="map-container" frameborder="0"></iframe>
     </div>
 
     <div class="button-container">
@@ -100,11 +100,12 @@ author_profile: true
 function loadMap() {
     const mapFrame = document.getElementById('mapFrame');
     const timestamp = new Date().getTime();
-    mapFrame.src = `/assets/maps/community_map.html?t=${timestamp}`;
+    mapFrame.src = "{{ site.baseurl }}/assets/maps/community_map.html?t=" + timestamp;
 }
 
-// Load map initially
-loadMap();
+// Load map initially with timestamp
+const initialTimestamp = new Date().getTime();
+document.getElementById('mapFrame').src = "{{ site.baseurl }}/assets/maps/community_map.html?t=" + initialTimestamp;
 
 // Reload the map every 5 minutes
 setInterval(loadMap, 300000);
