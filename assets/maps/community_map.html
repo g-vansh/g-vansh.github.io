@@ -4,6 +4,37 @@
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        .leaflet-popup-content {
+            margin: 15px;
+        }
+        .leaflet-popup-tip {
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        .leaflet-tooltip {
+            background: #00008B;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .leaflet-tooltip-left:before {
+            border-left-color: #00008B;
+        }
+        .leaflet-tooltip-right:before {
+            border-right-color: #00008B;
+        }
+    </style>
+    
+    
         <script>
             L_NO_TOUCH = false;
             L_DISABLE_3D = false;
@@ -25,7 +56,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_809a9bb18550412cdf1157a3a5defd19 {
+                #map_cf72ff89d5a2fb76add0c1a421f69535 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -35,23 +66,37 @@
                 .leaflet-container { font-size: 1rem; }
             </style>
         
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.css"/>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
 </head>
 <body>
     
     
-            <div class="folium-map" id="map_809a9bb18550412cdf1157a3a5defd19" ></div>
+    <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(255,255,255,0.8); padding: 2px 5px; border-radius: 3px; font-size: 10px; color: #666;">
+        Last updated: 2025-01-09 17:41:49 UTC
+    </div>
+    
+    
+            <div class="folium-map" id="map_cf72ff89d5a2fb76add0c1a421f69535" ></div>
         
 </body>
 <script>
     
     
-            var map_809a9bb18550412cdf1157a3a5defd19 = L.map(
-                "map_809a9bb18550412cdf1157a3a5defd19",
+            var map_cf72ff89d5a2fb76add0c1a421f69535 = L.map(
+                "map_cf72ff89d5a2fb76add0c1a421f69535",
                 {
                     center: [42.37039685, -71.0741553533449],
                     crs: L.CRS.EPSG3857,
                     ...{
-  "zoom": 4,
+  "zoom": 3,
   "zoomControl": true,
   "preferCanvas": false,
 }
@@ -63,15 +108,15 @@
 
         
     
-            var tile_layer_386f7f37c2f734034d681ee087da566a = L.tileLayer(
-                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+            var tile_layer_e32755425b51737a84831dba86590c66 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 {
   "minZoom": 0,
-  "maxZoom": 19,
-  "maxNativeZoom": 19,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
   "noWrap": false,
-  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
-  "subdomains": "abc",
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
   "detectRetina": false,
   "tms": false,
   "opacity": 1,
@@ -80,41 +125,129 @@
             );
         
     
-            tile_layer_386f7f37c2f734034d681ee087da566a.addTo(map_809a9bb18550412cdf1157a3a5defd19);
+            tile_layer_e32755425b51737a84831dba86590c66.addTo(map_cf72ff89d5a2fb76add0c1a421f69535);
         
     
-            var marker_b0684f9901c545530a535b3703f52bb9 = L.marker(
+            L.control.fullscreen(
+                {
+  "position": "topright",
+  "title": "Fullscreen",
+  "titleCancel": "Exit fullscreen",
+  "forceSeparateButton": true,
+}
+            ).addTo(map_cf72ff89d5a2fb76add0c1a421f69535);
+        
+    
+            var mouse_position_561da30d5239fb65d0d820971de041e0 = new L.Control.MousePosition(
+                {
+  "position": "bottomright",
+  "separator": " : ",
+  "emptyString": "Unavailable",
+  "lngFirst": false,
+  "numDigits": 5,
+  "prefix": "",
+}
+            );
+            mouse_position_561da30d5239fb65d0d820971de041e0.options["latFormatter"] =
+                undefined;
+            mouse_position_561da30d5239fb65d0d820971de041e0.options["lngFormatter"] =
+                undefined;
+            map_cf72ff89d5a2fb76add0c1a421f69535.addControl(mouse_position_561da30d5239fb65d0d820971de041e0);
+        
+    
+
+            var geocoderOpts_geocoder_14c0c5426c8958af6d7ebe6316f34011 = {
+  "collapsed": true,
+  "position": "topright",
+  "defaultMarkGeocode": false,
+  "zoom": 11,
+  "provider": "nominatim",
+  "providerOptions": {
+},
+};
+
+            // note: geocoder name should start with lowercase
+            var geocoderName_geocoder_14c0c5426c8958af6d7ebe6316f34011 = geocoderOpts_geocoder_14c0c5426c8958af6d7ebe6316f34011["provider"];
+
+            var customGeocoder_geocoder_14c0c5426c8958af6d7ebe6316f34011 = L.Control.Geocoder[ geocoderName_geocoder_14c0c5426c8958af6d7ebe6316f34011 ](
+                geocoderOpts_geocoder_14c0c5426c8958af6d7ebe6316f34011['providerOptions']
+            );
+            geocoderOpts_geocoder_14c0c5426c8958af6d7ebe6316f34011["geocoder"] = customGeocoder_geocoder_14c0c5426c8958af6d7ebe6316f34011;
+
+            L.Control.geocoder(
+                geocoderOpts_geocoder_14c0c5426c8958af6d7ebe6316f34011
+            ).on('markgeocode', function(e) {
+                var zoom = geocoderOpts_geocoder_14c0c5426c8958af6d7ebe6316f34011['zoom'] || map_cf72ff89d5a2fb76add0c1a421f69535.getZoom();
+                map_cf72ff89d5a2fb76add0c1a421f69535.setView(e.geocode.center, zoom);
+            }).addTo(map_cf72ff89d5a2fb76add0c1a421f69535);
+
+        
+    
+            var marker_cluster_c4c2f50faa55f1eb421f5c2e3f532d8a = L.markerClusterGroup(
+                {
+  "maxClusterRadius": 35,
+  "spiderfyOnMaxZoom": true,
+  "showCoverageOnHover": true,
+  "zoomToBoundsOnClick": true,
+  "disableClusteringAtZoom": 15,
+}
+            );
+            marker_cluster_c4c2f50faa55f1eb421f5c2e3f532d8a.options.iconCreateFunction =
+                function(cluster) {
+            var count = cluster.getChildCount();
+            var size = count < 10 ? 30 : (count < 50 ? 35 : 40);
+            return L.divIcon({
+                html: '<div style="background-color: #00008B; color: white; border-radius: 50%; width: ' + size + 'px; height: ' + size + 'px; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">' + count + '</div>',
+                className: 'marker-cluster',
+                iconSize: L.point(size, size)
+            });
+        };
+        
+    
+            var marker_0bee68d68ede9ad673116ebef2298814 = L.marker(
                 [42.37039685, -71.0741553533449],
                 {
 }
-            ).addTo(map_809a9bb18550412cdf1157a3a5defd19);
+            ).addTo(marker_cluster_c4c2f50faa55f1eb421f5c2e3f532d8a);
         
     
-        var popup_0a9c705e0763ab9c46660dd5205327c3 = L.popup({
+            var div_icon_6641fc9bf12d4a0f756ff61687dede9a = L.divIcon({
+  "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
+  "iconSize": [24, 24],
+  "iconAnchor": [12, 12],
+  "className": "empty",
+});
+            marker_0bee68d68ede9ad673116ebef2298814.setIcon(div_icon_6641fc9bf12d4a0f756ff61687dede9a);
+        
+    
+        var popup_a6142fef3f1a421ed7d2c1e50aebb326 = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_928984670d50eccf134e5f0b7bdef4fd = $(`<div id="html_928984670d50eccf134e5f0b7bdef4fd" style="width: 100.0%; height: 100.0%;">         <strong>Vansh Gupta</strong><br>         Number: 87<br>         House: Hyderabad<br>         Batch: 2020<br>         Address: 2 Leighton St, Cambridge, MA, USA         <div style="margin-top:5px;padding-top:5px;border-top:1px solid #eee;">Email: <a href="mailto:vg224@cornell.edu">vg224@cornell.edu</a><br>Phone: <a href="tel:+1 9176159773">+1 9176159773</a></div></div>`)[0];
-                popup_0a9c705e0763ab9c46660dd5205327c3.setContent(html_928984670d50eccf134e5f0b7bdef4fd);
+                var html_5bfd8fbc872360a5836145faccfbc006 = $(`<div id="html_5bfd8fbc872360a5836145faccfbc006" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Vansh Gupta             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 87</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>             <p style="margin: 5px 0;"><strong>Address:</strong> 2 Leighton St, Cambridge, MA, USA</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:vg224@cornell.edu" style="color: #00008B;">vg224@cornell.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 9176159773" style="color: #00008B;">+1 9176159773</a></p></div></div></div>`)[0];
+                popup_a6142fef3f1a421ed7d2c1e50aebb326.setContent(html_5bfd8fbc872360a5836145faccfbc006);
             
         
 
-        marker_b0684f9901c545530a535b3703f52bb9.bindPopup(popup_0a9c705e0763ab9c46660dd5205327c3)
+        marker_0bee68d68ede9ad673116ebef2298814.bindPopup(popup_a6142fef3f1a421ed7d2c1e50aebb326)
         ;
 
         
     
     
-            marker_b0684f9901c545530a535b3703f52bb9.bindTooltip(
+            marker_0bee68d68ede9ad673116ebef2298814.bindTooltip(
                 `<div>
-                     Vansh Gupta
+                     Vansh Gupta - 2020 - Hyderabad
                  </div>`,
                 {
   "sticky": true,
 }
             );
+        
+    
+            marker_cluster_c4c2f50faa55f1eb421f5c2e3f532d8a.addTo(map_cf72ff89d5a2fb76add0c1a421f69535);
         
 </script>
 </html>
