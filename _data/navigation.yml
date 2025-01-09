@@ -8,10 +8,7 @@ main:
 
   - title: "Teaching"
     url: /teaching/    
-    
-  - title: "Coding"
-    url: /portfolio/
-        
+            
   #- title: "Blog Posts"
   #  url: /year-archive/
     
@@ -22,9 +19,13 @@ main:
     url: "/portfolio/"
     class: "separator"
     
+  - title: "Strategic Treatment Effects"
+    url: "/STE/"
+    class: "project-link"
+    
   - title: "Nizam Map"
     url: /community-map/
-    class: "align-right"
+    class: "project-link align-right"
     
   #- title: "Guide"
   #  url: /markdown/
