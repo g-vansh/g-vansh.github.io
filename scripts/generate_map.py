@@ -204,8 +204,8 @@ def generate_map():
         }
         .filter-control {
             position: absolute;
-            top: 80px;
-            right: 10px;
+            top: 180px;
+            right: 0;
             z-index: 1000;
             background: white;
             padding: 12px 15px;
@@ -215,6 +215,8 @@ def generate_map():
             max-width: 200px;
             backdrop-filter: blur(5px);
             background-color: rgba(255, 255, 255, 0.95);
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
         }
         .filter-control select {
             padding: 8px 12px;
