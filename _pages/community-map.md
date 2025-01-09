@@ -80,7 +80,7 @@ author_profile: true
 
 <div class="page-container">
     <div class="map-wrapper">
-        <iframe id="mapFrame" src="/assets/maps/community_map.html" class="map-container" frameborder="0"></iframe>
+        <iframe id="mapFrame" class="map-container" frameborder="0"></iframe>
     </div>
 
     <div class="button-container">
@@ -96,12 +96,24 @@ author_profile: true
 </div>
 
 <script>
-// Function to reload the map iframe
-function reloadMap() {
+// Function to load the map with a timestamp parameter
+function loadMap() {
     const mapFrame = document.getElementById('mapFrame');
-    mapFrame.src = mapFrame.src;
+    const timestamp = new Date().getTime();
+    mapFrame.src = `/assets/maps/community_map.html?t=${timestamp}`;
 }
 
-// Reload the map every 5 minutes to check for updates
-setInterval(reloadMap, 300000);
+// Load map initially
+loadMap();
+
+// Reload the map every 5 minutes
+setInterval(loadMap, 300000);
+
+// Add event listener for page visibility changes
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+        // Reload map when page becomes visible again
+        loadMap();
+    }
+});
 </script> 
