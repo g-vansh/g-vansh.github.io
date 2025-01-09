@@ -32,20 +32,13 @@ def save_data(data):
 
 def add_new_entry(entry_data):
     """Add a new entry to the map data."""
-    # Load existing data
     data = load_existing_data()
-    
-    # Geocode the address
     coordinates = geocode_address(entry_data['address'])
     if coordinates:
         lat, lng = coordinates
         entry_data['lat'] = lat
         entry_data['lng'] = lng
-        
-        # Add to data list
         data.append(entry_data)
-        
-        # Save updated data
         save_data(data)
         return True
     return False
@@ -57,7 +50,7 @@ def generate_map():
     if not data:
         return
     
-    # Create a map centered on the mean of all coordinates
+    # Calculate center and bounds
     lats = [entry['lat'] for entry in data]
     lngs = [entry['lng'] for entry in data]
     center_lat = sum(lats) / len(lats)
@@ -66,44 +59,68 @@ def generate_map():
     # Create map with cartodbpositron tiles
     m = folium.Map(
         location=[center_lat, center_lng],
-        zoom_start=4,
+        zoom_start=3,
         tiles='cartodbpositron',
         width='100%',
         height='100%'
     )
     
-    # Add fullscreen option
-    plugins.Fullscreen().add_to(m)
+    # Add map controls
+    plugins.Fullscreen(
+        position='topright',
+        title='Fullscreen',
+        title_cancel='Exit fullscreen',
+        force_separate_button=True
+    ).add_to(m)
     
-    # Create a marker cluster group
+    plugins.MousePosition().add_to(m)
+    
+    plugins.Geocoder(
+        position='topright',
+        add_marker=False,
+        collapsed=True
+    ).add_to(m)
+    
+    # Create a marker cluster group with custom options
     marker_cluster = plugins.MarkerCluster(
         name='Nizams',
         overlay=True,
         control=True,
+        options={
+            'maxClusterRadius': 35,
+            'spiderfyOnMaxZoom': True,
+            'showCoverageOnHover': True,
+            'zoomToBoundsOnClick': True,
+            'disableClusteringAtZoom': 15
+        },
         icon_create_function='''
         function(cluster) {
+            var count = cluster.getChildCount();
+            var size = count < 10 ? 30 : (count < 50 ? 35 : 40);
             return L.divIcon({
-                html: '<div style="background-color: #00008B; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold;">' + cluster.getChildCount() + '</div>',
+                html: '<div style="background-color: #00008B; color: white; border-radius: 50%; width: ' + size + 'px; height: ' + size + 'px; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">' + count + '</div>',
                 className: 'marker-cluster',
-                iconSize: L.point(30, 30)
+                iconSize: L.point(size, size)
             });
         }
         '''
     )
     
-    # Custom icon HTML
+    # Custom icon HTML with shadow
     icon_html = '''
-    <div style="background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+    <div style="background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
         <i class="fa-solid fa-user"></i>
     </div>
     '''
     
     # Add markers for each entry
     for entry in data:
-        # Create popup content with contact information
+        # Create popup content
         popup_html = f"""
         <div style="font-family: Arial, sans-serif; min-width: 200px;">
-            <h4 style="margin: 0 0 10px 0; color: #00008B;">{entry['name']}</h4>
+            <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">
+                {entry['name']}
+            </h4>
             <p style="margin: 5px 0;"><strong>Number:</strong> {entry['number']}</p>
             <p style="margin: 5px 0;"><strong>House:</strong> {entry['house']}</p>
             <p style="margin: 5px 0;"><strong>Batch:</strong> {entry['batch']}</p>
@@ -113,9 +130,9 @@ def generate_map():
         # Add contact information if provided
         contact_info = []
         if entry.get('email'):
-            contact_info.append(f'<p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:{entry["email"]}">{entry["email"]}</a></p>')
+            contact_info.append(f'<p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:{entry["email"]}" style="color: #00008B;">{entry["email"]}</a></p>')
         if entry.get('phone'):
-            contact_info.append(f'<p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:{entry["phone"]}">{entry["phone"]}</a></p>')
+            contact_info.append(f'<p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:{entry["phone"]}" style="color: #00008B;">{entry["phone"]}</a></p>')
         
         if contact_info:
             popup_html += '<div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">'
@@ -131,7 +148,7 @@ def generate_map():
             icon_anchor=(12, 12)
         )
         
-        # Create marker with tooltip showing Name - Batch - House
+        # Create marker with tooltip
         marker = folium.Marker(
             location=[entry['lat'], entry['lng']],
             popup=folium.Popup(popup_html, max_width=300),
@@ -144,17 +161,47 @@ def generate_map():
     # Add the marker cluster to the map
     marker_cluster.add_to(m)
     
-    # Add FontAwesome CSS for icons
+    # Add custom CSS and JS
+    custom_css = '''
+    <style>
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        .leaflet-popup-content {
+            margin: 15px;
+        }
+        .leaflet-popup-tip {
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        .leaflet-tooltip {
+            background: #00008B;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .leaflet-tooltip-left:before {
+            border-left-color: #00008B;
+        }
+        .leaflet-tooltip-right:before {
+            border-right-color: #00008B;
+        }
+    </style>
+    '''
+    
+    # Add FontAwesome and custom CSS
     m.get_root().header.add_child(folium.Element('''
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    '''))
+    ''' + custom_css))
     
     # Save the map
     os.makedirs("assets/maps", exist_ok=True)
     m.save("assets/maps/community_map.html")
 
 if __name__ == "__main__":
-    # If running from GitHub Actions, expect event data
     if os.environ.get('GITHUB_EVENT_PATH'):
         with open(os.environ['GITHUB_EVENT_PATH'], 'r') as f:
             event = json.load(f)
@@ -163,6 +210,4 @@ if __name__ == "__main__":
                 if add_new_entry(entry_data):
                     generate_map()
     else:
-        # If running locally, just generate the map
-        generate_map() 
         generate_map() 
