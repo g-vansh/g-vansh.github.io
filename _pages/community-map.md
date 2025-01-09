@@ -25,25 +25,25 @@ author_profile: true
 .map-button {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 28px;
+    gap: 6px;
+    padding: 8px 16px;
     background-color: #00008B;
     color: white !important;
     text-decoration: none !important;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1.1em;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9em;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     margin-bottom: 10px;
 }
 .map-button:hover {
     background-color: #000066;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 .map-button i {
-    font-size: 1.2em;
+    font-size: 1em;
 }
 .disclaimer {
     margin: 30px 0;
