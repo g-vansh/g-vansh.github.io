@@ -4,6 +4,7 @@ import folium
 from folium import plugins
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
+from datetime import datetime
 
 def geocode_address(address):
     """Geocode an address using OpenStreetMap's Nominatim service."""
@@ -192,10 +193,19 @@ def generate_map():
     </style>
     '''
     
-    # Add FontAwesome and custom CSS
+    # Add timestamp to force map update
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp_html = f'''
+    <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(255,255,255,0.8); padding: 2px 5px; border-radius: 3px; font-size: 10px; color: #666;">
+        Last updated: {timestamp}
+    </div>
+    '''
+    
+    # Add FontAwesome, custom CSS, and timestamp
     m.get_root().header.add_child(folium.Element('''
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     ''' + custom_css))
+    m.get_root().html.add_child(folium.Element(timestamp_html))
     
     # Save the map
     os.makedirs("assets/maps", exist_ok=True)
