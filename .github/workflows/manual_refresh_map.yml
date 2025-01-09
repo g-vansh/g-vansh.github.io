@@ -9,8 +9,14 @@ jobs:
     permissions:
       contents: write
       pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.MAP_TOKEN }}
       
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -26,6 +32,8 @@ jobs:
         run: python scripts/generate_map.py
         
       - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.MAP_TOKEN }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -47,4 +55,6 @@ jobs:
         
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1 
+        uses: actions/deploy-pages@v1
+        with:
+          token: ${{ secrets.MAP_TOKEN }} 
