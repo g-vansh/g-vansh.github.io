@@ -6,6 +6,9 @@ on:
 jobs:
   refresh-map:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
     steps:
       - uses: actions/checkout@v2
       
@@ -28,4 +31,20 @@ jobs:
           git config --local user.name "GitHub Action"
           git add assets/maps/community_map.html
           git commit -m "Update map via manual refresh" || echo "No changes to commit"
-          git push 
+          git push
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+        
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1 
