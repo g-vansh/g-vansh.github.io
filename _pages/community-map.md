@@ -6,6 +6,16 @@ author_profile: true
 ---
 
 <style>
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.header-title {
+    margin: 0;
+    font-size: 2.5em;
+}
 .map-container {
     height: 700px;
     width: 100%;
@@ -14,14 +24,15 @@ author_profile: true
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .map-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 12px 24px;
     background-color: #00008B;
-    color: white;
-    text-decoration: none;
+    color: white !important;
+    text-decoration: none !important;
     border-radius: 6px;
     font-weight: bold;
-    margin: 20px 0;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -29,8 +40,6 @@ author_profile: true
     background-color: #000066;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    color: white;
-    text-decoration: none;
 }
 .disclaimer {
     margin: 30px 0;
@@ -46,7 +55,8 @@ author_profile: true
 }
 </style>
 
-<div style="text-align: center;">
+<div class="header-container">
+    <h1 class="header-title">Nizam Map</h1>
     <a href="/community-map-form/" class="map-button">
         <i class="fas fa-map-marker-alt"></i> Put yourself on the map!
     </a>
