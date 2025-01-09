@@ -55,6 +55,6 @@ jobs:
         
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/pages-build-deployment@v1
         with:
           token: ${{ secrets.MAP_TOKEN }} 
