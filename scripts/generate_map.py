@@ -88,7 +88,7 @@ def generate_map():
     # Get unique batch years and sort them
     batch_years = sorted(list(set(entry['batch'] for entry in data)))
     
-    # Create a marker cluster group with custom options
+    # Create a marker cluster group
     marker_cluster = plugins.MarkerCluster(
         name='Nizams',
         overlay=True,
@@ -99,18 +99,7 @@ def generate_map():
             'showCoverageOnHover': True,
             'zoomToBoundsOnClick': True,
             'disableClusteringAtZoom': 15
-        },
-        icon_create_function='''
-        function(cluster) {
-            var count = cluster.getChildCount();
-            var size = count < 10 ? 30 : (count < 50 ? 35 : 40);
-            return L.divIcon({
-                html: '<div style="background-color: #00008B; color: white; border-radius: 50%; width: ' + size + 'px; height: ' + size + 'px; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">' + count + '</div>',
-                className: 'marker-cluster',
-                iconSize: L.point(size, size)
-            });
         }
-        '''
     )
     
     # Custom icon HTML with shadow
@@ -120,8 +109,7 @@ def generate_map():
     </div>
     '''
     
-    # Add markers for each entry with data attributes for filtering
-    markers_data = []
+    # Add markers for each entry
     for entry in data:
         # Create popup content
         popup_html = f"""
@@ -156,25 +144,29 @@ def generate_map():
             icon_anchor=(12, 12)
         )
         
-        # Create marker with tooltip and store its data
+        # Create marker with tooltip and batch tag
         marker = folium.Marker(
             location=[entry['lat'], entry['lng']],
             popup=folium.Popup(popup_html, max_width=300),
             tooltip=f"{entry['name']} - {entry['batch']} - {entry['house']}",
-            icon=icon
+            icon=icon,
+            tags=[f"Batch {entry['batch']}"]  # Add batch as a tag
         )
-        
-        # Add data attributes for filtering
         marker.add_to(marker_cluster)
-        markers_data.append({
-            'batch': entry['batch'],
-            'element': f'marker_{len(markers_data)}'
-        })
     
     # Add the marker cluster to the map
     marker_cluster.add_to(m)
     
-    # Add custom CSS and JS for filtering
+    # Add the tag filter button with batch options
+    plugins.TagFilterButton(
+        data=[f"Batch {year}" for year in batch_years],
+        filter_property="tags",
+        icon='fas fa-filter',
+        button_width=150,
+        button_height=30
+    ).add_to(m)
+    
+    # Add custom CSS
     custom_css = '''
     <style>
         .leaflet-popup-content-wrapper {
@@ -202,90 +194,18 @@ def generate_map():
         .leaflet-tooltip-right:before {
             border-right-color: #00008B;
         }
-        .filter-control {
-            position: absolute;
-            top: 180px;
-            right: 0;
-            z-index: 1000;
-            background: white;
-            padding: 12px 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.1);
-            max-width: 200px;
-            backdrop-filter: blur(5px);
-            background-color: rgba(255, 255, 255, 0.95);
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+        /* Style the tag filter button */
+        .easy-button-button {
+            font-size: 14px !important;
+            font-weight: 500 !important;
         }
-        .filter-control select {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 14px;
-            width: 100%;
-            background-color: #f8f9fa;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .filter-control select:hover {
-            border-color: #00008B;
-            background-color: white;
-        }
-        .filter-control select:focus {
-            outline: none;
-            border-color: #00008B;
-            box-shadow: 0 0 0 2px rgba(0,0,139,0.1);
-            background-color: white;
-        }
-        .filter-control label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .tag-filter-tags-container {
+            margin-top: 5px !important;
+            background-color: white !important;
+            border-radius: 4px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
         }
     </style>
-    '''
-    
-    # Add filter control HTML
-    filter_html = f'''
-    <div class="filter-control leaflet-control">
-        <label for="batchFilter">Filter by Batch:</label>
-        <select id="batchFilter" onchange="filterMarkers(this.value)">
-            <option value="">All Batches</option>
-            {"".join(f'<option value="{year}">{year}</option>' for year in batch_years)}
-        </select>
-    </div>
-    '''
-    
-    # Add filter JavaScript
-    filter_js = '''
-    <script>
-    function filterMarkers(batch) {
-        var markers = document.querySelectorAll('.leaflet-marker-icon');
-        if (batch === '') {
-            markers.forEach(function(marker) {
-                marker.style.display = '';
-            });
-            return;
-        }
-        
-        var markerData = ''' + json.dumps(markers_data) + ''';
-        markerData.forEach(function(data, index) {
-            var marker = markers[index];
-            if (marker) {
-                if (data.batch === batch) {
-                    marker.style.display = '';
-                } else {
-                    marker.style.display = 'none';
-                }
-            }
-        });
-    }
-    </script>
     '''
     
     # Add timestamp to force map update
@@ -300,7 +220,7 @@ def generate_map():
     m.get_root().header.add_child(folium.Element('''
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     ''' + custom_css))
-    m.get_root().html.add_child(folium.Element(filter_html + filter_js + timestamp_html))
+    m.get_root().html.add_child(folium.Element(timestamp_html))
     
     # Ensure the maps directory exists
     os.makedirs("assets/maps", exist_ok=True)
