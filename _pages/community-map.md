@@ -14,13 +14,17 @@ author_profile: true
 .map-container {
     height: 75vh;
     width: 100%;
-    margin: 20px 0;
+    margin-bottom: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.08);
     transition: box-shadow 0.3s ease;
 }
 .map-container:hover {
     box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+}
+.button-container {
+    text-align: center;
+    margin-bottom: 30px;
 }
 .map-button {
     display: inline-flex;
@@ -35,7 +39,6 @@ author_profile: true
     font-size: 0.9em;
     transition: all 0.3s ease;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    margin-bottom: 10px;
 }
 .map-button:hover {
     background-color: #000066;
@@ -72,11 +75,13 @@ author_profile: true
 </style>
 
 <div class="page-container">
-    <a href="/community-map-form/" class="map-button">
-        <i class="fas fa-map-marker-alt"></i> Put yourself on the map!
-    </a>
-
     <iframe id="mapFrame" src="/assets/maps/community_map.html" class="map-container"></iframe>
+
+    <div class="button-container">
+        <a href="/community-map-form/" class="map-button">
+            <i class="fas fa-map-marker-alt"></i> Put yourself on the map!
+        </a>
+    </div>
 
     <div class="disclaimer">
         <p>Disclaimer: This project is neither sponsored by, or affiliated with the Doon School Old Boys' Society nor is sponsored by, or affiliated with The Doon School in any way. This project intends no harm to the society or the school, and is meant to be a passion project to put the Nizams on a map (literally).</p>
