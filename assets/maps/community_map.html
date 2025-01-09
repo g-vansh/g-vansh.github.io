@@ -56,7 +56,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_87956a2cb1d580254db454f53305fefa {
+                #map_263e83b5d31f930d9f8caa4b9af27428 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -80,20 +80,20 @@
     
     
     <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(255,255,255,0.8); padding: 2px 5px; border-radius: 3px; font-size: 10px; color: #666;">
-        Last updated: 2025-01-09 18:19:02 UTC
+        Last updated: 2025-01-09 18:27:57 UTC
     </div>
     
     
-            <div class="folium-map" id="map_87956a2cb1d580254db454f53305fefa" ></div>
+            <div class="folium-map" id="map_263e83b5d31f930d9f8caa4b9af27428" ></div>
         
 </body>
 <script>
     
     
-            var map_87956a2cb1d580254db454f53305fefa = L.map(
-                "map_87956a2cb1d580254db454f53305fefa",
+            var map_263e83b5d31f930d9f8caa4b9af27428 = L.map(
+                "map_263e83b5d31f930d9f8caa4b9af27428",
                 {
-                    center: [42.359782249999995, -71.07463965348444],
+                    center: [42.37039685, -71.0741553533449],
                     crs: L.CRS.EPSG3857,
                     ...{
   "zoom": 3,
@@ -108,7 +108,7 @@
 
         
     
-            var tile_layer_3cdc34b0fb2c837a7ea6d8a6b3da9b71 = L.tileLayer(
+            var tile_layer_74d86d19c3c71c281f586a13ade3eda8 = L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 {
   "minZoom": 0,
@@ -125,7 +125,7 @@
             );
         
     
-            tile_layer_3cdc34b0fb2c837a7ea6d8a6b3da9b71.addTo(map_87956a2cb1d580254db454f53305fefa);
+            tile_layer_74d86d19c3c71c281f586a13ade3eda8.addTo(map_263e83b5d31f930d9f8caa4b9af27428);
         
     
             L.control.fullscreen(
@@ -135,10 +135,10 @@
   "titleCancel": "Exit fullscreen",
   "forceSeparateButton": true,
 }
-            ).addTo(map_87956a2cb1d580254db454f53305fefa);
+            ).addTo(map_263e83b5d31f930d9f8caa4b9af27428);
         
     
-            var mouse_position_9274f8382388a6f0f2f6125c499df81f = new L.Control.MousePosition(
+            var mouse_position_da7f40a7bab340eae7ed0a4624102138 = new L.Control.MousePosition(
                 {
   "position": "bottomright",
   "separator": " : ",
@@ -148,15 +148,15 @@
   "prefix": "",
 }
             );
-            mouse_position_9274f8382388a6f0f2f6125c499df81f.options["latFormatter"] =
+            mouse_position_da7f40a7bab340eae7ed0a4624102138.options["latFormatter"] =
                 undefined;
-            mouse_position_9274f8382388a6f0f2f6125c499df81f.options["lngFormatter"] =
+            mouse_position_da7f40a7bab340eae7ed0a4624102138.options["lngFormatter"] =
                 undefined;
-            map_87956a2cb1d580254db454f53305fefa.addControl(mouse_position_9274f8382388a6f0f2f6125c499df81f);
+            map_263e83b5d31f930d9f8caa4b9af27428.addControl(mouse_position_da7f40a7bab340eae7ed0a4624102138);
         
     
 
-            var geocoderOpts_geocoder_a08f169a42b3f6ed48418a55421740bb = {
+            var geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd = {
   "collapsed": true,
   "position": "topright",
   "defaultMarkGeocode": false,
@@ -167,23 +167,23 @@
 };
 
             // note: geocoder name should start with lowercase
-            var geocoderName_geocoder_a08f169a42b3f6ed48418a55421740bb = geocoderOpts_geocoder_a08f169a42b3f6ed48418a55421740bb["provider"];
+            var geocoderName_geocoder_b6348356f480aec0d7268301795ed2fd = geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd["provider"];
 
-            var customGeocoder_geocoder_a08f169a42b3f6ed48418a55421740bb = L.Control.Geocoder[ geocoderName_geocoder_a08f169a42b3f6ed48418a55421740bb ](
-                geocoderOpts_geocoder_a08f169a42b3f6ed48418a55421740bb['providerOptions']
+            var customGeocoder_geocoder_b6348356f480aec0d7268301795ed2fd = L.Control.Geocoder[ geocoderName_geocoder_b6348356f480aec0d7268301795ed2fd ](
+                geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd['providerOptions']
             );
-            geocoderOpts_geocoder_a08f169a42b3f6ed48418a55421740bb["geocoder"] = customGeocoder_geocoder_a08f169a42b3f6ed48418a55421740bb;
+            geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd["geocoder"] = customGeocoder_geocoder_b6348356f480aec0d7268301795ed2fd;
 
             L.Control.geocoder(
-                geocoderOpts_geocoder_a08f169a42b3f6ed48418a55421740bb
+                geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd
             ).on('markgeocode', function(e) {
-                var zoom = geocoderOpts_geocoder_a08f169a42b3f6ed48418a55421740bb['zoom'] || map_87956a2cb1d580254db454f53305fefa.getZoom();
-                map_87956a2cb1d580254db454f53305fefa.setView(e.geocode.center, zoom);
-            }).addTo(map_87956a2cb1d580254db454f53305fefa);
+                var zoom = geocoderOpts_geocoder_b6348356f480aec0d7268301795ed2fd['zoom'] || map_263e83b5d31f930d9f8caa4b9af27428.getZoom();
+                map_263e83b5d31f930d9f8caa4b9af27428.setView(e.geocode.center, zoom);
+            }).addTo(map_263e83b5d31f930d9f8caa4b9af27428);
 
         
     
-            var marker_cluster_59383302f172694d666fcc21975b357c = L.markerClusterGroup(
+            var marker_cluster_09e240b8c8a7ca54fc36b165960dec80 = L.markerClusterGroup(
                 {
   "maxClusterRadius": 35,
   "spiderfyOnMaxZoom": true,
@@ -192,7 +192,7 @@
   "disableClusteringAtZoom": 15,
 }
             );
-            marker_cluster_59383302f172694d666fcc21975b357c.options.iconCreateFunction =
+            marker_cluster_09e240b8c8a7ca54fc36b165960dec80.options.iconCreateFunction =
                 function(cluster) {
             var count = cluster.getChildCount();
             var size = count < 10 ? 30 : (count < 50 ? 35 : 40);
@@ -204,40 +204,40 @@
         };
         
     
-            var marker_02e398a52a4b846445a0ab7a912165fb = L.marker(
+            var marker_5bb27c55e39d9901f9d2a414033dc456 = L.marker(
                 [42.37039685, -71.0741553533449],
                 {
 }
-            ).addTo(marker_cluster_59383302f172694d666fcc21975b357c);
+            ).addTo(marker_cluster_09e240b8c8a7ca54fc36b165960dec80);
         
     
-            var div_icon_f945eb47602ef298706728050a38f2f9 = L.divIcon({
+            var div_icon_449eed1d7c63d562f830c3f8d4ebf5f5 = L.divIcon({
   "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
   "iconSize": [24, 24],
   "iconAnchor": [12, 12],
   "className": "empty",
 });
-            marker_02e398a52a4b846445a0ab7a912165fb.setIcon(div_icon_f945eb47602ef298706728050a38f2f9);
+            marker_5bb27c55e39d9901f9d2a414033dc456.setIcon(div_icon_449eed1d7c63d562f830c3f8d4ebf5f5);
         
     
-        var popup_28586cb3eb9be7cc7ccb2d30d1133b65 = L.popup({
+        var popup_3e271a590bdbcc70aa5d1825c2c9d45a = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_9bea1eed057ab7023788298954290960 = $(`<div id="html_9bea1eed057ab7023788298954290960" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Vansh Gupta             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 87</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>             <p style="margin: 5px 0;"><strong>Address:</strong> 2 Leighton St, Cambridge, MA, USA</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:vg224@cornell.edu" style="color: #00008B;">vg224@cornell.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 9176159773" style="color: #00008B;">+1 9176159773</a></p></div></div></div>`)[0];
-                popup_28586cb3eb9be7cc7ccb2d30d1133b65.setContent(html_9bea1eed057ab7023788298954290960);
+                var html_3d1734c07b5ff51816d1530013c01f98 = $(`<div id="html_3d1734c07b5ff51816d1530013c01f98" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Vansh Gupta             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 87</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>             <p style="margin: 5px 0;"><strong>Address:</strong> 2 Leighton St, Cambridge, MA, USA</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:vg224@cornell.edu" style="color: #00008B;">vg224@cornell.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 9176159773" style="color: #00008B;">+1 9176159773</a></p></div></div></div>`)[0];
+                popup_3e271a590bdbcc70aa5d1825c2c9d45a.setContent(html_3d1734c07b5ff51816d1530013c01f98);
             
         
 
-        marker_02e398a52a4b846445a0ab7a912165fb.bindPopup(popup_28586cb3eb9be7cc7ccb2d30d1133b65)
+        marker_5bb27c55e39d9901f9d2a414033dc456.bindPopup(popup_3e271a590bdbcc70aa5d1825c2c9d45a)
         ;
 
         
     
     
-            marker_02e398a52a4b846445a0ab7a912165fb.bindTooltip(
+            marker_5bb27c55e39d9901f9d2a414033dc456.bindTooltip(
                 `<div>
                      Vansh Gupta - 2020 - Hyderabad
                  </div>`,
@@ -247,50 +247,7 @@
             );
         
     
-            var marker_4d4d8fec1a7181b327c0b3bf4312b35f = L.marker(
-                [42.34916765, -71.07512395362397],
-                {
-}
-            ).addTo(marker_cluster_59383302f172694d666fcc21975b357c);
-        
-    
-            var div_icon_80e605dbc6fb738de80cde5fb4407a09 = L.divIcon({
-  "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
-  "iconSize": [24, 24],
-  "iconAnchor": [12, 12],
-  "className": "empty",
-});
-            marker_4d4d8fec1a7181b327c0b3bf4312b35f.setIcon(div_icon_80e605dbc6fb738de80cde5fb4407a09);
-        
-    
-        var popup_9cfde295a08ba9d5ec7b74648c6afa8c = L.popup({
-  "maxWidth": 300,
-});
-
-        
-            
-                var html_bf21811d843e8329f6256f29a04dad95 = $(`<div id="html_bf21811d843e8329f6256f29a04dad95" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Test User             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 88</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2021</p>             <p style="margin: 5px 0;"><strong>Address:</strong> 200 Clarendon St, Boston, MA, USA</p>         </div></div>`)[0];
-                popup_9cfde295a08ba9d5ec7b74648c6afa8c.setContent(html_bf21811d843e8329f6256f29a04dad95);
-            
-        
-
-        marker_4d4d8fec1a7181b327c0b3bf4312b35f.bindPopup(popup_9cfde295a08ba9d5ec7b74648c6afa8c)
-        ;
-
-        
-    
-    
-            marker_4d4d8fec1a7181b327c0b3bf4312b35f.bindTooltip(
-                `<div>
-                     Test User - 2021 - Hyderabad
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-            marker_cluster_59383302f172694d666fcc21975b357c.addTo(map_87956a2cb1d580254db454f53305fefa);
+            marker_cluster_09e240b8c8a7ca54fc36b165960dec80.addTo(map_263e83b5d31f930d9f8caa4b9af27428);
         
 </script>
 </html>
