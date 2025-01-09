@@ -203,13 +203,18 @@ def generate_map():
             border-right-color: #00008B;
         }
         .filter-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
             background: white;
             padding: 12px 15px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin: 15px;
             border: 1px solid rgba(0,0,0,0.1);
             max-width: 200px;
+            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.95);
         }
         .filter-control select {
             padding: 8px 12px;
