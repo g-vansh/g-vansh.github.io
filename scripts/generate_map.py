@@ -49,7 +49,10 @@ def generate_map():
     data = load_existing_data()
     
     if not data:
+        print("No data found to generate map")
         return
+    
+    print(f"Generating map with {len(data)} entries...")
     
     # Calculate center and bounds
     lats = [entry['lat'] for entry in data]
@@ -194,7 +197,7 @@ def generate_map():
     '''
     
     # Add timestamp to force map update
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
     timestamp_html = f'''
     <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(255,255,255,0.8); padding: 2px 5px; border-radius: 3px; font-size: 10px; color: #666;">
         Last updated: {timestamp}
@@ -207,9 +210,17 @@ def generate_map():
     ''' + custom_css))
     m.get_root().html.add_child(folium.Element(timestamp_html))
     
-    # Save the map
+    # Ensure the maps directory exists
     os.makedirs("assets/maps", exist_ok=True)
-    m.save("assets/maps/community_map.html")
+    
+    # Force remove the old map file if it exists
+    map_file = "assets/maps/community_map.html"
+    if os.path.exists(map_file):
+        os.remove(map_file)
+    
+    # Save the new map
+    m.save(map_file)
+    print(f"Map generated successfully with timestamp: {timestamp}")
 
 if __name__ == "__main__":
     if os.environ.get('GITHUB_EVENT_PATH'):
@@ -219,5 +230,8 @@ if __name__ == "__main__":
                 entry_data = event['client_payload']
                 if add_new_entry(entry_data):
                     generate_map()
+            else:
+                # If no client_payload, just regenerate the map
+                generate_map()
     else:
         generate_map()
