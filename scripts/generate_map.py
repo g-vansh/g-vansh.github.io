@@ -204,23 +204,41 @@ def generate_map():
         }
         .filter-control {
             background: white;
-            padding: 10px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin: 10px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 15px;
+            border: 1px solid rgba(0,0,0,0.1);
+            max-width: 200px;
         }
         .filter-control select {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-size: 14px;
-            width: 120px;
+            width: 100%;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .filter-control select:hover {
+            border-color: #00008B;
+            background-color: white;
+        }
+        .filter-control select:focus {
+            outline: none;
+            border-color: #00008B;
+            box-shadow: 0 0 0 2px rgba(0,0,139,0.1);
+            background-color: white;
         }
         .filter-control label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            font-weight: 600;
             color: #333;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
     </style>
     '''

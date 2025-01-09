@@ -11,20 +11,20 @@ author_profile: true
     margin: 0 auto;
     padding: 0 20px;
 }
-.map-container {
-    height: 75vh;
+.map-wrapper {
+    position: relative;
     width: 100%;
-    margin-bottom: 25px;
+    height: calc(100vh - 200px);
+    min-height: 600px;
+    margin: 20px 0;
     border-radius: 12px;
+    overflow: hidden;
     box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    transition: box-shadow 0.3s ease;
 }
-.map-container:hover {
-    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-}
-.button-container {
-    text-align: center;
-    margin-bottom: 30px;
+.map-container {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 .map-button {
     display: inline-flex;
@@ -72,10 +72,16 @@ author_profile: true
     color: #000066;
     border-bottom-style: solid;
 }
+.button-container {
+    text-align: center;
+    margin: 30px 0;
+}
 </style>
 
 <div class="page-container">
-    <iframe id="mapFrame" src="/assets/maps/community_map.html" class="map-container"></iframe>
+    <div class="map-wrapper">
+        <iframe id="mapFrame" src="/assets/maps/community_map.html" class="map-container" frameborder="0"></iframe>
+    </div>
 
     <div class="button-container">
         <a href="/community-map-form/" class="map-button">
