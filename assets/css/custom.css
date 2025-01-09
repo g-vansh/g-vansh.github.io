@@ -3,8 +3,22 @@
     margin-left: auto;
 }
 
-/* Hide the separator link from keyboard navigation and screen readers */
-.masthead__menu-item a[href="#"] {
-    pointer-events: none;
-    cursor: default;
+/* Style the separator */
+.masthead__menu-item.separator {
+    margin: 0 1em;
+    color: #666;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+/* Style the separator link */
+.masthead__menu-item.separator a {
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: color 0.2s ease;
+}
+
+/* Add hover effect */
+.masthead__menu-item.separator a:hover {
+    color: #000 !important;
 } 

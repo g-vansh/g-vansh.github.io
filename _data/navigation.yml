@@ -18,8 +18,9 @@ main:
   - title: "CV"
     url: /cv/
     
-  - title: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-    url: "#"
+  - title: "| Open Source Projects →"
+    url: "/portfolio/"
+    class: "separator"
     
   - title: "Nizam Map"
     url: /community-map/
