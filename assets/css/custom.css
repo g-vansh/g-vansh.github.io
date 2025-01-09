@@ -1,0 +1,10 @@
+/* Custom navigation styles */
+.masthead__menu-item.align-right {
+    margin-left: auto;
+}
+
+/* Hide the separator link from keyboard navigation and screen readers */
+.masthead__menu-item a[href="#"] {
+    pointer-events: none;
+    cursor: default;
+} 

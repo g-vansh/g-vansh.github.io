@@ -18,5 +18,12 @@ main:
   - title: "CV"
     url: /cv/
     
+  - title: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+    url: "#"
+    
+  - title: "Nizam Map"
+    url: /community-map/
+    class: "align-right"
+    
   #- title: "Guide"
   #  url: /markdown/
