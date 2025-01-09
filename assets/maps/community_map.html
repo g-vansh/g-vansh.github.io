@@ -34,23 +34,41 @@
         }
         .filter-control {
             background: white;
-            padding: 10px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin: 10px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 15px;
+            border: 1px solid rgba(0,0,0,0.1);
+            max-width: 200px;
         }
         .filter-control select {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-size: 14px;
-            width: 120px;
+            width: 100%;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .filter-control select:hover {
+            border-color: #00008B;
+            background-color: white;
+        }
+        .filter-control select:focus {
+            outline: none;
+            border-color: #00008B;
+            box-shadow: 0 0 0 2px rgba(0,0,139,0.1);
+            background-color: white;
         }
         .filter-control label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            font-weight: 600;
             color: #333;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
     </style>
     
@@ -76,7 +94,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_95ca263d068b885aac779ff5eb71e6ea {
+                #map_1c4cc6310b987064d8b199f0962dc2c6 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -132,18 +150,18 @@
     </script>
     
     <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(255,255,255,0.8); padding: 2px 5px; border-radius: 3px; font-size: 10px; color: #666;">
-        Last updated: 2025-01-09 18:33:55 UTC
+        Last updated: 2025-01-09 18:43:49 UTC
     </div>
     
     
-            <div class="folium-map" id="map_95ca263d068b885aac779ff5eb71e6ea" ></div>
+            <div class="folium-map" id="map_1c4cc6310b987064d8b199f0962dc2c6" ></div>
         
 </body>
 <script>
     
     
-            var map_95ca263d068b885aac779ff5eb71e6ea = L.map(
-                "map_95ca263d068b885aac779ff5eb71e6ea",
+            var map_1c4cc6310b987064d8b199f0962dc2c6 = L.map(
+                "map_1c4cc6310b987064d8b199f0962dc2c6",
                 {
                     center: [42.37039685, -71.0741553533449],
                     crs: L.CRS.EPSG3857,
@@ -160,7 +178,7 @@
 
         
     
-            var tile_layer_af2b73a74b49cbf6ac33c710f9e2effa = L.tileLayer(
+            var tile_layer_5e6ccf3c1de05ffffd0f7a8c55b9c8bf = L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 {
   "minZoom": 0,
@@ -177,7 +195,7 @@
             );
         
     
-            tile_layer_af2b73a74b49cbf6ac33c710f9e2effa.addTo(map_95ca263d068b885aac779ff5eb71e6ea);
+            tile_layer_5e6ccf3c1de05ffffd0f7a8c55b9c8bf.addTo(map_1c4cc6310b987064d8b199f0962dc2c6);
         
     
             L.control.fullscreen(
@@ -187,10 +205,10 @@
   "titleCancel": "Exit fullscreen",
   "forceSeparateButton": true,
 }
-            ).addTo(map_95ca263d068b885aac779ff5eb71e6ea);
+            ).addTo(map_1c4cc6310b987064d8b199f0962dc2c6);
         
     
-            var mouse_position_81bfdaaf9779ea3b359f3e45d504ff58 = new L.Control.MousePosition(
+            var mouse_position_100ecb5128405b5fad3909ddba86b955 = new L.Control.MousePosition(
                 {
   "position": "bottomright",
   "separator": " : ",
@@ -200,15 +218,15 @@
   "prefix": "",
 }
             );
-            mouse_position_81bfdaaf9779ea3b359f3e45d504ff58.options["latFormatter"] =
+            mouse_position_100ecb5128405b5fad3909ddba86b955.options["latFormatter"] =
                 undefined;
-            mouse_position_81bfdaaf9779ea3b359f3e45d504ff58.options["lngFormatter"] =
+            mouse_position_100ecb5128405b5fad3909ddba86b955.options["lngFormatter"] =
                 undefined;
-            map_95ca263d068b885aac779ff5eb71e6ea.addControl(mouse_position_81bfdaaf9779ea3b359f3e45d504ff58);
+            map_1c4cc6310b987064d8b199f0962dc2c6.addControl(mouse_position_100ecb5128405b5fad3909ddba86b955);
         
     
 
-            var geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353 = {
+            var geocoderOpts_geocoder_09c2a4f3a78a3747cbb67aa056687919 = {
   "collapsed": true,
   "position": "topright",
   "defaultMarkGeocode": false,
@@ -219,23 +237,23 @@
 };
 
             // note: geocoder name should start with lowercase
-            var geocoderName_geocoder_2cc4b7302346d4e316819dfadeeb9353 = geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353["provider"];
+            var geocoderName_geocoder_09c2a4f3a78a3747cbb67aa056687919 = geocoderOpts_geocoder_09c2a4f3a78a3747cbb67aa056687919["provider"];
 
-            var customGeocoder_geocoder_2cc4b7302346d4e316819dfadeeb9353 = L.Control.Geocoder[ geocoderName_geocoder_2cc4b7302346d4e316819dfadeeb9353 ](
-                geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353['providerOptions']
+            var customGeocoder_geocoder_09c2a4f3a78a3747cbb67aa056687919 = L.Control.Geocoder[ geocoderName_geocoder_09c2a4f3a78a3747cbb67aa056687919 ](
+                geocoderOpts_geocoder_09c2a4f3a78a3747cbb67aa056687919['providerOptions']
             );
-            geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353["geocoder"] = customGeocoder_geocoder_2cc4b7302346d4e316819dfadeeb9353;
+            geocoderOpts_geocoder_09c2a4f3a78a3747cbb67aa056687919["geocoder"] = customGeocoder_geocoder_09c2a4f3a78a3747cbb67aa056687919;
 
             L.Control.geocoder(
-                geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353
+                geocoderOpts_geocoder_09c2a4f3a78a3747cbb67aa056687919
             ).on('markgeocode', function(e) {
-                var zoom = geocoderOpts_geocoder_2cc4b7302346d4e316819dfadeeb9353['zoom'] || map_95ca263d068b885aac779ff5eb71e6ea.getZoom();
-                map_95ca263d068b885aac779ff5eb71e6ea.setView(e.geocode.center, zoom);
-            }).addTo(map_95ca263d068b885aac779ff5eb71e6ea);
+                var zoom = geocoderOpts_geocoder_09c2a4f3a78a3747cbb67aa056687919['zoom'] || map_1c4cc6310b987064d8b199f0962dc2c6.getZoom();
+                map_1c4cc6310b987064d8b199f0962dc2c6.setView(e.geocode.center, zoom);
+            }).addTo(map_1c4cc6310b987064d8b199f0962dc2c6);
 
         
     
-            var marker_cluster_c9024c13824abfcc7f8079f4d1939b91 = L.markerClusterGroup(
+            var marker_cluster_85246e390f8e9021ffd033c518929a3a = L.markerClusterGroup(
                 {
   "maxClusterRadius": 35,
   "spiderfyOnMaxZoom": true,
@@ -244,7 +262,7 @@
   "disableClusteringAtZoom": 15,
 }
             );
-            marker_cluster_c9024c13824abfcc7f8079f4d1939b91.options.iconCreateFunction =
+            marker_cluster_85246e390f8e9021ffd033c518929a3a.options.iconCreateFunction =
                 function(cluster) {
             var count = cluster.getChildCount();
             var size = count < 10 ? 30 : (count < 50 ? 35 : 40);
@@ -256,40 +274,40 @@
         };
         
     
-            var marker_66a94ef52230aadfb162f5271b90cc40 = L.marker(
+            var marker_2c516a9ab19b4a19f7195c811bb2e6a5 = L.marker(
                 [42.37039685, -71.0741553533449],
                 {
 }
-            ).addTo(marker_cluster_c9024c13824abfcc7f8079f4d1939b91);
+            ).addTo(marker_cluster_85246e390f8e9021ffd033c518929a3a);
         
     
-            var div_icon_9cddde564ef7f4b2f64c9d6ef7d43d84 = L.divIcon({
+            var div_icon_378f672df8ab0f73793e163d6070b3aa = L.divIcon({
   "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
   "iconSize": [24, 24],
   "iconAnchor": [12, 12],
   "className": "empty",
 });
-            marker_66a94ef52230aadfb162f5271b90cc40.setIcon(div_icon_9cddde564ef7f4b2f64c9d6ef7d43d84);
+            marker_2c516a9ab19b4a19f7195c811bb2e6a5.setIcon(div_icon_378f672df8ab0f73793e163d6070b3aa);
         
     
-        var popup_acbbf9e24499a9b121673ff3888688ea = L.popup({
+        var popup_8dc9b1455c0cc30e4d28d39e000af7ca = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_d7eb928b6541bf728f4ae289b5cca9cd = $(`<div id="html_d7eb928b6541bf728f4ae289b5cca9cd" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Vansh Gupta             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 87</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>             <p style="margin: 5px 0;"><strong>Address:</strong> 2 Leighton St, Cambridge, MA, USA</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:vg224@cornell.edu" style="color: #00008B;">vg224@cornell.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 9176159773" style="color: #00008B;">+1 9176159773</a></p></div></div></div>`)[0];
-                popup_acbbf9e24499a9b121673ff3888688ea.setContent(html_d7eb928b6541bf728f4ae289b5cca9cd);
+                var html_c17ce44a2992a969b16b7c6ea2e93808 = $(`<div id="html_c17ce44a2992a969b16b7c6ea2e93808" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Vansh Gupta             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 87</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>             <p style="margin: 5px 0;"><strong>Address:</strong> 2 Leighton St, Cambridge, MA, USA</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:vg224@cornell.edu" style="color: #00008B;">vg224@cornell.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 9176159773" style="color: #00008B;">+1 9176159773</a></p></div></div></div>`)[0];
+                popup_8dc9b1455c0cc30e4d28d39e000af7ca.setContent(html_c17ce44a2992a969b16b7c6ea2e93808);
             
         
 
-        marker_66a94ef52230aadfb162f5271b90cc40.bindPopup(popup_acbbf9e24499a9b121673ff3888688ea)
+        marker_2c516a9ab19b4a19f7195c811bb2e6a5.bindPopup(popup_8dc9b1455c0cc30e4d28d39e000af7ca)
         ;
 
         
     
     
-            marker_66a94ef52230aadfb162f5271b90cc40.bindTooltip(
+            marker_2c516a9ab19b4a19f7195c811bb2e6a5.bindTooltip(
                 `<div>
                      Vansh Gupta - 2020 - Hyderabad
                  </div>`,
@@ -299,7 +317,7 @@
             );
         
     
-            marker_cluster_c9024c13824abfcc7f8079f4d1939b91.addTo(map_95ca263d068b885aac779ff5eb71e6ea);
+            marker_cluster_85246e390f8e9021ffd033c518929a3a.addTo(map_1c4cc6310b987064d8b199f0962dc2c6);
         
 </script>
 </html>
