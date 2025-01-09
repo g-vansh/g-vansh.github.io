@@ -66,14 +66,26 @@ def generate_map():
     
     # Add markers for each entry
     for entry in data:
+        # Create popup content with contact information
         popup_html = f"""
         <strong>{entry['name']}</strong><br>
-        {'<img src="' + entry['photo'] + '" style="max-width:100px;"><br>' if entry.get('photo') else ''}
         Number: {entry['number']}<br>
         House: {entry['house']}<br>
         Batch: {entry['batch']}<br>
         Address: {entry['address']}
         """
+        
+        # Add contact information if provided
+        contact_info = []
+        if entry.get('email'):
+            contact_info.append(f'Email: <a href="mailto:{entry["email"]}">{entry["email"]}</a>')
+        if entry.get('phone'):
+            contact_info.append(f'Phone: <a href="tel:{entry["phone"]}">{entry["phone"]}</a>')
+        
+        if contact_info:
+            popup_html += '<div style="margin-top:5px;padding-top:5px;border-top:1px solid #eee;">'
+            popup_html += '<br>'.join(contact_info)
+            popup_html += '</div>'
         
         folium.Marker(
             [entry['lat'], entry['lng']],

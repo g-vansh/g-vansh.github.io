@@ -30,6 +30,11 @@ author_profile: true
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+.contact-info {
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid #eee;
+}
 </style>
 
 <div class="filters">
@@ -37,10 +42,7 @@ author_profile: true
         <label for="houseFilter">Filter by House:</label>
         <select id="houseFilter">
             <option value="">All Houses</option>
-            <option value="Red">Red House</option>
-            <option value="Blue">Blue House</option>
-            <option value="Green">Green House</option>
-            <option value="Yellow">Yellow House</option>
+            <option value="Hyderabad">Hyderabad</option>
         </select>
     </div>
     <div class="filter-group">
@@ -116,17 +118,29 @@ function updateMap() {
     filteredData.forEach(item => {
         const marker = L.marker([item.lat, item.lng]);
         
-        // Create popup content
+        // Create popup content with contact information
         let popupContent = `
             <strong>${item.name}</strong><br>
-            ${item.photo ? `<img src="${item.photo}" style="max-width:100px;"><br>` : ''}
             Number: ${item.number}<br>
             House: ${item.house}<br>
             Batch: ${item.batch}<br>
             Address: ${item.address}
         `;
         
+        // Add contact information if provided
+        if (item.email || item.phone) {
+            popupContent += '<div class="contact-info">';
+            if (item.email) {
+                popupContent += `Email: <a href="mailto:${item.email}">${item.email}</a><br>`;
+            }
+            if (item.phone) {
+                popupContent += `Phone: <a href="tel:${item.phone}">${item.phone}</a>`;
+            }
+            popupContent += '</div>';
+        }
+        
         marker.bindPopup(popupContent);
+        marker.bindTooltip(item.name);
         marker.addTo(map);
         markers.push(marker);
     });
