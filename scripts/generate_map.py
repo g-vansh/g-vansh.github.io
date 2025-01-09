@@ -210,4 +210,4 @@ if __name__ == "__main__":
                 if add_new_entry(entry_data):
                     generate_map()
     else:
-        generate_map() 
+        generate_map()
