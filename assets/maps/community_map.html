@@ -32,50 +32,16 @@
         .leaflet-tooltip-right:before {
             border-right-color: #00008B;
         }
-        .filter-control {
-            position: absolute;
-            top: 180px;
-            right: 0;
-            z-index: 1000;
-            background: white;
-            padding: 12px 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.1);
-            max-width: 200px;
-            backdrop-filter: blur(5px);
-            background-color: rgba(255, 255, 255, 0.95);
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+        /* Style the tag filter button */
+        .easy-button-button {
+            font-size: 14px !important;
+            font-weight: 500 !important;
         }
-        .filter-control select {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 14px;
-            width: 100%;
-            background-color: #f8f9fa;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .filter-control select:hover {
-            border-color: #00008B;
-            background-color: white;
-        }
-        .filter-control select:focus {
-            outline: none;
-            border-color: #00008B;
-            box-shadow: 0 0 0 2px rgba(0,0,139,0.1);
-            background-color: white;
-        }
-        .filter-control label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .tag-filter-tags-container {
+            margin-top: 5px !important;
+            background-color: white !important;
+            border-radius: 4px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
         }
     </style>
     
@@ -101,7 +67,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_e93c4188588513c0283a8aa659724843 {
+                #map_8d843c21d97c3caf03fb0656987e2d5a {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -120,55 +86,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button/src/leaflet-tag-filter-button.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-tag-filter-button/src/leaflet-tag-filter-button.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/css-ripple-effect@1.0.5/dist/ripple.min.css"/>
+    
+            <style>
+                .easy-button-button {
+                  display: block !important;
+                }
+
+                .tag-filter-tags-container {
+                  left: 30px;
+                }
+            </style>
+        
 </head>
 <body>
     
     
-    <div class="filter-control leaflet-control">
-        <label for="batchFilter">Filter by Batch:</label>
-        <select id="batchFilter" onchange="filterMarkers(this.value)">
-            <option value="">All Batches</option>
-            <option value="2020">2020</option>
-        </select>
-    </div>
-    
-    <script>
-    function filterMarkers(batch) {
-        var markers = document.querySelectorAll('.leaflet-marker-icon');
-        if (batch === '') {
-            markers.forEach(function(marker) {
-                marker.style.display = '';
-            });
-            return;
-        }
-        
-        var markerData = [{"batch": "2020", "element": "marker_0"}];
-        markerData.forEach(function(data, index) {
-            var marker = markers[index];
-            if (marker) {
-                if (data.batch === batch) {
-                    marker.style.display = '';
-                } else {
-                    marker.style.display = 'none';
-                }
-            }
-        });
-    }
-    </script>
-    
     <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(255,255,255,0.8); padding: 2px 5px; border-radius: 3px; font-size: 10px; color: #666;">
-        Last updated: 2025-01-09 19:59:06 UTC
+        Last updated: 2025-01-09 20:08:46 UTC
     </div>
     
     
-            <div class="folium-map" id="map_e93c4188588513c0283a8aa659724843" ></div>
+            <div class="folium-map" id="map_8d843c21d97c3caf03fb0656987e2d5a" ></div>
         
 </body>
 <script>
     
     
-            var map_e93c4188588513c0283a8aa659724843 = L.map(
-                "map_e93c4188588513c0283a8aa659724843",
+            var map_8d843c21d97c3caf03fb0656987e2d5a = L.map(
+                "map_8d843c21d97c3caf03fb0656987e2d5a",
                 {
                     center: [42.37039685, -71.0741553533449],
                     crs: L.CRS.EPSG3857,
@@ -185,7 +135,7 @@
 
         
     
-            var tile_layer_ee52cf18a90e0ce2bbe0cbb3d33b3e34 = L.tileLayer(
+            var tile_layer_642631b1cc81e2b71c33691eb0e5f4a2 = L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 {
   "minZoom": 0,
@@ -202,7 +152,7 @@
             );
         
     
-            tile_layer_ee52cf18a90e0ce2bbe0cbb3d33b3e34.addTo(map_e93c4188588513c0283a8aa659724843);
+            tile_layer_642631b1cc81e2b71c33691eb0e5f4a2.addTo(map_8d843c21d97c3caf03fb0656987e2d5a);
         
     
             L.control.fullscreen(
@@ -212,10 +162,10 @@
   "titleCancel": "Exit fullscreen",
   "forceSeparateButton": true,
 }
-            ).addTo(map_e93c4188588513c0283a8aa659724843);
+            ).addTo(map_8d843c21d97c3caf03fb0656987e2d5a);
         
     
-            var mouse_position_17738fcf0b069cf5900a46c2255ff897 = new L.Control.MousePosition(
+            var mouse_position_8273b485df6a2c6bf8b455be0a76da43 = new L.Control.MousePosition(
                 {
   "position": "bottomright",
   "separator": " : ",
@@ -225,15 +175,15 @@
   "prefix": "",
 }
             );
-            mouse_position_17738fcf0b069cf5900a46c2255ff897.options["latFormatter"] =
+            mouse_position_8273b485df6a2c6bf8b455be0a76da43.options["latFormatter"] =
                 undefined;
-            mouse_position_17738fcf0b069cf5900a46c2255ff897.options["lngFormatter"] =
+            mouse_position_8273b485df6a2c6bf8b455be0a76da43.options["lngFormatter"] =
                 undefined;
-            map_e93c4188588513c0283a8aa659724843.addControl(mouse_position_17738fcf0b069cf5900a46c2255ff897);
+            map_8d843c21d97c3caf03fb0656987e2d5a.addControl(mouse_position_8273b485df6a2c6bf8b455be0a76da43);
         
     
 
-            var geocoderOpts_geocoder_fa11eaec6d00ea2c42792a6760311edb = {
+            var geocoderOpts_geocoder_ad12ba0a1ce1dffe6953e4ee2bad4d97 = {
   "collapsed": true,
   "position": "topright",
   "defaultMarkGeocode": false,
@@ -244,23 +194,23 @@
 };
 
             // note: geocoder name should start with lowercase
-            var geocoderName_geocoder_fa11eaec6d00ea2c42792a6760311edb = geocoderOpts_geocoder_fa11eaec6d00ea2c42792a6760311edb["provider"];
+            var geocoderName_geocoder_ad12ba0a1ce1dffe6953e4ee2bad4d97 = geocoderOpts_geocoder_ad12ba0a1ce1dffe6953e4ee2bad4d97["provider"];
 
-            var customGeocoder_geocoder_fa11eaec6d00ea2c42792a6760311edb = L.Control.Geocoder[ geocoderName_geocoder_fa11eaec6d00ea2c42792a6760311edb ](
-                geocoderOpts_geocoder_fa11eaec6d00ea2c42792a6760311edb['providerOptions']
+            var customGeocoder_geocoder_ad12ba0a1ce1dffe6953e4ee2bad4d97 = L.Control.Geocoder[ geocoderName_geocoder_ad12ba0a1ce1dffe6953e4ee2bad4d97 ](
+                geocoderOpts_geocoder_ad12ba0a1ce1dffe6953e4ee2bad4d97['providerOptions']
             );
-            geocoderOpts_geocoder_fa11eaec6d00ea2c42792a6760311edb["geocoder"] = customGeocoder_geocoder_fa11eaec6d00ea2c42792a6760311edb;
+            geocoderOpts_geocoder_ad12ba0a1ce1dffe6953e4ee2bad4d97["geocoder"] = customGeocoder_geocoder_ad12ba0a1ce1dffe6953e4ee2bad4d97;
 
             L.Control.geocoder(
-                geocoderOpts_geocoder_fa11eaec6d00ea2c42792a6760311edb
+                geocoderOpts_geocoder_ad12ba0a1ce1dffe6953e4ee2bad4d97
             ).on('markgeocode', function(e) {
-                var zoom = geocoderOpts_geocoder_fa11eaec6d00ea2c42792a6760311edb['zoom'] || map_e93c4188588513c0283a8aa659724843.getZoom();
-                map_e93c4188588513c0283a8aa659724843.setView(e.geocode.center, zoom);
-            }).addTo(map_e93c4188588513c0283a8aa659724843);
+                var zoom = geocoderOpts_geocoder_ad12ba0a1ce1dffe6953e4ee2bad4d97['zoom'] || map_8d843c21d97c3caf03fb0656987e2d5a.getZoom();
+                map_8d843c21d97c3caf03fb0656987e2d5a.setView(e.geocode.center, zoom);
+            }).addTo(map_8d843c21d97c3caf03fb0656987e2d5a);
 
         
     
-            var marker_cluster_03f4f6c59c24f9deecf80c5f2f149d6f = L.markerClusterGroup(
+            var marker_cluster_1db78d9e9a3d2c7c4cd63703ddf54957 = L.markerClusterGroup(
                 {
   "maxClusterRadius": 35,
   "spiderfyOnMaxZoom": true,
@@ -269,52 +219,45 @@
   "disableClusteringAtZoom": 15,
 }
             );
-            marker_cluster_03f4f6c59c24f9deecf80c5f2f149d6f.options.iconCreateFunction =
-                function(cluster) {
-            var count = cluster.getChildCount();
-            var size = count < 10 ? 30 : (count < 50 ? 35 : 40);
-            return L.divIcon({
-                html: '<div style="background-color: #00008B; color: white; border-radius: 50%; width: ' + size + 'px; height: ' + size + 'px; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">' + count + '</div>',
-                className: 'marker-cluster',
-                iconSize: L.point(size, size)
-            });
-        };
         
     
-            var marker_d038dfdfe53b84d7cb3c3ef6983072da = L.marker(
+            var marker_436d591683976f71aeafc93f7dfa2c67 = L.marker(
                 [42.37039685, -71.0741553533449],
                 {
+  "tags": [
+"Batch 2020",
+],
 }
-            ).addTo(marker_cluster_03f4f6c59c24f9deecf80c5f2f149d6f);
+            ).addTo(marker_cluster_1db78d9e9a3d2c7c4cd63703ddf54957);
         
     
-            var div_icon_af157d555515cfe43b6c2ce399f7d084 = L.divIcon({
+            var div_icon_3c65518fbb6dae9aee5aaa029b32f429 = L.divIcon({
   "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
   "iconSize": [24, 24],
   "iconAnchor": [12, 12],
   "className": "empty",
 });
-            marker_d038dfdfe53b84d7cb3c3ef6983072da.setIcon(div_icon_af157d555515cfe43b6c2ce399f7d084);
+            marker_436d591683976f71aeafc93f7dfa2c67.setIcon(div_icon_3c65518fbb6dae9aee5aaa029b32f429);
         
     
-        var popup_d64ebeed948d9aee126f2df7488610ee = L.popup({
+        var popup_d49d0e6500ed8c78c885cc206c4f7ef5 = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_f9895d9e6bc2368ff16a887583238b40 = $(`<div id="html_f9895d9e6bc2368ff16a887583238b40" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Vansh Gupta             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 87</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>             <p style="margin: 5px 0;"><strong>Address:</strong> 2 Leighton St, Cambridge, MA, USA</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:vg224@cornell.edu" style="color: #00008B;">vg224@cornell.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 9176159773" style="color: #00008B;">+1 9176159773</a></p></div></div></div>`)[0];
-                popup_d64ebeed948d9aee126f2df7488610ee.setContent(html_f9895d9e6bc2368ff16a887583238b40);
+                var html_d04b7ad9714065421a0921c4ecce968a = $(`<div id="html_d04b7ad9714065421a0921c4ecce968a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Vansh Gupta             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 87</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>             <p style="margin: 5px 0;"><strong>Address:</strong> 2 Leighton St, Cambridge, MA, USA</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:vg224@cornell.edu" style="color: #00008B;">vg224@cornell.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 9176159773" style="color: #00008B;">+1 9176159773</a></p></div></div></div>`)[0];
+                popup_d49d0e6500ed8c78c885cc206c4f7ef5.setContent(html_d04b7ad9714065421a0921c4ecce968a);
             
         
 
-        marker_d038dfdfe53b84d7cb3c3ef6983072da.bindPopup(popup_d64ebeed948d9aee126f2df7488610ee)
+        marker_436d591683976f71aeafc93f7dfa2c67.bindPopup(popup_d49d0e6500ed8c78c885cc206c4f7ef5)
         ;
 
         
     
     
-            marker_d038dfdfe53b84d7cb3c3ef6983072da.bindTooltip(
+            marker_436d591683976f71aeafc93f7dfa2c67.bindTooltip(
                 `<div>
                      Vansh Gupta - 2020 - Hyderabad
                  </div>`,
@@ -324,7 +267,23 @@
             );
         
     
-            marker_cluster_03f4f6c59c24f9deecf80c5f2f149d6f.addTo(map_e93c4188588513c0283a8aa659724843);
+            marker_cluster_1db78d9e9a3d2c7c4cd63703ddf54957.addTo(map_8d843c21d97c3caf03fb0656987e2d5a);
+        
+    
+            var tag_filter_button_947564e581152bee6a4401162bd6537b = L.control.tagFilterButton(
+                {
+  "data": [
+"Batch 2020",
+],
+  "icon": "fas fa-filter",
+  "clearText": "clear",
+  "filterOnEveryClick": true,
+  "openPopupOnHover": false,
+  "filterProperty": "tags",
+  "buttonWidth": 150,
+  "buttonHeight": 30,
+}
+            ).addTo(map_8d843c21d97c3caf03fb0656987e2d5a);
         
 </script>
 </html>
