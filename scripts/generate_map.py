@@ -204,8 +204,8 @@ def generate_map():
         }
         .filter-control {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 80px;
+            right: 10px;
             z-index: 1000;
             background: white;
             padding: 12px 15px;
