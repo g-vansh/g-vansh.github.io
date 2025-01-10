@@ -22,5 +22,17 @@
     "timestamp": "10/01/2025 00:08:34",
     "lat": 30.3255646,
     "lng": 78.0436813
+  },
+  {
+    "address": "36 Zorra Street, Toronto, ON, Canada",
+    "batch": "2020",
+    "email": "dsouza.aar@gmail.com",
+    "house": "Hyderabad",
+    "name": "Aaron D'Souza",
+    "number": "89",
+    "phone": "+1(647)594-0547",
+    "timestamp": "10/01/2025 04:20:14",
+    "lat": 43.6197444,
+    "lng": -79.52177825000001
   }
 ]
