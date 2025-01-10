@@ -10,5 +10,17 @@
     "timestamp": "09/01/2025 08:37:33",
     "lat": 42.37039685,
     "lng": -71.0741553533449
+  },
+  {
+    "address": "Dehradun, India",
+    "batch": "2020",
+    "email": "ameyashawak@gmail.com",
+    "house": "Hyderabad",
+    "name": "Ameya Shawak",
+    "number": "569",
+    "phone": "+91 7906940489",
+    "timestamp": "10/01/2025 00:08:34",
+    "lat": 30.3255646,
+    "lng": 78.0436813
   }
 ]
