@@ -34,5 +34,17 @@
     "timestamp": "10/01/2025 04:20:14",
     "lat": 43.6197444,
     "lng": -79.52177825000001
+  },
+  {
+    "address": "Lucknow, Uttar Pradesh ",
+    "batch": "2020",
+    "email": "pradyutnarain559@gmail.com",
+    "house": "Hyderabad",
+    "name": "Pradyut Narain",
+    "number": "559",
+    "phone": "+919839609782",
+    "timestamp": "10/01/2025 06:21:38",
+    "lat": 26.8381,
+    "lng": 80.9346001
   }
 ]
