@@ -5,6 +5,8 @@ from folium import plugins
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
 from datetime import datetime
+import random
+import math
 
 def geocode_address(address):
     """Geocode an address using OpenStreetMap's Nominatim service."""
@@ -17,12 +19,46 @@ def geocode_address(address):
     except GeocoderTimedOut:
         return None
 
+def randomize_location(lat, lng, radius_km=1.5):
+    """
+    Generate a random point within a given radius of a center point.
+    Uses uniform distribution to ensure even spread.
+    """
+    # Convert radius from km to degrees (approximate)
+    radius_deg = radius_km / 111.32  # 1 degree is approximately 111.32 km
+
+    # Generate random angle and radius
+    angle = random.uniform(0, 2 * math.pi)
+    # Use square root for uniform distribution in circular area
+    r = math.sqrt(random.uniform(0, 1)) * radius_deg
+    
+    # Calculate offset
+    dx = r * math.cos(angle)
+    dy = r * math.sin(angle)
+    
+    # Add offset to original coordinates
+    new_lat = lat + dy
+    new_lng = lng + dx
+    
+    return new_lat, new_lng
+
 def load_existing_data():
     """Load existing map data from JSON file."""
     data_file = "assets/data/community_map_data.json"
     if os.path.exists(data_file):
         with open(data_file, 'r') as f:
-            return json.load(f)
+            data = json.load(f)
+            # Randomize locations for all entries
+            for entry in data:
+                if 'original_lat' not in entry and 'lat' in entry:
+                    # Store original coordinates if not already stored
+                    entry['original_lat'] = entry['lat']
+                    entry['original_lng'] = entry['lng']
+                
+                if 'original_lat' in entry:
+                    # Randomize location based on original coordinates
+                    entry['lat'], entry['lng'] = randomize_location(entry['original_lat'], entry['original_lng'])
+            return data
     return []
 
 def save_data(data):
@@ -37,8 +73,13 @@ def add_new_entry(entry_data):
     coordinates = geocode_address(entry_data['address'])
     if coordinates:
         lat, lng = coordinates
-        entry_data['lat'] = lat
-        entry_data['lng'] = lng
+        # Store original coordinates
+        entry_data['original_lat'] = lat
+        entry_data['original_lng'] = lng
+        # Randomize location within 1.5km radius
+        rand_lat, rand_lng = randomize_location(lat, lng)
+        entry_data['lat'] = rand_lat
+        entry_data['lng'] = rand_lng
         data.append(entry_data)
         save_data(data)
         return True
@@ -111,7 +152,7 @@ def generate_map():
     
     # Add markers for each entry
     for entry in data:
-        # Create popup content
+        # Create popup content (without address)
         popup_html = f"""
         <div style="font-family: Arial, sans-serif; min-width: 200px;">
             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">
@@ -120,7 +161,6 @@ def generate_map():
             <p style="margin: 5px 0;"><strong>Number:</strong> {entry['number']}</p>
             <p style="margin: 5px 0;"><strong>House:</strong> {entry['house']}</p>
             <p style="margin: 5px 0;"><strong>Batch:</strong> {entry['batch']}</p>
-            <p style="margin: 5px 0;"><strong>Address:</strong> {entry['address']}</p>
         """
         
         # Add contact information if provided
