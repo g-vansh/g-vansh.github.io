@@ -141,8 +141,8 @@ author_profile: true
         <p>Any comments can be shared with <a href="mailto:vg224@cornell.edu">vg224@cornell.edu</a>. All data are securely stored and processed. No data will be shared with anyone other than myself.</p>
         <div class="sponsor-section" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
             <p style="font-size: 0.9em; color: #666;">If you find this project valuable and would like to support its maintenance and development, you can sponsor it through GitHub:</p>
-            <div style="display: flex; justify-content: center; margin-top: 10px; background-color: #f8f9fa; padding: 10px; border-radius: 8px;">
-                <iframe src="https://github.com/sponsors/g-vansh/card" title="Sponsor g-vansh" height="100" width="600" style="border: 0;"></iframe>
+            <div style="display: flex; justify-content: center; margin-top: 10px; padding: 10px;">
+                <iframe src="https://github.com/sponsors/g-vansh/card" title="Sponsor g-vansh" height="100" width="600" style="border: 0; border-radius: 8px;"></iframe>
             </div>
         </div>
     </div>
