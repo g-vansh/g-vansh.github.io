@@ -32,9 +32,9 @@ def format_sheet_entry(row):
     """Format a sheet row into a map entry."""
     return {
         'name': row['Name'],
-        'number': row['Number (e.g. 87)'],
+        'number': str(row['Number (e.g. 87)']),
         'house': row['House'],
-        'batch': row['Batch (e.g. 2020)'],
+        'batch': str(row['Batch (e.g. 2020)']),
         'address': row['Address (e.g. "5 Leighton St, Cambridge, MA, USA" or "C-19, Madhur Green Villas, Ram Ganga Vihar, Moradabad, Uttar Pradesh, India", or simply the city "Meerut, Uttar Pradesh, India")'],
         'email': row.get('Email (If you are open to people connecting with you)', ''),
         'phone': row.get('Phone Number (if you are open to people connecting with you; please add the country code such as +91 before noting the phone number)', ''),
@@ -58,6 +58,11 @@ def sync_data():
         # Load existing data
         existing_data = load_existing_data()
         print(f"Loaded {len(existing_data)} existing entries")
+        
+        # Convert any existing integer batch years to strings
+        for entry in existing_data:
+            entry['batch'] = str(entry['batch'])
+            entry['number'] = str(entry['number'])
         
         # Fetch sheet data
         sheet_data = get_sheet_data()
