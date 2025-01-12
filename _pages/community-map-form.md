@@ -79,14 +79,18 @@ author_profile: true
 
     <div class="form-description">
         <h3>Privacy & Data Usage</h3>
-        <p>Your privacy is important to us. Here's how we protect your information:</p>
+        <p>Your privacy is important to me. Here's how I protect your information:</p>
         <ul>
             <li><strong>Location Privacy:</strong> Your marker will be randomly placed within a 1.5km radius of your provided address to protect your exact location</li>
             <li><strong>Address Privacy:</strong> Your exact address will never be displayed on the map</li>
             <li><strong>Contact Information:</strong> Email and phone number are optional and will only be shown if you choose to share them</li>
             <li><strong>Data Security:</strong> All information is stored securely and will not be shared with third parties</li>
         </ul>
-        <p class="privacy-note">Please only provide information you're comfortable being publicly accessible. While we implement privacy measures, users should exercise discretion in sharing personal information.</p>
+        <p class="privacy-note">Please only provide information you're comfortable being publicly accessible. While I implement privacy measures, users should exercise discretion in sharing personal information.</p>
+        <div class="sponsor-section" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+            <p style="font-size: 0.9em; color: #666;">This is a completely non-profit project developed and maintained out of personal interest. If you find this project valuable and would like to support its maintenance and development, you can sponsor it through GitHub:</p>
+            <iframe src="https://github.com/sponsors/g-vansh/button" title="Sponsor g-vansh" height="32" width="114" style="border: 0; border-radius: 6px; margin-top: 10px;"></iframe>
+        </div>
     </div>
 
     <div style="text-align: center;">

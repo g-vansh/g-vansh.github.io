@@ -124,6 +124,7 @@ author_profile: true
     <div class="disclaimer">
         <h3>Disclaimer</h3>
         <p>This project is neither sponsored by, or affiliated with the Doon School Old Boys' Society nor is sponsored by, or affiliated with The Doon School in any way. This project intends no harm to the society or the school, and is meant to be a passion project to put the Nizams on a map (literally).</p>
+        <p>This is a completely non-profit project developed and maintained out of personal interest. While I welcome <a href="https://github.com/sponsors/g-vansh" target="_blank">GitHub sponsorships</a> to help cover hosting costs and support future improvements, there is absolutely no profit motive behind this initiative.</p>
         <p>By using this map, you acknowledge and agree that:</p>
         <ul>
             <li>The information provided is voluntarily shared by users</li>
@@ -133,6 +134,10 @@ author_profile: true
             <li>I recommend sharing only information you're comfortable being publicly accessible</li>
         </ul>
         <p>Any comments can be shared with <a href="mailto:vg224@cornell.edu">vg224@cornell.edu</a>. All data are securely stored and processed. No data will be shared with anyone other than myself.</p>
+        <div class="sponsor-section" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+            <p style="font-size: 0.9em; color: #666;">If you find this project valuable and would like to support its maintenance and development, you can sponsor it through GitHub:</p>
+            <iframe src="https://github.com/sponsors/g-vansh/button" title="Sponsor g-vansh" height="32" width="114" style="border: 0; border-radius: 6px; margin-top: 10px;"></iframe>
+        </div>
     </div>
 </div>
 
