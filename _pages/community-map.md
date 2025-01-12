@@ -76,6 +76,28 @@ author_profile: true
     text-align: center;
     margin: 30px 0;
 }
+.privacy-notice {
+    margin: 30px 0;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #00008B;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.privacy-notice h3 {
+    color: #00008B;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.privacy-notice ul, .disclaimer ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+.privacy-notice li, .disclaimer li {
+    color: #555;
+    line-height: 1.6;
+    margin: 5px 0;
+}
 </style>
 
 <div class="page-container">
@@ -89,8 +111,26 @@ author_profile: true
         </a>
     </div>
 
+    <div class="privacy-notice">
+        <h3>Privacy Protection</h3>
+        <p>To protect your privacy:</p>
+        <ul>
+            <li>All marker locations are randomly placed within a 1.5km radius of the provided address</li>
+            <li>Exact addresses are never displayed on the map</li>
+            <li>Contact information is only shown if explicitly provided</li>
+        </ul>
+    </div>
+
     <div class="disclaimer">
         <p>Disclaimer: This project is neither sponsored by, or affiliated with the Doon School Old Boys' Society nor is sponsored by, or affiliated with The Doon School in any way. This project intends no harm to the society or the school, and is meant to be a passion project to put the Nizams on a map (literally).</p>
+        <p>By using this map, you acknowledge and agree that:</p>
+        <ul>
+            <li>The information provided is voluntarily shared by users</li>
+            <li>While we implement privacy measures (location randomization, address hiding), we cannot guarantee absolute privacy or security of information</li>
+            <li>The creator and maintainers of this map are not liable for any misuse, data breaches, or unintended disclosure of information</li>
+            <li>Users are responsible for the accuracy and appropriateness of the information they provide</li>
+            <li>We recommend sharing only information you're comfortable being publicly accessible</li>
+        </ul>
         <p>Any comments can be shared with <a href="mailto:vg224@cornell.edu">vg224@cornell.edu</a>. All data are securely stored and processed. No data will be shared with anyone other than the project's creator.</p>
     </div>
 </div>

@@ -103,11 +103,13 @@ def generate_map():
     
     # Create map with cartodbpositron tiles
     m = folium.Map(
-        location=[center_lat, center_lng],
-        zoom_start=3,
+        location=[22.22, 78.78],  # Center on India
+        zoom_start=5,  # Zoom level for India view
         tiles='cartodbpositron',
         width='100%',
-        height='100%'
+        height='100%',
+        world_copy_jump=False,  # Prevent wrapping
+        no_wrap=True  # Prevent wrapping
     )
     
     # Add map controls

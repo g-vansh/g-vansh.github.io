@@ -25,6 +25,24 @@ author_profile: true
     color: #555;
     line-height: 1.5;
 }
+.form-description h3 {
+    color: #00008B;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.form-description ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+.form-description li {
+    margin: 10px 0;
+}
+.privacy-note {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    font-style: italic;
+}
 .google-form {
     width: 100%;
     height: 1000px;
@@ -60,7 +78,15 @@ author_profile: true
     </div>
 
     <div class="form-description">
-        <p>Your information will be used to place a marker on the map showing your location. This helps other Nizams connect with fellow alumni in their area. All data is securely stored and will only be visible on the map.</p>
+        <h3>Privacy & Data Usage</h3>
+        <p>Your privacy is important to us. Here's how we protect your information:</p>
+        <ul>
+            <li><strong>Location Privacy:</strong> Your marker will be randomly placed within a 1.5km radius of your provided address to protect your exact location</li>
+            <li><strong>Address Privacy:</strong> Your exact address will never be displayed on the map</li>
+            <li><strong>Contact Information:</strong> Email and phone number are optional and will only be shown if you choose to share them</li>
+            <li><strong>Data Security:</strong> All information is stored securely and will not be shared with third parties</li>
+        </ul>
+        <p class="privacy-note">Please only provide information you're comfortable being publicly accessible. While we implement privacy measures, users should exercise discretion in sharing personal information.</p>
     </div>
 
     <div style="text-align: center;">
