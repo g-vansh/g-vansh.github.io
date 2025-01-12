@@ -122,16 +122,17 @@ author_profile: true
     </div>
 
     <div class="disclaimer">
-        <p>Disclaimer: This project is neither sponsored by, or affiliated with the Doon School Old Boys' Society nor is sponsored by, or affiliated with The Doon School in any way. This project intends no harm to the society or the school, and is meant to be a passion project to put the Nizams on a map (literally).</p>
+        <h3>Disclaimer</h3>
+        <p>This project is neither sponsored by, or affiliated with the Doon School Old Boys' Society nor is sponsored by, or affiliated with The Doon School in any way. This project intends no harm to the society or the school, and is meant to be a passion project to put the Nizams on a map (literally).</p>
         <p>By using this map, you acknowledge and agree that:</p>
         <ul>
             <li>The information provided is voluntarily shared by users</li>
-            <li>While we implement privacy measures (location randomization, address hiding), we cannot guarantee absolute privacy or security of information</li>
-            <li>The creator and maintainers of this map are not liable for any misuse, data breaches, or unintended disclosure of information</li>
-            <li>Users are responsible for the accuracy and appropriateness of the information they provide</li>
-            <li>We recommend sharing only information you're comfortable being publicly accessible</li>
+            <li>While I implement privacy measures (location randomization, address hiding), I cannot guarantee absolute privacy or security of information</li>
+            <li>I am not liable for any misuse, data breaches, or unintended disclosure of information</li>
+            <li>You are responsible for the accuracy and appropriateness of the information you provide</li>
+            <li>I recommend sharing only information you're comfortable being publicly accessible</li>
         </ul>
-        <p>Any comments can be shared with <a href="mailto:vg224@cornell.edu">vg224@cornell.edu</a>. All data are securely stored and processed. No data will be shared with anyone other than the project's creator.</p>
+        <p>Any comments can be shared with <a href="mailto:vg224@cornell.edu">vg224@cornell.edu</a>. All data are securely stored and processed. No data will be shared with anyone other than myself.</p>
     </div>
 </div>
 
