@@ -97,6 +97,7 @@ author_profile: true
     color: #555;
     line-height: 1.6;
     margin: 5px 0;
+    font-size: 0.95em;
 }
 .disclaimer h3 {
     color: #00008B;
