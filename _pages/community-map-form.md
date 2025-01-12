@@ -88,7 +88,7 @@ author_profile: true
         </ul>
         <p class="privacy-note">Please only provide information you're comfortable being publicly accessible. While I implement privacy measures, users should exercise discretion in sharing personal information.</p>
         <div class="sponsor-section" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
-            <p style="font-size: 0.9em; color: #666;">This is a completely non-profit project developed and maintained out of personal interest. If you find this project valuable and would like to support its maintenance and development, you can sponsor it through GitHub:</p>
+            <p style="font-size: 0.95em; color: #555; line-height: 1.6;">This is a completely non-profit project developed and maintained out of personal interest. If you find this project valuable and would like to support its maintenance and development, you can sponsor it through GitHub:</p>
             <div style="display: flex; justify-content: center; margin-top: 10px; padding: 10px;">
                 <iframe src="https://github.com/sponsors/g-vansh/card" title="Sponsor g-vansh" height="100" width="600" style="border: 0; border-radius: 8px;"></iframe>
             </div>
