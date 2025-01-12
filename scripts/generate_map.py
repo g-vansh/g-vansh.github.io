@@ -104,7 +104,7 @@ def generate_map():
     # Create map with cartodbpositron tiles
     m = folium.Map(
         location=[0, 22],  # Center view for better global visibility
-        zoom_start=6,  # Slightly zoomed out for better overview
+        zoom_start=2,  # Global view
         tiles='cartodbpositron',
         width='100%',
         height='100%',
