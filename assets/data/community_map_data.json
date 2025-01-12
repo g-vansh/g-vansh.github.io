@@ -68,5 +68,19 @@
     "original_lng": 77.76796714992041,
     "lat": 28.99333116603192,
     "lng": 77.76194489051582
+  },
+  {
+    "name": "Sanjum Dhaliwal",
+    "number": "592",
+    "house": "Hyderabad",
+    "batch": "2020",
+    "address": "Amritsar, Punjab 143001, India ",
+    "email": "sanjum@ucla.edu",
+    "phone": "+91 95016-53735",
+    "timestamp": "2025-01-10T04:37:31.892Z",
+    "original_lat": 31.6356659,
+    "original_lng": 74.8787496,
+    "lat": 31.645130928021906,
+    "lng": 74.88617227409154
   }
 ]
