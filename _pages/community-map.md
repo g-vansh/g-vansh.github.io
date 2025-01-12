@@ -98,6 +98,11 @@ author_profile: true
     line-height: 1.6;
     margin: 5px 0;
 }
+.disclaimer h3 {
+    color: #00008B;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
 </style>
 
 <div class="page-container">
@@ -136,7 +141,9 @@ author_profile: true
         <p>Any comments can be shared with <a href="mailto:vg224@cornell.edu">vg224@cornell.edu</a>. All data are securely stored and processed. No data will be shared with anyone other than myself.</p>
         <div class="sponsor-section" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
             <p style="font-size: 0.9em; color: #666;">If you find this project valuable and would like to support its maintenance and development, you can sponsor it through GitHub:</p>
-            <iframe src="https://github.com/sponsors/g-vansh/button" title="Sponsor g-vansh" height="32" width="114" style="border: 0; border-radius: 6px; margin-top: 10px;"></iframe>
+            <div style="display: flex; justify-content: center; margin-top: 10px;">
+                <iframe src="https://github.com/sponsors/g-vansh/card" title="Sponsor g-vansh" height="225" width="600" style="border: 0;"></iframe>
+            </div>
         </div>
     </div>
 </div>
