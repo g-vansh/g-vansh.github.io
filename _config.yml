@@ -115,6 +115,17 @@ author:
   xing             :
   youtube          :
   wikipedia        :
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:vg224@cornell.edu"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/g-vansh"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/vansh-gupta-a7b4a2149/"
+  sponsor_button: '<iframe src="https://github.com/sponsors/g-vansh/button" title="Sponsor g-vansh" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>'
 
 
 # Reading Files
