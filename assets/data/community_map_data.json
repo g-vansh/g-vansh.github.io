@@ -404,5 +404,19 @@
     "original_lng": 77.1066682,
     "lat": 28.393592823795117,
     "lng": 77.10301706190646
+  },
+  {
+    "name": "RAJEEVA SWARUP",
+    "number": "6",
+    "house": "Hyderabad",
+    "batch": "1976",
+    "address": "Jaipur, India",
+    "email": "rajeeva.swarup@gmail.com",
+    "phone": "+919829050112",
+    "timestamp": "2025-01-13T12:07:22.861Z",
+    "original_lat": 26.9154576,
+    "original_lng": 75.8189817,
+    "lat": 26.905403835617324,
+    "lng": 75.81256915786535
   }
 ]
