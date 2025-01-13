@@ -180,5 +180,19 @@
     "original_lng": 78.0436813,
     "lat": 30.331486913353388,
     "lng": 78.0504960816074
+  },
+  {
+    "name": "Anupam Swarup",
+    "number": "22",
+    "house": "Hyderabad",
+    "batch": "1976",
+    "address": "Noida, Uttar Pradesh, India",
+    "email": "anupam.swarup@gmail.com",
+    "phone": 9811927907,
+    "timestamp": "2025-01-13T03:49:59.000Z",
+    "original_lat": 28.5706333,
+    "original_lng": 77.3272147,
+    "lat": 28.572015351532517,
+    "lng": 77.3381805573935
   }
 ]
