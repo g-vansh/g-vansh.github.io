@@ -86,7 +86,7 @@ author_profile: true
 }
 @media screen and (max-width: 768px) {
     .sponsor-card-container iframe {
-        height: 150px;
+        height: 225px;
     }
 }
 </style>
