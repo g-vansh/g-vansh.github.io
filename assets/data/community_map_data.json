@@ -138,5 +138,47 @@
     "original_lng": 77.3272147,
     "lat": 28.56445513114984,
     "lng": 77.31928999895761
+  },
+  {
+    "name": "Samar Yajurvedi ",
+    "number": "214",
+    "house": "Hyderabad",
+    "batch": "2002",
+    "address": "Bangalore, India",
+    "email": "samaryaj@gmail.com",
+    "phone": "+919769075896",
+    "timestamp": "2025-01-13T03:50:08.793Z",
+    "original_lat": 12.98815675,
+    "original_lng": 77.62260003796,
+    "lat": 12.99142479413464,
+    "lng": 77.61182810100095
+  },
+  {
+    "name": "Vansh Nathani",
+    "number": "127",
+    "house": "Hyderabad",
+    "batch": "2009",
+    "address": "Dehradun, India",
+    "email": "v@educis.com",
+    "phone": "+919711400127",
+    "timestamp": "2025-01-13T03:50:09.280Z",
+    "original_lat": 30.3255646,
+    "original_lng": 78.0436813,
+    "lat": 30.318390839264485,
+    "lng": 78.05385202530103
+  },
+  {
+    "name": "Sid",
+    "number": "428",
+    "house": "Hyderabad",
+    "batch": "2006",
+    "address": "Dubai, UAE\n",
+    "email": "",
+    "phone": "",
+    "timestamp": "2025-01-13T03:51:38.943Z",
+    "original_lat": 25.2653471,
+    "original_lng": 55.2924914,
+    "lat": 25.26460706170624,
+    "lng": 55.300715080652594
   }
 ]
