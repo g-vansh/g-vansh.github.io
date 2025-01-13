@@ -180,5 +180,33 @@
     "original_lng": 55.2924914,
     "lat": 25.26460706170624,
     "lng": 55.300715080652594
+  },
+  {
+    "name": "Janardhan Kapur Jerdy",
+    "number": "170",
+    "house": "Hyderabad",
+    "batch": "1976",
+    "address": "Gurgaon, India",
+    "email": "janardhankapur@gmail.com",
+    "phone": "",
+    "timestamp": "2025-01-13T02:57:20.468Z",
+    "original_lat": 28.4646148,
+    "original_lng": 77.0299194,
+    "lat": 28.47621484106461,
+    "lng": 77.03511515087894
+  },
+  {
+    "name": "Arjun kapur ",
+    "number": "678",
+    "house": "Hyderabad",
+    "batch": "1981",
+    "address": "Dehradun, India",
+    "email": "arjunkapur678@gmail.com",
+    "phone": 9717222792,
+    "timestamp": "2025-01-13T03:02:16.081Z",
+    "original_lat": 30.3255646,
+    "original_lng": 78.0436813,
+    "lat": 30.331486913353388,
+    "lng": 78.0504960816074
   }
 ]
