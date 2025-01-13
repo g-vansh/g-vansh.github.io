@@ -376,5 +376,19 @@
     "original_lng": 77.74293325807088,
     "lat": 29.442076804438663,
     "lng": 77.74524663843336
+  },
+  {
+    "name": "Siddhartha Bhaduri",
+    "number": "18",
+    "house": "Hyderabad",
+    "batch": "2002",
+    "address": "Bandra, West Mumbai, India ",
+    "email": "",
+    "phone": "+919892331452",
+    "timestamp": "2025-01-13T10:57:02.799Z",
+    "original_lat": 19.0549792,
+    "original_lng": 72.8402203,
+    "lat": 19.04975609132202,
+    "lng": 72.84400874024936
   }
 ]
