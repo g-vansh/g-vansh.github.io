@@ -119,6 +119,11 @@ author_profile: true
     border-radius: 8px;
     max-width: 100%;
 }
+@media screen and (max-width: 768px) {
+    .sponsor-card-container iframe {
+        height: 150px;
+    }
+}
 </style>
 
 <div class="page-container">
