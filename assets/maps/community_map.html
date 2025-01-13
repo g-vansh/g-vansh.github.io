@@ -67,7 +67,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_89f4aae49cf59b18d0a3b2e41a213163 {
+                #map_2b8d777cb033fd0d379b94cc82f12ca3 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -107,18 +107,18 @@
     
     
     <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(255,255,255,0.8); padding: 2px 5px; border-radius: 3px; font-size: 10px; color: #666;">
-        Last updated: 2025-01-12 22:52:59 UTC
+        Last updated: 2025-01-13 02:58:21 UTC
     </div>
     
     
-            <div class="folium-map" id="map_89f4aae49cf59b18d0a3b2e41a213163" ></div>
+            <div class="folium-map" id="map_2b8d777cb033fd0d379b94cc82f12ca3" ></div>
         
 </body>
 <script>
     
     
-            var map_89f4aae49cf59b18d0a3b2e41a213163 = L.map(
-                "map_89f4aae49cf59b18d0a3b2e41a213163",
+            var map_2b8d777cb033fd0d379b94cc82f12ca3 = L.map(
+                "map_2b8d777cb033fd0d379b94cc82f12ca3",
                 {
                     center: [0.0, 22.0],
                     crs: L.CRS.EPSG3857,
@@ -137,7 +137,7 @@
 
         
     
-            var tile_layer_5c6d459c38e9cec511b0b4b2a3288e1e = L.tileLayer(
+            var tile_layer_3abce0bbd49d664efaa7a9085629f116 = L.tileLayer(
                 "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
                 {
   "minZoom": 0,
@@ -154,7 +154,7 @@
             );
         
     
-            tile_layer_5c6d459c38e9cec511b0b4b2a3288e1e.addTo(map_89f4aae49cf59b18d0a3b2e41a213163);
+            tile_layer_3abce0bbd49d664efaa7a9085629f116.addTo(map_2b8d777cb033fd0d379b94cc82f12ca3);
         
     
             L.control.fullscreen(
@@ -164,10 +164,10 @@
   "titleCancel": "Exit fullscreen",
   "forceSeparateButton": true,
 }
-            ).addTo(map_89f4aae49cf59b18d0a3b2e41a213163);
+            ).addTo(map_2b8d777cb033fd0d379b94cc82f12ca3);
         
     
-            var mouse_position_d1f3bef8d145dcab8b375a08c61a0f4b = new L.Control.MousePosition(
+            var mouse_position_c453e412d9e56cb9699fa008311d9d9d = new L.Control.MousePosition(
                 {
   "position": "bottomright",
   "separator": " : ",
@@ -177,15 +177,15 @@
   "prefix": "",
 }
             );
-            mouse_position_d1f3bef8d145dcab8b375a08c61a0f4b.options["latFormatter"] =
+            mouse_position_c453e412d9e56cb9699fa008311d9d9d.options["latFormatter"] =
                 undefined;
-            mouse_position_d1f3bef8d145dcab8b375a08c61a0f4b.options["lngFormatter"] =
+            mouse_position_c453e412d9e56cb9699fa008311d9d9d.options["lngFormatter"] =
                 undefined;
-            map_89f4aae49cf59b18d0a3b2e41a213163.addControl(mouse_position_d1f3bef8d145dcab8b375a08c61a0f4b);
+            map_2b8d777cb033fd0d379b94cc82f12ca3.addControl(mouse_position_c453e412d9e56cb9699fa008311d9d9d);
         
     
 
-            var geocoderOpts_geocoder_31aa8bfae1b773798a29537ba9e888f4 = {
+            var geocoderOpts_geocoder_c5126081b2eaa2e3a4920016fe2876c8 = {
   "collapsed": true,
   "position": "topright",
   "defaultMarkGeocode": false,
@@ -196,23 +196,23 @@
 };
 
             // note: geocoder name should start with lowercase
-            var geocoderName_geocoder_31aa8bfae1b773798a29537ba9e888f4 = geocoderOpts_geocoder_31aa8bfae1b773798a29537ba9e888f4["provider"];
+            var geocoderName_geocoder_c5126081b2eaa2e3a4920016fe2876c8 = geocoderOpts_geocoder_c5126081b2eaa2e3a4920016fe2876c8["provider"];
 
-            var customGeocoder_geocoder_31aa8bfae1b773798a29537ba9e888f4 = L.Control.Geocoder[ geocoderName_geocoder_31aa8bfae1b773798a29537ba9e888f4 ](
-                geocoderOpts_geocoder_31aa8bfae1b773798a29537ba9e888f4['providerOptions']
+            var customGeocoder_geocoder_c5126081b2eaa2e3a4920016fe2876c8 = L.Control.Geocoder[ geocoderName_geocoder_c5126081b2eaa2e3a4920016fe2876c8 ](
+                geocoderOpts_geocoder_c5126081b2eaa2e3a4920016fe2876c8['providerOptions']
             );
-            geocoderOpts_geocoder_31aa8bfae1b773798a29537ba9e888f4["geocoder"] = customGeocoder_geocoder_31aa8bfae1b773798a29537ba9e888f4;
+            geocoderOpts_geocoder_c5126081b2eaa2e3a4920016fe2876c8["geocoder"] = customGeocoder_geocoder_c5126081b2eaa2e3a4920016fe2876c8;
 
             L.Control.geocoder(
-                geocoderOpts_geocoder_31aa8bfae1b773798a29537ba9e888f4
+                geocoderOpts_geocoder_c5126081b2eaa2e3a4920016fe2876c8
             ).on('markgeocode', function(e) {
-                var zoom = geocoderOpts_geocoder_31aa8bfae1b773798a29537ba9e888f4['zoom'] || map_89f4aae49cf59b18d0a3b2e41a213163.getZoom();
-                map_89f4aae49cf59b18d0a3b2e41a213163.setView(e.geocode.center, zoom);
-            }).addTo(map_89f4aae49cf59b18d0a3b2e41a213163);
+                var zoom = geocoderOpts_geocoder_c5126081b2eaa2e3a4920016fe2876c8['zoom'] || map_2b8d777cb033fd0d379b94cc82f12ca3.getZoom();
+                map_2b8d777cb033fd0d379b94cc82f12ca3.setView(e.geocode.center, zoom);
+            }).addTo(map_2b8d777cb033fd0d379b94cc82f12ca3);
 
         
     
-            var marker_cluster_bff01e16feb8bd94ec5c4b4138f1053b = L.markerClusterGroup(
+            var marker_cluster_2ab4113f1dcee2d0f507fda45c705f41 = L.markerClusterGroup(
                 {
   "maxClusterRadius": 35,
   "spiderfyOnMaxZoom": true,
@@ -223,43 +223,43 @@
             );
         
     
-            var marker_0ce8be470a64ae181eb69cc48a38fca1 = L.marker(
-                [42.36309303349338, -71.06782619238226],
+            var marker_e0902b4a71dc4f76871c3bb5652821af = L.marker(
+                [42.35741048391823, -71.0756102692506],
                 {
   "tags": [
 "Batch 2020",
 ],
 }
-            ).addTo(marker_cluster_bff01e16feb8bd94ec5c4b4138f1053b);
+            ).addTo(marker_cluster_2ab4113f1dcee2d0f507fda45c705f41);
         
     
-            var div_icon_7a37bb3be375fad05dcf16c8b191f937 = L.divIcon({
+            var div_icon_4f2dd5b4096be57ca876e6080024bb83 = L.divIcon({
   "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
   "iconSize": [24, 24],
   "iconAnchor": [12, 12],
   "className": "empty",
 });
-            marker_0ce8be470a64ae181eb69cc48a38fca1.setIcon(div_icon_7a37bb3be375fad05dcf16c8b191f937);
+            marker_e0902b4a71dc4f76871c3bb5652821af.setIcon(div_icon_4f2dd5b4096be57ca876e6080024bb83);
         
     
-        var popup_c52c7ee2ac77a8877d2ede0cf559843c = L.popup({
+        var popup_ffedb78c912179b1a2fb30634fa1bd34 = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_9f6e66147a7dacebe42e2b01c8088e31 = $(`<div id="html_9f6e66147a7dacebe42e2b01c8088e31" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Vansh Gupta             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 87</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:vg224@cornell.edu" style="color: #00008B;">vg224@cornell.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 9176159773" style="color: #00008B;">+1 9176159773</a></p></div></div></div>`)[0];
-                popup_c52c7ee2ac77a8877d2ede0cf559843c.setContent(html_9f6e66147a7dacebe42e2b01c8088e31);
+                var html_cbdd9b5ad48cc1ab6d6a6d304fe67e76 = $(`<div id="html_cbdd9b5ad48cc1ab6d6a6d304fe67e76" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Vansh Gupta             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 87</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:vg224@cornell.edu" style="color: #00008B;">vg224@cornell.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1 9176159773" style="color: #00008B;">+1 9176159773</a></p></div></div></div>`)[0];
+                popup_ffedb78c912179b1a2fb30634fa1bd34.setContent(html_cbdd9b5ad48cc1ab6d6a6d304fe67e76);
             
         
 
-        marker_0ce8be470a64ae181eb69cc48a38fca1.bindPopup(popup_c52c7ee2ac77a8877d2ede0cf559843c)
+        marker_e0902b4a71dc4f76871c3bb5652821af.bindPopup(popup_ffedb78c912179b1a2fb30634fa1bd34)
         ;
 
         
     
     
-            marker_0ce8be470a64ae181eb69cc48a38fca1.bindTooltip(
+            marker_e0902b4a71dc4f76871c3bb5652821af.bindTooltip(
                 `<div>
                      Vansh Gupta - 2020 - Hyderabad
                  </div>`,
@@ -269,43 +269,43 @@
             );
         
     
-            var marker_d5d705a9e43971f1ddc6ba053c708d34 = L.marker(
-                [30.33277457564864, 78.04618805086943],
+            var marker_d2d20af666ee41b39de86fa9f7da6a7e = L.marker(
+                [30.33142389861919, 78.0494256068998],
                 {
   "tags": [
 "Batch 2020",
 ],
 }
-            ).addTo(marker_cluster_bff01e16feb8bd94ec5c4b4138f1053b);
+            ).addTo(marker_cluster_2ab4113f1dcee2d0f507fda45c705f41);
         
     
-            var div_icon_b46845209f9dc99a11337dc85086de5a = L.divIcon({
+            var div_icon_9f28b366d1553fcca644900e5837219c = L.divIcon({
   "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
   "iconSize": [24, 24],
   "iconAnchor": [12, 12],
   "className": "empty",
 });
-            marker_d5d705a9e43971f1ddc6ba053c708d34.setIcon(div_icon_b46845209f9dc99a11337dc85086de5a);
+            marker_d2d20af666ee41b39de86fa9f7da6a7e.setIcon(div_icon_9f28b366d1553fcca644900e5837219c);
         
     
-        var popup_b90690b1e3fd2e7809c0946de502e9f4 = L.popup({
+        var popup_20bb3d757b78bdba4f160035466d0e2c = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_d862ce0cd70cff37642758d3ff03886f = $(`<div id="html_d862ce0cd70cff37642758d3ff03886f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Ameya Shawak             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 569</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:ameyashawak@gmail.com" style="color: #00008B;">ameyashawak@gmail.com</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+91 7906940489" style="color: #00008B;">+91 7906940489</a></p></div></div></div>`)[0];
-                popup_b90690b1e3fd2e7809c0946de502e9f4.setContent(html_d862ce0cd70cff37642758d3ff03886f);
+                var html_c4da816d73681d881c93d5dedc258895 = $(`<div id="html_c4da816d73681d881c93d5dedc258895" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Ameya Shawak             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 569</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:ameyashawak@gmail.com" style="color: #00008B;">ameyashawak@gmail.com</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+91 7906940489" style="color: #00008B;">+91 7906940489</a></p></div></div></div>`)[0];
+                popup_20bb3d757b78bdba4f160035466d0e2c.setContent(html_c4da816d73681d881c93d5dedc258895);
             
         
 
-        marker_d5d705a9e43971f1ddc6ba053c708d34.bindPopup(popup_b90690b1e3fd2e7809c0946de502e9f4)
+        marker_d2d20af666ee41b39de86fa9f7da6a7e.bindPopup(popup_20bb3d757b78bdba4f160035466d0e2c)
         ;
 
         
     
     
-            marker_d5d705a9e43971f1ddc6ba053c708d34.bindTooltip(
+            marker_d2d20af666ee41b39de86fa9f7da6a7e.bindTooltip(
                 `<div>
                      Ameya Shawak - 2020 - Hyderabad
                  </div>`,
@@ -315,43 +315,43 @@
             );
         
     
-            var marker_ad89e8364644578880600813841122a7 = L.marker(
-                [43.608897856630215, -79.51775722873673],
+            var marker_cdc0b3275f1b53b64b214d288e797a54 = L.marker(
+                [43.616840587270474, -79.51867937144529],
                 {
   "tags": [
 "Batch 2020",
 ],
 }
-            ).addTo(marker_cluster_bff01e16feb8bd94ec5c4b4138f1053b);
+            ).addTo(marker_cluster_2ab4113f1dcee2d0f507fda45c705f41);
         
     
-            var div_icon_9f02cd6becb33b55d34908cdb767d3cd = L.divIcon({
+            var div_icon_5072b406b571d23cf5dd160da5efe9ff = L.divIcon({
   "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
   "iconSize": [24, 24],
   "iconAnchor": [12, 12],
   "className": "empty",
 });
-            marker_ad89e8364644578880600813841122a7.setIcon(div_icon_9f02cd6becb33b55d34908cdb767d3cd);
+            marker_cdc0b3275f1b53b64b214d288e797a54.setIcon(div_icon_5072b406b571d23cf5dd160da5efe9ff);
         
     
-        var popup_594582bc8245849e42cb1a230b4475da = L.popup({
+        var popup_6689253f752ec81fca4498701b9b5a4c = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_12695db9772dfd4b8976d222773dc6a9 = $(`<div id="html_12695db9772dfd4b8976d222773dc6a9" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Aaron D'Souza             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 89</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:dsouza.aar@gmail.com" style="color: #00008B;">dsouza.aar@gmail.com</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1(647)594-0547" style="color: #00008B;">+1(647)594-0547</a></p></div></div></div>`)[0];
-                popup_594582bc8245849e42cb1a230b4475da.setContent(html_12695db9772dfd4b8976d222773dc6a9);
+                var html_7c4b1a80b0d07b46ce51d510bb1b554d = $(`<div id="html_7c4b1a80b0d07b46ce51d510bb1b554d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Aaron D'Souza             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 89</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:dsouza.aar@gmail.com" style="color: #00008B;">dsouza.aar@gmail.com</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+1(647)594-0547" style="color: #00008B;">+1(647)594-0547</a></p></div></div></div>`)[0];
+                popup_6689253f752ec81fca4498701b9b5a4c.setContent(html_7c4b1a80b0d07b46ce51d510bb1b554d);
             
         
 
-        marker_ad89e8364644578880600813841122a7.bindPopup(popup_594582bc8245849e42cb1a230b4475da)
+        marker_cdc0b3275f1b53b64b214d288e797a54.bindPopup(popup_6689253f752ec81fca4498701b9b5a4c)
         ;
 
         
     
     
-            marker_ad89e8364644578880600813841122a7.bindTooltip(
+            marker_cdc0b3275f1b53b64b214d288e797a54.bindTooltip(
                 `<div>
                      Aaron D'Souza - 2020 - Hyderabad
                  </div>`,
@@ -361,43 +361,43 @@
             );
         
     
-            var marker_eb6775858fc8df6abfe1c772c3db8efa = L.marker(
-                [26.83061160283342, 80.94380605231947],
+            var marker_f8a2275d7e5a254120bec601dd7cdc6a = L.marker(
+                [26.84230443834766, 80.93189326522717],
                 {
   "tags": [
 "Batch 2020",
 ],
 }
-            ).addTo(marker_cluster_bff01e16feb8bd94ec5c4b4138f1053b);
+            ).addTo(marker_cluster_2ab4113f1dcee2d0f507fda45c705f41);
         
     
-            var div_icon_b729d3a503388693ad4a5f9f0a6eb748 = L.divIcon({
+            var div_icon_9450961f87ec5ddcd52930a2b604afcb = L.divIcon({
   "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
   "iconSize": [24, 24],
   "iconAnchor": [12, 12],
   "className": "empty",
 });
-            marker_eb6775858fc8df6abfe1c772c3db8efa.setIcon(div_icon_b729d3a503388693ad4a5f9f0a6eb748);
+            marker_f8a2275d7e5a254120bec601dd7cdc6a.setIcon(div_icon_9450961f87ec5ddcd52930a2b604afcb);
         
     
-        var popup_5605f7503416a75875955fb96435a141 = L.popup({
+        var popup_dd4f180a3e1c815f232512e6ffa82db5 = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_e2255c01791efd5058c35e5e660b2977 = $(`<div id="html_e2255c01791efd5058c35e5e660b2977" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Pradyut Narain             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 559</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:pradyutnarain559@gmail.com" style="color: #00008B;">pradyutnarain559@gmail.com</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+919839609782" style="color: #00008B;">+919839609782</a></p></div></div></div>`)[0];
-                popup_5605f7503416a75875955fb96435a141.setContent(html_e2255c01791efd5058c35e5e660b2977);
+                var html_b93f59ca9806f2bf1377bd7f2f02b7ed = $(`<div id="html_b93f59ca9806f2bf1377bd7f2f02b7ed" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Pradyut Narain             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 559</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:pradyutnarain559@gmail.com" style="color: #00008B;">pradyutnarain559@gmail.com</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+919839609782" style="color: #00008B;">+919839609782</a></p></div></div></div>`)[0];
+                popup_dd4f180a3e1c815f232512e6ffa82db5.setContent(html_b93f59ca9806f2bf1377bd7f2f02b7ed);
             
         
 
-        marker_eb6775858fc8df6abfe1c772c3db8efa.bindPopup(popup_5605f7503416a75875955fb96435a141)
+        marker_f8a2275d7e5a254120bec601dd7cdc6a.bindPopup(popup_dd4f180a3e1c815f232512e6ffa82db5)
         ;
 
         
     
     
-            marker_eb6775858fc8df6abfe1c772c3db8efa.bindTooltip(
+            marker_f8a2275d7e5a254120bec601dd7cdc6a.bindTooltip(
                 `<div>
                      Pradyut Narain - 2020 - Hyderabad
                  </div>`,
@@ -407,43 +407,43 @@
             );
         
     
-            var marker_43031342e64ec368f3e51d03c617c291 = L.marker(
-                [29.01143074011973, 77.76113948886753],
+            var marker_c514ad967e1eb53747c261f23f7924a7 = L.marker(
+                [29.00168038606708, 77.75479016007128],
                 {
   "tags": [
 "Batch 2020",
 ],
 }
-            ).addTo(marker_cluster_bff01e16feb8bd94ec5c4b4138f1053b);
+            ).addTo(marker_cluster_2ab4113f1dcee2d0f507fda45c705f41);
         
     
-            var div_icon_126fb54dd107cff8016afd8c24cf6f88 = L.divIcon({
+            var div_icon_4116c2af71e7453a5dafefe52671f9cc = L.divIcon({
   "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
   "iconSize": [24, 24],
   "iconAnchor": [12, 12],
   "className": "empty",
 });
-            marker_43031342e64ec368f3e51d03c617c291.setIcon(div_icon_126fb54dd107cff8016afd8c24cf6f88);
+            marker_c514ad967e1eb53747c261f23f7924a7.setIcon(div_icon_4116c2af71e7453a5dafefe52671f9cc);
         
     
-        var popup_f1e0049875f83390c0e54f464678da60 = L.popup({
+        var popup_422b38d4381a6113a6bcad6055264b08 = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_f1733c89321dc87b52c6a608e48a0b70 = $(`<div id="html_f1733c89321dc87b52c6a608e48a0b70" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Aditya Goel             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 113</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:aditya16goel@gmail.com" style="color: #00008B;">aditya16goel@gmail.com</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+917060777107" style="color: #00008B;">+917060777107</a></p></div></div></div>`)[0];
-                popup_f1e0049875f83390c0e54f464678da60.setContent(html_f1733c89321dc87b52c6a608e48a0b70);
+                var html_74449849613e15552eb363df6bb90a92 = $(`<div id="html_74449849613e15552eb363df6bb90a92" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Aditya Goel             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 113</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:aditya16goel@gmail.com" style="color: #00008B;">aditya16goel@gmail.com</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+917060777107" style="color: #00008B;">+917060777107</a></p></div></div></div>`)[0];
+                popup_422b38d4381a6113a6bcad6055264b08.setContent(html_74449849613e15552eb363df6bb90a92);
             
         
 
-        marker_43031342e64ec368f3e51d03c617c291.bindPopup(popup_f1e0049875f83390c0e54f464678da60)
+        marker_c514ad967e1eb53747c261f23f7924a7.bindPopup(popup_422b38d4381a6113a6bcad6055264b08)
         ;
 
         
     
     
-            marker_43031342e64ec368f3e51d03c617c291.bindTooltip(
+            marker_c514ad967e1eb53747c261f23f7924a7.bindTooltip(
                 `<div>
                      Aditya Goel - 2020 - Hyderabad
                  </div>`,
@@ -453,43 +453,43 @@
             );
         
     
-            var marker_d7369c45b8a7a40568ce954743826619 = L.marker(
-                [31.63207890318816, 74.87578166068992],
+            var marker_799504a10e8129ba33ad05666d646415 = L.marker(
+                [31.644314776447256, 74.87579372983745],
                 {
   "tags": [
 "Batch 2020",
 ],
 }
-            ).addTo(marker_cluster_bff01e16feb8bd94ec5c4b4138f1053b);
+            ).addTo(marker_cluster_2ab4113f1dcee2d0f507fda45c705f41);
         
     
-            var div_icon_41b95fda216090782541eefecfaa2186 = L.divIcon({
+            var div_icon_d469d3de5f96bd79f0139cf52bf76469 = L.divIcon({
   "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
   "iconSize": [24, 24],
   "iconAnchor": [12, 12],
   "className": "empty",
 });
-            marker_d7369c45b8a7a40568ce954743826619.setIcon(div_icon_41b95fda216090782541eefecfaa2186);
+            marker_799504a10e8129ba33ad05666d646415.setIcon(div_icon_d469d3de5f96bd79f0139cf52bf76469);
         
     
-        var popup_21c5a3538fb20f959f9491c86813b92f = L.popup({
+        var popup_5c711311c5084a21aa841add89f371ed = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_4ffee11852ddb771247ab9e7ae4a13ca = $(`<div id="html_4ffee11852ddb771247ab9e7ae4a13ca" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Sanjum Dhaliwal             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 592</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:sanjum@ucla.edu" style="color: #00008B;">sanjum@ucla.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+91 95016-53735" style="color: #00008B;">+91 95016-53735</a></p></div></div></div>`)[0];
-                popup_21c5a3538fb20f959f9491c86813b92f.setContent(html_4ffee11852ddb771247ab9e7ae4a13ca);
+                var html_3bb7141a4abef53863f9798c0b803b91 = $(`<div id="html_3bb7141a4abef53863f9798c0b803b91" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Sanjum Dhaliwal             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 592</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 2020</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:sanjum@ucla.edu" style="color: #00008B;">sanjum@ucla.edu</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+91 95016-53735" style="color: #00008B;">+91 95016-53735</a></p></div></div></div>`)[0];
+                popup_5c711311c5084a21aa841add89f371ed.setContent(html_3bb7141a4abef53863f9798c0b803b91);
             
         
 
-        marker_d7369c45b8a7a40568ce954743826619.bindPopup(popup_21c5a3538fb20f959f9491c86813b92f)
+        marker_799504a10e8129ba33ad05666d646415.bindPopup(popup_5c711311c5084a21aa841add89f371ed)
         ;
 
         
     
     
-            marker_d7369c45b8a7a40568ce954743826619.bindTooltip(
+            marker_799504a10e8129ba33ad05666d646415.bindTooltip(
                 `<div>
                      Sanjum Dhaliwal - 2020 - Hyderabad
                  </div>`,
@@ -499,12 +499,59 @@
             );
         
     
-            marker_cluster_bff01e16feb8bd94ec5c4b4138f1053b.addTo(map_89f4aae49cf59b18d0a3b2e41a213163);
+            var marker_904b140551c9cd738cad5a875aa77fdc = L.marker(
+                [-33.87309681036336, 151.2150811216491],
+                {
+  "tags": [
+"Batch 1986",
+],
+}
+            ).addTo(marker_cluster_2ab4113f1dcee2d0f507fda45c705f41);
         
     
-            var tag_filter_button_f95f57608840e1a58a38f56087194ed2 = L.control.tagFilterButton(
+            var div_icon_f3fbd2e325e2a52c64a85ec99f80203c = L.divIcon({
+  "html": "\n    \u003cdiv style=\"background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);\"\u003e\n        \u003ci class=\"fa-solid fa-user\"\u003e\u003c/i\u003e\n    \u003c/div\u003e\n    ",
+  "iconSize": [24, 24],
+  "iconAnchor": [12, 12],
+  "className": "empty",
+});
+            marker_904b140551c9cd738cad5a875aa77fdc.setIcon(div_icon_f3fbd2e325e2a52c64a85ec99f80203c);
+        
+    
+        var popup_f04309252fdc384324ce45be2beee311 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ffbfeb2c1eaeb18072642d7fb434ac2d = $(`<div id="html_ffbfeb2c1eaeb18072642d7fb434ac2d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 10px 0; color: #00008B; border-bottom: 2px solid #00008B; padding-bottom: 5px;">                 Ravi Lochan Singh             </h4>             <p style="margin: 5px 0;"><strong>Number:</strong> 458</p>             <p style="margin: 5px 0;"><strong>House:</strong> Hyderabad</p>             <p style="margin: 5px 0;"><strong>Batch:</strong> 1986</p>         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;"><p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:ravilochansingh@mac.com" style="color: #00008B;">ravilochansingh@mac.com</a></p><p style="margin: 5px 0;"><strong>Phone:</strong> <a href="tel:+61406743476" style="color: #00008B;">+61406743476</a></p></div></div></div>`)[0];
+                popup_f04309252fdc384324ce45be2beee311.setContent(html_ffbfeb2c1eaeb18072642d7fb434ac2d);
+            
+        
+
+        marker_904b140551c9cd738cad5a875aa77fdc.bindPopup(popup_f04309252fdc384324ce45be2beee311)
+        ;
+
+        
+    
+    
+            marker_904b140551c9cd738cad5a875aa77fdc.bindTooltip(
+                `<div>
+                     Ravi Lochan Singh - 1986 - Hyderabad
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            marker_cluster_2ab4113f1dcee2d0f507fda45c705f41.addTo(map_2b8d777cb033fd0d379b94cc82f12ca3);
+        
+    
+            var tag_filter_button_df26b49ea4562200b797b29c8d3824d5 = L.control.tagFilterButton(
                 {
   "data": [
+"Batch 1986",
 "Batch 2020",
 ],
   "icon": "fas fa-filter",
@@ -515,7 +562,7 @@
   "buttonWidth": 150,
   "buttonHeight": 30,
 }
-            ).addTo(map_89f4aae49cf59b18d0a3b2e41a213163);
+            ).addTo(map_2b8d777cb033fd0d379b94cc82f12ca3);
         
 </script>
 </html>
