@@ -25,29 +25,43 @@ a:hover {
 }
 
 .citation-container {
-    padding: 15px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.03) inset;
 }
 
 .citation-header {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 500;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     color: #333;
     border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 10px;
+    padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.citation-header::before {
+    content: "📊";
+    margin-right: 8px;
+    font-size: 20px;
 }
 
 .chart-container {
-    height: 120px;
-    margin-bottom: 15px;
+    height: 170px;
+    margin-bottom: 25px;
     position: relative;
+    padding-top: 10px;
+    border-radius: 6px;
+    background: linear-gradient(to bottom, rgba(240,249,255,0.4) 0%, rgba(255,255,255,0) 100%);
 }
 
 .chart-bars {
     display: flex;
     align-items: flex-end;
-    height: 100px;
-    margin-left: 25px;
+    height: 140px;
+    margin-left: 35px;
     position: relative;
 }
 
@@ -55,7 +69,7 @@ a:hover {
     position: absolute;
     left: 0;
     top: 0;
-    height: 100px;
+    height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -69,25 +83,95 @@ a:hover {
     align-items: center;
 }
 
-.bar {
-    width: 40px;
-    margin-right: 20px;
-    background-color: #777;
+.bar-container {
     position: relative;
+    margin-right: 25px;
+}
+
+.bar {
+    width: 50px;
+    background: linear-gradient(to bottom, #3a7bd5, #2a76dd);
+    position: relative;
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.bar:hover {
+    background: linear-gradient(to bottom, #4a8be5, #3a86ee);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-3px);
 }
 
 .bar-label {
     position: absolute;
-    bottom: -20px;
+    bottom: -25px;
     width: 100%;
     text-align: center;
-    font-size: 11px;
-    color: #777;
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.bar-value {
+    position: absolute;
+    top: -25px;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    color: #2a76dd;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bar:hover + .bar-value, .bar-value:hover {
+    opacity: 1;
+}
+
+.tooltip {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    white-space: nowrap;
+    pointer-events: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.bar:hover ~ .tooltip {
+    opacity: 1;
+    visibility: visible;
 }
 
 .citation-metric {
     font-weight: bold;
     color: #2a76dd;
+    transition: all 0.2s ease;
+}
+
+.citation-metric:hover {
+    color: #3a86ee;
+    transform: scale(1.1);
 }
 
 .metrics-table {
@@ -99,7 +183,7 @@ a:hover {
 }
 
 .metrics-table th, .metrics-table td {
-    padding: 8px 15px 8px 0;
+    padding: 10px 15px 10px 0;
     text-align: right;
 }
 
@@ -111,10 +195,40 @@ a:hover {
 .metrics-table th {
     font-weight: normal;
     padding-top: 15px;
+    color: #555;
 }
 
 .metrics-row td {
-    padding-bottom: 12px;
+    padding-bottom: 15px;
+}
+
+.metrics-row:hover {
+    background-color: rgba(42, 118, 221, 0.05);
+}
+
+.x-axis {
+    height: 1px;
+    background-color: #eee;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 35px;
+}
+
+.highlight-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(42, 118, 221, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 5px rgba(42, 118, 221, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(42, 118, 221, 0);
+    }
 }
 </style>
 </head>
@@ -133,13 +247,20 @@ a:hover {
             <div class="y-label">0</div>
         </div>
         <div class="chart-bars">
-            <div class="bar" style="height: 87.5%;">
+            <div class="bar-container">
+                <div class="bar highlight-pulse" style="height: 122.5px;" onmouseover="showTooltip(this, '7 citations in 2024')" onmouseout="hideTooltip(this)"></div>
                 <div class="bar-label">2024</div>
+                <div class="bar-value">7</div>
+                <div class="tooltip">7 citations in 2024</div>
             </div>
-            <div class="bar" style="height: 37.5%;">
+            <div class="bar-container">
+                <div class="bar" style="height: 52.5px;" onmouseover="showTooltip(this, '3 citations in 2025')" onmouseout="hideTooltip(this)"></div>
                 <div class="bar-label">2025</div>
+                <div class="bar-value">3</div>
+                <div class="tooltip">3 citations in 2025</div>
             </div>
         </div>
+        <div class="x-axis"></div>
     </div>
     
     <!-- Metrics Section -->
@@ -170,6 +291,30 @@ a:hover {
         </tbody>
     </table>
 </div>
+
+<script>
+function showTooltip(bar, text) {
+    var tooltip = bar.parentElement.querySelector('.tooltip');
+    tooltip.style.visibility = 'visible';
+    tooltip.style.opacity = '1';
+}
+
+function hideTooltip(bar) {
+    var tooltip = bar.parentElement.querySelector('.tooltip');
+    tooltip.style.visibility = 'hidden';
+    tooltip.style.opacity = '0';
+}
+
+// Animate the metrics on load
+document.addEventListener('DOMContentLoaded', function() {
+    var metrics = document.querySelectorAll('.citation-metric');
+    metrics.forEach(function(metric, index) {
+        setTimeout(function() {
+            metric.classList.add('highlight');
+        }, index * 200);
+    });
+});
+</script>
 
 </body>
 </html> 
