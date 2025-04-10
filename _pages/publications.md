@@ -17,10 +17,6 @@ author_profile: true
       <i class="ai ai-google-scholar-square ai-fw"></i> <u><a href="https://scholar.google.com/citations?user=VLDgDyAAAAAJ">Google Scholar</a></u> 
     </p>
   {% endif %}
-  
-  <div class="citation-metrics">
-    <iframe id="scholar-metrics" src="/scripts/citations.php?id=VLDgDyAAAAAJ&lang=en" frameborder="0" scrolling="no" width="100%" height="250px" style="display: block; margin: 1em 0; background-color: transparent;"></iframe>
-  </div>
 </div>
 
 {% include base_path %}
@@ -77,15 +73,6 @@ author_profile: true
   .scholar-link {
     margin-top: 1em;
     font-weight: 500;
-  }
-  
-  .citation-metrics {
-    margin-top: 1em;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    overflow: hidden;
   }
   
   .section-heading {
