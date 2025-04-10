@@ -12,12 +12,44 @@ author_profile: true
     <p class="scholar-link">
       <i class="ai ai-google-scholar-square ai-fw"></i> Find my articles on <u><a href="{{author.googlescholar}}">Google Scholar</a></u>
     </p>
+    <div class="scholar-stats">
+      <iframe id="scholar-iframe" src="/scripts/citations.php?id=VLDgDyAAAAAJ&lang=en" frameborder="0" width="100%" height="250" scrolling="no" onload="checkIframeLoaded()" style="display:block;"></iframe>
+      <iframe id="static-iframe" src="/scripts/citations-static.html" frameborder="0" width="100%" height="200" scrolling="no" style="display:none;"></iframe>
+    </div>
   {% else %}
     <p class="scholar-link">
       <i class="ai ai-google-scholar-square ai-fw"></i> <u><a href="https://scholar.google.com/citations?user=VLDgDyAAAAAJ">Google Scholar</a></u> 
     </p>
+    <div class="scholar-stats">
+      <iframe id="scholar-iframe" src="/scripts/citations.php?id=VLDgDyAAAAAJ&lang=en" frameborder="0" width="100%" height="250" scrolling="no" onload="checkIframeLoaded()" style="display:block;"></iframe>
+      <iframe id="static-iframe" src="/scripts/citations-static.html" frameborder="0" width="100%" height="200" scrolling="no" style="display:none;"></iframe>
+    </div>
   {% endif %}
 </div>
+
+<script>
+function checkIframeLoaded() {
+  // Check if iframe loaded properly with PHP content
+  var iframe = document.getElementById('scholar-iframe');
+  try {
+    var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    // If we got a PHP error or empty content, show static version
+    if (iframeDoc.body.innerHTML.includes("ERROR:") || iframeDoc.body.innerHTML.trim() === "") {
+      document.getElementById('scholar-iframe').style.display = 'none';
+      document.getElementById('static-iframe').style.display = 'block';
+    }
+  } catch (e) {
+    // If we can't access the iframe content (likely due to CORS), show static version
+    document.getElementById('scholar-iframe').style.display = 'none';
+    document.getElementById('static-iframe').style.display = 'block';
+  }
+}
+
+// Fallback if onload doesn't trigger
+setTimeout(function() {
+  checkIframeLoaded();
+}, 3000);
+</script>
 
 {% include base_path %}
 
@@ -73,6 +105,14 @@ author_profile: true
   .scholar-link {
     margin-top: 1em;
     font-weight: 500;
+  }
+  
+  .scholar-stats {
+    margin-top: 1em;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    overflow: hidden;
   }
   
   .section-heading {
