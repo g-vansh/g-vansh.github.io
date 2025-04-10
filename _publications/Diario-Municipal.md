@@ -9,6 +9,7 @@ authorurl:
 coauthors: <a href="https://www.columbia.edu/~mcb2270/">Michael Best</a>, <a href="https://renatalemos.com/">Renata Lemos</a>, & <a href="https://danielascur.com/">Daniela Scur</a>
 authors:
 venue: 
+type: "project"
 ---
 This paper seeks to understand the effects of climate shocks on firms and labor markets in Brazil.
 

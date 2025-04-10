@@ -8,6 +8,7 @@ author: 'Independent'
 authorurl: 
 authors:
 venue: 
+type: "project"
 wp: true
 ---
 This paper seeks to indexing the potential number of dropouts from a particular governmental school in a given year using statistical learning and logistic modelling.

@@ -11,6 +11,7 @@ venue: Social Science Research Network (Working Paper)
 wp: true
 paperurl: 'http://dx.doi.org/10.2139/ssrn.3915606'
 citation: 'Guzman, Jorge, Treatment Effects in Managerial Strategies (September 1, 2021).'
+type: "assistance"
 ---
 This paper seeks to formalize the treatment effects of strategic choices under the Rubin Causal Model.
 

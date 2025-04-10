@@ -5,13 +5,14 @@ permalink: /publication/Sponsoring-Innovation
 excerpt: 'This paper seeks to understand the effects of the introduction of GitHub Sponsorships on digital innovation.'
 date: 2024-01-15
 author: 
-wp: true
 authorurl: 
 authors:
 paperurl: 
 citation: 'Conti, A., Gupta, V., Guzman, J., & Roche, M. (2023). Incentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program. National Bureau of Economic Research. https://doi.org/10.3386/w31668'
 coauthors: <a href="https://sites.google.com/view/annamariaconti/home-page">Annamaria Conti</a>, <a href="https://www.jorgeguzman.co/">Jorge Guzman</a>, & <a href="https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955">Maria Roche</a>
 venue: National Bureau of Economic Research (Working Paper)
+wp: true
+type: "project"
 ---
 [NBER Working Paper 31668](https://www.nber.org/papers/w31668)
 

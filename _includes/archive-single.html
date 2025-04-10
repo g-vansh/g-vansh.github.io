@@ -32,6 +32,12 @@
       {% else %}
         <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
       {% endif %}
+      
+      {% if post.type == "project" %}
+        <span class="project-badge">Research Project</span>
+      {% elsif post.type == "assistance" %}
+        <span class="assistance-badge">Research Assistance</span>
+      {% endif %}
     </h2>
     
     {% if post.read_time %}
@@ -65,7 +71,6 @@
     {% elsif post.excerpt and site.read_more == 'enabled' %}
     <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
     {% endif %}
-
 
   </article>
 </div>

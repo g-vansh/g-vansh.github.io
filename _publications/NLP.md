@@ -8,6 +8,7 @@ author: 'Reza Moghimi'
 authorurl: https://dyson.cornell.edu/faculty-research/faculty/am2393/
 authors:
 venue: 
+type: "assistance"
 ---
 This paper seeks to study the impact of Twitter sentiments on stock prices.
 
