@@ -1,5 +1,5 @@
 ---
-title: "Incentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program"
+title: "Better Keep the Twenty Dollars: Incentivizing Innovation in Open Source"
 collection: publications
 permalink: /publication/Sponsoring-Innovation
 excerpt: 'This paper seeks to understand the effects of the introduction of GitHub Sponsorships on digital innovation.'
