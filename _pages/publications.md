@@ -13,14 +13,14 @@ author_profile: true
       <i class="ai ai-google-scholar-square ai-fw"></i> Find my articles on <u><a href="{{author.googlescholar}}">Google Scholar</a></u>
     </p>
     <div class="scholar-stats">
-      <iframe src="/scripts/citations-static.html" frameborder="0" width="100%" height="200" scrolling="no"></iframe>
+      <iframe src="/scripts/citations-static.html" frameborder="0" width="100%" height="290" scrolling="no"></iframe>
     </div>
   {% else %}
     <p class="scholar-link">
       <i class="ai ai-google-scholar-square ai-fw"></i> <u><a href="https://scholar.google.com/citations?user=VLDgDyAAAAAJ">Google Scholar</a></u> 
     </p>
     <div class="scholar-stats">
-      <iframe src="/scripts/citations-static.html" frameborder="0" width="100%" height="200" scrolling="no"></iframe>
+      <iframe src="/scripts/citations-static.html" frameborder="0" width="100%" height="290" scrolling="no"></iframe>
     </div>
   {% endif %}
 </div>

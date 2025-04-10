@@ -37,19 +37,52 @@ a:hover {
     padding-bottom: 10px;
 }
 
-.citation-content {
+.chart-container {
+    height: 120px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.chart-bars {
     display: flex;
+    align-items: flex-end;
+    height: 100px;
+    margin-left: 25px;
+    position: relative;
+}
+
+.y-axis {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.y-label {
+    font-size: 11px;
+    color: #777;
+    height: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.bar {
+    width: 40px;
+    margin-right: 20px;
+    background-color: #777;
+    position: relative;
+}
+
+.bar-label {
+    position: absolute;
+    bottom: -20px;
     width: 100%;
-}
-
-.metrics-section {
-    flex: 1;
-    min-width: 0;
-}
-
-.chart-section {
-    flex: 1;
-    min-width: 0;
+    text-align: center;
+    font-size: 11px;
+    color: #777;
 }
 
 .citation-metric {
@@ -60,7 +93,9 @@ a:hover {
 .metrics-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
 }
 
 .metrics-table th, .metrics-table td {
@@ -75,63 +110,11 @@ a:hover {
 
 .metrics-table th {
     font-weight: normal;
+    padding-top: 15px;
 }
 
 .metrics-row td {
     padding-bottom: 12px;
-}
-
-.chart-container {
-    height: 100px;
-    margin-top: 20px;
-}
-
-.chart-bars {
-    display: flex;
-    align-items: flex-end;
-    height: 80px;
-    position: relative;
-}
-
-.y-axis {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.y-label {
-    font-size: 11px;
-    color: #777;
-    height: 15px;
-    display: flex;
-    align-items: center;
-}
-
-.bars-wrapper {
-    display: flex;
-    align-items: flex-end;
-    height: 80px;
-    margin-left: 25px;
-}
-
-.bar {
-    width: 35px;
-    margin-right: 15px;
-    background-color: #777;
-    position: relative;
-}
-
-.bar-label {
-    position: absolute;
-    bottom: -20px;
-    width: 100%;
-    text-align: center;
-    font-size: 11px;
-    color: #777;
 }
 </style>
 </head>
@@ -142,56 +125,50 @@ a:hover {
         Cited by
     </div>
     
-    <div class="citation-content">
-        <div class="metrics-section">
-            <table class="metrics-table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>All</th>
-                        <th>Since 2020</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="metrics-row">
-                        <td>Citations</td>
-                        <td class="citation-metric">10</td>
-                        <td class="citation-metric">10</td>
-                    </tr>
-                    <tr class="metrics-row">
-                        <td>h-index</td>
-                        <td class="citation-metric">1</td>
-                        <td class="citation-metric">1</td>
-                    </tr>
-                    <tr class="metrics-row">
-                        <td>i10-index</td>
-                        <td class="citation-metric">1</td>
-                        <td class="citation-metric">1</td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- Chart Section -->
+    <div class="chart-container">
+        <div class="y-axis">
+            <div class="y-label">8</div>
+            <div class="y-label">4</div>
+            <div class="y-label">0</div>
         </div>
-        
-        <div class="chart-section">
-            <div class="chart-container">
-                <div class="chart-bars">
-                    <div class="y-axis">
-                        <div class="y-label">8</div>
-                        <div class="y-label">4</div>
-                        <div class="y-label">0</div>
-                    </div>
-                    <div class="bars-wrapper">
-                        <div class="bar" style="height: 87.5%;">
-                            <div class="bar-label">2024</div>
-                        </div>
-                        <div class="bar" style="height: 37.5%;">
-                            <div class="bar-label">2025</div>
-                        </div>
-                    </div>
-                </div>
+        <div class="chart-bars">
+            <div class="bar" style="height: 87.5%;">
+                <div class="bar-label">2024</div>
+            </div>
+            <div class="bar" style="height: 37.5%;">
+                <div class="bar-label">2025</div>
             </div>
         </div>
     </div>
+    
+    <!-- Metrics Section -->
+    <table class="metrics-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>All</th>
+                <th>Since 2020</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="metrics-row">
+                <td>Citations</td>
+                <td class="citation-metric">10</td>
+                <td class="citation-metric">10</td>
+            </tr>
+            <tr class="metrics-row">
+                <td>h-index</td>
+                <td class="citation-metric">1</td>
+                <td class="citation-metric">1</td>
+            </tr>
+            <tr class="metrics-row">
+                <td>i10-index</td>
+                <td class="citation-metric">1</td>
+                <td class="citation-metric">1</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 </body>
