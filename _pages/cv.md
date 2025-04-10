@@ -18,39 +18,89 @@ redirect_from:
       display: block !important;
     }
   }
+  
+  .download-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    background-color: #2a7ae2;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(42, 122, 226, 0.25);
+    overflow: hidden;
+    z-index: 1;
+    border: 2px solid transparent;
+  }
+  
+  .download-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2a7ae2, #2045a0);
+    z-index: -1;
+    transition: all 0.4s ease;
+  }
+  
+  .download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(42, 122, 226, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .download-btn:hover:before {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  
+  .download-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(42, 122, 226, 0.4);
+  }
+  
+  .download-btn i {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .download-btn:hover i {
+    transform: translateY(-2px);
+  }
+  
+  .cv-header {
+    text-align: center;
+    margin-bottom: 25px;
+    width: 100%;
+    max-width: 800px;
+  }
 </style>
 
 <div class="cv-container" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 30px;">
-  <div class="pdf-container" style="width: 100%; max-width: 800px; height: 800px; border: 1px solid #ddd; border-radius: 4px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <div class="cv-header">
+    <a href="/files/CV___Vansh_Gupta.pdf" class="download-btn" download>
+      <i class="fas fa-download"></i> Download CV
+    </a>
+    
+    <p class="mobile-message" style="display: none; text-align: center; margin-top: 15px; color: #666; max-width: 600px;">
+      Having trouble viewing? The download button above provides the best experience on mobile devices.
+    </p>
+  </div>
+
+  <div class="pdf-container" style="width: 100%; max-width: 800px; height: 800px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
     <iframe src="/files/CV___Vansh_Gupta.pdf#view=FitH" style="width: 100%; height: 100%; border: none;"></iframe>
   </div>
-  
-  <p class="mobile-message" style="display: none; text-align: center; margin-bottom: 15px; color: #666; max-width: 600px;">
-    Having trouble viewing? For the best experience on mobile devices, you can download the PDF using the button below.
-  </p>
-  
-  <a href="/files/CV___Vansh_Gupta.pdf" class="btn btn--primary" download style="display: inline-block; padding: 12px 24px; background-color: #2a7ae2; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-    <i class="fas fa-download" style="margin-right: 8px;"></i> Download PDF
-  </a>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Add hover effect to download button
-    const downloadBtn = document.querySelector('.btn.btn--primary');
-    if (downloadBtn) {
-      downloadBtn.addEventListener('mouseenter', function() {
-        this.style.backgroundColor = '#1c5aa0';
-        this.style.transform = 'translateY(-2px)';
-        this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.3)';
-      });
-      downloadBtn.addEventListener('mouseleave', function() {
-        this.style.backgroundColor = '#2a7ae2';
-        this.style.transform = 'translateY(0)';
-        this.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
-      });
-    }
-    
+  document.addEventListener('DOMContentLoaded', function() {    
     // Check if mobile and adjust PDF view if needed
     function isMobile() {
       return window.innerWidth <= 767;
