@@ -35,6 +35,13 @@
       
       {% if post.type == "project" %}
         <span class="project-badge">Research Project</span>
+        {% if post.project_status == "under_review" %}
+          <span class="status-badge status-under-review">Under Review</span>
+        {% elsif post.project_status == "in_progress" %}
+          <span class="status-badge status-in-progress">In Progress</span>
+        {% elsif post.project_status == "inactive" %}
+          <span class="status-badge status-inactive">Inactive</span>
+        {% endif %}
       {% elsif post.type == "assistance" %}
         <span class="assistance-badge">Research Assistance</span>
       {% endif %}

@@ -10,6 +10,7 @@ coauthors: <a href="https://www.columbia.edu/~mcb2270/">Michael Best</a>, <a hre
 authors:
 venue: 
 type: "project"
+project_status: "in_progress"
 ---
 This paper seeks to understand the effects of climate shocks on firms and labor markets in Brazil.
 

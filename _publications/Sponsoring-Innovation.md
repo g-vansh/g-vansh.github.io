@@ -13,6 +13,7 @@ coauthors: <a href="https://sites.google.com/view/annamariaconti/home-page">Anna
 venue: National Bureau of Economic Research (Working Paper)
 wp: true
 type: "project"
+project_status: "under_review"
 ---
 [NBER Working Paper 31668](https://www.nber.org/papers/w31668)
 

@@ -6,7 +6,7 @@ author_profile: true
 ---
 
 <div class="research-intro">
-  <p>My research interests include innovation economics, organizational strategy, and data science applications. Below you can find my research projects and collaborations.</p>
+  <p>My research interests include innovation, urban, and development economics. I am currently working on projects that explore methods in geneoeconomics and neuroeconomics. Below you can find my research projects and collaborations.</p>
   
   {% if author.googlescholar %}
     <p class="scholar-link">
@@ -14,7 +14,7 @@ author_profile: true
     </p>
   {% else %}
     <p class="scholar-link">
-      <i class="ai ai-google-scholar-square ai-fw"></i> <u><a href="https://scholar.google.com/citations?user=YOUR_ID">Google Scholar</a></u> (Add your profile link in _config.yml)
+      <i class="ai ai-google-scholar-square ai-fw"></i> <u><a href="https://scholar.google.com/citations?user=VLDgDyAAAAAJ">Google Scholar</a></u> 
     </p>
   {% endif %}
 </div>
@@ -23,11 +23,31 @@ author_profile: true
 
 <div class="research-sections">
   <h2 class="section-heading">Research Projects</h2>
+  
+  <h3 class="subsection-heading">Under Review</h3>
   <div class="research-projects-section">
     {% for post in site.publications reversed %}
-      {% unless post.type == "assistance" %}
+      {% if post.type == "project" and post.project_status == "under_review" %}
         {% include archive-single.html %}
-      {% endunless %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  
+  <h3 class="subsection-heading">Work In Progress</h3>
+  <div class="research-projects-section">
+    {% for post in site.publications reversed %}
+      {% if post.type == "project" and post.project_status == "in_progress" %}
+        {% include archive-single.html %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  
+  <h3 class="subsection-heading">Inactive Projects</h3>
+  <div class="research-projects-section">
+    {% for post in site.publications reversed %}
+      {% if post.type == "project" and post.project_status == "inactive" %}
+        {% include archive-single.html %}
+      {% endif %}
     {% endfor %}
   </div>
 
@@ -63,8 +83,17 @@ author_profile: true
     padding-bottom: 0.5em;
   }
   
+  .subsection-heading {
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    color: #333;
+    font-size: 1.3em;
+    border-left: 3px solid #2a76dd;
+    padding-left: 0.5em;
+  }
+  
   .research-projects-section, .research-assistance-section {
-    margin-bottom: 3em;
+    margin-bottom: 2em;
   }
   
   .research-projects-section .archive__item-title,
@@ -94,6 +123,31 @@ author_profile: true
   
   .assistance-badge {
     background-color: #28a745;
+    color: white;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    font-size: 0.65em;
+    padding: 0.2em 0.4em;
+    margin-left: 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    font-weight: normal;
+  }
+  
+  .status-under-review {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .status-in-progress {
+    background-color: #fd7e14;
+    color: white;
+  }
+  
+  .status-inactive {
+    background-color: #6c757d;
     color: white;
   }
 </style>

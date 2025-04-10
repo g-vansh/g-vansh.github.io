@@ -11,6 +11,7 @@ wp: true
 citation: 'Gupta, Vansh, Approaches and Resources for Improved Student Outcomes: Evidence from Brazil (March 20, 2023). http://dx.doi.org/10.2139/ssrn.4394638'
 venue: Cornell University (Working Paper)
 type: "project"
+project_status: "inactive"
 ---
 [SSRN Working Paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4394638)
 
