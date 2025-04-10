@@ -19,9 +19,7 @@ author_profile: true
   {% endif %}
   
   <div class="citation-metrics">
-    <div id="scholar-stats">
-      <div class="stats-loading">Loading citation metrics...</div>
-    </div>
+    <iframe id="scholar-metrics" src="/scripts/citations.php?id=VLDgDyAAAAAJ&lang=en" frameborder="0" scrolling="no" width="100%" height="250px" style="display: block; margin: 1em 0; background-color: transparent;"></iframe>
   </div>
 </div>
 
@@ -67,131 +65,6 @@ author_profile: true
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Hardcoded citation metrics (since direct scraping from Google Scholar is challenging)
-    const scholarData = {
-      citations: 7,
-      hIndex: 1,
-      i10Index: 0,
-      citationsByYear: [
-        { year: 2023, count: 3 },
-        { year: 2022, count: 2 },
-        { year: 2021, count: 2 }
-      ]
-    };
-    
-    // Try to fetch updated data, but fallback to hardcoded data
-    tryFetchScholarData();
-    
-    // Function to try fetching data with a CORS proxy
-    function tryFetchScholarData() {
-      // Try to fetch with a CORS proxy (note: some proxies may stop working over time)
-      const corsProxy = 'https://corsproxy.io/?';
-      const scholarUrl = encodeURIComponent('https://scholar.google.com/citations?user=VLDgDyAAAAAJ&hl=en');
-      
-      fetch(corsProxy + scholarUrl)
-        .then(response => {
-          if (response.ok) return response.text();
-          throw new Error('Network response was not ok');
-        })
-        .then(html => {
-          try {
-            // Try to parse the HTML response
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            
-            // Extract citation count
-            const citationElement = doc.querySelector('#gsc_rsb_st tbody tr:first-child td:last-child');
-            if (citationElement) {
-              scholarData.citations = parseInt(citationElement.textContent.trim(), 10) || scholarData.citations;
-            }
-            
-            // Extract h-index
-            const hIndexElement = doc.querySelector('#gsc_rsb_st tbody tr:nth-child(2) td:last-child');
-            if (hIndexElement) {
-              scholarData.hIndex = parseInt(hIndexElement.textContent.trim(), 10) || scholarData.hIndex;
-            }
-            
-            // Extract i10-index
-            const i10IndexElement = doc.querySelector('#gsc_rsb_st tbody tr:nth-child(3) td:last-child');
-            if (i10IndexElement) {
-              scholarData.i10Index = parseInt(i10IndexElement.textContent.trim(), 10) || scholarData.i10Index;
-            }
-            
-            // Extract citation by year data
-            const yearContainers = doc.querySelectorAll('.gsc_md_hist_b .gsc_g_t');
-            const countContainers = doc.querySelectorAll('.gsc_md_hist_b .gsc_g_al');
-            
-            if (yearContainers.length > 0 && countContainers.length > 0) {
-              scholarData.citationsByYear = [];
-              for (let i = 0; i < yearContainers.length; i++) {
-                const year = parseInt(yearContainers[i].textContent.trim(), 10);
-                const count = parseInt(countContainers[i].textContent.trim(), 10);
-                if (!isNaN(year) && !isNaN(count)) {
-                  scholarData.citationsByYear.push({ year, count });
-                }
-              }
-            }
-            
-            console.log('Successfully updated citation data from Google Scholar');
-          } catch (e) {
-            console.error('Error parsing Google Scholar data:', e);
-          }
-          
-          // Render the stats regardless of whether we updated the data
-          renderScholarStats();
-        })
-        .catch(error => {
-          console.error('Unable to fetch from Google Scholar:', error);
-          renderScholarStats(); // Render with hardcoded data
-        });
-    }
-    
-    // Function to render the scholar stats
-    function renderScholarStats() {
-      const scholarStats = document.getElementById('scholar-stats');
-      scholarStats.innerHTML = `
-        <div class="citation-header">
-          Citations according to <a href="https://scholar.google.com/citations?user=VLDgDyAAAAAJ" target="_blank">Google Scholar</a>: 
-          <span class="citation-count">${scholarData.citations}</span> 
-          (h-index: <span class="h-index">${scholarData.hIndex}</span>)
-        </div>
-        <div class="citation-chart">
-          <div class="chart-title">Citations per year</div>
-          <div class="chart-container">
-            ${generateBarChart(scholarData.citationsByYear)}
-          </div>
-        </div>
-      `;
-    }
-  });
-  
-  function generateBarChart(data) {
-    // Sort data by year
-    data = data.sort((a, b) => a.year - b.year);
-    
-    // Find the maximum citation count for scaling
-    const maxCount = Math.max(...data.map(item => item.count));
-    
-    // Generate the HTML for bars
-    let barsHtml = '';
-    
-    data.forEach(item => {
-      const barHeight = maxCount > 0 ? (item.count / maxCount) * 100 : 0;
-      barsHtml += `
-        <div class="chart-bar-container">
-          <div class="chart-bar" style="height: ${barHeight}%" title="${item.count} citations in ${item.year}"></div>
-          <div class="chart-year">${item.year}</div>
-          <div class="chart-count">${item.count}</div>
-        </div>
-      `;
-    });
-    
-    return barsHtml;
-  }
-</script>
-
 <style>
   .research-intro {
     margin-bottom: 2em;
@@ -208,72 +81,11 @@ author_profile: true
   
   .citation-metrics {
     margin-top: 1em;
-    padding: 15px;
+    padding: 10px;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  
-  .citation-header {
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 15px;
-    color: #333;
-  }
-  
-  .citation-count, .h-index {
-    font-weight: bold;
-    color: #2a76dd;
-  }
-  
-  .stats-loading {
-    color: #666;
-    font-style: italic;
-  }
-  
-  .citation-chart {
-    margin-top: 15px;
-  }
-  
-  .chart-title {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-  }
-  
-  .chart-container {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    height: 120px;
-    padding-top: 10px;
-  }
-  
-  .chart-bar-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 10px;
-    width: 30px;
-  }
-  
-  .chart-bar {
-    width: 20px;
-    background-color: #4285f4;
-    border-radius: 2px 2px 0 0;
-    transition: height 0.3s ease;
-  }
-  
-  .chart-year {
-    margin-top: 5px;
-    font-size: 12px;
-    color: #666;
-  }
-  
-  .chart-count {
-    font-size: 12px;
-    color: #333;
-    font-weight: 500;
+    overflow: hidden;
   }
   
   .section-heading {
