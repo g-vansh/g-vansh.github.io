@@ -33,6 +33,23 @@ a:hover {
     font-weight: 500;
     margin-bottom: 15px;
     color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.citation-content {
+    display: flex;
+    width: 100%;
+}
+
+.metrics-section {
+    flex: 1;
+    min-width: 0;
+}
+
+.chart-section {
+    flex: 1;
+    min-width: 0;
 }
 
 .citation-metric {
@@ -44,17 +61,16 @@ a:hover {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    border-bottom: 1px solid #f0f0f0;
-    border-top: 1px solid #f0f0f0;
 }
 
 .metrics-table th, .metrics-table td {
-    padding: 8px 10px;
+    padding: 8px 15px 8px 0;
     text-align: right;
 }
 
 .metrics-table th:first-child, .metrics-table td:first-child {
     text-align: left;
+    padding-left: 0;
 }
 
 .metrics-table th {
@@ -66,39 +82,45 @@ a:hover {
 }
 
 .chart-container {
-    width: 100%;
-    height: 180px;
-    margin-top: 10px;
+    height: 100px;
+    margin-top: 20px;
 }
 
 .chart-bars {
     display: flex;
     align-items: flex-end;
-    height: 150px;
-    margin-top: 15px;
-    padding-left: 40px;
+    height: 80px;
+    position: relative;
 }
 
 .y-axis {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 150px;
-    position: absolute;
-    margin-top: 15px;
 }
 
 .y-label {
     font-size: 11px;
     color: #777;
-    height: 20px;
+    height: 15px;
     display: flex;
     align-items: center;
 }
 
+.bars-wrapper {
+    display: flex;
+    align-items: flex-end;
+    height: 80px;
+    margin-left: 25px;
+}
+
 .bar {
-    width: 40px;
-    margin-right: 10px;
+    width: 35px;
+    margin-right: 15px;
     background-color: #777;
     position: relative;
 }
@@ -120,45 +142,53 @@ a:hover {
         Cited by
     </div>
     
-    <table class="metrics-table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>All</th>
-                <th>Since 2020</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="metrics-row">
-                <td>Citations</td>
-                <td class="citation-metric">10</td>
-                <td class="citation-metric">10</td>
-            </tr>
-            <tr class="metrics-row">
-                <td>h-index</td>
-                <td class="citation-metric">1</td>
-                <td class="citation-metric">1</td>
-            </tr>
-            <tr class="metrics-row">
-                <td>i10-index</td>
-                <td class="citation-metric">1</td>
-                <td class="citation-metric">1</td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <div class="chart-container">
-        <div class="y-axis">
-            <div class="y-label">8</div>
-            <div class="y-label">4</div>
-            <div class="y-label">0</div>
+    <div class="citation-content">
+        <div class="metrics-section">
+            <table class="metrics-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>All</th>
+                        <th>Since 2020</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="metrics-row">
+                        <td>Citations</td>
+                        <td class="citation-metric">10</td>
+                        <td class="citation-metric">10</td>
+                    </tr>
+                    <tr class="metrics-row">
+                        <td>h-index</td>
+                        <td class="citation-metric">1</td>
+                        <td class="citation-metric">1</td>
+                    </tr>
+                    <tr class="metrics-row">
+                        <td>i10-index</td>
+                        <td class="citation-metric">1</td>
+                        <td class="citation-metric">1</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="chart-bars">
-            <div class="bar" style="height: 87.5%;">
-                <div class="bar-label">2024</div>
-            </div>
-            <div class="bar" style="height: 37.5%;">
-                <div class="bar-label">2025</div>
+        
+        <div class="chart-section">
+            <div class="chart-container">
+                <div class="chart-bars">
+                    <div class="y-axis">
+                        <div class="y-label">8</div>
+                        <div class="y-label">4</div>
+                        <div class="y-label">0</div>
+                    </div>
+                    <div class="bars-wrapper">
+                        <div class="bar" style="height: 87.5%;">
+                            <div class="bar-label">2024</div>
+                        </div>
+                        <div class="bar" style="height: 37.5%;">
+                            <div class="bar-label">2025</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
