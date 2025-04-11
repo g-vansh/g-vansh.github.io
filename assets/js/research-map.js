@@ -90,9 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
       name: "Massachusetts Institute of Technology",
       location: [42.3601, -71.0942],
       degree: "PhD Student",
-      department: "Sloan School of Management",
-      details: "Technological Innovation, Entrepreneurship, and Strategic Management group under the Behavioral Policy and Sciences group",
+      majors: "Technological Innovation, Entrepreneurship, and Strategic Management",
       yearRange: "2025-2030",
+      honors: [],
+      concentrations: "Technological Innovation, Entrepreneurship, and Strategic Management group under the Behavioral Policy and Sciences group",
+      affiliations: "MIT Sloan School of Management",
       type: "education",
       tooltipText: "Massachusetts Institute of Technology"
     },
@@ -116,7 +118,11 @@ document.addEventListener('DOMContentLoaded', function() {
       name: "The Doon School",
       location: [30.3228, 78.0437],
       degree: "International Baccalaureate Diploma",
+      majors: "",
       yearRange: "2015-2020",
+      honors: [],
+      concentrations: "",
+      affiliations: "Dehradun, India",
       type: "education",
       tooltipText: "The Doon School, Dehradun"
     }
@@ -323,41 +329,47 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="education-years"><i class="fa-regular fa-calendar"></i> ${loc.yearRange}</div>
           </div>`;
         
-        if (loc.name === "Massachusetts Institute of Technology") {
-          popupContent += `
-            <div class="education-section">
-              <div class="education-degree"><i class="fa-solid fa-graduation-cap"></i> ${loc.degree}</div>
-              <div class="education-department"><i class="fa-solid fa-building-columns"></i> ${loc.department}</div>
-              <div class="education-details"><i class="fa-solid fa-circle-info"></i> ${loc.details}</div>
-            </div>`;
-        } else if (loc.name === "Cornell University") {
-          popupContent += `
-            <div class="education-section">
-              <div class="education-degree"><i class="fa-solid fa-graduation-cap"></i> ${loc.degree}</div>
-              <div class="education-majors"><i class="fa-solid fa-book"></i> ${loc.majors}</div>
-              <div class="education-gpa"><i class="fa-solid fa-star"></i> GPA: ${loc.gpa}</div>
-            </div>
+        // First section: degree, majors, GPA
+        popupContent += `
+          <div class="education-section">
+            <div class="education-degree"><i class="fa-solid fa-graduation-cap"></i> ${loc.degree}</div>`;
             
+        if (loc.majors) {
+          popupContent += `<div class="education-majors"><i class="fa-solid fa-book"></i> ${loc.majors}</div>`;
+        }
+            
+        if (loc.gpa) {
+          popupContent += `<div class="education-gpa"><i class="fa-solid fa-star"></i> GPA: ${loc.gpa}</div>`;
+        }
+        
+        popupContent += `</div>`;
+        
+        // Honors section (if any)
+        if (loc.honors && loc.honors.length > 0) {
+          popupContent += `
             <div class="education-section">
               <div class="section-title">Honors & Recognition</div>
               <ul class="education-honors">
                 ${loc.honors.map(honor => `<li><i class="fa-solid fa-award"></i> ${honor}</li>`).join('')}
               </ul>
-            </div>
-            
+            </div>`;
+        }
+        
+        // Areas of focus section (if any)
+        if (loc.concentrations) {
+          popupContent += `
             <div class="education-section">
               <div class="section-title">Areas of Focus</div>
               <div class="education-concentrations">${loc.concentrations}</div>
-            </div>
-            
+            </div>`;
+        }
+        
+        // Affiliations section (if any)
+        if (loc.affiliations) {
+          popupContent += `
             <div class="education-section">
               <div class="section-title">Affiliations</div>
               <div class="education-affiliations">${loc.affiliations}</div>
-            </div>`;
-        } else if (loc.name === "The Doon School") {
-          popupContent += `
-            <div class="education-section">
-              <div class="education-degree"><i class="fa-solid fa-graduation-cap"></i> ${loc.degree}</div>
             </div>`;
         }
       } else if (type === 'coauthor') {
