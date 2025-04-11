@@ -881,4 +881,130 @@ a:hover {
 .wider-layer-control .leaflet-control-layers-overlays {
   column-count: 1 !important;
   column-gap: 0 !important;
+}
+
+/* Education popup enhancements */
+.education-popup {
+  overflow: hidden;
+}
+
+.education-popup-header {
+  margin-bottom: 15px;
+  border-bottom: 2px solid #38a800;
+  padding-bottom: 10px;
+}
+
+.education-popup-header h3 {
+  margin: 0 0 8px 0;
+  color: #2c6b00;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.education-years {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.education-section {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: rgba(56, 168, 0, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid #38a800;
+}
+
+.education-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-title {
+  font-weight: 600;
+  color: #2c6b00;
+  margin-bottom: 8px;
+  font-size: 14px;
+  border-bottom: 1px dashed rgba(56, 168, 0, 0.3);
+  padding-bottom: 4px;
+}
+
+.education-degree {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.education-department, 
+.education-details,
+.education-majors,
+.education-concentrations, 
+.education-affiliations {
+  color: #555;
+  font-size: 13px;
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+.education-gpa {
+  font-weight: 600;
+  color: #d4ac0d;
+  margin-top: 8px;
+}
+
+.education-honors {
+  margin: 10px 0 5px 0;
+  padding-left: 20px;
+}
+
+.education-honors li {
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 13px;
+}
+
+.education-honors li i {
+  color: #d4ac0d;
+  margin-right: 5px;
+}
+
+/* Wider popup for Cornell with lots of details */
+.education-popup.cornell {
+  width: 300px !important;
+  max-width: 350px !important;
+}
+
+/* Slightly different styling for each institution to give them identity */
+.leaflet-popup.mit-popup .leaflet-popup-content-wrapper {
+  border-top: 4px solid #a31f34;
+}
+
+.leaflet-popup.cornell-popup .leaflet-popup-content-wrapper {
+  border-top: 4px solid #b31b1b;
+}
+
+.leaflet-popup.doon-popup .leaflet-popup-content-wrapper {
+  border-top: 4px solid #003366;
+}
+
+/* Icons styling */
+.education-section i {
+  width: 20px;
+  text-align: center;
+  margin-right: 5px;
+  color: #38a800;
+}
+
+.education-popup-header i {
+  color: #777;
+}
+
+/* Make popups larger and more readable */
+.leaflet-popup-content {
+  margin: 15px 12px;
+  line-height: 1.5;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0;
+  overflow: hidden;
 } 

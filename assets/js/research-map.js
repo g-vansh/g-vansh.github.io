@@ -87,28 +87,36 @@ document.addEventListener('DOMContentLoaded', function() {
   // Define research locations with details
   const educationLocations = [
     {
-      name: "MIT",
+      name: "Massachusetts Institute of Technology",
       location: [42.3601, -71.0942],
-      description: "PhD research on innovation and proximity effects",
-      yearRange: "2021-Present",
+      degree: "PhD Student",
       department: "Sloan School of Management",
+      details: "Technological Innovation, Entrepreneurship, and Strategic Management group under the Behavioral Policy and Sciences group",
+      yearRange: "2025-2030",
       type: "education",
       tooltipText: "Massachusetts Institute of Technology"
     },
     {
       name: "Cornell University",
       location: [42.4534, -76.4735],
-      description: "Graduate studies",
-      yearRange: "2019-2021",
-      department: "Dyson School of Applied Economics and Management",
+      degree: "BS, with Distinction in Research and Magna Cum Laude Honors",
+      majors: "Double Majors in Applied Economics & Management, and Biometry & Statistics",
+      yearRange: "2020-2023",
+      gpa: "3.92",
+      honors: [
+        "Dyson Diversity Scholar",
+        "Dean's List in all semesters"
+      ],
+      concentrations: "Concentrations in Business Analytics, Computational Statistics & Data Management, and Mathematical Statistics, with Research Honors",
+      affiliations: "Affiliated with Bowers College of Computing and Information Science, Dyson School of Applied Economics and Management",
       type: "education",
       tooltipText: "Cornell University, Ithaca NY"
     },
     {
       name: "The Doon School",
       location: [30.3228, 78.0437],
-      description: "High school in Dehradun, India",
-      yearRange: "2012-2017",
+      degree: "International Baccalaureate Diploma",
+      yearRange: "2015-2020",
       type: "education",
       tooltipText: "The Doon School, Dehradun"
     }
@@ -310,12 +318,47 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (type === 'education') {
         popupContent += `
-          <h3>${loc.name}</h3>
-          <p>${loc.description}</p>
-          <p><i class="fa-regular fa-calendar"></i> ${loc.yearRange}</p>`;
+          <div class="education-popup-header">
+            <h3>${loc.name}</h3>
+            <div class="education-years"><i class="fa-regular fa-calendar"></i> ${loc.yearRange}</div>
+          </div>`;
         
-        if (loc.department) {
-          popupContent += `<p><i class="fa-solid fa-building-columns"></i> ${loc.department}</p>`;
+        if (loc.name === "Massachusetts Institute of Technology") {
+          popupContent += `
+            <div class="education-section">
+              <div class="education-degree"><i class="fa-solid fa-graduation-cap"></i> ${loc.degree}</div>
+              <div class="education-department"><i class="fa-solid fa-building-columns"></i> ${loc.department}</div>
+              <div class="education-details"><i class="fa-solid fa-circle-info"></i> ${loc.details}</div>
+            </div>`;
+        } else if (loc.name === "Cornell University") {
+          popupContent += `
+            <div class="education-section">
+              <div class="education-degree"><i class="fa-solid fa-graduation-cap"></i> ${loc.degree}</div>
+              <div class="education-majors"><i class="fa-solid fa-book"></i> ${loc.majors}</div>
+              <div class="education-gpa"><i class="fa-solid fa-star"></i> GPA: ${loc.gpa}</div>
+            </div>
+            
+            <div class="education-section">
+              <div class="section-title">Honors & Recognition</div>
+              <ul class="education-honors">
+                ${loc.honors.map(honor => `<li><i class="fa-solid fa-award"></i> ${honor}</li>`).join('')}
+              </ul>
+            </div>
+            
+            <div class="education-section">
+              <div class="section-title">Areas of Focus</div>
+              <div class="education-concentrations">${loc.concentrations}</div>
+            </div>
+            
+            <div class="education-section">
+              <div class="section-title">Affiliations</div>
+              <div class="education-affiliations">${loc.affiliations}</div>
+            </div>`;
+        } else if (loc.name === "The Doon School") {
+          popupContent += `
+            <div class="education-section">
+              <div class="education-degree"><i class="fa-solid fa-graduation-cap"></i> ${loc.degree}</div>
+            </div>`;
         }
       } else if (type === 'coauthor') {
         popupContent += `
@@ -362,10 +405,20 @@ document.addEventListener('DOMContentLoaded', function() {
       
       popupContent += `</div>`;
       
+      // Set specific popup class based on location
+      let popupClass = `${type}-popup`;
+      if (loc.name === "Massachusetts Institute of Technology") {
+        popupClass += " mit-popup";
+      } else if (loc.name === "Cornell University") {
+        popupClass += " cornell-popup";
+      } else if (loc.name === "The Doon School") {
+        popupClass += " doon-popup";
+      }
+      
       marker.bindPopup(popupContent, {
-        maxWidth: 300,
-        minWidth: 200,
-        className: `${type}-popup`
+        maxWidth: loc.name === "Cornell University" ? 350 : 300,
+        minWidth: loc.name === "Cornell University" ? 300 : 250,
+        className: popupClass
       });
       
       group.addLayer(marker);
