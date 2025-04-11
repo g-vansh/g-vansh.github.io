@@ -8,6 +8,18 @@ author_profile: true
 <div class="research-intro">
   <p>My research interests include innovation, urban, and development economics. I am currently working on projects that explore methods in geneoeconomics and neuroeconomics. Below you can find my research projects and collaborations.</p>
   
+  <div class="research-stats-container">
+    <h3>Research Focus Areas</h3>
+    <div class="research-stats-visualization">
+      <div class="stats-chart-container">
+        <canvas id="researchFocusChart"></canvas>
+      </div>
+      <div class="stats-description">
+        <p>My research spans multiple domains with a particular focus on innovation economics and its intersections with urban development and policy.</p>
+      </div>
+    </div>
+  </div>
+  
   {% if author.googlescholar %}
     <p class="scholar-link">
       <i class="ai ai-google-scholar-square ai-fw"></i> Find my articles on <u><a href="{{author.googlescholar}}">Google Scholar</a></u>

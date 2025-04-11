@@ -9,6 +9,11 @@ redirect_from:
 ---
 My name is Vansh. I am an incoming PhD student at [MIT's Sloan School of Management, in the Technological Innovation, Entrepreneurship, and Strategic Management](https://mitsloan.mit.edu/faculty/academic-groups/ties/phd-program) program. 
 
+<div class="research-map-container">
+  <h2>My Research Journey</h2>
+  <div id="research-map" style="height: 400px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
+</div>
+
 I am interested in applying my knowledge of innovation, econometrics, computer science, and biostatistics to study how and when people come up with ideas. Currently, I am exploring the effects of proximity on innovation and related policies. Recently, I have been curious about innovation's links to human evolution as well. My works-in-progress include research projects that study [the effectiveness of the GitHub Sponsors Program to improve innovation](https://www.nber.org/papers/w31668), and the [effectiveness of Brazilian municipal governments in mitigating the effects of regular flooding disasters](/publication/Diario-Municipal). I have research experience in development, innovation, education, healthcare, industrial organization, strategy, and urban economics. Please go to the [research](https://www.vansh-gupta.com/publications/) section to learn more about some of my research projects!
 
 I researched the competitive effects of healthcare mergers in the US as an economic consultant at Charles River Associates. This involved a lot of experience in industrial organization, urban economics, and healthcare economics. I frequently corresponded with the U.S. Department of Justice and legal scholars to discuss the efficacy of legal frameworks that govern antitrust enforcement policies in the US for the healthcare industry.  
