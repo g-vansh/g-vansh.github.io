@@ -90,19 +90,27 @@ document.addEventListener('DOMContentLoaded', function() {
       name: "MIT",
       location: [42.3601, -71.0942],
       description: "PhD research on innovation and proximity effects",
-      type: "education"
+      yearRange: "2021-Present",
+      department: "Sloan School of Management",
+      type: "education",
+      tooltipText: "Massachusetts Institute of Technology"
     },
     {
       name: "Cornell University",
       location: [42.4534, -76.4735],
       description: "Graduate studies",
-      type: "education"
+      yearRange: "2019-2021",
+      department: "Dyson School of Applied Economics and Management",
+      type: "education",
+      tooltipText: "Cornell University, Ithaca NY"
     },
     {
       name: "The Doon School",
       location: [30.3228, 78.0437],
       description: "High school in Dehradun, India",
-      type: "education"
+      yearRange: "2012-2017",
+      type: "education",
+      tooltipText: "The Doon School, Dehradun"
     }
   ];
   
@@ -111,37 +119,106 @@ document.addEventListener('DOMContentLoaded', function() {
       name: "Daniela Scur",
       location: [42.4534, -76.4735],
       institution: "Cornell University",
-      type: "coauthor"
+      type: "coauthor",
+      tooltipText: "Collaborator on Brazilian municipalities research",
+      projects: [
+        {
+          title: "Local Government State Capacity: Evidence from Brazil",
+          url: "/publication/Diario-Municipal-Dataset",
+          status: "In Progress"
+        },
+        {
+          title: "Municipal Responses to Natural Disasters",
+          url: "/publication/Diario-Municipal-Responses",
+          status: "In Progress"
+        }
+      ],
+      website: "https://danielascur.com/"
     },
     {
       name: "Jorge Guzman",
       location: [40.8075, -73.9626],
       institution: "Columbia University",
-      type: "coauthor"
+      type: "coauthor",
+      tooltipText: "Collaborator on GitHub Sponsors research",
+      projects: [
+        {
+          title: "Incentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program",
+          url: "/publication/Sponsoring-Innovation",
+          status: "NBER Working Paper"
+        }
+      ],
+      website: "https://www.jorgeguzman.co/"
     },
     {
       name: "Michael Best",
       location: [40.8075, -73.9626],
       institution: "Columbia University",
-      type: "coauthor"
+      type: "coauthor",
+      tooltipText: "Collaborator on Brazilian municipalities research",
+      projects: [
+        {
+          title: "Local Government State Capacity: Evidence from Brazil",
+          url: "/publication/Diario-Municipal-Dataset",
+          status: "In Progress"
+        },
+        {
+          title: "Municipal Responses to Natural Disasters",
+          url: "/publication/Diario-Municipal-Responses",
+          status: "In Progress"
+        }
+      ],
+      website: "https://www.columbia.edu/~mcb2270/"
     },
     {
       name: "Maria Roche",
       location: [42.3770, -71.1167],
       institution: "Harvard University",
-      type: "coauthor"
+      type: "coauthor",
+      tooltipText: "Collaborator on GitHub Sponsors research",
+      projects: [
+        {
+          title: "Incentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program",
+          url: "/publication/Sponsoring-Innovation",
+          status: "NBER Working Paper"
+        }
+      ],
+      website: "https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955"
     },
     {
       name: "Annamaria Conti",
       location: [40.4165, -3.7026],
       institution: "IE University",
-      type: "coauthor"
+      type: "coauthor",
+      tooltipText: "Collaborator on GitHub Sponsors research",
+      projects: [
+        {
+          title: "Incentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program",
+          url: "/publication/Sponsoring-Innovation",
+          status: "NBER Working Paper"
+        }
+      ],
+      website: "https://sites.google.com/view/annamariaconti/home-page"
     },
     {
       name: "Renata Lemos",
       location: [38.9072, -77.0369],
       institution: "World Bank Washington DC",
-      type: "coauthor"
+      type: "coauthor",
+      tooltipText: "Collaborator on Brazilian municipalities research",
+      projects: [
+        {
+          title: "Local Government State Capacity: Evidence from Brazil",
+          url: "/publication/Diario-Municipal-Dataset",
+          status: "In Progress"
+        },
+        {
+          title: "Municipal Responses to Natural Disasters",
+          url: "/publication/Diario-Municipal-Responses",
+          status: "In Progress"
+        }
+      ],
+      website: "https://renatalemos.com/"
     }
   ];
   
@@ -150,19 +227,28 @@ document.addEventListener('DOMContentLoaded', function() {
       name: "Strategy & Innovation",
       location: [40.8075, -73.9626],
       institution: "Columbia University",
-      type: "talk"
+      type: "talk",
+      tooltipText: "Research presentation on GitHub Sponsors",
+      date: "March 2023",
+      relatedPaper: "Incentivizing Innovation in Open Source"
     },
     {
       name: "Development, Firms, & Labor Research Working Group",
       location: [42.4534, -76.4735],
       institution: "Cornell University",
-      type: "talk"
+      type: "talk",
+      tooltipText: "Research presentation on Brazilian municipalities",
+      date: "November 2022",
+      relatedPaper: "Local Government State Capacity"
     },
     {
       name: "Theoretical and Applied Development",
       location: [42.4534, -76.4735],
       institution: "Cornell University",
-      type: "talk"
+      type: "talk",
+      tooltipText: "Research presentation on disaster responses",
+      date: "April 2022",
+      relatedPaper: "Municipal Responses to Natural Disasters"
     }
   ];
 
@@ -173,20 +259,69 @@ document.addEventListener('DOMContentLoaded', function() {
         icon: markerIcons[type]
       });
       
+      // Create tooltip based on location type
+      if (loc.tooltipText) {
+        marker.bindTooltip(loc.tooltipText, {
+          permanent: false,
+          direction: 'top',
+          className: `${type}-tooltip`
+        });
+      }
+      
       // Create popup content based on location type
-      let popupContent = `<div class="custom-popup"><h3>${loc.name}</h3>`;
+      let popupContent = `<div class="custom-popup">`;
       
       if (type === 'education') {
-        popupContent += `<p>${loc.description}</p>`;
+        popupContent += `
+          <h3>${loc.name}</h3>
+          <p>${loc.description}</p>
+          <p><i class="fa-regular fa-calendar"></i> ${loc.yearRange}</p>`;
+        
+        if (loc.department) {
+          popupContent += `<p><i class="fa-solid fa-building-columns"></i> ${loc.department}</p>`;
+        }
       } else if (type === 'coauthor') {
-        popupContent += `<p>Affiliation: ${loc.institution}</p>`;
+        popupContent += `
+          <h3>${loc.name}</h3>
+          <p><i class="fa-solid fa-building"></i> ${loc.institution}</p>`;
+        
+        if (loc.projects && loc.projects.length > 0) {
+          popupContent += `<div class="popup-meta">Joint projects:</div>`;
+          popupContent += `<div class="popup-links">`;
+          loc.projects.forEach(project => {
+            popupContent += `
+              <a href="${project.url}" class="popup-link" target="_blank">
+                <i class="fa-solid fa-file-lines"></i> ${project.title}
+              </a>`;
+          });
+          popupContent += `</div>`;
+        }
+        
+        if (loc.website) {
+          popupContent += `
+            <a href="${loc.website}" class="popup-link" target="_blank">
+              <i class="fa-solid fa-globe"></i> Website
+            </a>`;
+        }
       } else if (type === 'talk') {
-        popupContent += `<p>Venue: ${loc.institution}</p>`;
+        popupContent += `
+          <h3>${loc.name}</h3>
+          <p><i class="fa-solid fa-building"></i> ${loc.institution}</p>
+          <p><i class="fa-regular fa-calendar"></i> ${loc.date}</p>`;
+        
+        if (loc.relatedPaper) {
+          popupContent += `<p><i class="fa-solid fa-file-lines"></i> ${loc.relatedPaper}</p>`;
+        }
       }
       
       popupContent += `</div>`;
       
-      marker.bindPopup(popupContent);
+      marker.bindPopup(popupContent, {
+        maxWidth: 300,
+        minWidth: 200,
+        className: `${type}-popup`
+      });
+      
       group.addLayer(marker);
     });
   }
