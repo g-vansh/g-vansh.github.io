@@ -1,7 +1,7 @@
 ---
 title: "Municipal Responses to Natural Disasters: Evidence from Brazilian Municipalities"
 collection: publications
-permalink: /publication/Diario-Municipal
+permalink: /publication/Diario-Municipal-Responses
 excerpt: 'This paper seeks to understand the effects of natural disasters on municipal state capacity in Brazil.'
 date: 2023-06-01
 author: 

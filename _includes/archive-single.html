@@ -32,7 +32,9 @@
       {% else %}
         <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
       {% endif %}
-      
+    </h2>
+    
+    <div class="archive__item-badges">
       {% if post.type == "project" %}
         <span class="project-badge">Research Project</span>
         {% if post.project_status == "under_review" %}
@@ -45,7 +47,7 @@
       {% elsif post.type == "assistance" %}
         <span class="assistance-badge">Research Assistance</span>
       {% endif %}
-    </h2>
+    </div>
     
     {% if post.read_time %}
       <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>

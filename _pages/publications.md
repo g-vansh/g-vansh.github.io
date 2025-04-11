@@ -33,7 +33,7 @@ author_profile: true
   <h3 class="subsection-heading">Under Review</h3>
   <div class="research-projects-section">
     {% for post in site.publications reversed %}
-      {% if post.type == "project" and post.project_status == "under_review" %}
+      {% if post.type == "project" and post.project_status == "under_review" and post.index != "No" %}
         {% include archive-single.html %}
       {% endif %}
     {% endfor %}
@@ -42,7 +42,7 @@ author_profile: true
   <h3 class="subsection-heading">Work In Progress</h3>
   <div class="research-projects-section">
     {% for post in site.publications reversed %}
-      {% if post.type == "project" and post.project_status == "in_progress" %}
+      {% if post.type == "project" and post.project_status == "in_progress" and post.index != "No" %}
         {% include archive-single.html %}
       {% endif %}
     {% endfor %}
@@ -51,7 +51,7 @@ author_profile: true
   <h3 class="subsection-heading">Inactive Projects</h3>
   <div class="research-projects-section">
     {% for post in site.publications reversed %}
-      {% if post.type == "project" and post.project_status == "inactive" %}
+      {% if post.type == "project" and post.project_status == "inactive" and post.index != "No" %}
         {% include archive-single.html %}
       {% endif %}
     {% endfor %}
@@ -60,7 +60,7 @@ author_profile: true
   <h2 class="section-heading">Research Assistance</h2>
   <div class="research-assistance-section">
     {% for post in site.publications reversed %}
-      {% if post.type == "assistance" %}
+      {% if post.type == "assistance" and post.index != "No" %}
         {% include archive-single.html %}
       {% endif %}
     {% endfor %}
@@ -114,6 +114,11 @@ author_profile: true
   .research-assistance-section .archive__item-title {
     margin-top: 0.5em;
     font-size: 1.25em;
+    margin-bottom: 0.25em;
+  }
+  
+  .archive__item-badges {
+    margin-bottom: 0.75em;
   }
   
   .research-sections {
@@ -124,7 +129,7 @@ author_profile: true
     display: inline-block;
     font-size: 0.7em;
     padding: 0.3em 0.5em;
-    margin-left: 0.5em;
+    margin-right: 0.5em;
     border-radius: 3px;
     vertical-align: middle;
     font-weight: normal;
@@ -144,7 +149,7 @@ author_profile: true
     display: inline-block;
     font-size: 0.65em;
     padding: 0.2em 0.4em;
-    margin-left: 0.3em;
+    margin-right: 0.5em;
     border-radius: 3px;
     vertical-align: middle;
     font-weight: normal;

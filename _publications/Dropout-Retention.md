@@ -11,6 +11,7 @@ venue:
 type: "project"
 project_status: "inactive"
 wp: true
+index: "No"
 ---
 This paper seeks to indexing the potential number of dropouts from a particular governmental school in a given year using statistical learning and logistic modelling.
 <br><br>
