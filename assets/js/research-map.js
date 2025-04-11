@@ -418,7 +418,10 @@ document.addEventListener('DOMContentLoaded', function() {
       marker.bindPopup(popupContent, {
         maxWidth: loc.name === "Cornell University" ? 350 : 300,
         minWidth: loc.name === "Cornell University" ? 300 : 250,
-        className: popupClass
+        className: popupClass,
+        autoPan: true,
+        autoPanPadding: [20, 20],
+        keepInView: true
       });
       
       group.addLayer(marker);
