@@ -16,9 +16,9 @@ type: "assistance"
 This paper seeks to formalize the treatment effects of strategic choices under the Rubin Causal Model.
 
 **Under the guidance of [Jorge Guzman](https://www.jorgeguzman.co/), I did the following:**
-1. Cleaning the original code, and creating an open-source [R package](http://vanshg.me/STE) to apply the framework developed in the paper.
-2. Use the package created to execute an empirical application of the framework discussed in the paper.
-3. Create data-replication scripts to reproduce the results discussed in Section 5 of the paper.
+1. Cleaned the original code, and creating an open-source [R package](http://vanshg.me/STE) to apply the framework developed in the paper.
+2. Used the package created to execute an empirical application of the framework discussed in the paper.
+3. Created data-replication scripts to reproduce the results discussed in Section 5 of the paper.
 4. Proof-read the paper prior to submission.
 
 **Abstract:**
