@@ -51,6 +51,27 @@ layout: default
           <p>Recommended citation: {{ page.citation }} </p>
         {% endif %}
     
+        {% if page.media_coverage %}
+        <div class="media-coverage-single">
+          <h3><i class="fa fa-newspaper-o" aria-hidden="true"></i> Media Coverage</h3>
+          <ul>
+            {% for coverage in page.media_coverage %}
+            <li>
+              <div class="media-outlet">
+                <a href="{{ coverage.url }}" target="_blank">{{ coverage.outlet }}</a>
+              </div>
+              <div class="media-title">"{{ coverage.title }}"</div>
+              {% if coverage.excerpt %}
+              <div class="media-excerpt">
+                <blockquote>{{ coverage.excerpt }}</blockquote>
+              </div>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+    
         </header>
       {% endunless %}
 

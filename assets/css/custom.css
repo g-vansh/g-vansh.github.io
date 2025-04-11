@@ -44,4 +44,70 @@
 .masthead__menu-item.project-link.align-right {
     margin-left: auto;
     margin-right: 0;
+}
+
+/* Media coverage styles for individual publication pages */
+.media-coverage-single {
+    margin: 2em 0;
+    padding: 1.5em;
+    background-color: #f8f9fa;
+    border-left: 4px solid #17a2b8;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.media-coverage-single h3 {
+    color: #17a2b8;
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.media-coverage-single ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.media-coverage-single li {
+    margin-bottom: 1.5em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.media-coverage-single li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.media-outlet {
+    margin-bottom: 0.5em;
+}
+
+.media-outlet a {
+    font-weight: 600;
+    color: #0056b3;
+    font-size: 1.1em;
+    text-decoration: none;
+}
+
+.media-outlet a:hover {
+    text-decoration: underline;
+}
+
+.media-title {
+    font-size: 1.1em;
+    font-style: italic;
+    margin-bottom: 0.75em;
+    color: #495057;
+}
+
+.media-excerpt blockquote {
+    margin: 0;
+    padding: 0.5em 1em;
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: #6c757d;
+    border-left: 3px solid #dee2e6;
 } 

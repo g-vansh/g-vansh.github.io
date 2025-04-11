@@ -18,23 +18,17 @@ media_coverage:
   - outlet: "National Bureau of Economic Research (NBER) Bulletin on Entrepreneurship"
     title: "Open-Source Software Creators: It's Not Just About the Money"
     url: "https://www.nber.org/be/20241/open-source-software-creators-its-not-just-about-money"
+    excerpt: "The output of software creators who joined a program that offered rewards to code developers was 54 percent greater than the output of those who did not, but after compensation was given, output dropped by 16 percent... The researchers speculate that being compensated may change the developer's perception of a task, making it appear more difficult and less enjoyable. They further suggest that the intrinsic reward of freely creating and contributing software for public use may be greater than the extrinsic reward of producing it on demand to satisfy a funder's request."
   - outlet: "Harvard Business School Working Knowledge Newsletter"
     title: "Intrinsic Joy Sparks Ideas Better than Cash"
     url: "https://www.library.hbs.edu/working-knowledge/intrinsic-joy-sparks-ideas-better-than-cash"
+    excerpt: "Developers offered the chance to get paid for their work increased their productivity by 54 percent, but once they started receiving compensation, their output fell by 16 percent. The results show that 'users on open source platforms may resemble scientists who are driven by intrinsic motivation and non-pecuniary incentives such as the joy of puzzle solving, peer recognition, and interaction with other scientific community members.'"
 ---
 [NBER Working Paper 31668](https://www.nber.org/papers/w31668)
 
 This paper seeks to understand the effects of the introduction of GitHub Sponsorships on digital innovation. 
 
-I work on the project as a co-author with [Annamaria Conti (IE Business School)](https://sites.google.com/view/annamariaconti/home-page), [Maria Roche (Harvard Business School)](https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955), and [Jorge Guzman (Columbia Business School)](https://www.jorgeguzman.co/) - contributing to the data pipeline, analysis, and the experimental setup. 
-
-**My responsibilities include:**
-1. Designing a data pipeline from scratch to create an unbalanced panel dataset of ~15000 GitHub users and their repositories.
-2. Executing the data pipeline in Python on a Unix environment, and processing the data into a panel using STATA.
-3. Merging datasets collected using GraphQL and GitHub Archive, both of which had differing formats and structures.
-4. Conducting data analyses in STATA, and contributing to experimental design as well.
-5. Improving the empirical strategy for the paper to fix the challenges we encounter.
-6. Creating a survey and a discrete choice experiment to understand users' motivations behind their contributions to open source. 
+I work on the project with co-authors [Annamaria Conti (IE Business School)](https://sites.google.com/view/annamariaconti/home-page), [Maria Roche (Harvard Business School)](https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955), and [Jorge Guzman (Columbia Business School)](https://www.jorgeguzman.co/) - contributing to the data pipeline, analysis, and the experimental setup. 
 
 **Abstract:**
 
