@@ -374,44 +374,66 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       } else if (type === 'coauthor') {
         popupContent += `
-          <h3>${loc.name}</h3>
-          <p><i class="fa-solid fa-user-tie"></i> ${loc.designation}</p>
-          <p><i class="fa-solid fa-building"></i> ${loc.department}, ${loc.institution}</p>`;
+          <div class="coauthor-popup-header">
+            <h3>${loc.name}</h3>
+          </div>
+          
+          <div class="coauthor-section">
+            <div class="coauthor-designation"><i class="fa-solid fa-user-tie"></i> ${loc.designation}</div>
+            <div class="coauthor-department"><i class="fa-solid fa-building"></i> ${loc.department}, ${loc.institution}</div>
+          </div>`;
         
         if (loc.website) {
           popupContent += `
-            <a href="${loc.website}" class="popup-link" target="_blank">
-              <i class="fa-solid fa-globe"></i> Personal Website
-            </a>`;
+            <div class="coauthor-section">
+              <a href="${loc.website}" class="popup-link" target="_blank">
+                <i class="fa-solid fa-globe"></i> Personal Website
+              </a>
+            </div>`;
         }
         
         if (loc.projects && loc.projects.length > 0) {
-          popupContent += `<div class="popup-meta">Joint projects:</div>`;
-          popupContent += `<div class="popup-links">`;
+          popupContent += `
+            <div class="coauthor-section">
+              <div class="popup-meta">Joint projects:</div>
+              <div class="popup-links">`;
+          
           loc.projects.forEach(project => {
             popupContent += `
               <a href="${project.url}" class="popup-link" target="_blank">
                 <i class="fa-solid fa-file-lines"></i> ${project.title}
               </a>`;
           });
-          popupContent += `</div>`;
+          
+          popupContent += `</div>
+            </div>`;
         }
       } else if (type === 'talk') {
         popupContent += `
-          <h3>${loc.name}</h3>
-          <p><i class="fa-solid fa-building"></i> ${loc.institution}</p>
-          <p><i class="fa-regular fa-calendar"></i> ${loc.date}</p>`;
+          <div class="talk-popup-header">
+            <h3>${loc.name}</h3>
+            <div class="talk-date"><i class="fa-regular fa-calendar"></i> ${loc.date}</div>
+          </div>
+          
+          <div class="talk-section">
+            <div class="talk-venue"><i class="fa-solid fa-building"></i> ${loc.institution}</div>
+          </div>`;
         
         if (loc.papers && loc.papers.length > 0) {
-          popupContent += `<div class="popup-meta">Presented papers:</div>`;
-          popupContent += `<div class="popup-links">`;
+          popupContent += `
+            <div class="talk-section">
+              <div class="popup-meta">Presented papers:</div>
+              <div class="popup-links">`;
+          
           loc.papers.forEach(paper => {
             popupContent += `
               <a href="${paper.url}" class="popup-link" target="_blank">
                 <i class="fa-solid fa-file-lines"></i> ${paper.title}
               </a>`;
           });
-          popupContent += `</div>`;
+          
+          popupContent += `</div>
+            </div>`;
         }
       }
       
@@ -425,6 +447,14 @@ document.addEventListener('DOMContentLoaded', function() {
         popupClass += " cornell-popup";
       } else if (loc.name === "The Doon School") {
         popupClass += " doon-popup";
+      } else if (loc.institution && loc.institution.includes("Columbia")) {
+        popupClass += " columbia-popup";
+      } else if (loc.institution && loc.institution.includes("Harvard")) {
+        popupClass += " harvard-popup";
+      } else if (loc.institution && loc.institution.includes("IE")) {
+        popupClass += " ie-popup";
+      } else if (loc.institution && loc.institution.includes("World Bank")) {
+        popupClass += " worldbank-popup";
       }
       
       marker.bindPopup(popupContent, {
