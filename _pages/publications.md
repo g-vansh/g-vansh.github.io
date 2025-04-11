@@ -30,7 +30,7 @@ author_profile: true
 <div class="research-sections">
   <h2 class="section-heading">Research Projects</h2>
   
-  <h3 class="subsection-heading">Under Review</h3>
+  <h3 class="subsection-heading under_review">Under Review</h3>
   <div class="research-projects-section">
     {% for post in site.publications reversed %}
       {% if post.type == "project" and post.project_status == "under_review" and post.index != "No" %}
@@ -39,7 +39,7 @@ author_profile: true
     {% endfor %}
   </div>
   
-  <h3 class="subsection-heading">Work In Progress</h3>
+  <h3 class="subsection-heading in_progress">Work In Progress</h3>
   <div class="research-projects-section">
     {% for post in site.publications reversed %}
       {% if post.type == "project" and post.project_status == "in_progress" and post.index != "No" %}
@@ -48,7 +48,7 @@ author_profile: true
     {% endfor %}
   </div>
   
-  <h3 class="subsection-heading">Inactive Projects</h3>
+  <h3 class="subsection-heading inactive">Inactive Projects</h3>
   <div class="research-projects-section">
     {% for post in site.publications reversed %}
       {% if post.type == "project" and post.project_status == "inactive" and post.index != "No" %}
@@ -106,6 +106,18 @@ author_profile: true
     padding-left: 0.5em;
   }
   
+  .research-projects-section h3.subsection-heading[class*="under_review"] {
+    border-left-color: #dc3545;
+  }
+  
+  .research-projects-section h3.subsection-heading[class*="in_progress"] {
+    border-left-color: #fd7e14;
+  }
+  
+  .research-projects-section h3.subsection-heading[class*="inactive"] {
+    border-left-color: #6c757d;
+  }
+  
   .research-projects-section, .research-assistance-section {
     margin-bottom: 2em;
   }
@@ -149,12 +161,12 @@ author_profile: true
   }
   
   .project-badge {
-    background-color: #007bff;
+    background-color: #28a745;
     color: white;
   }
   
   .assistance-badge {
-    background-color: #28a745;
+    background-color: #007bff;
     color: white;
   }
   
