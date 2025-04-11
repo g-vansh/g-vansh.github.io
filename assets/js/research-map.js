@@ -521,5 +521,35 @@ document.addEventListener('DOMContentLoaded', function() {
       label.style.whiteSpace = 'nowrap';
       label.style.width = '100%';
     });
+    
+    // Mobile-specific adjustments
+    function adjustForMobile() {
+      const isMobile = window.innerWidth <= 768;
+      
+      // Adjust map bounds for better mobile view if needed
+      if (isMobile) {
+        // Set a more zoomed out view on mobile
+        map.setView([30, 0], 1);
+        
+        // Close layer control after selection on mobile
+        document.querySelectorAll('.leaflet-control-layers-selector').forEach(function(checkbox) {
+          checkbox.addEventListener('change', function() {
+            setTimeout(function() {
+              const layerControlExpanded = document.querySelector('.leaflet-control-layers-expanded');
+              if (layerControlExpanded) {
+                const closeButton = layerControlExpanded.querySelector('.leaflet-control-layers-close');
+                if (closeButton) closeButton.click();
+              }
+            }, 300);
+          });
+        });
+      }
+    }
+    
+    // Run mobile adjustments
+    adjustForMobile();
+    
+    // Re-run on resize
+    window.addEventListener('resize', adjustForMobile);
   }, 500);
 }); 

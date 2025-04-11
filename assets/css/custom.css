@@ -1223,4 +1223,122 @@ a:hover {
 
 .leaflet-popup.worldbank-popup .leaflet-popup-content-wrapper {
   border-top: 4px solid #009cde;
+}
+
+/* Mobile-friendly map adjustments */
+@media screen and (max-width: 768px) {
+  #research-map {
+    height: 500px !important; /* Taller map on mobile */
+  }
+  
+  .leaflet-popup {
+    max-width: 90vw !important;
+  }
+  
+  .leaflet-popup-content {
+    max-height: 250px;
+    margin: 10px 8px;
+    font-size: 13px;
+  }
+  
+  .wider-layer-control.leaflet-control-layers-expanded {
+    min-width: 200px !important;
+    max-width: 250px !important;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .leaflet-control-layers-toggle {
+    width: 40px !important;
+    height: 40px !important;
+    background-size: 24px !important;
+  }
+  
+  .legend-container {
+    max-width: 160px;
+    padding: 8px;
+  }
+  
+  .legend-container h4 {
+    font-size: 12px;
+  }
+  
+  .legend-item {
+    font-size: 11px;
+  }
+  
+  /* Make touch targets larger */
+  .custom-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+  
+  .popup-link {
+    padding: 8px 12px !important;
+    margin-bottom: 10px !important;
+    display: block !important;
+    text-align: center;
+  }
+  
+  /* Improve scrolling on touch devices */
+  .leaflet-popup-content {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .coauthor-section, .education-section, .talk-section {
+    padding: 10px;
+  }
+}
+
+/* Further adjustments for very small screens */
+@media screen and (max-width: 480px) {
+  #research-map {
+    height: 400px !important;
+  }
+  
+  .leaflet-control-zoom {
+    display: none; /* Hide zoom buttons on very small screens */
+  }
+  
+  .leaflet-popup-content {
+    max-height: 220px;
+  }
+}
+
+/* Better touch interaction */
+@media (hover: none) {
+  .custom-icon:active {
+    transform: scale(1.2);
+  }
+  
+  .popup-link:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Responsive map */
+.responsive-map {
+  width: 100%;
+  transition: height 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .responsive-map {
+    height: 500px !important;
+  }
+  
+  .research-map-container {
+    margin: 1rem 0;
+  }
+  
+  .research-map-container h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .responsive-map {
+    height: 400px !important;
+  }
 } 
