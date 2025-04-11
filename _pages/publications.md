@@ -15,7 +15,7 @@ author_profile: true
         <canvas id="researchFocusChart"></canvas>
       </div>
       <div class="stats-description">
-        <p>My research spans multiple domains with a particular focus on innovation economics and its intersections with urban development and policy.</p>
+        <p>Over time, I have explored methods in many fields of economics. Presently, I am working to apply this experience to discover insights about how innovation is generated, where we get our ideas from, and how our environment shapes our ideas.</p>
       </div>
     </div>
   </div>
