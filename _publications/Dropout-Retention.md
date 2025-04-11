@@ -10,6 +10,7 @@ authors:
 venue: 
 type: "project"
 project_status: "inactive"
+tags: ['education economics', 'development economics']
 wp: true
 index: "No"
 ---
@@ -28,4 +29,4 @@ This paper seeks to indexing the potential number of dropouts from a particular 
 
 **Abstract:**
 <br>
-My research aims to perform quantitative analysis on the various factors that influence the number of dropouts from governmental schools across the country to create a ‘dropout index’ which predicts, based on various objective factors, how many students from a government school will drop out in that year.
+My research aims to perform quantitative analysis on the various factors that influence the number of dropouts from governmental schools across the country to create a 'dropout index' which predicts, based on various objective factors, how many students from a government school will drop out in that year.

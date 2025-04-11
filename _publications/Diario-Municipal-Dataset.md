@@ -11,5 +11,6 @@ authors:
 venue: 
 type: "project"
 project_status: "in_progress"
+tags: ['public economics', 'development economics', 'state capacity', 'natural language processing']
 ---
 This paper seeks to understand the state capacity of local municipal governments in Brazil. In doing so, we seek to understand what municipalities do on a daily basis, and how well they do those tasks.

@@ -11,5 +11,6 @@ authors:
 venue: 
 type: "project"
 project_status: "in_progress"
+tags: ['environmental economics', 'public economics', 'development economics', 'state capacity', 'natural language processing', 'urban economics']
 ---
 This paper seeks to understand the effects of natural disasters on municipal state capacity in Brazil.

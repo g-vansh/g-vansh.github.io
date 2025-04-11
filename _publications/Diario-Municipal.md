@@ -11,6 +11,7 @@ authors:
 venue: 
 type: "project"
 project_status: "in_progress"
+tags: []
 index: "No"
 ---
 This set of papers seeks to understand what municipalities do on a daily basis, and how natural disasters in Brazil affect their state capacity.

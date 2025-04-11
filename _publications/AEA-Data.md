@@ -9,6 +9,7 @@ authorurl: https://www.vilhuber.com/lars/
 authors:
 venue: 
 type: "assistance"
+tags: []
 ---
 I worked at the Labor Dynamics Institute at Cornell University, with Lars Vilhuber - the Data Editor for the American Economic Association.
 

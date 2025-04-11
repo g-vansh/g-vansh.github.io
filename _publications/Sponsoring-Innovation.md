@@ -14,6 +14,7 @@ venue: National Bureau of Economic Research (Working Paper)
 wp: true
 type: "project"
 project_status: "under_review"
+tags: ['innovation economics', 'open source software']
 media_coverage:
   - outlet: "National Bureau of Economic Research (NBER) Bulletin on Entrepreneurship"
     title: "Open-Source Software Creators: It's Not Just About the Money"
