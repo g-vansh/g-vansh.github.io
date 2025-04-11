@@ -273,4 +273,51 @@ document.addEventListener('DOMContentLoaded', function() {
     font-weight: 600;
     color: #0056b3;
   }
+  
+  .research-stats-container {
+    margin: 2em 0;
+  }
+  
+  .research-stats-visualization {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    margin-top: 1em;
+  }
+  
+  .stats-chart-container {
+    flex: 1;
+    min-width: 0;
+    height: 320px;
+    position: relative;
+  }
+  
+  .stats-description {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 767px) {
+    .research-stats-visualization {
+      flex-direction: column;
+      gap: 1em;
+    }
+    
+    .stats-chart-container {
+      width: 100%;
+      height: 300px;
+    }
+    
+    .stats-description {
+      width: 100%;
+      text-align: center;
+    }
+    
+    .research-stats-container h3 {
+      text-align: center;
+    }
+  }
 </style>

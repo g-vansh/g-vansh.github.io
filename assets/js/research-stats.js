@@ -58,6 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const { backgroundColors, borderColors } = generateColors(labels.length);
 
+  // Determine if we're on a mobile device
+  const isMobile = window.innerWidth < 768;
+
   // Research focus areas data
   const data = {
     labels: labels,
@@ -67,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
       backgroundColor: backgroundColors,
       borderColor: borderColors,
       borderWidth: 1,
-      hoverOffset: 15
+      hoverOffset: isMobile ? 10 : 15
     }]
   };
 
@@ -80,13 +83,15 @@ document.addEventListener('DOMContentLoaded', function() {
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          position: 'right',
+          position: isMobile ? 'bottom' : 'right',
+          align: isMobile ? 'center' : 'start',
           labels: {
+            boxWidth: isMobile ? 12 : 15,
+            padding: isMobile ? 10 : 20,
             font: {
               family: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-              size: 12
+              size: isMobile ? 10 : 12
             },
-            padding: 20,
             usePointStyle: true,
             pointStyle: 'circle'
           }
@@ -107,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
         animateScale: true,
         animateRotate: true
       },
-      cutout: '60%'
+      cutout: isMobile ? '70%' : '60%'
     }
   });
 
@@ -118,5 +123,20 @@ document.addEventListener('DOMContentLoaded', function() {
   
   chartElement.addEventListener('mouseout', function() {
     chartElement.style.filter = 'none';
+  });
+  
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    const chart = Chart.getChart(chartElement);
+    if (chart) {
+      const isMobileNow = window.innerWidth < 768;
+      chart.options.plugins.legend.position = isMobileNow ? 'bottom' : 'right';
+      chart.options.plugins.legend.align = isMobileNow ? 'center' : 'start';
+      chart.options.plugins.legend.labels.boxWidth = isMobileNow ? 12 : 15;
+      chart.options.plugins.legend.labels.padding = isMobileNow ? 10 : 20;
+      chart.options.plugins.legend.labels.font.size = isMobileNow ? 10 : 12;
+      chart.options.cutout = isMobileNow ? '70%' : '60%';
+      chart.update();
+    }
   });
 }); 
