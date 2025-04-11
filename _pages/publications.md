@@ -110,15 +110,28 @@ author_profile: true
     margin-bottom: 2em;
   }
   
+  .archive__item {
+    margin-bottom: 1.5em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #f2f3f3;
+  }
+  
+  .archive__item p {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    line-height: 1.4;
+  }
+  
   .research-projects-section .archive__item-title,
   .research-assistance-section .archive__item-title {
     margin-top: 0.5em;
     font-size: 1.25em;
-    margin-bottom: 0.25em;
+    margin-bottom: 0.15em;
   }
   
   .archive__item-badges {
-    margin-bottom: 0.75em;
+    margin-top: 0;
+    margin-bottom: 0.4em;
   }
   
   .research-sections {
