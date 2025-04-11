@@ -228,27 +228,46 @@ document.addEventListener('DOMContentLoaded', function() {
       location: [40.8075, -73.9626],
       institution: "Columbia University",
       type: "talk",
-      tooltipText: "Research presentation on GitHub Sponsors",
-      date: "March 2023",
-      relatedPaper: "Incentivizing Innovation in Open Source"
+      tooltipText: "Research presentation on GitHub Sponsors & Strategic Treatment Effects",
+      date: "July 2022",
+      papers: [
+        {
+          title: "Incentivizing Innovation in Open Source",
+          url: "/publication/Sponsoring-Innovation"
+        },
+        {
+          title: "Treatment Effects in Managerial Strategies",
+          url: "/publication/STE"
+        }
+      ]
     },
     {
       name: "Development, Firms, & Labor Research Working Group",
       location: [42.4534, -76.4735],
       institution: "Cornell University",
       type: "talk",
-      tooltipText: "Research presentation on Brazilian municipalities",
-      date: "November 2022",
-      relatedPaper: "Local Government State Capacity"
+      tooltipText: "Research presentation on education strategies",
+      date: "March 2023",
+      papers: [
+        {
+          title: "Approaches and Resources for Improved Student Outcomes: Evidence from Brazil",
+          url: "/publication/Dropout-Retention"
+        }
+      ]
     },
     {
       name: "Theoretical and Applied Development",
       location: [42.4534, -76.4735],
       institution: "Cornell University",
       type: "talk",
-      tooltipText: "Research presentation on disaster responses",
-      date: "April 2022",
-      relatedPaper: "Municipal Responses to Natural Disasters"
+      tooltipText: "Research presentation on education strategies",
+      date: "April 2023",
+      papers: [
+        {
+          title: "Approaches and Resources for Improved Student Outcomes: Evidence from Brazil",
+          url: "/publication/Dropout-Retention"
+        }
+      ]
     }
   ];
 
@@ -309,8 +328,16 @@ document.addEventListener('DOMContentLoaded', function() {
           <p><i class="fa-solid fa-building"></i> ${loc.institution}</p>
           <p><i class="fa-regular fa-calendar"></i> ${loc.date}</p>`;
         
-        if (loc.relatedPaper) {
-          popupContent += `<p><i class="fa-solid fa-file-lines"></i> ${loc.relatedPaper}</p>`;
+        if (loc.papers && loc.papers.length > 0) {
+          popupContent += `<div class="popup-meta">Presented papers:</div>`;
+          popupContent += `<div class="popup-links">`;
+          loc.papers.forEach(paper => {
+            popupContent += `
+              <a href="${paper.url}" class="popup-link" target="_blank">
+                <i class="fa-solid fa-file-lines"></i> ${paper.title}
+              </a>`;
+          });
+          popupContent += `</div>`;
         }
       }
       
@@ -338,9 +365,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Create layer control for toggling groups
   const overlays = {
-    "Education": educationGroup,
-    "Coauthors": coauthorsGroup,
-    "Talks": talksGroup
+    "<span class='layer-label education-label'>Education</span>": educationGroup,
+    "<span class='layer-label coauthor-label'>Coauthors</span>": coauthorsGroup,
+    "<span class='layer-label talk-label'>Talks</span>": talksGroup
   };
 
   L.control.layers(null, overlays, {

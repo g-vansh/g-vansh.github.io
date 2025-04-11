@@ -646,7 +646,7 @@ a:hover {
   font-size: 13px !important;
 }
 
-/* Wider layer control */
+/* Improved layer control styles */
 .wider-layer-control.leaflet-control-layers-expanded {
   min-width: 200px !important;
   max-width: 250px !important;
@@ -666,6 +666,50 @@ a:hover {
   margin-bottom: 8px !important;
   display: flex !important;
   align-items: center !important;
+}
+
+/* Custom layer control label colors */
+.wider-layer-control .leaflet-control-layers-overlays label span {
+  font-weight: bold !important;
+  margin-left: 5px !important;
+}
+
+/* More specific targeting for layer labels */
+.layer-label {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 14px;
+  padding-left: 5px;
+}
+
+.education-label {
+  color: #38a800;
+}
+
+.coauthor-label {
+  color: #9c2bdc;
+}
+
+.talk-label {
+  color: #ff8c00;
+}
+
+.wider-layer-control .leaflet-control-layers-overlays input[type="checkbox"] {
+  margin-right: 8px !important;
+  margin-left: 0 !important;
+}
+
+/* Fix the width of layer control and ensure horizontal layout */
+.wider-layer-control .leaflet-control-layers-overlays label {
+  display: flex !important;
+  align-items: center !important;
+  flex-direction: row !important;
+  margin-bottom: 10px !important;
+  padding: 5px 0 !important;
+}
+
+.leaflet-control-layers-overlays {
+  column-gap: 0 !important;
 }
 
 /* Custom Font Awesome marker icons */
