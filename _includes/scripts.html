@@ -8,6 +8,15 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 
 <!-- Custom Scripts -->
+{% if page.mathjax %}
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+{% endif %}
+
+<!-- Leaflet MarkerCluster Plugin -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
 <script src="{{ base_path }}/assets/js/research-map.js"></script>
 <script src="{{ base_path }}/assets/js/research-stats.js"></script>
 
