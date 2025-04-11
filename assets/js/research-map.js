@@ -291,7 +291,13 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       
       // Create tooltip based on location type
-      if (loc.tooltipText) {
+      if (type === 'coauthor') {
+        marker.bindTooltip(`${loc.name} - ${loc.institution}`, {
+          permanent: false,
+          direction: 'top',
+          className: `${type}-tooltip`
+        });
+      } else if (loc.tooltipText) {
         marker.bindTooltip(loc.tooltipText, {
           permanent: false,
           direction: 'top',
