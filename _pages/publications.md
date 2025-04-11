@@ -100,51 +100,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const labels = Object.keys(tagCounts);
   const data = Object.values(tagCounts);
   
-  // Generate background colors
-  const colors = [
-    '#4e79a7', '#f28e2c', '#e15759', '#76b7b2', '#59a14f',
-    '#edc949', '#af7aa1', '#ff9da7', '#9c755f', '#bab0ab'
-  ];
-  
-  // Create pie chart
-  const ctx = document.getElementById('researchFocusChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'pie',
-    data: {
-      labels: labels,
-      datasets: [{
-        data: data,
-        backgroundColor: colors.slice(0, labels.length),
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'right',
-          labels: {
-            font: {
-              size: 12
-            }
-          }
-        },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              const label = context.label || '';
-              const value = context.formattedValue;
-              const total = context.dataset.data.reduce((a, b) => a + b, 0);
-              const percentage = Math.round((context.raw / total) * 100);
-              return `${label}: ${value} (${percentage}%)`;
-            }
-          }
-        }
-      }
-    }
-  });
+  // Make data available globally for research-stats.js
+  window.publicationTagsData = {
+    labels: labels,
+    counts: data
+  };
 });
 </script>
+
+<script src="/assets/js/research-stats.js"></script>
 
 <style>
   .research-intro {

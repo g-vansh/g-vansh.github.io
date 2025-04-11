@@ -3,35 +3,67 @@ document.addEventListener('DOMContentLoaded', function() {
   const chartElement = document.getElementById('researchFocusChart');
   if (!chartElement) return;
 
-  // Research focus areas data
-  const data = {
-    labels: [
+  // Get tag data from the element's data attributes if available
+  // This will be populated by the jekyll template
+  let labels = [];
+  let counts = [];
+  
+  // If we're on a page where these tags are being counted by Jekyll
+  if (window.publicationTagsData) {
+    labels = window.publicationTagsData.labels;
+    counts = window.publicationTagsData.counts;
+  } 
+  // Fallback to predefined data if no dynamic data is available
+  else {
+    console.log("No publication tag data found, using fallback data");
+    labels = [
       'Innovation Economics',
       'Urban Economics',
       'Development Economics',
       'Geneoeconomics',
       'Neuroeconomics',
       'Industrial Organization'
-    ],
+    ];
+    counts = [38, 25, 20, 7, 5, 5];
+  }
+
+  // Generate colors array for available tags
+  const generateColors = (count) => {
+    const baseColors = [
+      [54, 162, 235],   // blue
+      [75, 192, 192],   // teal
+      [255, 159, 64],   // orange
+      [153, 102, 255],  // purple
+      [255, 99, 132],   // pink
+      [255, 206, 86],   // yellow
+      [46, 204, 113],   // green
+      [52, 73, 94],     // dark blue
+      [231, 76, 60],    // red
+      [155, 89, 182]    // lavender
+    ];
+    
+    const backgroundColors = [];
+    const borderColors = [];
+    
+    for (let i = 0; i < count; i++) {
+      const color = baseColors[i % baseColors.length];
+      backgroundColors.push(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.7)`);
+      borderColors.push(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`);
+    }
+    
+    return { backgroundColors, borderColors };
+  };
+
+  const { backgroundColors, borderColors } = generateColors(labels.length);
+
+  // Research focus areas data
+  const data = {
+    labels: labels,
     datasets: [{
       label: 'Research Focus',
-      data: [38, 25, 20, 7, 5, 5],
-      backgroundColor: [
-        'rgba(54, 162, 235, 0.7)',
-        'rgba(75, 192, 192, 0.7)',
-        'rgba(255, 159, 64, 0.7)',
-        'rgba(153, 102, 255, 0.7)',
-        'rgba(255, 99, 132, 0.7)',
-        'rgba(255, 206, 86, 0.7)'
-      ],
-      borderColor: [
-        'rgba(54, 162, 235, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(255, 159, 64, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 99, 132, 1)',
-        'rgba(255, 206, 86, 1)'
-      ],
+      data: counts,
+      backgroundColor: backgroundColors,
+      borderColor: borderColors,
       borderWidth: 1,
       hoverOffset: 15
     }]
@@ -60,12 +92,11 @@ document.addEventListener('DOMContentLoaded', function() {
         tooltip: {
           callbacks: {
             label: function(context) {
-              let label = context.label || '';
-              if (label) {
-                label += ': ';
-              }
-              label += context.parsed + '%';
-              return label;
+              const label = context.label || '';
+              const value = context.parsed;
+              const total = context.dataset.data.reduce((a, b) => a + b, 0);
+              const percentage = Math.round((value / total) * 100);
+              return `${label}: ${value} (${percentage}%)`;
             }
           }
         }
