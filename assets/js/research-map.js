@@ -414,4 +414,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add some custom styling to the map container
   mapElement.style.borderRadius = '8px';
   mapElement.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+  
+  // Apply fixes for layer control display issues
+  setTimeout(function() {
+    // Fix any alignment issues with layer control labels
+    document.querySelectorAll('.leaflet-control-layers-overlays label').forEach(function(label) {
+      label.style.display = 'flex';
+      label.style.alignItems = 'center';
+      label.style.whiteSpace = 'nowrap';
+      label.style.width = '100%';
+    });
+  }, 500);
 }); 

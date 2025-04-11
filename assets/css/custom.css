@@ -648,8 +648,8 @@ a:hover {
 
 /* Improved layer control styles */
 .wider-layer-control.leaflet-control-layers-expanded {
-  min-width: 200px !important;
-  max-width: 250px !important;
+  min-width: 250px !important;
+  max-width: 300px !important;
   padding: 15px !important;
 }
 
@@ -659,6 +659,7 @@ a:hover {
 
 .wider-layer-control .leaflet-control-layers-selector {
   margin-right: 10px !important;
+  vertical-align: middle !important;
 }
 
 .wider-layer-control .leaflet-control-layers-overlays label {
@@ -666,20 +667,23 @@ a:hover {
   margin-bottom: 8px !important;
   display: flex !important;
   align-items: center !important;
+  white-space: nowrap !important;
+  width: 100% !important;
 }
 
-/* Custom layer control label colors */
-.wider-layer-control .leaflet-control-layers-overlays label span {
-  font-weight: bold !important;
-  margin-left: 5px !important;
+/* Fix the checkbox alignment */
+.wider-layer-control input[type="checkbox"] {
+  flex-shrink: 0 !important;
+  margin-top: 0 !important;
 }
 
-/* More specific targeting for layer labels */
+/* Fix layer labels to prevent wrapping */
 .layer-label {
   display: inline-block;
   font-weight: bold;
   font-size: 14px;
   padding-left: 5px;
+  white-space: nowrap !important;
 }
 
 .education-label {
@@ -850,4 +854,31 @@ a:hover {
   object-fit: cover;
   border-radius: 4px;
   margin-bottom: 10px;
+}
+
+/* Fix Leaflet layer control specific issues */
+.leaflet-control-layers-overlays label {
+  display: flex !important;
+}
+
+.leaflet-control-layers-overlays span {
+  white-space: nowrap;
+  overflow: visible;
+}
+
+/* Force proper display in Leaflet controls */
+.leaflet-control-layers-overlays {
+  display: block !important;
+}
+
+.leaflet-control-layers-selector {
+  float: left;
+  margin-top: 2px !important;
+}
+
+/* Ensure layer control is properly laid out */
+.wider-layer-control .leaflet-control-layers-base,
+.wider-layer-control .leaflet-control-layers-overlays {
+  column-count: 1 !important;
+  column-gap: 0 !important;
 } 
