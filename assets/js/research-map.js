@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
       majors: "Technological Innovation, Entrepreneurship, and Strategic Management",
       yearRange: "2025-2030",
       honors: [],
-      concentrations: "Technological Innovation, Entrepreneurship, and Strategic Management group under the Behavioral Policy and Sciences group",
+      concentrations: "Behavioral Policy and Sciences",
       affiliations: "MIT Sloan School of Management",
       type: "education",
       tooltipText: "Massachusetts Institute of Technology"
@@ -109,8 +109,8 @@ document.addEventListener('DOMContentLoaded', function() {
         "Dyson Diversity Scholar",
         "Dean's List in all semesters"
       ],
-      concentrations: "Concentrations in Business Analytics, Computational Statistics & Data Management, and Mathematical Statistics, with Research Honors",
-      affiliations: "Affiliated with Bowers College of Computing and Information Science, Dyson School of Applied Economics and Management",
+      concentrations: "Business Analytics, Computational Statistics & Data Management, and Mathematical Statistics",
+      affiliations: "Dyson School of Applied Economics and Management",
       type: "education",
       tooltipText: "Cornell University, Ithaca NY"
     },
@@ -428,8 +428,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       marker.bindPopup(popupContent, {
-        maxWidth: loc.name === "Cornell University" ? 350 : 300,
-        minWidth: loc.name === "Cornell University" ? 300 : 250,
+        maxWidth: 280,
+        minWidth: 200,
         className: popupClass,
         autoPan: true,
         autoPanPadding: [20, 20],
