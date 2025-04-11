@@ -48,21 +48,21 @@ document.addEventListener('DOMContentLoaded', function() {
       className: 'custom-marker current-marker',
       html: '<div class="marker-pin"></div>',
       iconSize: [30, 30],
-      iconAnchor: [15, 30],
+      iconAnchor: [15, 15],
       popupAnchor: [0, -30]
     }),
     project: L.divIcon({
       className: 'custom-marker project-marker',
       html: '<div class="marker-pin"></div>',
       iconSize: [30, 30],
-      iconAnchor: [15, 30],
+      iconAnchor: [15, 15],
       popupAnchor: [0, -30]
     }),
     education: L.divIcon({
       className: 'custom-marker education-marker',
       html: '<div class="marker-pin"></div>',
       iconSize: [30, 30],
-      iconAnchor: [15, 30],
+      iconAnchor: [15, 15],
       popupAnchor: [0, -30]
     })
   };
