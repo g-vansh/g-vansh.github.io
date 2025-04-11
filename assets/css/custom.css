@@ -372,6 +372,7 @@ a:hover {
 .page__content .archive__item,
 .list__item,
 .page__content .feature__item {
+  display: block;
   transition: var(--transition);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -380,6 +381,7 @@ a:hover {
   border: 1px solid var(--border-color);
   background: white;
   box-shadow: var(--shadow-sm);
+  width: 100%;
 }
 
 .archive__item:hover,
@@ -388,6 +390,45 @@ a:hover {
 .page__content .feature__item:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-5px);
+}
+
+/* Fix for grid layouts that might rely on the outer container */
+.grid__item {
+  margin-bottom: 2em;
+}
+
+.grid__item .archive__item {
+  margin-bottom: 0;
+  height: 100%;
+}
+
+/* Make sure the archive pages style is preserved */
+.archive {
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.archive__subtitle {
+  margin: 1.414em 0 0.5em;
+  padding-bottom: 0.5em;
+  font-size: 1em;
+  color: var(--text-light);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Research section specific styles */
+.research-projects-section,
+.research-assistance-section {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .research-projects-section,
+  .research-assistance-section {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
 }
 
 /* Button Improvements */
