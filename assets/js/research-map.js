@@ -238,12 +238,13 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   L.control.layers(null, overlays, {
-    collapsed: false,
-    position: 'topright'
+    collapsed: true,
+    position: 'topright',
+    className: 'wider-layer-control'
   }).addTo(map);
 
   // Add a beautiful legend
-  const legend = L.control({position: 'bottomright'});
+  const legend = L.control({position: 'bottomleft'});
   legend.onAdd = function(map) {
     const div = L.DomUtil.create('div', 'info legend');
     div.innerHTML = `
