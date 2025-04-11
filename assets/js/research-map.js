@@ -377,10 +377,9 @@ document.addEventListener('DOMContentLoaded', function() {
   addMarkersToGroup(coauthorLocations, coauthorsGroup, 'coauthor');
   addMarkersToGroup(talksLocations, talksGroup, 'talk');
 
-  // Add all groups to the map
-  map.addLayer(educationGroup);
+  // Add only coauthors group to the map by default
   map.addLayer(coauthorsGroup);
-  map.addLayer(talksGroup);
+  // Note: education and talks groups are not added by default
 
   // Create layer control for toggling groups
   const overlays = {
@@ -390,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   L.control.layers(null, overlays, {
-    collapsed: true,
+    collapsed: false, // Make it open by default
     position: 'topright',
     className: 'wider-layer-control'
   }).addTo(map);
