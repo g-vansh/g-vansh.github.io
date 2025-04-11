@@ -18,13 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("No publication tag data found, using fallback data");
     labels = [
       'Innovation Economics',
+      'Open Source Software',
+      'Strategy',
       'Urban Economics',
       'Development Economics',
-      'Geneoeconomics',
-      'Neuroeconomics',
-      'Industrial Organization'
-    ];
-    counts = [38, 25, 20, 7, 5, 5];
+      'Education Economics',
+      'Public Economics',
+      'Environmental Economics'
+      ];
+    counts = [23, 8, 12, 7, 16, 14, 12, 8];
   }
 
   // Generate colors array for available tags
