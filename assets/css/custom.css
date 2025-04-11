@@ -228,12 +228,16 @@
 }
 
 .legend-icon {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
   margin-right: 8px;
-  border: 1px solid #fff;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 12px;
 }
 
 .legend-icon.current {
@@ -245,7 +249,15 @@
 }
 
 .legend-icon.education {
-  background-color: #2ecc71;
+  color: #38a800;
+}
+
+.legend-icon.coauthor {
+  color: #9c2bdc;
+}
+
+.legend-icon.talk {
+  color: #ff8c00;
 }
 
 /* Research Statistics Visualization */
@@ -579,28 +591,32 @@ a:hover {
 }
 
 .legend-icon {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
   margin-right: 8px;
   border-radius: 50%;
   border: 1px solid #ccc;
+  background-color: white;
+  font-size: 12px;
 }
 
 .legend-icon.current {
-  background-color: #2882e8;
+  background-color: #e74c3c;
 }
 
 .legend-icon.education {
-  background-color: #38a800;
+  color: #38a800;
 }
 
 .legend-icon.coauthor {
-  background-color: #9c2bdc;
+  color: #9c2bdc;
 }
 
 .legend-icon.talk {
-  background-color: #ff8c00;
+  color: #ff8c00;
 }
 
 .leaflet-popup-content-wrapper {
@@ -650,4 +666,42 @@ a:hover {
   margin-bottom: 8px !important;
   display: flex !important;
   align-items: center !important;
+}
+
+/* Custom Font Awesome marker icons */
+.custom-marker-icon {
+  background: transparent;
+  border: none;
+}
+
+.custom-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  font-size: 18px;
+  color: white;
+  border: 2px solid white;
+  transition: all 0.3s ease;
+}
+
+.custom-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.education-icon {
+  background-color: #38a800;
+}
+
+.coauthor-icon {
+  background-color: #9c2bdc;
+}
+
+.talk-icon {
+  background-color: #ff8c00;
 } 

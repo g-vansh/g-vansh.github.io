@@ -15,26 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
     position: 'topright'
   }).addTo(map);
   
-  // Add a beautiful map layer - Carto Voyager style
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  // Add a beautiful map layer - CartoDB Positron style
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 20
   }).addTo(map);
 
   // Create marker groups
-  const currentGroup = L.markerClusterGroup({
-    showCoverageOnHover: false,
-    maxClusterRadius: 50,
-    iconCreateFunction: function(cluster) {
-      return L.divIcon({
-        html: `<div class="custom-cluster current-cluster">${cluster.getChildCount()}</div>`,
-        className: 'marker-cluster-custom',
-        iconSize: new L.Point(40, 40)
-      });
-    }
-  });
-  
   const educationGroup = L.markerClusterGroup({
     showCoverageOnHover: false,
     maxClusterRadius: 50,
@@ -71,53 +59,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Custom marker icons for different types of locations
+  // Custom marker icons for different types of locations using Font Awesome
   const markerIcons = {
-    current: L.icon({
-      iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
+    education: L.divIcon({
+      html: `<div class="custom-icon education-icon"><i class="fa-solid fa-graduation-cap"></i></div>`,
+      className: 'custom-marker-icon',
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+      popupAnchor: [0, -35]
     }),
-    education: L.icon({
-      iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
+    coauthor: L.divIcon({
+      html: `<div class="custom-icon coauthor-icon"><i class="fa-solid fa-user-tie"></i></div>`,
+      className: 'custom-marker-icon',
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+      popupAnchor: [0, -35]
     }),
-    coauthor: L.icon({
-      iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
-    }),
-    talk: L.icon({
-      iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
+    talk: L.divIcon({
+      html: `<div class="custom-icon talk-icon"><i class="fa-solid fa-person-chalkboard"></i></div>`,
+      className: 'custom-marker-icon',
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+      popupAnchor: [0, -35]
     })
   };
 
   // Define research locations with details
-  const currentLocations = [
+  const educationLocations = [
     {
-      name: "MIT (Current)",
+      name: "MIT",
       location: [42.3601, -71.0942],
       description: "PhD research on innovation and proximity effects",
-      type: "current"
-    }
-  ];
-  
-  const educationLocations = [
+      type: "education"
+    },
     {
       name: "Cornell University",
       location: [42.4534, -76.4735],
@@ -196,13 +170,13 @@ document.addEventListener('DOMContentLoaded', function() {
   function addMarkersToGroup(locations, group, type) {
     locations.forEach(loc => {
       const marker = L.marker(loc.location, {
-        icon: markerIcons[type] || markerIcons.current
+        icon: markerIcons[type]
       });
       
       // Create popup content based on location type
       let popupContent = `<div class="custom-popup"><h3>${loc.name}</h3>`;
       
-      if (type === 'current' || type === 'education') {
+      if (type === 'education') {
         popupContent += `<p>${loc.description}</p>`;
       } else if (type === 'coauthor') {
         popupContent += `<p>Affiliation: ${loc.institution}</p>`;
@@ -218,20 +192,17 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Add all markers to their respective groups
-  addMarkersToGroup(currentLocations, currentGroup, 'current');
   addMarkersToGroup(educationLocations, educationGroup, 'education');
   addMarkersToGroup(coauthorLocations, coauthorsGroup, 'coauthor');
   addMarkersToGroup(talksLocations, talksGroup, 'talk');
 
   // Add all groups to the map
-  map.addLayer(currentGroup);
   map.addLayer(educationGroup);
   map.addLayer(coauthorsGroup);
   map.addLayer(talksGroup);
 
   // Create layer control for toggling groups
   const overlays = {
-    "Current Location": currentGroup,
     "Education": educationGroup,
     "Coauthors": coauthorsGroup,
     "Talks": talksGroup
@@ -250,10 +221,9 @@ document.addEventListener('DOMContentLoaded', function() {
     div.innerHTML = `
       <div class="legend-container">
         <h4>Research Network</h4>
-        <div class="legend-item"><span class="legend-icon current"></span> Current Location</div>
-        <div class="legend-item"><span class="legend-icon education"></span> Education</div>
-        <div class="legend-item"><span class="legend-icon coauthor"></span> Coauthors</div>
-        <div class="legend-item"><span class="legend-icon talk"></span> Talks</div>
+        <div class="legend-item"><span class="legend-icon education"><i class="fa-solid fa-graduation-cap"></i></span> Education</div>
+        <div class="legend-item"><span class="legend-icon coauthor"><i class="fa-solid fa-user-tie"></i></span> Coauthors</div>
+        <div class="legend-item"><span class="legend-icon talk"><i class="fa-solid fa-person-chalkboard"></i></span> Talks</div>
       </div>
     `;
     return div;
