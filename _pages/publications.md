@@ -194,4 +194,40 @@ author_profile: true
     background-color: #6c757d;
     color: white;
   }
+  
+  .media-coverage {
+    margin-top: 0.75em;
+    padding: 0.75em 1em;
+    background-color: #f8f9fa;
+    border-left: 3px solid #17a2b8;
+    border-radius: 3px;
+  }
+  
+  .media-coverage h4 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: #17a2b8;
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+  
+  .media-coverage ul {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+  
+  .media-coverage li {
+    margin-bottom: 0.3em;
+    font-size: 0.85em;
+    line-height: 1.4;
+  }
+  
+  .media-coverage li:last-child {
+    margin-bottom: 0;
+  }
+  
+  .media-coverage a {
+    font-weight: 600;
+    color: #0056b3;
+  }
 </style>

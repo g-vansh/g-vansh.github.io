@@ -81,5 +81,16 @@
     <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}</p>
     {% endif %}
 
+    {% if post.media_coverage %}
+    <div class="media-coverage">
+      <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i> Media Coverage</h4>
+      <ul>
+        {% for coverage in post.media_coverage %}
+        <li><a href="{{ coverage.url }}" target="_blank">{{ coverage.outlet }}</a>: "{{ coverage.title }}"</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
   </article>
 </div>

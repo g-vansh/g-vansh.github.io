@@ -14,6 +14,13 @@ venue: National Bureau of Economic Research (Working Paper)
 wp: true
 type: "project"
 project_status: "under_review"
+media_coverage:
+  - outlet: "National Bureau of Economic Research (NBER) Bulletin on Entrepreneurship"
+    title: "Open-Source Software Creators: It's Not Just About the Money"
+    url: "https://www.nber.org/be/20241/open-source-software-creators-its-not-just-about-money"
+  - outlet: "Harvard Business School Working Knowledge Newsletter"
+    title: "Intrinsic Joy Sparks Ideas Better than Cash"
+    url: "https://www.library.hbs.edu/working-knowledge/intrinsic-joy-sparks-ideas-better-than-cash"
 ---
 [NBER Working Paper 31668](https://www.nber.org/papers/w31668)
 
@@ -31,4 +38,4 @@ I work on the project as a co-author with [Annamaria Conti (IE Business School)]
 
 **Abstract:**
 
-Open source is key to innovation, but we know little about how to incentivize it. In this paper, we examine the impact of a program providing monetary incentives to motivate innovators to contribute to open source. The Sponsors program was introduced by GitHub in May 2019 and enabled organizations and individuals alike to reward developers for their open source work on the platform. To study this program, we collect fine-grained data on about 100,000 GitHub users, their activities, and sponsorship events. Using a difference-in-differences approach, we document two main effects. The first is that developers who opted into the program, which does not entail receiving a financial reward, increased their output after the program's launch. The second is that the actual receipt of sponsorship has a long-lasting negative effect on innovation, as measured by new repository creation, regardless of the amount of money received. We estimate a similar decline in other community-oriented tasks, but not in coding effort. While the program’s net effect on users’ innovative output appears to be positive, our study shows that receiving an extrinsic reward may crowd out developers' intrinsic motivation, diverting their effort away from community and service-oriented activities on open source.
+Open source is key to innovation, but we know little about how to incentivize it. In this paper, we examine the impact of a program providing monetary incentives to motivate innovators to contribute to open source. The Sponsors program was introduced by GitHub in May 2019 and enabled organizations and individuals alike to reward developers for their open source work on the platform. To study this program, we collect fine-grained data on about 100,000 GitHub users, their activities, and sponsorship events. Using a difference-in-differences approach, we document two main effects. The first is that developers who opted into the program, which does not entail receiving a financial reward, increased their output after the program's launch. The second is that the actual receipt of sponsorship has a long-lasting negative effect on innovation, as measured by new repository creation, regardless of the amount of money received. We estimate a similar decline in other community-oriented tasks, but not in coding effort. While the program's net effect on users' innovative output appears to be positive, our study shows that receiving an extrinsic reward may crowd out developers' intrinsic motivation, diverting their effort away from community and service-oriented activities on open source.
