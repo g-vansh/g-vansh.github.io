@@ -119,6 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
       name: "Daniela Scur",
       location: [42.4534, -76.4735],
       institution: "Cornell University",
+      designation: "Assistant Professor",
+      department: "Dyson School of Applied Economics and Management",
       type: "coauthor",
       tooltipText: "Collaborator on Brazilian municipalities research",
       projects: [
@@ -139,6 +141,8 @@ document.addEventListener('DOMContentLoaded', function() {
       name: "Jorge Guzman",
       location: [40.8075, -73.9626],
       institution: "Columbia University",
+      designation: "Gantcher Associate Professor of Business",
+      department: "Columbia Business School",
       type: "coauthor",
       tooltipText: "Collaborator on GitHub Sponsors research",
       projects: [
@@ -154,6 +158,8 @@ document.addEventListener('DOMContentLoaded', function() {
       name: "Michael Best",
       location: [40.8075, -73.9626],
       institution: "Columbia University",
+      designation: "Assistant Professor",
+      department: "Department of Economics",
       type: "coauthor",
       tooltipText: "Collaborator on Brazilian municipalities research",
       projects: [
@@ -174,6 +180,8 @@ document.addEventListener('DOMContentLoaded', function() {
       name: "Maria Roche",
       location: [42.3770, -71.1167],
       institution: "Harvard University",
+      designation: "Assistant Professor",
+      department: "Harvard Business School",
       type: "coauthor",
       tooltipText: "Collaborator on GitHub Sponsors research",
       projects: [
@@ -189,6 +197,8 @@ document.addEventListener('DOMContentLoaded', function() {
       name: "Annamaria Conti",
       location: [40.4165, -3.7026],
       institution: "IE University",
+      designation: "Full Professor",
+      department: "IE Business School",
       type: "coauthor",
       tooltipText: "Collaborator on GitHub Sponsors research",
       projects: [
@@ -204,6 +214,8 @@ document.addEventListener('DOMContentLoaded', function() {
       name: "Renata Lemos",
       location: [38.9072, -77.0369],
       institution: "World Bank Washington DC",
+      designation: "Senior Economist",
+      department: "Education Global Practice",
       type: "coauthor",
       tooltipText: "Collaborator on Brazilian municipalities research",
       projects: [
@@ -302,7 +314,15 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (type === 'coauthor') {
         popupContent += `
           <h3>${loc.name}</h3>
-          <p><i class="fa-solid fa-building"></i> ${loc.institution}</p>`;
+          <p><i class="fa-solid fa-user-tie"></i> ${loc.designation}</p>
+          <p><i class="fa-solid fa-building"></i> ${loc.department}, ${loc.institution}</p>`;
+        
+        if (loc.website) {
+          popupContent += `
+            <a href="${loc.website}" class="popup-link" target="_blank">
+              <i class="fa-solid fa-globe"></i> Personal Website
+            </a>`;
+        }
         
         if (loc.projects && loc.projects.length > 0) {
           popupContent += `<div class="popup-meta">Joint projects:</div>`;
@@ -314,13 +334,6 @@ document.addEventListener('DOMContentLoaded', function() {
               </a>`;
           });
           popupContent += `</div>`;
-        }
-        
-        if (loc.website) {
-          popupContent += `
-            <a href="${loc.website}" class="popup-link" target="_blank">
-              <i class="fa-solid fa-globe"></i> Website
-            </a>`;
         }
       } else if (type === 'talk') {
         popupContent += `
