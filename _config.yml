@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Vansh Gupta"
 title_separator          : "-"
 name                     : &name "Vansh Gupta"
-description              : &description "Economics researcher with interests in innovation, urban, & development topics."
+description              : &description "Vansh Gupta - MIT PhD researcher specializing in innovation economics, focusing on how proximity, genetics, and policies shape the way people generate breakthrough ideas."
 url                      : https://g-vansh.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "g-vansh/g-vansh.github.io"
@@ -50,7 +50,7 @@ atom_feed:
   path                   : # blank (default) uses feed.xml
 
 # SEO Related
-google_site_verification :
+google_site_verification : "8v8Qyr0YeEfqDXOyWPoajsMtXQhpVlwTMLHEYVnqG9A" # Add your Google verification code here
 bing_site_verification   :
 alexa_site_verification  :
 yandex_site_verification :
@@ -62,20 +62,25 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 :  # Open Graph/Twitter default site image
+og_image                 : "profile.png"  # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
+  type                   : "Person" # Person or Organization
+  name                   : "Vansh Gupta" # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
+    - "https://twitter.com/VanshG_"
+    - "https://linkedin.com/in/vansh-g/"
+    - "https://github.com/g-vansh"
+    - "https://scholar.google.com/citations?user=VLDgDyAAAAAJ&hl=en&oi=sra"
+    - "http://orcid.org/0000-0002-6221-1247"
 
 
 # Analytics
 analytics:
-  provider               :  "google-universal" # false (default), "google", "google-universal", "custom"
+  provider               : "google-universal" # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          :
+    tracking_id          : "471879646" # Replace with your actual Google Analytics tracking ID
 
 
 # Site Author
@@ -265,7 +270,8 @@ plugins:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
-  - jekyll-redirect-from
+  - jemoji
+  - jekyll-include-cache
 # mimic GitHub Pages with --safe
 whitelist:
   - jekyll-paginate

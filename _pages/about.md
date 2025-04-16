@@ -1,7 +1,7 @@
 ---
 permalink: /
-title: "Hello, World!"
-excerpt: "About me"
+title: "Vansh Gupta - Innovation Economics Researcher at MIT"
+excerpt: "MIT PhD Researcher in Innovation Economics, studying how proximity, genetics, and policy influence idea generation and entrepreneurship"
 author_profile: true
 redirect_from: 
   - /about/
