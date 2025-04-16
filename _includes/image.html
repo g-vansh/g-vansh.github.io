@@ -1,0 +1,23 @@
+{% comment %}
+Image include with SEO optimizations:
+- Lazy loading
+- Alt text
+- Caption support
+- Responsive sizing
+
+Usage:
+{% include image.html src="/images/profile.png" alt="Description" caption="Optional caption" %}
+{% endcomment %}
+
+<figure class="image-wrapper">
+  <img src="{{ include.src | relative_url }}" 
+       alt="{{ include.alt }}" 
+       {% if include.width %}width="{{ include.width }}"{% endif %}
+       {% if include.height %}height="{{ include.height }}"{% endif %}
+       loading="lazy"
+       class="{% if include.class %}{{ include.class }}{% else %}img-responsive{% endif %}"
+       {% if include.title %}title="{{ include.title }}"{% endif %}>
+  {% if include.caption %}
+    <figcaption>{{ include.caption }}</figcaption>
+  {% endif %}
+</figure> 

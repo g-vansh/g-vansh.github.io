@@ -1341,4 +1341,31 @@ a:hover {
   .responsive-map {
     height: 400px !important;
   }
+}
+
+/* Responsive image styling */
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-wrapper {
+  margin-bottom: 1em;
+}
+
+.image-wrapper figcaption {
+  font-style: italic;
+  font-size: 0.9em;
+  text-align: center;
+  color: #555;
+  margin-top: 0.5em;
+}
+
+/* Add srcset support for different screen sizes */
+@media (max-width: 767px) {
+  .img-responsive {
+    max-width: 100%;
+    width: auto;
+  }
 } 
