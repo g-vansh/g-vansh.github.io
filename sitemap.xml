@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+{% for post in site.posts %}
+  <url>
+    <loc>https://www.vansh-gupta.com{{ post.url }}</loc>
+    <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+{% endfor %}
+{% for page in site.pages %}
+  {% if page.layout != nil and page.layout != 'feed' and page.sitemap != false %}
+  <url>
+    <loc>https://www.vansh-gupta.com{{ page.url }}</loc>
+    <lastmod>{% if page.date %}{{ page.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  {% endif %}
+{% endfor %}
+{% for collection in site.collections %}
+  {% if collection.label != "posts" %}
+    {% for post in site[collection.label] %}
+    <url>
+      <loc>https://www.vansh-gupta.com{{ post.url }}</loc>
+      <lastmod>{% if post.date %}{{ post.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+    </url>
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+</urlset> 
