@@ -1,0 +1,33 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "{{ page.title }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Massachusetts Institute of Technology"
+    },
+    "sameAs": [
+      "{{ site.author.googlescholar }}",
+      "{{ site.author.orcid }}"
+    ]
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  {% if page.modified %}"dateModified": "{{ page.modified | date_to_xmlschema }}",{% endif %}
+  "description": "{{ page.excerpt | strip_html | strip_newlines | escape }}",
+  "keywords": "{{ page.tags | join: ', ' }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ page.publisher | default: page.venue }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}{{ site.baseurl }}/images/{{ site.og_image }}"
+    }
+  },
+  {% if page.doi %}"sameAs": "https://doi.org/{{ page.doi }}",{% endif %}
+  "url": "{{ site.url }}{{ site.baseurl }}{{ page.url }}"
+}
+</script> 

@@ -1,0 +1,44 @@
+{% comment %}
+Usage: 
+{% include responsive-image.html 
+  path="path/to/image.jpg" 
+  alt="Alt text for the image" 
+  class="optional-css-class" 
+%}
+{% endcomment %}
+
+{% assign img_path = include.path %}
+{% assign img_path_without_ext = img_path | split: '.' | first %}
+{% assign img_ext = img_path | split: '.' | last %}
+
+{% capture webp_path %}{{ img_path_without_ext }}.webp{% endcapture %}
+{% capture small_jpg_path %}{{ img_path_without_ext }}-480.{{ img_ext }}{% endcapture %}
+{% capture medium_jpg_path %}{{ img_path_without_ext }}-768.{{ img_ext }}{% endcapture %}
+{% capture large_jpg_path %}{{ img_path_without_ext }}-1200.{{ img_ext }}{% endcapture %}
+
+<picture>
+  <source 
+    srcset="{{ webp_path | prepend: '/images/optimized/' | prepend: base_path }}"
+    type="image/webp"
+  >
+  <source 
+    media="(max-width: 480px)"
+    srcset="{{ small_jpg_path | prepend: '/images/optimized/' | prepend: base_path }}"
+  >
+  <source 
+    media="(max-width: 768px)"
+    srcset="{{ medium_jpg_path | prepend: '/images/optimized/' | prepend: base_path }}"
+  >
+  <source 
+    media="(min-width: 769px)"
+    srcset="{{ large_jpg_path | prepend: '/images/optimized/' | prepend: base_path }}"
+  >
+  <img 
+    src="{{ img_path | prepend: '/images/' | prepend: base_path }}" 
+    alt="{{ include.alt }}" 
+    class="{{ include.class }}" 
+    loading="lazy"
+    {% if include.width %}width="{{ include.width }}"{% endif %}
+    {% if include.height %}height="{{ include.height }}"{% endif %}
+  >
+</picture> 

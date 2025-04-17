@@ -11,11 +11,12 @@ title                    : "Vansh Gupta"
 title_separator          : "-"
 name                     : &name "Vansh Gupta"
 description              : &description "Vansh Gupta - MIT PhD researcher specializing in innovation economics, focusing on how proximity, genetics, and policies shape the way people generate breakthrough ideas."
+keywords                 : "innovation economics, MIT PhD, researcher, proximity, genetics, policies, breakthrough ideas, economics research, Vansh Gupta"
 url                      : https://www.vansh-gupta.com # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "g-vansh/g-vansh.github.io"
 teaser                   : "profile.png" # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
-breadcrumbs              : false # true, false (default)
+breadcrumbs              : true # true, false (default)
 words_per_minute         : 160
 future                   : true
 read_more                : "enabled" # if enabled, adds "Read more" links to excerpts
@@ -54,6 +55,7 @@ google_site_verification : "8v8Qyr0YeEfqDXOyWPoajsMtXQhpVlwTMLHEYVnqG9A" # Add y
 bing_site_verification   :
 alexa_site_verification  :
 yandex_site_verification :
+naver_site_verification  :
 
 # Social Sharing
 twitter:

@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
+Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /assets/js/plugins/
+Disallow: /feed.xml
+Disallow: /404.html
+Disallow: /*.svg$
+Disallow: /api/
+Disallow: /cdn-cgi/
+Disallow: /tmp/
 
 Sitemap: https://www.vansh-gupta.com/sitemap.xml 
