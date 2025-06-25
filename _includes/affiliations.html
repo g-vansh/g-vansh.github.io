@@ -1,0 +1,207 @@
+<div class="affiliations-container" id="affiliations-container">
+  <div class="affiliations-header">
+    <h3>Affiliations</h3>
+    <button class="affiliations-toggle" id="affiliations-toggle" aria-label="Toggle affiliations display">
+      <i class="fas fa-university"></i>
+      <span class="toggle-text">View Affiliations</span>
+      <i class="fas fa-chevron-down toggle-arrow"></i>
+    </button>
+  </div>
+  
+  <div class="affiliations-content" id="affiliations-content">
+    <div class="affiliations-grid">
+      {% assign sorted_affiliations = site.data.affiliations.affiliations | sort: 'order' %}
+      {% for affiliation in sorted_affiliations %}
+        <div class="affiliation-item {{ affiliation.type }}" 
+             data-affiliation="{{ affiliation.id }}"
+             role="button"
+             tabindex="0"
+             aria-label="Learn more about {{ affiliation.name }}">
+          
+          <div class="affiliation-logo">
+            {% if affiliation.logo %}
+              <img src="{{ affiliation.logo | relative_url }}" 
+                   alt="{{ affiliation.logo_alt }}" 
+                   loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="logo-fallback" style="display: none;">
+                <i class="fas fa-university"></i>
+                <span>{{ affiliation.short_name }}</span>
+              </div>
+            {% else %}
+              <div class="logo-fallback">
+                <i class="fas fa-university"></i>
+                <span>{{ affiliation.short_name }}</span>
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="affiliation-info">
+            <h4 class="affiliation-name">{{ affiliation.short_name }}</h4>
+            <div class="affiliation-type-badge">{{ affiliation.type | capitalize }}</div>
+          </div>
+          
+          <div class="affiliation-hover-overlay">
+            <i class="fas fa-info-circle"></i>
+            <span>Click to learn more</span>
+          </div>
+          
+        </div>
+      {% endfor %}
+    </div>
+    
+    <!-- Modal for detailed information -->
+    <div class="affiliation-modal" id="affiliation-modal" role="dialog" aria-hidden="true" aria-labelledby="modal-title">
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <div class="modal-content" role="document">
+        <div class="modal-header">
+          <h2 id="modal-title"><!-- Dynamic title --></h2>
+          <button class="modal-close" id="modal-close" aria-label="Close modal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <!-- Dynamic content -->
+        </div>
+        <div class="modal-footer">
+          <a href="#" id="modal-website-link" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i>
+            Visit Website
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Preload affiliation content -->
+<script type="application/json" id="affiliations-data">
+{
+  {% for affiliation in sorted_affiliations %}
+  "{{ affiliation.id }}": {
+    "name": "{{ affiliation.name | escape }}",
+    "website": "{{ affiliation.website }}",
+    "content": {{ site.affiliations | where: "slug", affiliation.description_file | first | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const affiliationsContainer = document.getElementById('affiliations-container');
+  const affiliationsToggle = document.getElementById('affiliations-toggle');
+  const affiliationsContent = document.getElementById('affiliations-content');
+  const toggleArrow = affiliationsToggle.querySelector('.toggle-arrow');
+  const toggleText = affiliationsToggle.querySelector('.toggle-text');
+  
+  const modal = document.getElementById('affiliation-modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalBody = document.getElementById('modal-body');
+  const modalClose = document.getElementById('modal-close');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const modalWebsiteLink = document.getElementById('modal-website-link');
+  
+  const affiliationItems = document.querySelectorAll('.affiliation-item');
+  const affiliationsData = JSON.parse(document.getElementById('affiliations-data').textContent);
+  
+  let isExpanded = false;
+  
+  // Toggle affiliations display
+  function toggleAffiliations() {
+    isExpanded = !isExpanded;
+    
+    if (isExpanded) {
+      affiliationsContent.style.maxHeight = affiliationsContent.scrollHeight + 'px';
+      affiliationsContent.style.opacity = '1';
+      affiliationsContainer.classList.add('expanded');
+      toggleArrow.style.transform = 'rotate(180deg)';
+      toggleText.textContent = 'Hide Affiliations';
+    } else {
+      affiliationsContent.style.maxHeight = '0';
+      affiliationsContent.style.opacity = '0';
+      affiliationsContainer.classList.remove('expanded');
+      toggleArrow.style.transform = 'rotate(0deg)';
+      toggleText.textContent = 'View Affiliations';
+    }
+  }
+  
+  // Open modal with affiliation details
+  function openModal(affiliationId) {
+    const data = affiliationsData[affiliationId];
+    if (!data) return;
+    
+    modalTitle.textContent = data.name;
+    modalWebsiteLink.href = data.website;
+    
+    // Load content from markdown
+    if (data.content && data.content.content) {
+      // Convert markdown to HTML (basic conversion for demo)
+      let htmlContent = data.content.content
+        .replace(/### (.*)/g, '<h3>$1</h3>')
+        .replace(/## (.*)/g, '<h2>$1</h2>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/- (.*)/g, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/^(.)/g, '<p>$1')
+        .replace(/(.)$/g, '$1</p>');
+      
+      modalBody.innerHTML = htmlContent;
+    } else {
+      modalBody.innerHTML = '<p>Loading affiliation details...</p>';
+    }
+    
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    
+    // Focus management
+    modalClose.focus();
+  }
+  
+  // Close modal
+  function closeModal() {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  
+  // Event listeners
+  affiliationsToggle.addEventListener('click', toggleAffiliations);
+  
+  affiliationItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const affiliationId = item.getAttribute('data-affiliation');
+      if (!isExpanded) {
+        toggleAffiliations();
+        setTimeout(() => openModal(affiliationId), 300);
+      } else {
+        openModal(affiliationId);
+      }
+    });
+    
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        item.click();
+      }
+    });
+  });
+  
+  modalClose.addEventListener('click', closeModal);
+  modalBackdrop.addEventListener('click', closeModal);
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'flex') {
+      closeModal();
+    }
+  });
+  
+  // Initialize with collapsed state
+  affiliationsContent.style.maxHeight = '0';
+  affiliationsContent.style.opacity = '0';
+});
+</script>

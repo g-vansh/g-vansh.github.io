@@ -1,0 +1,40 @@
+affiliations:
+  - id: "mit-sloan"
+    name: "MIT Sloan School of Management"
+    short_name: "MIT Sloan"
+    type: "current"
+    logo: "/images/affiliations/mit-sloan-logo.svg"
+    logo_alt: "MIT Sloan School of Management Logo"
+    website: "https://mitsloan.mit.edu/"
+    description_file: "mit-sloan"
+    order: 1
+    
+  - id: "igl"
+    name: "Innovation Growth Lab Research Network"
+    short_name: "IGL Research Network"
+    type: "current"
+    logo: "/images/affiliations/igl-logo.png"
+    logo_alt: "Innovation Growth Lab Logo"
+    website: "https://www.innovationgrowthlab.org/about/research-network"
+    description_file: "igl-research-network"
+    order: 2
+    
+  - id: "cornell"
+    name: "Cornell University"
+    short_name: "Cornell"
+    type: "past"
+    logo: "/images/affiliations/cornell-logo.png"
+    logo_alt: "Cornell University Logo"
+    website: "https://www.cornell.edu/"
+    description_file: "cornell-university"
+    order: 3
+    
+  - id: "cra"
+    name: "Charles River Associates"
+    short_name: "CRA"
+    type: "past"
+    logo: "/images/affiliations/cra-logo.png"
+    logo_alt: "Charles River Associates Logo"
+    website: "https://crai.com/"
+    description_file: "charles-river-associates"
+    order: 4

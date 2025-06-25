@@ -8,6 +8,8 @@ author_profile: true
 <div class="research-intro">
   <p>My research interests include innovation, urban, and development economics. I am currently working on projects that explore methods in geneoeconomics and neuroeconomics. Below you can find my research projects and collaborations.</p>
   
+  {% include affiliations.html %}
+  
   <div class="research-stats-container">
     <h3>Research Focus Areas</h3>
     <div class="research-stats-visualization">
