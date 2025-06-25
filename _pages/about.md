@@ -9,6 +9,8 @@ redirect_from:
 ---
 My name is Vansh. I am an incoming PhD student at [MIT's Sloan School of Management, in the Technological Innovation, Entrepreneurship, and Strategic Management](https://mitsloan.mit.edu/faculty/academic-groups/ties/phd-program) program. 
 
+{% include affiliations.html %}
+
 <div class="research-map-container">
   <h2>Research Network</h2>
   <div id="research-map" class="responsive-map" style="height: 400px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></div>
