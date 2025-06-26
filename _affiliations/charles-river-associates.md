@@ -7,7 +7,7 @@ website: "https://crai.com/"
 
 ## Charles River Associates
 
-At Charles River Associates (CRA), I gained invaluable experience as an economic consultant, applying rigorous analytical methods to real-world business and policy challenges. This role provided practical experience in industrial organization, healthcare economics, and antitrust analysis that continues to inform my academic research.
+At Charles River Associates (CRA), I gained invaluable experience as an economic litigationconsultant, applying rigorous analytical methods to real-world business and policy challenges. This role provided practical experience in industrial organization, healthcare economics, and antitrust analysis that continues to inform my academic research.
 
 ### Professional Focus
 During my time at CRA, I specialized in:
@@ -34,4 +34,4 @@ The practical experience of analyzing real-world economic phenomena at CRA provi
 
 *Founded: 1965*  
 *Headquarters: Boston, MA*  
-*Focus: Economic, financial, and business management consulting*
+*Focus: Antitrust & Competition Economic Litigation Consulting*

@@ -29,4 +29,3 @@ Cornell's founding principle of providing "instruction in any study" fostered my
 
 *Location: Ithaca, NY*  
 *Founded: 1865*  
-*Motto: "I would found an institution where any person can find instruction in any study"*
