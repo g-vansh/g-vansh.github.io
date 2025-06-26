@@ -114,15 +114,19 @@
 }
 
 .affiliation-link {
-  text-decoration: none;
+  text-decoration: none !important;
   color: inherit;
   display: block;
+  border-bottom: none !important;
 }
 
 .affiliation-link:hover,
-.affiliation-link:focus {
-  text-decoration: none;
+.affiliation-link:focus,
+.affiliation-link:active,
+.affiliation-link:visited {
+  text-decoration: none !important;
   color: inherit;
+  border-bottom: none !important;
 }
 
 .affiliation-item {
