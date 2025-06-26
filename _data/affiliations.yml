@@ -10,8 +10,8 @@ affiliations:
     order: 1
     
   - id: "igl"
-    name: "Innovation Growth Lab"
-    short_name: "IGL Research Network"
+    name: "Innovation Growth Lab Research Network"
+    short_name: "Innovation Growth Lab"
     type: "current"
     logo: "/images/affiliations/igl-logo.png"
     logo_alt: "Innovation Growth Lab Logo"
@@ -21,7 +21,7 @@ affiliations:
     
   - id: "cornell"
     name: "Cornell University"
-    short_name: "Cornell"
+    short_name: "Cornell University"
     type: "past"
     logo: "/images/affiliations/cornell-logo.png"
     logo_alt: "Cornell University Logo"
@@ -31,7 +31,7 @@ affiliations:
     
   - id: "cra"
     name: "Charles River Associates"
-    short_name: "CRA"
+    short_name: "Charles River Associates"
     type: "past"
     logo: "/images/affiliations/cra-logo.png"
     logo_alt: "Charles River Associates Logo"
