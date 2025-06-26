@@ -16,7 +16,8 @@
              data-affiliation="{{ affiliation.id }}"
              role="button"
              tabindex="0"
-             aria-label="Learn more about {{ affiliation.name }}">
+             aria-label="Learn more about {{ affiliation.name }}"
+             aria-describedby="tooltip-{{ affiliation.id }}">
           
           <div class="affiliation-logo">
             {% if affiliation.logo %}
@@ -41,9 +42,38 @@
             <div class="affiliation-type-badge">{{ affiliation.type | capitalize }}</div>
           </div>
           
-          <div class="affiliation-hover-overlay">
-            <i class="fas fa-info-circle"></i>
-            <span>Click to learn more</span>
+          <!-- Rich tooltip with markdown content -->
+          <div class="affiliation-tooltip" id="tooltip-{{ affiliation.id }}" role="tooltip" aria-hidden="true">
+            <div class="tooltip-arrow"></div>
+            <div class="tooltip-content">
+              {% assign found = false %}
+              {% for doc in site.affiliations %}
+                {% capture doc_slug %}{{ doc.path | split: "/" | last | split: "." | first }}{% endcapture %}
+                {% if doc_slug == affiliation.description_file %}
+                  <div class="tooltip-header">
+                    <h5>{{ affiliation.name }}</h5>
+                    <span class="tooltip-type-badge {{ affiliation.type }}">{{ affiliation.type | capitalize }}</span>
+                  </div>
+                  <div class="tooltip-body">
+                    {{ doc.content | markdownify | truncatewords: 50 }}
+                    <div class="tooltip-actions">
+                      <span class="tooltip-hint">Click for full details</span>
+                    </div>
+                  </div>
+                  {% assign found = true %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+              {% unless found %}
+                <div class="tooltip-header">
+                  <h5>{{ affiliation.name }}</h5>
+                  <span class="tooltip-type-badge {{ affiliation.type }}">{{ affiliation.type | capitalize }}</span>
+                </div>
+                <div class="tooltip-body">
+                  <p>Click to learn more about this affiliation.</p>
+                </div>
+              {% endunless %}
+            </div>
           </div>
           
         </div>
@@ -104,8 +134,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const affiliationItems = document.querySelectorAll('.affiliation-item');
   const affiliationsData = JSON.parse(document.getElementById('affiliations-data').textContent);
+  const tooltips = document.querySelectorAll('.affiliation-tooltip');
   
   let isExpanded = false;
+  let currentTooltip = null;
   
   // Toggle affiliations display
   function toggleAffiliations() {
@@ -156,10 +188,98 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = '';
   }
   
+  // Tooltip functionality
+  function showTooltip(item) {
+    const affiliationId = item.getAttribute('data-affiliation');
+    const tooltip = document.getElementById(`tooltip-${affiliationId}`);
+    
+    if (tooltip && isExpanded) {
+      // Hide any currently visible tooltip
+      hideTooltip();
+      
+      // Position tooltip
+      positionTooltip(item, tooltip);
+      
+      // Show tooltip
+      tooltip.style.display = 'block';
+      tooltip.setAttribute('aria-hidden', 'false');
+      
+      // Add delay for smooth transition
+      setTimeout(() => {
+        tooltip.classList.add('visible');
+      }, 10);
+      
+      currentTooltip = tooltip;
+    }
+  }
+  
+  function hideTooltip() {
+    if (currentTooltip) {
+      currentTooltip.classList.remove('visible');
+      setTimeout(() => {
+        if (currentTooltip) {
+          currentTooltip.style.display = 'none';
+          currentTooltip.setAttribute('aria-hidden', 'true');
+          currentTooltip = null;
+        }
+      }, 200);
+    }
+  }
+  
+  function positionTooltip(item, tooltip) {
+    const itemRect = item.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    // Reset positioning
+    tooltip.style.left = '';
+    tooltip.style.right = '';
+    tooltip.style.top = '';
+    tooltip.style.bottom = '';
+    tooltip.classList.remove('tooltip-left', 'tooltip-right', 'tooltip-top', 'tooltip-bottom');
+    
+    // Try to position tooltip to the right first
+    let tooltipLeft = itemRect.right + 15;
+    let tooltipTop = itemRect.top + (itemRect.height / 2) - (tooltipRect.height / 2);
+    
+    // Check if tooltip fits on the right
+    if (tooltipLeft + tooltipRect.width > viewportWidth - 20) {
+      // Position to the left
+      tooltipLeft = itemRect.left - tooltipRect.width - 15;
+      tooltip.classList.add('tooltip-left');
+      
+      // If it doesn't fit on the left either, position above or below
+      if (tooltipLeft < 20) {
+        tooltipLeft = itemRect.left + (itemRect.width / 2) - (tooltipRect.width / 2);
+        
+        // Position above
+        if (itemRect.top - tooltipRect.height - 15 > 0) {
+          tooltipTop = itemRect.top - tooltipRect.height - 15;
+          tooltip.classList.add('tooltip-top');
+        } else {
+          // Position below
+          tooltipTop = itemRect.bottom + 15;
+          tooltip.classList.add('tooltip-bottom');
+        }
+      }
+    } else {
+      tooltip.classList.add('tooltip-right');
+    }
+    
+    // Ensure tooltip stays within viewport bounds
+    tooltipLeft = Math.max(20, Math.min(tooltipLeft, viewportWidth - tooltipRect.width - 20));
+    tooltipTop = Math.max(20, Math.min(tooltipTop, viewportHeight - tooltipRect.height - 20));
+    
+    tooltip.style.left = `${tooltipLeft}px`;
+    tooltip.style.top = `${tooltipTop}px`;
+  }
+  
   // Event listeners
   affiliationsToggle.addEventListener('click', toggleAffiliations);
   
   affiliationItems.forEach(item => {
+    // Click event for modal
     item.addEventListener('click', () => {
       const affiliationId = item.getAttribute('data-affiliation');
       if (!isExpanded) {
@@ -170,11 +290,32 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
+    // Hover events for tooltip
+    item.addEventListener('mouseenter', () => {
+      showTooltip(item);
+    });
+    
+    item.addEventListener('mouseleave', () => {
+      hideTooltip();
+    });
+    
+    // Keyboard navigation
     item.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         item.click();
+      } else if (e.key === 'Escape') {
+        hideTooltip();
       }
+    });
+    
+    // Focus events for keyboard users
+    item.addEventListener('focus', () => {
+      showTooltip(item);
+    });
+    
+    item.addEventListener('blur', () => {
+      hideTooltip();
     });
   });
   
@@ -185,6 +326,15 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.style.display === 'flex') {
       closeModal();
+    } else if (e.key === 'Escape') {
+      hideTooltip();
+    }
+  });
+  
+  // Hide tooltip when clicking outside
+  document.addEventListener('click', (e) => {
+    if (currentTooltip && !e.target.closest('.affiliation-item') && !e.target.closest('.affiliation-tooltip')) {
+      hideTooltip();
     }
   });
   
