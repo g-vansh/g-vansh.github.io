@@ -147,18 +147,10 @@ document.addEventListener('DOMContentLoaded', function() {
     isExpanded = !isExpanded;
     
     if (isExpanded) {
-      // First temporarily set max-height to auto to get real scrollHeight
-      affiliationsContent.style.maxHeight = 'none';
-      const targetHeight = affiliationsContent.scrollHeight;
-      console.log('Expanding to height:', targetHeight);
+      console.log('Expanding content');
       
-      // If scrollHeight is still 0, use a fallback height
-      const finalHeight = targetHeight > 0 ? targetHeight : 500;
-      console.log('Using final height:', finalHeight);
-      
-      // Now set the actual target height for animation
-      affiliationsContent.style.maxHeight = finalHeight + 'px';
-      affiliationsContent.style.opacity = '1';
+      // Use CSS class approach for more reliable animation
+      affiliationsContent.classList.add('show');
       
       if (affiliationsContainer) affiliationsContainer.classList.add('expanded');
       if (toggleArrow) toggleArrow.style.transform = 'rotate(180deg)';
@@ -169,8 +161,8 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       console.log('Collapsing content');
       
-      affiliationsContent.style.maxHeight = '0';
-      affiliationsContent.style.opacity = '0';
+      // Remove CSS class to collapse
+      affiliationsContent.classList.remove('show');
       
       if (affiliationsContainer) affiliationsContainer.classList.remove('expanded');
       if (toggleArrow) toggleArrow.style.transform = 'rotate(0deg)';
