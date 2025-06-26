@@ -1,6 +1,6 @@
 affiliations:
   - id: "mit-sloan"
-    name: "MIT Sloan School of Management"
+    name: "MIT Sloan"
     short_name: "MIT Sloan"
     type: "current"
     logo: "/images/affiliations/mit-sloan-logo.png"
@@ -10,7 +10,7 @@ affiliations:
     order: 1
     
   - id: "igl"
-    name: "Innovation Growth Lab Research Network"
+    name: "Innovation Growth Lab"
     short_name: "Innovation Growth Lab"
     type: "current"
     logo: "/images/affiliations/igl-logo.png"
