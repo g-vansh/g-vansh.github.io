@@ -12,13 +12,15 @@
     <div class="affiliations-grid">
       {% assign sorted_affiliations = site.data.affiliations.affiliations | sort: 'order' %}
       {% for affiliation in sorted_affiliations %}
-        <div class="affiliation-item {{ affiliation.type }}" 
-             data-affiliation="{{ affiliation.id }}"
-             data-tooltip-content="{{ site.affiliations | where: 'slug', affiliation.description_file | first | strip_html | truncatewords: 50, '...' }}"
-             role="button"
-             tabindex="0"
-             aria-label="Learn more about {{ affiliation.name }}"
-             title="{{ affiliation.name }}">
+        {% assign affiliation_page = site.affiliations | where: 'slug', affiliation.description_file | first %}
+        <a href="{{ affiliation_page.url | relative_url }}" class="affiliation-link">
+          <div class="affiliation-item {{ affiliation.type }}" 
+               data-affiliation="{{ affiliation.id }}"
+               data-tooltip-content="{{ affiliation_page.content | strip_html | truncatewords: 30, '...' }} Click to read more →"
+               role="button"
+               tabindex="0"
+               aria-label="Learn more about {{ affiliation.name }}"
+               title="{{ affiliation.name }}">
           
           <div class="affiliation-logo">
             {% if affiliation.logo %}
@@ -41,6 +43,7 @@
             </span>
           </div>
         </div>
+        </a>
       {% endfor %}
     </div>
     
