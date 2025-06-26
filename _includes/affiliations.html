@@ -93,11 +93,27 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('Affiliations component initializing...');
+  
   const affiliationsContainer = document.getElementById('affiliations-container');
   const affiliationsToggle = document.getElementById('affiliations-toggle');
   const affiliationsContent = document.getElementById('affiliations-content');
-  const toggleArrow = affiliationsToggle.querySelector('.toggle-arrow');
-  const toggleText = affiliationsToggle.querySelector('.toggle-text');
+  const toggleArrow = affiliationsToggle ? affiliationsToggle.querySelector('.toggle-arrow') : null;
+  const toggleText = affiliationsToggle ? affiliationsToggle.querySelector('.toggle-text') : null;
+  
+  // Debug: Check if elements exist
+  console.log('Elements found:', {
+    container: !!affiliationsContainer,
+    toggle: !!affiliationsToggle,
+    content: !!affiliationsContent,
+    arrow: !!toggleArrow,
+    text: !!toggleText
+  });
+  
+  if (!affiliationsToggle || !affiliationsContent) {
+    console.error('Required elements not found!');
+    return;
+  }
   
   const modal = document.getElementById('affiliation-modal');
   const modalTitle = document.getElementById('modal-title');
@@ -107,30 +123,58 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalWebsiteLink = document.getElementById('modal-website-link');
   
   const affiliationItems = document.querySelectorAll('.affiliation-item');
-  const affiliationsData = JSON.parse(document.getElementById('affiliations-data').textContent);
+  
+  // Safely parse JSON data
+  let affiliationsData = {};
+  try {
+    const dataElement = document.getElementById('affiliations-data');
+    if (dataElement) {
+      affiliationsData = JSON.parse(dataElement.textContent);
+      console.log('Affiliations data loaded:', Object.keys(affiliationsData).length, 'items');
+    }
+  } catch (e) {
+    console.error('Error parsing affiliations data:', e);
+  }
   
   let isExpanded = false;
   
   // Toggle affiliations display
   function toggleAffiliations() {
+    console.log('Toggle function called. Current state - isExpanded:', isExpanded);
+    console.log('Content scrollHeight:', affiliationsContent.scrollHeight);
+    console.log('Content current maxHeight:', affiliationsContent.style.maxHeight);
+    
     isExpanded = !isExpanded;
     
     if (isExpanded) {
-      // First set max-height to scrollHeight to allow expansion
-      affiliationsContent.style.maxHeight = affiliationsContent.scrollHeight + 'px';
+      // First temporarily set max-height to auto to get real scrollHeight
+      affiliationsContent.style.maxHeight = 'none';
+      const targetHeight = affiliationsContent.scrollHeight;
+      console.log('Expanding to height:', targetHeight);
+      
+      // If scrollHeight is still 0, use a fallback height
+      const finalHeight = targetHeight > 0 ? targetHeight : 500;
+      console.log('Using final height:', finalHeight);
+      
+      // Now set the actual target height for animation
+      affiliationsContent.style.maxHeight = finalHeight + 'px';
       affiliationsContent.style.opacity = '1';
-      affiliationsContainer.classList.add('expanded');
-      toggleArrow.style.transform = 'rotate(180deg)';
-      toggleText.textContent = 'Hide Affiliations';
+      
+      if (affiliationsContainer) affiliationsContainer.classList.add('expanded');
+      if (toggleArrow) toggleArrow.style.transform = 'rotate(180deg)';
+      if (toggleText) toggleText.textContent = 'Hide Affiliations';
       
       // Update ARIA attributes
       affiliationsToggle.setAttribute('aria-expanded', 'true');
     } else {
+      console.log('Collapsing content');
+      
       affiliationsContent.style.maxHeight = '0';
       affiliationsContent.style.opacity = '0';
-      affiliationsContainer.classList.remove('expanded');
-      toggleArrow.style.transform = 'rotate(0deg)';
-      toggleText.textContent = 'View Affiliations';
+      
+      if (affiliationsContainer) affiliationsContainer.classList.remove('expanded');
+      if (toggleArrow) toggleArrow.style.transform = 'rotate(0deg)';
+      if (toggleText) toggleText.textContent = 'View Affiliations';
       
       // Update ARIA attributes
       affiliationsToggle.setAttribute('aria-expanded', 'false');
@@ -180,7 +224,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // Event listeners
-  affiliationsToggle.addEventListener('click', toggleAffiliations);
+  console.log('Attaching event listeners...');
+  
+  affiliationsToggle.addEventListener('click', function(e) {
+    console.log('Toggle button clicked!');
+    e.preventDefault();
+    toggleAffiliations();
+  });
   
   affiliationItems.forEach(item => {
     item.addEventListener('click', () => {
@@ -201,15 +251,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  modalClose.addEventListener('click', closeModal);
-  modalBackdrop.addEventListener('click', closeModal);
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
   
   // Keyboard navigation
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'flex') {
+    if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
       closeModal();
     }
   });
+  
+  console.log('Affiliations component initialized successfully!');
   
   // Initial state is now handled by CSS
 }); // Close DOMContentLoaded event listener

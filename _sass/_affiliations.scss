@@ -104,6 +104,11 @@
   opacity: 0;
 }
 
+.affiliations-content.show {
+  max-height: 1000px;
+  opacity: 1;
+}
+
 .affiliations-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
