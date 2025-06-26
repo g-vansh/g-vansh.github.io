@@ -81,7 +81,7 @@
   "{{ affiliation.id }}": {
     "name": "{{ affiliation.name | escape }}",
     "website": "{{ affiliation.website }}",
-    "content": {% assign affiliation_content = site.affiliations | where: "slug", affiliation.description_file | first %}{% if affiliation_content %}{{ affiliation_content | jsonify }}{% else %}null{% endif %}
+    "content": {% assign found = false %}{% for doc in site.affiliations %}{% capture doc_slug %}{{ doc.path | split: "/" | last | split: "." | first }}{% endcapture %}{% if doc_slug == affiliation.description_file %}{{ doc.content | markdownify | jsonify }}{% assign found = true %}{% break %}{% endif %}{% endfor %}{% unless found %}null{% endunless %}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 }
@@ -134,23 +134,11 @@ document.addEventListener('DOMContentLoaded', function() {
     modalTitle.textContent = data.name;
     modalWebsiteLink.href = data.website;
     
-    // Load content from markdown
-    if (data.content && data.content.content) {
-      // Convert markdown to HTML (basic conversion for demo)
-      let htmlContent = data.content.content
-        .replace(/### (.*)/g, '<h3>$1</h3>')
-        .replace(/## (.*)/g, '<h2>$1</h2>')
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/- (.*)/g, '<li>$1</li>')
-        .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
-        .replace(/\n\n/g, '</p><p>')
-        .replace(/^(.)/g, '<p>$1')
-        .replace(/(.)$/g, '$1</p>');
-      
-      modalBody.innerHTML = htmlContent;
+    // Load content from markdown (already converted to HTML by Jekyll)
+    if (data.content && data.content !== null) {
+      modalBody.innerHTML = data.content;
     } else {
-      modalBody.innerHTML = '<p>Loading affiliation details...</p>';
+      modalBody.innerHTML = '<p>No detailed information available for this affiliation.</p>';
     }
     
     modal.style.display = 'flex';
