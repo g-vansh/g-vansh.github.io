@@ -446,5 +446,19 @@
     "original_lng": -83.35452543629724,
     "lat": 42.59053600287463,
     "lng": -83.36307487445238
+  },
+  {
+    "name": "Rana Thind",
+    "number": "163",
+    "house": "Hyderabad",
+    "batch": "2020",
+    "address": "9917 110 St, Edmonton, Alberta. T5K 1V7",
+    "email": "sunjogthind.1@gmail.com",
+    "phone": "",
+    "timestamp": "2025-03-21T21:26:19.000Z",
+    "original_lat": 53.5379649,
+    "original_lng": -113.5098281,
+    "lat": 53.54906183273464,
+    "lng": -113.50470740407594
   }
 ]
