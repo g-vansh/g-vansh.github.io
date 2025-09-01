@@ -7,7 +7,11 @@
       {% assign sorted_affiliations = site.data.affiliations.affiliations | sort: 'order' %}
       {% for affiliation in sorted_affiliations %}
         {% assign affiliation_page = site.affiliations | where: 'slug', affiliation.description_file | first %}
-        <a href="{{ affiliation_page.url | relative_url }}" class="affiliation-link">
+        {% if affiliation.id == "mit-sloan" %}
+          <a href="{{ affiliation.website }}" class="affiliation-link" target="_blank" rel="noopener noreferrer">
+        {% else %}
+          <a href="{{ affiliation_page.url | relative_url }}" class="affiliation-link">
+        {% endif %}
           <div class="affiliation-item {{ affiliation.type }}" 
                data-affiliation="{{ affiliation.id }}"
                data-tooltip-content="{{ affiliation_page.content | strip_html | truncatewords: 30, '...' }} Click to read more →"
