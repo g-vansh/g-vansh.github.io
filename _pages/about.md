@@ -1,4 +1,5 @@
 ---
+layout: home
 permalink: /
 title: "Vansh Gupta - Innovation Economics Researcher at MIT"
 excerpt: "MIT PhD Researcher in Innovation Economics, studying how proximity, genetics, and policy influence idea generation and entrepreneurship"
