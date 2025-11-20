@@ -1,0 +1,62 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<div id="main" role="main">
+  <!-- Hero Section with Kinetic Typography -->
+  <section class="hero-section">
+    <h1 class="hero-name kinetic-text" data-speed="0.3">{{ site.name | upcase }}</h1>
+    <p class="hero-subtitle reveal-on-scroll">Innovation Economics @ MIT</p>
+  </section>
+
+  <!-- About Section -->
+  <section class="page__content reveal-on-scroll" style="max-width: 900px; margin: 6rem auto 4rem; padding: 0 2rem;">
+    {{ content }}
+  </section>
+
+  <!-- Featured Publications Bento Grid -->
+  {% assign featured_publications = site.publications | where: "type", "project" | where: "project_status", "under_review" | limit: 6 %}
+  {% if featured_publications.size > 0 %}
+  <section class="bento-section reveal-on-scroll" style="margin: 6rem 0;">
+    <h2 style="text-align: center; margin-bottom: 3rem; font-size: clamp(2rem, 5vw, 3.5rem);">Featured Research</h2>
+    <div class="bento-grid">
+      {% for post in featured_publications %}
+        <div class="bento-item">
+          <article class="bento-card echelon-card">
+            <h3 class="archive__item-title">
+              <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+            </h3>
+            
+            <div class="archive__item-meta">
+              {% if post.date %}
+                <span class="year-badge">{{ post.date | date: "%Y" }}</span>
+              {% endif %}
+              {% if post.venue %}
+                <span class="tech-badge">{{ post.venue }}</span>
+              {% endif %}
+              {% if post.tags %}
+                {% for tag in post.tags limit: 3 %}
+                  <span class="tech-badge">{{ tag }}</span>
+                {% endfor %}
+              {% endif %}
+            </div>
+
+            {% if post.excerpt %}
+              <p class="archive__item-excerpt">{{ post.excerpt | markdownify | strip_html | truncatewords: 30 }}</p>
+            {% endif %}
+
+            <a href="{{ base_path }}{{ post.url }}" class="btn" style="margin-top: 1.5rem; display: inline-block;">Read More</a>
+          </article>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- All Publications Link -->
+  <section class="reveal-on-scroll" style="text-align: center; margin: 4rem 0; padding: 0 2rem;">
+    <a href="{{ base_path }}/publications/" class="btn" style="font-size: 1rem; padding: 1rem 3rem;">View All Research</a>
+  </section>
+</div>

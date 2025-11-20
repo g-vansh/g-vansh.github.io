@@ -42,40 +42,48 @@ author_profile: true
 {% include base_path %}
 
 <div class="research-sections">
-  <h2 class="section-heading">Research Projects</h2>
+  <h2 class="section-heading reveal-on-scroll" style="text-align: center; margin: 4rem 0 3rem; font-size: clamp(2rem, 5vw, 3.5rem);">Research Projects</h2>
   
-  <h3 class="subsection-heading under_review">Under Review</h3>
-  <div class="research-projects-section">
+  <h3 class="subsection-heading under_review reveal-on-scroll">Under Review</h3>
+  <div class="bento-grid research-projects-section">
     {% for post in site.publications reversed %}
       {% if post.type == "project" and post.project_status == "under_review" and post.index != "No" %}
-        {% include archive-single.html %}
+        <div class="bento-item">
+          {% include archive-single.html %}
+        </div>
       {% endif %}
     {% endfor %}
   </div>
   
-  <h3 class="subsection-heading in_progress">Work In Progress</h3>
-  <div class="research-projects-section">
+  <h3 class="subsection-heading in_progress reveal-on-scroll">Work In Progress</h3>
+  <div class="bento-grid research-projects-section">
     {% for post in site.publications reversed %}
       {% if post.type == "project" and post.project_status == "in_progress" and post.index != "No" %}
-        {% include archive-single.html %}
+        <div class="bento-item">
+          {% include archive-single.html %}
+        </div>
       {% endif %}
     {% endfor %}
   </div>
   
-  <h3 class="subsection-heading inactive">Inactive Projects</h3>
-  <div class="research-projects-section">
+  <h3 class="subsection-heading inactive reveal-on-scroll">Inactive Projects</h3>
+  <div class="bento-grid research-projects-section">
     {% for post in site.publications reversed %}
       {% if post.type == "project" and post.project_status == "inactive" and post.index != "No" %}
-        {% include archive-single.html %}
+        <div class="bento-item">
+          {% include archive-single.html %}
+        </div>
       {% endif %}
     {% endfor %}
   </div>
 
-  <h2 class="section-heading">Research Assistance</h2>
-  <div class="research-assistance-section">
+  <h2 class="section-heading reveal-on-scroll" style="text-align: center; margin: 4rem 0 3rem; font-size: clamp(2rem, 5vw, 3.5rem);">Research Assistance</h2>
+  <div class="bento-grid research-assistance-section">
     {% for post in site.publications reversed %}
       {% if post.type == "assistance" and post.index != "No" %}
-        {% include archive-single.html %}
+        <div class="bento-item">
+          {% include archive-single.html %}
+        </div>
       {% endif %}
     {% endfor %}
   </div>
@@ -116,9 +124,13 @@ document.addEventListener('DOMContentLoaded', function() {
   .research-intro {
     margin-bottom: 2em;
     padding: 1.5em;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    background-color: rgba(26, 26, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #F2F2F2;
   }
   
   .scholar-link {
@@ -128,27 +140,32 @@ document.addEventListener('DOMContentLoaded', function() {
   
   .scholar-stats {
     margin-top: 1em;
-    background-color: white;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    background-color: rgba(26, 26, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     overflow: hidden;
   }
   
   .section-heading {
     margin-top: 2em;
     margin-bottom: 1em;
-    color: #2a76dd;
-    border-bottom: 1px solid #f2f3f3;
+    color: #D2FF00;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 0.5em;
+    font-family: 'Mona Sans', 'Inter', sans-serif;
+    font-weight: 800;
   }
   
   .subsection-heading {
     margin-top: 1.5em;
     margin-bottom: 0.75em;
-    color: #333;
+    color: #F2F2F2;
     font-size: 1.3em;
-    border-left: 3px solid #2a76dd;
+    border-left: 2px solid #D2FF00;
     padding-left: 0.5em;
+    font-family: 'Mona Sans', 'Inter', sans-serif;
+    font-weight: 700;
   }
   
   .research-projects-section h3.subsection-heading[class*="under_review"] {

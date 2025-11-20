@@ -1,0 +1,644 @@
+/* ==========================================================================
+   Academic Kinetic Theme - Dark Mode Design System
+   ========================================================================== */
+
+/* ==========================================================================
+   Base Dark Mode Overrides
+   ========================================================================== */
+
+html {
+  background-color: $background-color;
+  color: $text-color;
+}
+
+body {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: $global-font-family;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Typography - Academic Kinetic
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font-family;
+  font-weight: 800;
+  font-stretch: 125%;
+  color: $text-color;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 900;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+/* Metadata (dates, tags, etc.) */
+.page__meta,
+.archive__item-meta,
+time,
+.tag,
+.badge {
+  font-family: $metadata-font-family;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba($text-color, 0.6);
+}
+
+/* Links */
+a {
+  color: $link-color;
+  text-decoration: none;
+  transition: $global-transition;
+
+  &:hover {
+    color: $link-color-hover;
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: $link-color-visited;
+  }
+}
+
+/* ==========================================================================
+   Hero Section - Kinetic Typography
+   ========================================================================== */
+
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 2rem;
+  background: $background-color;
+  margin-top: -6rem; // Offset fixed nav
+  padding-top: 8rem; // Add space for nav
+
+  @include breakpoint($small) {
+    margin-top: -5rem;
+    padding-top: 7rem;
+  }
+}
+
+.hero-name {
+  font-family: $header-font-family;
+  font-size: clamp(4rem, 15vw, 12rem);
+  font-weight: 900;
+  font-stretch: 125%;
+  line-height: 0.9;
+  color: $text-color;
+  margin: 0;
+  white-space: nowrap;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+
+  &.kinetic-text {
+    will-change: transform;
+  }
+}
+
+.hero-subtitle {
+  font-family: $metadata-font-family;
+  font-size: clamp(0.875rem, 2vw, 1.25rem);
+  color: rgba($text-color, 0.7);
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  position: relative;
+  z-index: 1;
+
+  &::before,
+  &::after {
+    content: '[';
+    color: $accent-color;
+    margin: 0 0.5rem;
+  }
+
+  &::after {
+    content: ']';
+  }
+}
+
+/* ==========================================================================
+   Bento Grid System
+   ========================================================================== */
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+
+  @include breakpoint($small) {
+    gap: 1.5rem;
+    padding: 3rem 2rem;
+  }
+
+  @include breakpoint($medium) {
+    gap: 2rem;
+    padding: 4rem 3rem;
+  }
+}
+
+/* Bento Card Base */
+.bento-card {
+  position: relative;
+  background: $surface-color;
+  border: 1px solid $border-color;
+  padding: 2rem;
+  transition: $kinetic-transition;
+  overflow: hidden;
+  backdrop-filter: blur($glass-blur);
+  -webkit-backdrop-filter: blur($glass-blur);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $accent-color;
+    opacity: 0;
+    transition: $global-transition;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+  }
+
+  &:hover {
+    border-color: $border-color-hover;
+    box-shadow: $box-shadow-hover;
+    transform: translateY(-4px);
+
+    &::before,
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+/* Bento Grid Item Sizing */
+.bento-item {
+  grid-column: span 12;
+
+  @include breakpoint($small) {
+    grid-column: span 6;
+  }
+
+  @include breakpoint($medium) {
+    grid-column: span 4;
+  }
+
+  // Featured items (first 2)
+  &:nth-child(1),
+  &:nth-child(2) {
+    @include breakpoint($medium) {
+      grid-column: span 6;
+      grid-row: span 2;
+    }
+  }
+
+  // Wide items for variety
+  &:nth-child(4),
+  &:nth-child(7) {
+    @include breakpoint($medium) {
+      grid-column: span 8;
+    }
+  }
+
+  // Small items
+  &:nth-child(6),
+  &:nth-child(9) {
+    @include breakpoint($medium) {
+      grid-column: span 3;
+    }
+  }
+}
+
+/* ==========================================================================
+   Echelon HUD Card Styling
+   ========================================================================== */
+
+.echelon-card {
+  @extend .bento-card;
+  position: relative;
+  background: $glass-bg;
+  border: 1px solid $glass-border;
+
+  /* Corner Markers - L-shaped brackets */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 1px solid $accent-color;
+    opacity: 0.6;
+    transition: $global-transition;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      opacity: 1;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  /* Technical Badges */
+  .tech-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    font-family: $metadata-font-family;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid $border-color;
+    background: transparent;
+    color: $text-color;
+    transition: $global-transition;
+
+    &:hover {
+      border-color: $accent-color;
+      color: $accent-color;
+      background: rgba($accent-color, 0.1);
+    }
+  }
+
+  /* Year/Date Badge */
+  .year-badge {
+    @extend .tech-badge;
+    border-color: $accent-color;
+    color: $accent-color;
+    background: rgba($accent-color, 0.1);
+  }
+}
+
+/* ==========================================================================
+   Floating Pill Navigation
+   ========================================================================== */
+
+.masthead {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: auto;
+  background: $glass-bg;
+  backdrop-filter: blur($glass-blur);
+  -webkit-backdrop-filter: blur($glass-blur);
+  border: 1px solid $glass-border;
+  border-radius: 50px;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  -webkit-animation: intro 0.3s both;
+  animation: intro 0.3s both;
+  -webkit-animation-delay: 0.15s;
+  animation-delay: 0.15s;
+
+  @include breakpoint($small) {
+    top: 1.5rem;
+    padding: 0.5rem 1.5rem;
+  }
+
+  .masthead__inner-wrap {
+    width: auto;
+    padding: 0;
+  }
+
+  .masthead__menu {
+    width: auto;
+  }
+
+  .greedy-nav {
+    background: transparent;
+    min-width: auto;
+
+    .visible-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      @include breakpoint($small) {
+        gap: 1rem;
+      }
+
+      li {
+        display: flex;
+        align-items: center;
+        list-style: none;
+
+        a {
+          font-family: $metadata-font-family;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: $text-color;
+          padding: 0.5rem 1rem;
+          margin: 0;
+          transition: $global-transition;
+          text-decoration: none;
+
+          &:hover {
+            color: $accent-color;
+            background: rgba($accent-color, 0.1);
+            border-radius: 20px;
+          }
+
+          &::before {
+            display: none; // Remove default underline animation
+          }
+        }
+
+        &:first-child {
+          a {
+            font-family: $header-font-family;
+            font-weight: 800;
+            font-size: 0.875rem;
+            color: $accent-color;
+          }
+        }
+      }
+    }
+
+    button {
+      background: transparent;
+      color: $text-color;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+      padding: 0.5rem;
+
+      &:hover {
+        border-color: $accent-color;
+        color: $accent-color;
+      }
+    }
+
+    .hidden-links {
+      background: $surface-color;
+      border: 1px solid $border-color;
+      border-radius: 0;
+      box-shadow: $box-shadow;
+
+      a {
+        color: $text-color;
+
+        &:hover {
+          color: $accent-color;
+          background: rgba($accent-color, 0.1);
+        }
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   Archive & Publication Cards
+   ========================================================================== */
+
+.archive__item {
+  @extend .echelon-card;
+  margin-bottom: 2rem;
+  padding: 2rem;
+
+  .archive__item-title {
+    font-family: $header-font-family;
+    font-weight: 700;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    margin-bottom: 1rem;
+    color: $text-color;
+
+    a {
+      color: $text-color;
+      transition: $global-transition;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
+  }
+
+  .archive__item-excerpt {
+    color: rgba($text-color, 0.8);
+    line-height: 1.6;
+    margin-top: 1rem;
+  }
+
+  .archive__item-meta {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+/* ==========================================================================
+   Page Content Styling
+   ========================================================================== */
+
+#main {
+  padding-top: 6rem; // Space for fixed navigation
+
+  @include breakpoint($small) {
+    padding-top: 5rem;
+  }
+}
+
+.page__content {
+  color: rgba($text-color, 0.9);
+  line-height: 1.8;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+
+  strong {
+    color: $text-color;
+    font-weight: 600;
+  }
+
+  em {
+    color: rgba($text-color, 0.8);
+    font-style: italic;
+  }
+
+  ul, ol {
+    color: rgba($text-color, 0.9);
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  blockquote {
+    border-left: 2px solid $accent-color;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    color: rgba($text-color, 0.8);
+    font-style: italic;
+  }
+}
+
+/* ==========================================================================
+   Code Blocks
+   ========================================================================== */
+
+code,
+pre {
+  font-family: $metadata-font-family;
+  background: $code-background-color;
+  border: 1px solid $border-color;
+  color: $accent-color;
+}
+
+pre {
+  padding: 1.5rem;
+  overflow-x: auto;
+  border-left: 2px solid $accent-color;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn,
+.button {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-family: $metadata-font-family;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid $accent-color;
+  background: transparent;
+  color: $accent-color;
+  transition: $kinetic-transition;
+  cursor: pointer;
+
+  &:hover {
+    background: $accent-color;
+    color: $background-color;
+    transform: translateY(-2px);
+    box-shadow: $box-shadow-hover;
+  }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.page__footer {
+  background: $surface-color;
+  border-top: 1px solid $border-color;
+  padding: 3rem 2rem;
+  margin-top: 4rem;
+
+  footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    color: rgba($text-color, 0.6);
+    font-family: $metadata-font-family;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.kinetic-text {
+  will-change: transform;
+}
+
+.parallax-image {
+  will-change: transform;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+@include breakpoint($small) {
+  .hero-name {
+    font-size: clamp(3rem, 12vw, 10rem);
+  }
+
+  .bento-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@include breakpoint($medium) {
+  .masthead {
+    top: 2rem;
+  }
+}

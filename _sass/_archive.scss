@@ -4,9 +4,14 @@
 
 .archive {
   margin-bottom: 2em;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
 
   @include breakpoint($medium) {
     @include span(12 of 12);
+    padding: 0 3rem;
   }
 
   @include breakpoint($large) {
@@ -15,13 +20,18 @@
   }
 
   a {
-    text-decoration: underline;
+    text-decoration: none;
+    color: $text-color;
+    transition: $global-transition;
 
     &:hover {
-      text-decoration: underline;
+      color: $accent-color;
+      text-decoration: none;
 
       img {
-        box-shadow: 0 0 10px rgba(#000, 0.25);
+        box-shadow: $box-shadow-hover;
+        transform: scale(1.02);
+        transition: $kinetic-transition;
       }
     }
   }
@@ -31,8 +41,10 @@
   margin: 1.414em 0 0;
   padding-bottom: 0.5em;
   font-size: $type-size-5;
-  color: mix(#fff, $gray, 25%);
+  color: $text-color;
   border-bottom: 1px solid $border-color;
+  font-family: $header-font-family;
+  font-weight: 700;
 
   + .list__item .archive__item-title {
     margin-top: 0.5em;
@@ -41,7 +53,18 @@
 
 .archive__item-title {
   margin-bottom: 0.25em;
-  font-family: $sans-serif-narrow;
+  font-family: $header-font-family;
+  font-weight: 700;
+  color: $text-color;
+
+  a {
+    color: $text-color;
+    transition: $global-transition;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
 
   a + a {
     opacity: 0.5;
@@ -76,11 +99,13 @@
 
 .archive__item:hover {
   .archive__item-teaser {
-    box-shadow: 0 0 10px rgba(#000, 0.25);
+    box-shadow: $box-shadow-hover;
   }
 
   .archive__item-title {
-    text-decoration: underline;
+    a {
+      color: $accent-color;
+    }
   }
 }
 
