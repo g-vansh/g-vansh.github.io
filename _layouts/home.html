@@ -5,10 +5,48 @@ layout: default
 {% include base_path %}
 
 <div id="main" role="main">
-  <!-- Hero Section with Kinetic Typography -->
-  <section class="hero-section">
-    <h1 class="hero-name kinetic-text" data-speed="0.3">{{ site.name | upcase }}</h1>
-    <p class="hero-subtitle reveal-on-scroll">Innovation Economics @ MIT</p>
+  <!-- Epic Hero Section with Advanced Animations -->
+  <section class="hero-section epic-hero">
+    <!-- Corner Brackets -->
+    <div class="hero-corner hero-corner--tl"></div>
+    <div class="hero-corner hero-corner--tr"></div>
+    <div class="hero-corner hero-corner--bl"></div>
+    <div class="hero-corner hero-corner--br"></div>
+    
+    <!-- Scanlines Overlay -->
+    <div class="scanlines"></div>
+    
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <h1 class="hero-name kinetic-text epic-name" data-speed="0.3">{{ site.name | upcase }}</h1>
+      <p class="hero-subtitle epic-subtitle">
+        <span class="subtitle-icon">▸</span>
+        <span class="subtitle-text">Innovation Economics @ MIT</span>
+        <span class="subtitle-icon">◂</span>
+      </p>
+      
+      <!-- Data Points -->
+      <div class="hero-datapoints">
+        <div class="datapoint reveal-on-scroll" style="--delay: 0.1s;">
+          <span class="datapoint-label">Research</span>
+          <span class="datapoint-value">9+</span>
+        </div>
+        <div class="datapoint reveal-on-scroll" style="--delay: 0.2s;">
+          <span class="datapoint-label">Innovation</span>
+          <span class="datapoint-value">∞</span>
+        </div>
+        <div class="datapoint reveal-on-scroll" style="--delay: 0.3s;">
+          <span class="datapoint-label">Impact</span>
+          <span class="datapoint-value">Global</span>
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+        <div class="scroll-line"></div>
+        <span class="scroll-text">Scroll to Explore</span>
+      </div>
+    </div>
   </section>
 
   <!-- About Section -->
