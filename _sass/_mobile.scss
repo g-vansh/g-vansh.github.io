@@ -382,22 +382,6 @@
       }
     }
 
-    /* Prevent dropdown from showing on mobile - override any JS toggles */
-    .author__urls-wrapper.open .author__urls,
-    .author__urls-wrapper .author__urls.is-visible,
-    .author__urls-wrapper .author__urls:not([style*="display: none"]) {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      position: fixed !important;
-      top: -9999px !important;
-      left: -9999px !important;
-      z-index: -9999 !important;
-      height: 0 !important;
-      width: 0 !important;
-      overflow: hidden !important;
-    }
   }
 }
 
