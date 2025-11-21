@@ -11,7 +11,7 @@
   padding: 0.85rem 1.75rem;
   color: $accent-color;
   font-family: $metadata-font-family;
-  font-size: clamp(0.65rem, 0.75rem + 0.2vw, 0.85rem);
+  font-size: clamp(0.65rem, unquote("calc(0.75rem + 0.2vw)"), 0.85rem);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.25em;
