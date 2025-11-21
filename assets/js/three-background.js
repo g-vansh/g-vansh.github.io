@@ -144,33 +144,31 @@
     const ideaSystem = new ThreeLib.Points(ideaGeometry, ideaMaterial);
     scene.add(ideaSystem);
     
-    // Connection Lines (Using InstancedMesh for Cylinder lines for thickness, or regular lines if performance is key)
-    // Since we want thickness, let's use LineSegments but with higher opacity and color brightness to fake thickness
-    // or use a small number of Mesh lines. 
-    // Given user request for "prominent/thicker", LineBasicMaterial is bad (always 1px).
-    // Let's use a TubeGeometry/CylinderGeometry for signals.
-    
-    // "Signals" are lines that grow from source to target.
-    // We'll model them as Cylinders that stretch.
-    
-    const maxSignals = isMobile ? 15 : 30;
-    const signalGeometry = new ThreeLib.CylinderGeometry(0.15, 0.15, 1, 6); // Radius 0.15 = thick line
-    signalGeometry.translate(0, 0.5, 0); // Pivot at bottom
-    signalGeometry.rotateX(Math.PI / 2); // Point along Z by default or align later
+    // Connection lines rendered as animated cylinders for better visibility
+    const maxSignals = isMobile ? 15 : 35;
+    const signalGeometry = new ThreeLib.CylinderGeometry(0.12, 0.12, 1, 8, 1, true);
+    signalGeometry.translate(0, 0.5, 0);
     
     const signalMaterial = new ThreeLib.MeshBasicMaterial({
       color: 0x9bff1f,
       transparent: true,
-      opacity: 0.6,
-      blending: ThreeLib.AdditiveBlending
+      opacity: 0.7,
+      blending: ThreeLib.AdditiveBlending,
+      depthWrite: false
     });
     
-    const signalMesh = new ThreeLib.InstancedMesh(signalGeometry, signalMaterial, maxSignals);
-    signalMesh.instanceMatrix.setUsage(ThreeLib.DynamicDrawUsage);
-    scene.add(signalMesh);
+    const signalsGroup = new ThreeLib.Group();
+    scene.add(signalsGroup);
     
-    const activeSignals = []; // { sourceIdx, targetIdx, progress, speed, instanceId }
-    const signalPool = Array.from({length: maxSignals}, (_, i) => i); // Available instance IDs
+    const SIGNAL_TRAIL = 0.25;
+    const signalPool = [];
+    const activeSignals = []; // { mesh, sourceIdx, targetIdx, progress, speed }
+    for (let i = 0; i < maxSignals; i++) {
+      const mesh = new ThreeLib.Mesh(signalGeometry, signalMaterial);
+      mesh.visible = false;
+      signalsGroup.add(mesh);
+      signalPool.push(mesh);
+    }
     
     // Helpers for textures
     function createSquareTexture() {
@@ -244,11 +242,13 @@
 
     // Animation loop
     const activeIdeas = []; 
-    const tempMatrix = new ThreeLib.Matrix4();
     const dummyVec3A = new ThreeLib.Vector3();
     const dummyVec3B = new ThreeLib.Vector3();
-    const dummyVec3Scale = new ThreeLib.Vector3();
-    const dummyQuaternion = new ThreeLib.Quaternion();
+    const dummyDirection = new ThreeLib.Vector3();
+    const dummyMidpoint = new ThreeLib.Vector3();
+    const tempStartVec = new ThreeLib.Vector3();
+    const tempEndVec = new ThreeLib.Vector3();
+    const cylinderUp = new ThreeLib.Vector3(0, 1, 0);
 
     function animate() {
       requestAnimationFrame(animate);
@@ -314,10 +314,10 @@
       }
       ideaPosAttr.needsUpdate = true;
       
-      // --- SIGNALS (Slow moving thicker lines) ---
+      // --- SIGNALS (Slow moving lines) ---
       
       // Spawn new signals
-      if (activeSignals.length < maxSignals && signalPool.length > 0 && Math.random() < 0.05) {
+      if (signalPool.length > 0 && Math.random() < 0.05) {
         const sourceIdx = Math.floor(Math.random() * particleCount);
         
         // Find neighbor
@@ -341,21 +341,16 @@
         }
         
         if (targetIdx !== -1) {
-           const instanceId = signalPool.pop();
+           const mesh = signalPool.pop();
+           mesh.visible = true;
            activeSignals.push({
+             mesh,
              sourceIdx,
              targetIdx,
              progress: 0,
-             speed: 0.008 + Math.random() * 0.008, // Slower speed
-             instanceId
+             speed: 0.006 + Math.random() * 0.006
            });
         }
-      }
-      
-      // Reset all instances offscreen
-      tempMatrix.setPosition(9999, 9999, 9999);
-      for(let i=0; i<maxSignals; i++) {
-        signalMesh.setMatrixAt(i, tempMatrix);
       }
       
       // Update active signals
@@ -364,16 +359,15 @@
         sig.progress += sig.speed;
         
         if (sig.progress >= 1) {
-          // Arrived! Maybe create an idea at target?
-          if (Math.random() < 0.4) {
+          if (Math.random() < 0.3) {
              activeIdeas.push({
               index: sig.targetIdx,
               startTime: now,
               duration: 2000
             });
           }
-          
-          signalPool.push(sig.instanceId);
+          sig.mesh.visible = false;
+          signalPool.push(sig.mesh);
           activeSignals.splice(i, 1);
           continue;
         }
@@ -387,56 +381,51 @@
         // Interpolate current head position
         const currentHead = dummyVec3A.clone().lerp(dummyVec3B, sig.progress);
         
-        // We want to draw a line from A to currentHead (or a segment moving)
-        // Let's draw from A to currentHead
-        const center = dummyVec3A.clone().lerp(currentHead, 0.5);
-        const len = dummyVec3A.distanceTo(currentHead);
+        dummyDirection.copy(dummyVec3B).sub(dummyVec3A);
+        const segmentLength = dummyDirection.length();
+        if (segmentLength < 0.001) {
+          sig.mesh.visible = false;
+          continue;
+        }
+        dummyDirection.normalize();
         
-        dummyVec3Scale.set(1, 1, len); // Scale Z to length (since we rotated cylinder)
-        tempMatrix.makeScale(1, 1, 1); // Reset scale
-        tempMatrix.lookAt(dummyVec3A, dummyVec3B, new ThreeLib.Vector3(0,1,0)); // Orient Z axis from A to B
+        const headProgress = Math.min(sig.progress, 1);
+        const dynamicTrail = Math.min(SIGNAL_TRAIL, headProgress, Math.max(0, 1 - headProgress));
+        const clampedTail = headProgress - dynamicTrail;
+        const visiblePortion = headProgress - clampedTail;
         
-        // Rebuild matrix manually for Cylinder
-        // Position is center
-        // Rotation is towards B
-        // Scale Z is length
+        if (visiblePortion <= 0) {
+          sig.mesh.visible = false;
+          continue;
+        }
         
-        // InstancedMesh Matrix helper:
-        // 1. Position at A
-        // 2. LookAt B
-        // 3. Scale Z to current length
-        // 4. Move to midpoint (local Z 0.5 * length)
+        tempStartVec.copy(dummyVec3A).addScaledVector(dummyDirection, segmentLength * clampedTail);
+        tempEndVec.copy(dummyVec3A).addScaledVector(dummyDirection, segmentLength * headProgress);
+        const partialLength = tempEndVec.distanceTo(tempStartVec);
         
-        // Simpler way using Object3D dummy
-        const dummyObj = new ThreeLib.Object3D();
-        dummyObj.position.copy(center);
-        dummyObj.lookAt(dummyVec3B); // Point Z towards B
-        dummyObj.scale.set(1, 1, len); // Scale length
-        dummyObj.rotateX(Math.PI / 2); // Cylinder default is Y-up, we need Z-forward alignment correction if needed
-        // Actually, CylinderGeometry(radius, radius, height) aligns with Y axis.
-        // So if we lookAt, the Z axis points to target. 
-        // We need to rotate the cylinder 90 deg on X so it lies on Z axis?
-        // Wait, I already rotated the Geometry in initialization: signalGeometry.rotateX(Math.PI / 2);
-        // This means the cylinder ALREADY lies along Z axis.
-        // So dummyObj.lookAt(dummyVec3B) will point positive Z to target.
-        // And scaling Z will stretch it.
+        if (partialLength < 0.001) {
+          sig.mesh.visible = false;
+          continue;
+        }
         
-        dummyObj.updateMatrix();
-        signalMesh.setMatrixAt(sig.instanceId, dummyObj.matrix);
+        dummyMidpoint.copy(tempStartVec).add(tempEndVec).multiplyScalar(0.5);
+        
+        sig.mesh.visible = true;
+        sig.mesh.position.copy(dummyMidpoint);
+        sig.mesh.scale.set(1, partialLength, 1);
+        sig.mesh.quaternion.setFromUnitVectors(cylinderUp, dummyDirection);
       }
-      
-      signalMesh.instanceMatrix.needsUpdate = true;
 
       // Rotation
       particleSystem.rotation.x += (targetRotationX - particleSystem.rotation.x) * 0.05;
       particleSystem.rotation.y += (targetRotationY - particleSystem.rotation.y) * 0.05;
       
       ideaSystem.rotation.copy(particleSystem.rotation);
-      signalMesh.rotation.copy(particleSystem.rotation);
+      signalsGroup.rotation.copy(particleSystem.rotation);
 
       particleSystem.rotation.z += 0.0002;
       ideaSystem.rotation.z += 0.0002;
-      signalMesh.rotation.z += 0.0002;
+      signalsGroup.rotation.z += 0.0002;
 
       renderer.render(scene, camera);
     }
@@ -459,7 +448,7 @@
       signalMaterial.dispose();
     });
 
-    console.log('Three.js particle background initialized with thicker signals & ideas');
+    console.log('Three.js particle background initialized with LineSegments & ideas');
   }
 
   function bootstrapThreeBackground() {
