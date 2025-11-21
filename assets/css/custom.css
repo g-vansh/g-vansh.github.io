@@ -229,20 +229,21 @@ a {
 }
 
 .leaflet-popup-content {
-  font-family: var(--neo-font);
-  min-width: 220px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  min-width: 200px;
   max-width: 100%;
   color: var(--neo-text);
   max-height: 70vh;
   overflow-y: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  font-size: 0.75rem;
 }
 
 .leaflet-popup-content h3 {
-  margin: 0 0 0.6rem;
-  font-size: 0.9rem;
-  letter-spacing: 0.25em;
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--neo-accent);
   line-height: 1.3;
@@ -277,13 +278,13 @@ a {
 
 /* Education popup specific styles */
 .education-years {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: var(--neo-text-muted);
-  margin-top: 0.4rem;
+  margin-top: 0.3rem;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  letter-spacing: 0.1em;
+  gap: 0.35rem;
+  letter-spacing: 0.08em;
 }
 
 .education-years i {
@@ -294,13 +295,13 @@ a {
 .education-degree,
 .education-majors,
 .education-gpa {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--neo-text);
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  margin-bottom: 0.4rem;
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.4rem;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -330,11 +331,11 @@ a {
 }
 
 .section-title {
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--neo-accent);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   font-weight: 600;
 }
 
@@ -345,13 +346,13 @@ a {
 }
 
 .education-honors li {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--neo-text-muted);
-  line-height: 1.6;
-  margin-bottom: 0.4rem;
+  line-height: 1.5;
+  margin-bottom: 0.35rem;
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.4rem;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -369,9 +370,9 @@ a {
 
 .education-concentrations,
 .education-affiliations {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--neo-text-muted);
-  line-height: 1.6;
+  line-height: 1.5;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -379,13 +380,13 @@ a {
 /* Coauthor popup specific styles */
 .coauthor-designation,
 .coauthor-department {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--neo-text);
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  margin-bottom: 0.4rem;
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.4rem;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -409,13 +410,13 @@ a {
 
 /* Talk popup specific styles */
 .talk-date {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: var(--neo-text-muted);
-  margin-top: 0.4rem;
+  margin-top: 0.3rem;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  letter-spacing: 0.1em;
+  gap: 0.35rem;
+  letter-spacing: 0.08em;
 }
 
 .talk-date i {
@@ -424,12 +425,12 @@ a {
 }
 
 .talk-venue {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--neo-text);
-  line-height: 1.6;
+  line-height: 1.5;
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.4rem;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -443,11 +444,11 @@ a {
 
 /* Popup meta and links */
 .popup-meta {
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--neo-text-muted);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   font-weight: 500;
 }
 
@@ -462,14 +463,14 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  padding: 0.45rem 0.95rem;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
   border-radius: 999px;
   border: 1px solid var(--neo-border);
   color: var(--neo-accent);
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  font-size: 0.6rem;
   text-decoration: none;
 }
 
@@ -481,12 +482,20 @@ a {
 
 .legend,
 .legend-container {
-  padding: 1rem;
+  padding: 0.75rem;
   border-radius: 12px;
   background: rgba(5, 19, 13, 0.92);
   border: 1px solid var(--neo-border);
   box-shadow: var(--neo-shadow);
   color: var(--neo-text-muted);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.legend h4 {
+  font-size: 0.7rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .marker-cluster-custom {
@@ -562,18 +571,28 @@ a {
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .legend-icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.legend-icon i {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .legend-icon.current {
@@ -609,20 +628,20 @@ a {
   background: rgba(5, 19, 13, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--neo-text);
-  font-family: var(--neo-font);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  padding: 0.75rem 0.85rem;
-  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.6rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  max-width: 300px;
+  max-width: 280px;
   min-height: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
   text-align: center;
-  line-height: 1.6;
+  line-height: 1.4;
   backdrop-filter: blur(10px);
 }
 
@@ -655,29 +674,30 @@ a {
 }
 
 .leaflet-control-layers-expanded {
-  padding: 1rem !important;
-  font-family: var(--neo-font);
-  letter-spacing: 0.12em;
+  padding: 0.75rem !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: 0.08em;
 }
 
 .leaflet-control-layers-overlays label,
 .leaflet-control-layers-base label {
   display: flex !important;
   align-items: center !important;
-  gap: 0.35rem !important;
+  gap: 0.3rem !important;
   text-transform: uppercase;
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .education-section,
 .coauthor-section,
 .talk-section {
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 0.75rem;
-  margin-bottom: 0.75rem;
+  padding: 0.6rem;
+  margin-bottom: 0.6rem;
 }
 
 .education-section i,
@@ -693,8 +713,8 @@ a {
 .coauthor-popup-header,
 .talk-popup-header {
   border-bottom: 1px solid var(--neo-border);
-  padding-bottom: 0.75rem;
-  margin-bottom: 0.75rem;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.6rem;
 }
 
 .education-popup-header h3,
@@ -737,8 +757,9 @@ a {
   }
   
   .research-popup .leaflet-popup-content h3 {
-    font-size: 0.95rem !important;
-    margin-bottom: 0.75rem !important;
+    font-size: 0.75rem !important;
+    margin-bottom: 0.6rem !important;
+    letter-spacing: 0.12em !important;
   }
   
   .research-popup .education-section,
@@ -754,41 +775,42 @@ a {
   .research-popup .coauthor-designation,
   .research-popup .coauthor-department,
   .research-popup .talk-venue {
-    font-size: 0.85rem !important;
-    line-height: 1.65 !important;
+    font-size: 0.7rem !important;
+    line-height: 1.5 !important;
   }
   
   .research-popup .education-years,
   .research-popup .talk-date {
-    font-size: 0.8rem !important;
+    font-size: 0.65rem !important;
   }
   
   .research-popup .section-title {
-    font-size: 0.75rem !important;
-    margin-bottom: 0.6rem !important;
+    font-size: 0.65rem !important;
+    margin-bottom: 0.5rem !important;
   }
   
   .research-popup .education-honors li {
-    font-size: 0.85rem !important;
-    line-height: 1.6 !important;
+    font-size: 0.7rem !important;
+    line-height: 1.5 !important;
   }
   
   .research-popup .education-concentrations,
   .research-popup .education-affiliations {
-    font-size: 0.85rem !important;
-    line-height: 1.65 !important;
+    font-size: 0.7rem !important;
+    line-height: 1.5 !important;
   }
   
   .research-popup .popup-meta {
-    font-size: 0.72rem !important;
-    margin-bottom: 0.6rem !important;
+    font-size: 0.65rem !important;
+    margin-bottom: 0.5rem !important;
   }
   
   .research-popup .popup-link {
-    font-size: 0.7rem !important;
-    padding: 0.5rem 1rem !important;
+    font-size: 0.6rem !important;
+    padding: 0.4rem 0.75rem !important;
     white-space: normal !important;
     text-align: center !important;
+    letter-spacing: 0.12em !important;
   }
   
   .research-popup .popup-links {
@@ -796,10 +818,11 @@ a {
   }
   
   .leaflet-tooltip {
-    max-width: 300px !important;
-    font-size: 0.75rem !important;
-    padding: 0.6rem 1rem !important;
+    max-width: 280px !important;
+    font-size: 0.65rem !important;
+    padding: 0.5rem 0.75rem !important;
     border-radius: 10px !important;
+    letter-spacing: 0.1em !important;
   }
 }
 
@@ -888,12 +911,13 @@ a {
   }
   
   .research-legend.mobile-legend .legend-icon {
-    width: 12px !important;
-    height: 12px !important;
+    width: 18px !important;
+    height: 18px !important;
   }
   
   .research-legend.mobile-legend .legend-icon i {
-    font-size: 0.6rem !important;
+    font-size: 0.7rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
   }
   
   /* Research map layer control - compact on mobile */
@@ -931,17 +955,17 @@ a {
   
   .research-popup .leaflet-popup-content {
     margin: 14px !important;
-    font-size: 0.8rem !important;
-    line-height: 1.55 !important;
+    font-size: 0.7rem !important;
+    line-height: 1.5 !important;
     min-width: auto !important;
     max-height: 65vh !important;
   }
   
   .research-popup .leaflet-popup-content h3 {
-    font-size: 0.85rem !important;
-    margin-bottom: 0.6rem !important;
-    line-height: 1.35 !important;
-    letter-spacing: 0.2em !important;
+    font-size: 0.72rem !important;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.3 !important;
+    letter-spacing: 0.12em !important;
   }
   
   .research-popup .education-popup-header,
@@ -990,8 +1014,8 @@ a {
   
   .research-popup .education-concentrations,
   .research-popup .education-affiliations {
-    font-size: 0.78rem !important;
-    line-height: 1.55 !important;
+    font-size: 0.68rem !important;
+    line-height: 1.5 !important;
   }
   
   .research-popup .popup-meta {
@@ -1019,11 +1043,11 @@ a {
   .leaflet-tooltip {
     max-width: calc(100vw - 60px) !important;
     min-width: 150px !important;
-    font-size: 0.68rem !important;
-    padding: 0.65rem 0.75rem !important;
-    letter-spacing: 0.18em !important;
+    font-size: 0.6rem !important;
+    padding: 0.5rem 0.65rem !important;
+    letter-spacing: 0.1em !important;
     border-radius: 10px !important;
-    line-height: 1.6 !important;
+    line-height: 1.4 !important;
   }
   
   /* Research marker icons - slightly smaller on mobile */
@@ -1058,8 +1082,13 @@ a {
   }
   
   .legend-icon {
-    width: 14px;
-    height: 14px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .legend-icon i {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.9);
   }
 
   .research-stats-visualization {
@@ -1078,11 +1107,11 @@ a {
   
   .leaflet-popup-content {
     margin: 10px !important;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
   
   .leaflet-popup-content h3 {
-    font-size: 0.8rem !important;
+    font-size: 0.72rem !important;
     margin-bottom: 0.5rem;
   }
   
@@ -1129,8 +1158,13 @@ a {
   }
   
   .research-legend.mobile-legend .legend-icon {
-    width: 10px !important;
-    height: 10px !important;
+    width: 16px !important;
+    height: 16px !important;
+  }
+  
+  .research-legend.mobile-legend .legend-icon i {
+    font-size: 0.65rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
   }
   
   /* Extra small research layer control */
@@ -1158,9 +1192,9 @@ a {
   }
   
   .research-popup .leaflet-popup-content h3 {
-    font-size: 0.8rem !important;
+    font-size: 0.7rem !important;
     margin-bottom: 0.5rem !important;
-    letter-spacing: 0.18em !important;
+    letter-spacing: 0.12em !important;
   }
   
   .research-popup .education-popup-header,
@@ -1219,10 +1253,10 @@ a {
   .leaflet-tooltip {
     max-width: calc(100vw - 50px) !important;
     min-width: 140px !important;
-    font-size: 0.65rem !important;
-    padding: 0.6rem 0.65rem !important;
-    letter-spacing: 0.15em !important;
-    line-height: 1.6 !important;
+    font-size: 0.58rem !important;
+    padding: 0.45rem 0.6rem !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.4 !important;
   }
   
   /* Extra small research clusters */
@@ -1246,6 +1280,16 @@ a {
   .legend-item {
     font-size: 0.6rem;
     gap: 0.35rem;
+  }
+  
+  .legend-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .legend-icon i {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.9);
   }
   
   .leaflet-control-layers {

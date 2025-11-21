@@ -42,7 +42,7 @@ author_profile: true
 {% include base_path %}
 
 <div class="research-sections">
-  <h2 class="section-heading reveal-on-scroll" style="text-align: center; margin: 4rem 0 3rem; font-size: clamp(2rem, 5vw, 3.5rem);">Research Projects</h2>
+  <h2 class="section-heading reveal-on-scroll" style="text-align: center; margin: 4rem 0 3rem; font-size: clamp(1.5rem, 3vw, 2rem);">Research Projects</h2>
   
   <h3 class="subsection-heading under_review reveal-on-scroll">Under Review</h3>
   <div class="bento-grid research-projects-section">
@@ -77,7 +77,7 @@ author_profile: true
     {% endfor %}
   </div>
 
-  <h2 class="section-heading reveal-on-scroll" style="text-align: center; margin: 4rem 0 3rem; font-size: clamp(2rem, 5vw, 3.5rem);">Research Assistance</h2>
+  <h2 class="section-heading reveal-on-scroll" style="text-align: center; margin: 4rem 0 3rem; font-size: clamp(1.5rem, 3vw, 2rem);">Research Assistance</h2>
   <div class="bento-grid research-assistance-section">
     {% for post in site.publications reversed %}
       {% if post.type == "assistance" and post.index != "No" %}
@@ -195,6 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    font-size: clamp(1.5rem, 3vw, 2rem);
   }
   
   .subsection-heading {
@@ -242,8 +243,9 @@ document.addEventListener('DOMContentLoaded', function() {
   .research-projects-section .archive__item-title,
   .research-assistance-section .archive__item-title {
     margin-top: 0.5em;
-    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+    font-size: clamp(1rem, 2vw, 1.15rem);
     margin-bottom: 0.15em;
+    line-height: 1.4;
   }
   
   .archive__item-badges {
@@ -421,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     .section-heading {
-      font-size: clamp(1.5rem, 6vw, 2rem);
+      font-size: clamp(1.25rem, 4vw, 1.75rem);
       margin-top: 1.5em;
     }
     
