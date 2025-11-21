@@ -15,10 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const map = L.map('research-map', {
     minZoom: 2,
     worldCopyJump: true,
-    zoomControl: false
+    zoomControl: false,
+    preferCanvas: true // Better performance for markers
   }).setView([30, 0], 2);
   mapElement.dataset.mapTheme = 'dark';
   mapElement.classList.add('research-map--neo');
+  
+  // Detect mobile
+  const isMobile = window.innerWidth <= 768;
   
   const setResponsiveMapHeight = () => {
     const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
@@ -95,65 +99,80 @@ document.addEventListener('DOMContentLoaded', function() {
     resizeObserver.observe(mapElement);
   }
 
-  // Create marker groups
+  // Create marker groups with better mobile visibility
+  const clusterSize = isMobile ? 50 : 45;
+  const clusterIconSize = isMobile ? 46 : 48;
+  
   const educationGroup = L.markerClusterGroup({
     showCoverageOnHover: false,
-    maxClusterRadius: 50,
+    maxClusterRadius: clusterSize,
+    spiderfyOnMaxZoom: true,
+    disableClusteringAtZoom: 10,
     iconCreateFunction: function(cluster) {
+      const count = cluster.getChildCount();
       return L.divIcon({
-        html: `<div class="custom-cluster education-cluster">${cluster.getChildCount()}</div>`,
+        html: `<div class="custom-cluster education-cluster research-cluster">${count}</div>`,
         className: 'marker-cluster-custom',
-        iconSize: new L.Point(40, 40)
+        iconSize: new L.Point(clusterIconSize, clusterIconSize)
       });
     }
   });
 
   const coauthorsGroup = L.markerClusterGroup({
     showCoverageOnHover: false,
-    maxClusterRadius: 50,
+    maxClusterRadius: clusterSize,
+    spiderfyOnMaxZoom: true,
+    disableClusteringAtZoom: 10,
     iconCreateFunction: function(cluster) {
+      const count = cluster.getChildCount();
       return L.divIcon({
-        html: `<div class="custom-cluster coauthor-cluster">${cluster.getChildCount()}</div>`,
+        html: `<div class="custom-cluster coauthor-cluster research-cluster">${count}</div>`,
         className: 'marker-cluster-custom',
-        iconSize: new L.Point(40, 40)
+        iconSize: new L.Point(clusterIconSize, clusterIconSize)
       });
     }
   });
   
   const talksGroup = L.markerClusterGroup({
     showCoverageOnHover: false,
-    maxClusterRadius: 50,
+    maxClusterRadius: clusterSize,
+    spiderfyOnMaxZoom: true,
+    disableClusteringAtZoom: 10,
     iconCreateFunction: function(cluster) {
+      const count = cluster.getChildCount();
       return L.divIcon({
-        html: `<div class="custom-cluster talk-cluster">${cluster.getChildCount()}</div>`,
+        html: `<div class="custom-cluster talk-cluster research-cluster">${count}</div>`,
         className: 'marker-cluster-custom',
-        iconSize: new L.Point(40, 40)
+        iconSize: new L.Point(clusterIconSize, clusterIconSize)
       });
     }
   });
 
   // Custom marker icons for different types of locations using Font Awesome
+  const markerSize = isMobile ? 36 : 40;
+  const markerIconSize = isMobile ? 0.9 : 1;
+  
   const markerIcons = {
     education: L.divIcon({
-      html: `<div class="custom-icon education-icon"><i class="fa-solid fa-graduation-cap"></i></div>`,
-      className: 'custom-marker-icon',
-      iconSize: [40, 40],
-      iconAnchor: [20, 40],
-      popupAnchor: [0, -35]
+      html: `<div class="custom-icon education-icon"><i class="fa-solid fa-graduation-cap" style="font-size: ${markerIconSize}rem;"></i></div>`,
+      className: 'custom-marker-icon research-marker-icon',
+      iconSize: [markerSize, markerSize],
+      iconAnchor: [markerSize/2, markerSize],
+      popupAnchor: [0, -markerSize + 5]
     }),
     coauthor: L.divIcon({
-      html: `<div class="custom-icon coauthor-icon"><i class="fa-solid fa-user-tie"></i></div>`,
-      className: 'custom-marker-icon',
-      iconSize: [40, 40],
-      iconAnchor: [20, 40],
-      popupAnchor: [0, -35]
+      html: `<div class="custom-icon coauthor-icon"><i class="fa-solid fa-user-tie" style="font-size: ${markerIconSize}rem;"></i></div>`,
+      className: 'custom-marker-icon research-marker-icon',
+      iconSize: [markerSize, markerSize],
+      iconAnchor: [markerSize/2, markerSize],
+      popupAnchor: [0, -markerSize + 5]
     }),
     talk: L.divIcon({
-      html: `<div class="custom-icon talk-icon"><i class="fa-solid fa-person-chalkboard"></i></div>`,
-      className: 'custom-marker-icon',
-      iconSize: [40, 40],
-      iconAnchor: [20, 40],
-      popupAnchor: [0, -35]
+      html: `<div class="custom-icon talk-icon"><i class="fa-solid fa-person-chalkboard" style="font-size: ${markerIconSize}rem;"></i></div>`,
+      className: 'custom-marker-icon research-marker-icon',
+      iconSize: [markerSize, markerSize],
+      iconAnchor: [markerSize/2, markerSize],
+      popupAnchor: [0, -markerSize + 5]
     })
   };
 
@@ -530,13 +549,18 @@ document.addEventListener('DOMContentLoaded', function() {
         popupClass += " worldbank-popup";
       }
       
+      // Adjust popup size based on screen size
+      const popupMaxWidth = isMobile ? 240 : 280;
+      const popupMinWidth = isMobile ? 180 : 200;
+      
       marker.bindPopup(popupContent, {
-        maxWidth: 280,
-        minWidth: 200,
-        className: popupClass,
+        maxWidth: popupMaxWidth,
+        minWidth: popupMinWidth,
+        className: popupClass + ' research-popup',
         autoPan: true,
-        autoPanPadding: [20, 20],
-        keepInView: true
+        autoPanPadding: isMobile ? [10, 10] : [20, 20],
+        keepInView: true,
+        closeButton: true
       });
       
       group.addLayer(marker);
@@ -552,31 +576,44 @@ document.addEventListener('DOMContentLoaded', function() {
   map.addLayer(coauthorsGroup);
   // Note: education and talks groups are not added by default
 
-  // Create layer control for toggling groups
+  // Create layer control for toggling groups - more compact on mobile
   const overlays = {
-    "<span class='layer-label education-label'>Education</span>": educationGroup,
-    "<span class='layer-label coauthor-label'>Coauthors</span>": coauthorsGroup,
-    "<span class='layer-label talk-label'>Talks</span>": talksGroup
+    "<span class='layer-label education-label'><i class='fa-solid fa-graduation-cap'></i> Edu</span>": educationGroup,
+    "<span class='layer-label coauthor-label'><i class='fa-solid fa-user-tie'></i> Co-authors</span>": coauthorsGroup,
+    "<span class='layer-label talk-label'><i class='fa-solid fa-person-chalkboard'></i> Talks</span>": talksGroup
   };
 
   L.control.layers(null, overlays, {
-    collapsed: false, // Make it open by default
+    collapsed: isMobile ? true : false, // Collapsed on mobile, open on desktop
     position: 'topright',
-    className: 'wider-layer-control'
+    className: 'research-layer-control' + (isMobile ? ' mobile-compact' : '')
   }).addTo(map);
 
-  // Add a beautiful legend
+  // Add a compact legend - smaller on mobile
   const legend = L.control({position: 'bottomleft'});
   legend.onAdd = function(map) {
-    const div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = `
-      <div class="legend-container">
-        <h4>Research Network</h4>
-        <div class="legend-item"><span class="legend-icon education"><i class="fa-solid fa-graduation-cap"></i></span> Education</div>
-        <div class="legend-item"><span class="legend-icon coauthor"><i class="fa-solid fa-user-tie"></i></span> Coauthors</div>
-        <div class="legend-item"><span class="legend-icon talk"><i class="fa-solid fa-person-chalkboard"></i></span> Talks</div>
-      </div>
-    `;
+    const div = L.DomUtil.create('div', 'info legend research-legend' + (isMobile ? ' mobile-legend' : ''));
+    if (isMobile) {
+      // Compact mobile version
+      div.innerHTML = `
+        <div class="legend-container">
+          <h4>Network</h4>
+          <div class="legend-item"><span class="legend-icon education"><i class="fa-solid fa-graduation-cap"></i></span> Edu</div>
+          <div class="legend-item"><span class="legend-icon coauthor"><i class="fa-solid fa-user-tie"></i></span> Co-auth</div>
+          <div class="legend-item"><span class="legend-icon talk"><i class="fa-solid fa-person-chalkboard"></i></span> Talks</div>
+        </div>
+      `;
+    } else {
+      // Full desktop version
+      div.innerHTML = `
+        <div class="legend-container">
+          <h4>Research Network</h4>
+          <div class="legend-item"><span class="legend-icon education"><i class="fa-solid fa-graduation-cap"></i></span> Education</div>
+          <div class="legend-item"><span class="legend-icon coauthor"><i class="fa-solid fa-user-tie"></i></span> Coauthors</div>
+          <div class="legend-item"><span class="legend-icon talk"><i class="fa-solid fa-person-chalkboard"></i></span> Talks</div>
+        </div>
+      `;
+    }
     return div;
   };
   legend.addTo(map);

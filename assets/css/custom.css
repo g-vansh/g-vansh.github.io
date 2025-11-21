@@ -314,31 +314,44 @@ a {
               0 0 25px rgba(155, 255, 31, 0.5);
 }
 
+/* Research map specific clusters - better visibility */
+.research-cluster {
+  background: rgba(5, 19, 13, 0.95) !important;
+  border: 3px solid var(--neo-border) !important;
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
 .custom-cluster.education-cluster {
-  border-color: rgba(255, 216, 107, 0.8);
+  border-color: rgba(255, 216, 107, 0.9) !important;
   color: var(--neo-amber);
-  text-shadow: 0 0 10px rgba(255, 216, 107, 0.6);
+  text-shadow: 0 0 12px rgba(255, 216, 107, 0.8),
+               0 2px 4px rgba(0, 0, 0, 0.8) !important;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 
               inset 0 0 20px rgba(255, 216, 107, 0.15),
-              0 0 15px rgba(255, 216, 107, 0.4);
+              0 0 20px rgba(255, 216, 107, 0.5) !important;
 }
 
 .custom-cluster.coauthor-cluster {
-  border-color: rgba(98, 255, 198, 0.8);
+  border-color: rgba(98, 255, 198, 0.9) !important;
   color: var(--neo-cyan);
-  text-shadow: 0 0 10px rgba(98, 255, 198, 0.6);
+  text-shadow: 0 0 12px rgba(98, 255, 198, 0.8),
+               0 2px 4px rgba(0, 0, 0, 0.8) !important;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 
               inset 0 0 20px rgba(98, 255, 198, 0.15),
-              0 0 15px rgba(98, 255, 198, 0.4);
+              0 0 20px rgba(98, 255, 198, 0.5) !important;
 }
 
 .custom-cluster.talk-cluster {
-  border-color: rgba(255, 107, 243, 0.8);
+  border-color: rgba(255, 107, 243, 0.9) !important;
   color: var(--neo-magenta);
-  text-shadow: 0 0 10px rgba(255, 107, 243, 0.6);
+  text-shadow: 0 0 12px rgba(255, 107, 243, 0.8),
+               0 2px 4px rgba(0, 0, 0, 0.8) !important;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 
               inset 0 0 20px rgba(255, 107, 243, 0.15),
-              0 0 15px rgba(255, 107, 243, 0.4);
+              0 0 20px rgba(255, 107, 243, 0.5) !important;
 }
 
 .legend-item {
@@ -509,6 +522,104 @@ a {
     --research-map-height: min(520px, 70vh);
   }
 
+  /* Research map legend - compact on mobile */
+  .research-legend.mobile-legend {
+    max-width: 100px !important;
+    padding: 0.45rem 0.55rem !important;
+    font-size: 0.65rem !important;
+    backdrop-filter: blur(8px) !important;
+  }
+  
+  .research-legend.mobile-legend h4 {
+    font-size: 0.7rem !important;
+    margin-bottom: 0.4rem !important;
+    letter-spacing: 0.08em !important;
+  }
+  
+  .research-legend.mobile-legend .legend-item {
+    margin-bottom: 0.3rem !important;
+    font-size: 0.6rem !important;
+    gap: 0.3rem !important;
+  }
+  
+  .research-legend.mobile-legend .legend-icon {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  
+  .research-legend.mobile-legend .legend-icon i {
+    font-size: 0.6rem !important;
+  }
+  
+  /* Research map layer control - compact on mobile */
+  .research-layer-control.mobile-compact {
+    font-size: 0.7rem !important;
+  }
+  
+  .research-layer-control.mobile-compact .leaflet-control-layers-toggle {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  .research-layer-control.mobile-compact.leaflet-control-layers-expanded {
+    padding: 0.6rem !important;
+    max-width: 140px !important;
+  }
+  
+  .research-layer-control.mobile-compact .layer-label {
+    font-size: 0.65rem !important;
+    letter-spacing: 0.05em !important;
+  }
+  
+  .research-layer-control.mobile-compact .layer-label i {
+    font-size: 0.7rem !important;
+    margin-right: 0.25rem !important;
+  }
+
+  /* Research map popups - smaller on mobile */
+  .research-popup .leaflet-popup-content-wrapper {
+    max-width: 240px !important;
+    border-radius: 10px !important;
+  }
+  
+  .research-popup .leaflet-popup-content {
+    margin: 10px !important;
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  .research-popup .leaflet-popup-content h3 {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.45rem !important;
+  }
+  
+  .research-popup .education-section,
+  .research-popup .coauthor-section,
+  .research-popup .talk-section {
+    padding: 0.6rem !important;
+    margin-bottom: 0.6rem !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .research-popup .popup-link {
+    font-size: 0.65rem !important;
+    padding: 0.4rem 0.75rem !important;
+  }
+  
+  /* Research marker icons - slightly smaller on mobile */
+  .research-marker-icon .custom-icon {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  
+  /* Better cluster visibility on mobile */
+  .research-cluster {
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 1.15rem !important;
+    border-width: 3px !important;
+  }
+
   .legend,
   .legend-container {
     max-width: 140px;
@@ -540,7 +651,7 @@ a {
     justify-content: center;
   }
   
-  // Better mobile popups
+  /* Generic mobile popups */
   .leaflet-popup-content-wrapper {
     max-width: 240px !important;
   }
@@ -555,7 +666,7 @@ a {
     margin-bottom: 0.5rem;
   }
   
-  // Mobile layer controls
+  /* Generic mobile layer controls */
   .leaflet-control-layers {
     font-size: 0.75rem;
     max-width: 160px;
@@ -578,6 +689,58 @@ a {
 
   .leaflet-control-zoom {
     transform: scale(0.85);
+  }
+  
+  /* Extra small research legend */
+  .research-legend.mobile-legend {
+    max-width: 90px !important;
+    padding: 0.4rem 0.5rem !important;
+    font-size: 0.6rem !important;
+  }
+  
+  .research-legend.mobile-legend h4 {
+    font-size: 0.65rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+  
+  .research-legend.mobile-legend .legend-item {
+    margin-bottom: 0.25rem !important;
+    font-size: 0.55rem !important;
+  }
+  
+  .research-legend.mobile-legend .legend-icon {
+    width: 10px !important;
+    height: 10px !important;
+  }
+  
+  /* Extra small research layer control */
+  .research-layer-control.mobile-compact.leaflet-control-layers-expanded {
+    max-width: 120px !important;
+    padding: 0.5rem !important;
+  }
+  
+  .research-layer-control.mobile-compact .layer-label {
+    font-size: 0.6rem !important;
+  }
+  
+  /* Extra small research popups */
+  .research-popup .leaflet-popup-content-wrapper {
+    max-width: 220px !important;
+  }
+  
+  .research-popup .leaflet-popup-content {
+    font-size: 0.75rem !important;
+  }
+  
+  .research-popup .leaflet-popup-content h3 {
+    font-size: 0.75rem !important;
+  }
+  
+  /* Extra small research clusters */
+  .research-cluster {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 1.05rem !important;
   }
   
   .legend,
@@ -607,6 +770,11 @@ a {
   
   .custom-icon {
     font-size: 0.9rem;
+  }
+  
+  .research-marker-icon .custom-icon {
+    width: 34px !important;
+    height: 34px !important;
   }
 }
 
