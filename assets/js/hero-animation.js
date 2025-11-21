@@ -71,7 +71,7 @@
       this.particles = [];
        this.signals = [];
       this.animating = false;
-       this.maxSignals = isMobile ? 10 : 18;
+       this.maxSignals = isMobile ? 15 : 30;
        this.lightbulbIcon = '💡';
       this.init();
     }
@@ -174,7 +174,7 @@
       this.ctx.arc(particle.x, particle.y, glowRadius, 0, Math.PI * 2);
       this.ctx.fill();
 
-      this.ctx.font = `${isMobile ? 15 : 18}px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif`;
+      this.ctx.font = `${isMobile ? 20 : 28}px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif`;
       this.ctx.textAlign = 'center';
       this.ctx.textBaseline = 'middle';
       this.ctx.fillStyle = '#fdf5a6';
@@ -187,7 +187,7 @@
         return;
       }
       particle.isIdea = true;
-      particle.ideaLife = 0.9 + Math.random() * 0.6;
+      particle.ideaLife = 1.5 + Math.random() * 1.0;
     }
 
     spawnSignal() {
@@ -205,7 +205,7 @@
         const dx = candidate.x - source.x;
         const dy = candidate.y - source.y;
         const distance = Math.hypot(dx, dy);
-        if (distance <= (isMobile ? 22 : 32)) {
+        if (distance <= (isMobile ? 50 : 100)) {
           target = candidate;
           break;
         }
@@ -296,7 +296,7 @@
         return true;
       });
 
-      if (this.particles.length > 1 && Math.random() < 0.08) {
+      if (this.particles.length > 1 && Math.random() < 0.15) {
         this.spawnSignal();
       }
 

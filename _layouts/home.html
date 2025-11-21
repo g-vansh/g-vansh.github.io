@@ -39,7 +39,8 @@ layout: default
         {% assign hero_secondary = '' %}
       {% endif %}
       <h1 class="hero-name kinetic-text epic-name" data-speed="0.3">
-        {{ hero_primary | strip }}{% if hero_secondary != '' %}{{ '\n' }}{{ hero_secondary | strip }}{% endif %}
+        <span style="display: block;">{{ hero_primary | strip }}</span>
+        <span style="display: block;">{{ hero_secondary | strip }}</span>
       </h1>
       <p class="hero-subtitle epic-subtitle">
         <span class="subtitle-icon">▸</span>
