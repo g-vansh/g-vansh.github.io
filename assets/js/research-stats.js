@@ -29,28 +29,30 @@ document.addEventListener('DOMContentLoaded', function() {
     counts = [23, 8, 12, 7, 16, 14, 12, 8];
   }
 
-  // Generate colors array for available tags
+  // Generate colors array using theme accent colors
   const generateColors = (count) => {
-    const baseColors = [
-      [54, 162, 235],   // blue
-      [75, 192, 192],   // teal
-      [255, 159, 64],   // orange
-      [153, 102, 255],  // purple
-      [255, 99, 132],   // pink
-      [255, 206, 86],   // yellow
-      [46, 204, 113],   // green
-      [52, 73, 94],     // dark blue
-      [231, 76, 60],    // red
-      [155, 89, 182]    // lavender
+    // Theme colors matching the dark kinetic theme
+    const themeColors = [
+      [155, 255, 31],   // #9bff1f - primary accent (neon green)
+      [123, 235, 25],   // #7beb19 - accent hover
+      [98, 255, 198],   // #62ffc6 - cyan accent
+      [86, 255, 198],   // #56ffc6 - cyan variant
+      [179, 255, 71],   // #b3ff47 - lighter green
+      [99, 255, 157],   // #63ff9d - accent strong
+      [155, 255, 49],   // #9bff31 - green variant
+      [200, 255, 120],  // #c8ff78 - light green
+      [120, 255, 80],   // #78ff50 - bright green
+      [70, 255, 150]    // #46ff96 - mint green
     ];
     
     const backgroundColors = [];
     const borderColors = [];
     
     for (let i = 0; i < count; i++) {
-      const color = baseColors[i % baseColors.length];
-      backgroundColors.push(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.7)`);
-      borderColors.push(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`);
+      const color = themeColors[i % themeColors.length];
+      // Use theme colors with appropriate opacity
+      backgroundColors.push(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`);
+      borderColors.push(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.9)`);
     }
     
     return { backgroundColors, borderColors };
@@ -89,14 +91,31 @@ document.addEventListener('DOMContentLoaded', function() {
             boxWidth: isMobile ? 12 : 15,
             padding: isMobile ? 10 : 20,
             font: {
-              family: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-              size: isMobile ? 10 : 12
+              family: "'Azeret Mono', 'JetBrains Mono', 'Space Mono', monospace",
+              size: isMobile ? 10 : 12,
+              weight: '500'
             },
             usePointStyle: true,
-            pointStyle: 'circle'
+            pointStyle: 'circle',
+            color: 'rgba(241, 255, 233, 0.85)'
           }
         },
         tooltip: {
+          backgroundColor: 'rgba(6, 19, 12, 0.95)',
+          borderColor: 'rgba(155, 255, 31, 0.4)',
+          borderWidth: 1,
+          titleColor: '#9bff1f',
+          bodyColor: 'rgba(241, 255, 233, 0.9)',
+          padding: 12,
+          titleFont: {
+            family: "'Azeret Mono', 'JetBrains Mono', monospace",
+            size: 13,
+            weight: '600'
+          },
+          bodyFont: {
+            family: "'Azeret Mono', 'JetBrains Mono', monospace",
+            size: 12
+          },
           callbacks: {
             label: function(context) {
               const label = context.label || '';
@@ -116,9 +135,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Add hover effect
+  // Add hover effect with theme colors
   chartElement.addEventListener('mouseover', function() {
-    chartElement.style.filter = 'drop-shadow(0px 0px 8px rgba(0, 123, 255, 0.4))';
+    chartElement.style.filter = 'drop-shadow(0px 0px 12px rgba(155, 255, 31, 0.4))';
   });
   
   chartElement.addEventListener('mouseout', function() {

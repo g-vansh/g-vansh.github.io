@@ -364,9 +364,11 @@
 
   /* Breadcrumbs */
   .breadcrumbs {
-    padding-left: 1em;
-    padding-right: 1em;
-    font-size: $type-size-7;
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   /* Pagination */

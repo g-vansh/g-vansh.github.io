@@ -1011,16 +1011,13 @@ body:not(.motion-ready) .reveal-on-scroll {
    ========================================================================== */
 
 .breadcrumbs {
-  border: 1px solid rgba($accent-color, 0.2);
-  border-radius: $border-radius-pill;
-  padding: 0.75rem 1.5rem;
-  margin: 0 auto 2rem;
-  background: rgba($surface-color, 0.6);
-  font-family: $metadata-font-family;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: $terminal-muted;
-  box-shadow: inset 0 0 0 1px rgba(#fff, 0.02), $box-shadow;
+  display: none !important; // Hide breadcrumbs completely
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
 }
 
 .pagination {

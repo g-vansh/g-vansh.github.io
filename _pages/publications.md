@@ -27,14 +27,14 @@ author_profile: true
       <i class="ai ai-google-scholar-square ai-fw"></i> Find my articles on <u><a href="{{author.googlescholar}}">Google Scholar</a></u>
     </p>
     <div class="scholar-stats">
-      <iframe src="/scripts/citations-static.html" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+      <iframe src="/scripts/citations-static.html" frameborder="0" width="100%" style="min-height: 360px; height: auto;" scrolling="no"></iframe>
     </div>
   {% else %}
     <p class="scholar-link">
       <i class="ai ai-google-scholar-square ai-fw"></i> <u><a href="https://scholar.google.com/citations?user=VLDgDyAAAAAJ">Google Scholar</a></u> 
     </p>
     <div class="scholar-stats">
-      <iframe src="/scripts/citations-static.html" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+      <iframe src="/scripts/citations-static.html" frameborder="0" width="100%" style="min-height: 360px; height: auto;" scrolling="no"></iframe>
     </div>
   {% endif %}
 </div>
@@ -123,49 +123,91 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
   .research-intro {
     margin-bottom: 2em;
-    padding: 1.5em;
-    background-color: rgba(26, 26, 26, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background-color: rgba(6, 19, 12, 0.75);
+    border: 1px solid rgba(155, 255, 31, 0.25);
     border-radius: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    color: #F2F2F2;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #f1ffe9;
+  }
+  
+  .research-intro p {
+    color: rgba(241, 255, 233, 0.85);
+    line-height: 1.7;
+    margin-bottom: 1em;
+  }
+  
+  .research-intro h3 {
+    color: #9bff1f;
+    font-family: 'Azeret Mono', 'JetBrains Mono', monospace;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
   }
   
   .scholar-link {
-    margin-top: 1em;
+    margin-top: 1.5em;
     font-weight: 500;
+    color: rgba(241, 255, 233, 0.85);
+  }
+  
+  .scholar-link a {
+    color: #9bff1f;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .scholar-link a:hover {
+    color: #b3ff47;
+    text-decoration: underline;
   }
   
   .scholar-stats {
     margin-top: 1em;
-    background-color: rgba(26, 26, 26, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+    border: none;
     border-radius: 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     overflow: hidden;
+    width: 100%;
+  }
+  
+  .scholar-stats iframe {
+    width: 100%;
+    height: auto;
+    min-height: 360px;
+    border: none;
+    background: transparent;
   }
   
   .section-heading {
     margin-top: 2em;
     margin-bottom: 1em;
-    color: #D2FF00;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #9bff1f;
+    border-bottom: 1px solid rgba(155, 255, 31, 0.25);
     padding-bottom: 0.5em;
-    font-family: 'Mona Sans', 'Inter', sans-serif;
-    font-weight: 800;
+    font-family: 'Azeret Mono', 'JetBrains Mono', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
   
   .subsection-heading {
     margin-top: 1.5em;
     margin-bottom: 0.75em;
-    color: #F2F2F2;
-    font-size: 1.3em;
-    border-left: 2px solid #D2FF00;
-    padding-left: 0.5em;
-    font-family: 'Mona Sans', 'Inter', sans-serif;
-    font-weight: 700;
+    color: #f1ffe9;
+    font-size: clamp(1.125rem, 2.5vw, 1.3rem);
+    border-left: 2px solid #9bff1f;
+    padding-left: 0.75em;
+    font-family: 'Azeret Mono', 'JetBrains Mono', monospace;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
   
   .research-projects-section h3.subsection-heading[class*="under_review"] {
@@ -177,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   .research-projects-section h3.subsection-heading[class*="inactive"] {
-    border-left-color: #6c757d;
+    border-left-color: rgba(241, 255, 233, 0.4);
   }
   
   .research-projects-section, .research-assistance-section {
@@ -187,19 +229,20 @@ document.addEventListener('DOMContentLoaded', function() {
   .archive__item {
     margin-bottom: 1.5em;
     padding-bottom: 1em;
-    border-bottom: 1px solid #f2f3f3;
+    border-bottom: 1px solid rgba(155, 255, 31, 0.15);
   }
   
   .archive__item p {
     margin-top: 0.3em;
     margin-bottom: 0.3em;
-    line-height: 1.4;
+    line-height: 1.6;
+    color: rgba(241, 255, 233, 0.8);
   }
   
   .research-projects-section .archive__item-title,
   .research-assistance-section .archive__item-title {
     margin-top: 0.5em;
-    font-size: 1.25em;
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
     margin-bottom: 0.15em;
   }
   
@@ -223,13 +266,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   .project-badge {
-    background-color: #28a745;
-    color: white;
+    background-color: rgba(155, 255, 31, 0.2);
+    color: #9bff1f;
+    border: 1px solid rgba(155, 255, 31, 0.4);
   }
   
   .assistance-badge {
-    background-color: #007bff;
-    color: white;
+    background-color: rgba(98, 255, 198, 0.2);
+    color: #62ffc6;
+    border: 1px solid rgba(98, 255, 198, 0.4);
   }
   
   .status-badge {
@@ -243,34 +288,41 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   .status-under-review {
-    background-color: #dc3545;
-    color: white;
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.4);
   }
   
   .status-in-progress {
-    background-color: #fd7e14;
-    color: white;
+    background-color: rgba(253, 126, 20, 0.2);
+    color: #fd7e14;
+    border: 1px solid rgba(253, 126, 20, 0.4);
   }
   
   .status-inactive {
-    background-color: #6c757d;
-    color: white;
+    background-color: rgba(241, 255, 233, 0.1);
+    color: rgba(241, 255, 233, 0.6);
+    border: 1px solid rgba(241, 255, 233, 0.2);
   }
   
   .media-coverage {
     margin-top: 0.75em;
-    padding: 0.75em 1em;
-    background-color: #f8f9fa;
-    border-left: 3px solid #17a2b8;
-    border-radius: 3px;
+    padding: 1em 1.25em;
+    background-color: rgba(6, 19, 12, 0.6);
+    border-left: 3px solid #62ffc6;
+    border-radius: 0;
+    border: 1px solid rgba(98, 255, 198, 0.25);
   }
   
   .media-coverage h4 {
     margin-top: 0;
     margin-bottom: 0.5em;
-    color: #17a2b8;
+    color: #62ffc6;
     font-size: 0.9em;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Azeret Mono', 'JetBrains Mono', monospace;
   }
   
   .media-coverage ul {
@@ -281,7 +333,8 @@ document.addEventListener('DOMContentLoaded', function() {
   .media-coverage li {
     margin-bottom: 0.3em;
     font-size: 0.85em;
-    line-height: 1.4;
+    line-height: 1.5;
+    color: rgba(241, 255, 233, 0.8);
   }
   
   .media-coverage li:last-child {
@@ -290,7 +343,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
   .media-coverage a {
     font-weight: 600;
-    color: #0056b3;
+    color: #9bff1f;
+    transition: color 0.3s ease;
+  }
+  
+  .media-coverage a:hover {
+    color: #b3ff47;
   }
   
   .research-stats-container {
@@ -300,15 +358,17 @@ document.addEventListener('DOMContentLoaded', function() {
   .research-stats-visualization {
     display: flex;
     flex-direction: row;
-    gap: 2em;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
     margin-top: 1em;
+    align-items: center;
   }
   
   .stats-chart-container {
     flex: 1;
     min-width: 0;
-    height: 320px;
+    height: clamp(280px, 40vh, 360px);
     position: relative;
+    max-width: 100%;
   }
   
   .stats-description {
@@ -318,25 +378,89 @@ document.addEventListener('DOMContentLoaded', function() {
     align-items: center;
   }
   
+  .stats-description p {
+    color: rgba(241, 255, 233, 0.8);
+    line-height: 1.7;
+    margin: 0;
+  }
+  
   /* Mobile responsiveness */
   @media (max-width: 767px) {
+    .research-intro {
+      padding: 1.25rem;
+      margin-bottom: 1.5em;
+    }
+    
     .research-stats-visualization {
       flex-direction: column;
-      gap: 1em;
+      gap: 1.5em;
     }
     
     .stats-chart-container {
       width: 100%;
-      height: 300px;
+      height: clamp(250px, 50vh, 320px);
+      max-width: 100%;
     }
     
     .stats-description {
       width: 100%;
-      text-align: center;
+      text-align: left;
+    }
+    
+    .stats-description p {
+      text-align: left;
     }
     
     .research-stats-container h3 {
-      text-align: center;
+      text-align: left;
+      font-size: 1.125rem;
+    }
+    
+    .scholar-stats iframe {
+      min-height: clamp(300px, 50vh, 400px);
+    }
+    
+    .section-heading {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      margin-top: 1.5em;
+    }
+    
+    .subsection-heading {
+      font-size: 1.125rem;
+      margin-top: 1.25em;
+    }
+    
+    .research-projects-section, .research-assistance-section {
+      margin-bottom: 1.5em;
+    }
+  }
+  
+  /* Desktop optimizations */
+  @media (min-width: 768px) {
+    .research-intro {
+      padding: 2rem;
+    }
+    
+    .stats-chart-container {
+      height: 360px;
+    }
+    
+    .scholar-stats iframe {
+      min-height: 400px;
+    }
+    
+    .research-stats-visualization {
+      gap: 2.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .stats-chart-container {
+      height: 400px;
+    }
+    
+    .scholar-stats iframe {
+      min-height: 450px;
     }
   }
 </style>
