@@ -34,10 +34,67 @@ author_profile: true
     }
     
     .map-wrapper {
-        height: calc(100vh - 150px);
-        min-height: 400px;
+        height: calc(100vh - 120px);
+        min-height: 450px;
         margin: 10px 0;
         border-radius: 8px;
+    }
+    
+    /* Improve marker cluster visibility on mobile */
+    .marker-cluster {
+        background: rgba(0, 0, 139, 0.95) !important;
+        border: 2px solid white !important;
+        border-radius: 50% !important;
+        width: 42px !important;
+        height: 42px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .marker-cluster div {
+        background: transparent !important;
+        color: white !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+    }
+    
+    /* Better popup sizing */
+    .leaflet-popup-content-wrapper {
+        max-width: 280px !important;
+        border-radius: 10px !important;
+    }
+    
+    .leaflet-popup-content {
+        margin: 12px !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+    }
+    
+    .leaflet-popup-content h4 {
+        font-size: 16px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .leaflet-popup-content p {
+        margin: 4px 0 !important;
+        font-size: 13px !important;
+    }
+    
+    /* Hide mouse position control on mobile */
+    .leaflet-control-mouseposition {
+        display: none !important;
+    }
+    
+    /* Improve zoom control visibility */
+    .leaflet-control-zoom {
+        transform: scale(1.1);
+    }
+    
+    /* Better search/geocoder control */
+    .leaflet-control-geocoder {
+        max-width: calc(100vw - 120px) !important;
     }
 }
 .map-button {
@@ -140,19 +197,20 @@ author_profile: true
     .privacy-notice {
         margin: 20px 0;
         padding: 15px;
-        font-size: 0.9em;
+        font-size: 0.95em;
     }
     
     .disclaimer p,
     .privacy-notice p,
     .disclaimer li,
     .privacy-notice li {
-        font-size: 0.85em;
+        font-size: 0.9em;
+        line-height: 1.6;
     }
     
     .disclaimer h3,
     .privacy-notice h3 {
-        font-size: 1.1em;
+        font-size: 1.15em;
     }
     
     .button-container {
@@ -163,10 +221,41 @@ author_profile: true
         width: 100%;
         max-width: 300px;
         justify-content: center;
+        font-size: 0.95em;
+        padding: 10px 18px;
     }
     
     .sponsor-card-container iframe {
         height: 225px;
+    }
+}
+
+/* Extra small mobile devices */
+@media screen and (max-width: 480px) {
+    .map-wrapper {
+        height: calc(100vh - 100px);
+        min-height: 380px;
+    }
+    
+    .leaflet-popup-content-wrapper {
+        max-width: calc(100vw - 60px) !important;
+    }
+    
+    .marker-cluster {
+        width: 38px !important;
+        height: 38px !important;
+    }
+    
+    .marker-cluster div {
+        font-size: 14px !important;
+    }
+    
+    /* Smaller buttons on very small screens */
+    .leaflet-control-zoom a {
+        width: 32px !important;
+        height: 32px !important;
+        line-height: 32px !important;
+        font-size: 18px !important;
     }
 }
 </style>

@@ -9,31 +9,31 @@
 /* Small devices (phones, up to 600px) */
 @media screen and (max-width: 600px) {
   
-  /* Body and Typography */
+  /* Body and Typography - Increased for better readability */
   body {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 16px; // Increased from 14px
+    line-height: 1.7;
     padding-bottom: 6em;
   }
 
   /* Main Content Area */
   #main {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding-left: 1em; // Increased from 0.5em
+    padding-right: 1em;
     margin-top: 1em;
   }
 
-  /* Headings */
+  /* Headings - Better scaling */
   h1 {
-    font-size: $type-size-4 !important;
+    font-size: $type-size-3 !important; // Larger for mobile
   }
 
   h2 {
-    font-size: $type-size-5 !important;
+    font-size: $type-size-4 !important; // Increased
   }
 
   h3, h4, h5, h6 {
-    font-size: $type-size-6 !important;
+    font-size: $type-size-5 !important; // Increased
   }
 
   /* Masthead / Header */
@@ -117,21 +117,22 @@
     }
   }
 
-  /* Page Content */
+  /* Page Content - Better readability */
   .page {
     width: 100%;
     padding: 0;
 
     &__inner-wrap {
-      padding: 0 1em;
+      padding: 0 1.25em; // Increased padding
     }
   }
 
   .page__content {
-    font-size: $type-size-6;
+    font-size: $type-size-5; // Increased from type-size-6
 
     p, li {
-      font-size: 0.95em;
+      font-size: 1em; // Increased from 0.95em
+      line-height: 1.75;
     }
 
     img {
@@ -142,7 +143,7 @@
     table {
       display: block;
       overflow-x: auto;
-      font-size: $type-size-7;
+      font-size: $type-size-6; // Increased from type-size-7
     }
   }
 

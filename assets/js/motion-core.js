@@ -241,7 +241,7 @@
   }
 
   // Card hover lift effect (GSAP-powered)
-  const cardElements = document.querySelectorAll('.bento-card, .echelon-card');
+  const cardElements = document.querySelectorAll('.bento-card, .echelon-card, .archive__item, .affiliation-card');
   
   if (cardElements.length > 0) {
     cardElements.forEach((card) => {
@@ -249,8 +249,9 @@
         gsap.to(card, {
           y: -8,
           scale: 1.02,
-          duration: 0.3,
+          duration: 0.4,
           ease: 'power2.out',
+          boxShadow: '0 30px 60px rgba(0, 0, 0, 0.75), 0 0 40px rgba(155, 255, 31, 0.35)',
         });
       });
 
@@ -258,11 +259,100 @@
         gsap.to(card, {
           y: 0,
           scale: 1,
+          duration: 0.4,
+          ease: 'power2.out',
+          boxShadow: '0 20px 45px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(155, 255, 31, 0.08)',
+        });
+      });
+    });
+  }
+
+  // Button hover animations
+  const buttons = document.querySelectorAll('.btn, button:not(.navicon)');
+  if (buttons.length > 0) {
+    buttons.forEach((btn) => {
+      btn.addEventListener('mouseenter', () => {
+        gsap.to(btn, {
+          scale: 1.05,
+          duration: 0.3,
+          ease: 'back.out(1.7)',
+        });
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, {
+          scale: 1,
           duration: 0.3,
           ease: 'power2.out',
         });
       });
     });
+  }
+
+  // Stagger animation for list items
+  const listItems = document.querySelectorAll('.archive .list__item, .publications .archive__item');
+  if (listItems.length > 0) {
+    gsap.fromTo(
+      listItems,
+      {
+        opacity: 0,
+        x: -30,
+      },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: listItems[0],
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+  }
+
+  // Add entrance animation to sidebar
+  const sidebar = document.querySelector('.sidebar');
+  if (sidebar) {
+    gsap.fromTo(
+      sidebar,
+      {
+        opacity: 0,
+        x: -50,
+      },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        delay: 0.3,
+        ease: 'power3.out',
+      }
+    );
+  }
+
+  // Animate footer on scroll
+  const footer = document.querySelector('.page__footer');
+  if (footer) {
+    gsap.fromTo(
+      footer,
+      {
+        opacity: 0,
+        y: 50,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: footer,
+          start: 'top 90%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
   }
 
   // Make lenis available globally for manual control if needed
