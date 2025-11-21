@@ -1,1371 +1,455 @@
-/* Custom navigation styles */
+:root {
+  --neo-bg: #020a06;
+  --neo-surface: #05130d;
+  --neo-surface-alt: #0b2115;
+  --neo-card: rgba(5, 19, 13, 0.9);
+  --neo-border: rgba(155, 255, 31, 0.25);
+  --neo-accent: #9bff1f;
+  --neo-accent-soft: rgba(155, 255, 31, 0.2);
+  --neo-cyan: #62ffc6;
+  --neo-amber: #ffd86b;
+  --neo-magenta: #ff6bf3;
+  --neo-text: #f2ffe9;
+  --neo-text-muted: rgba(242, 255, 233, 0.65);
+  --neo-shadow: 0 25px 45px rgba(0, 0, 0, 0.7);
+  --neo-transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  --neo-font: 'Azeret Mono', 'JetBrains Mono', 'Space Mono', monospace;
+}
+
+body {
+  font-family: var(--neo-font);
+}
+
+a {
+  transition: var(--neo-transition);
+}
+
+/* Masthead micro interactions ------------------------------------------------ */
+
 .masthead__menu-item.align-right {
-    margin-left: auto;
+  margin-left: auto;
 }
 
-/* Style the separator */
 .masthead__menu-item.separator {
-    margin: 0 1em;
-    color: #666;
-    font-style: italic;
-    font-size: 0.9em;
+  margin: 0 1rem;
+  color: var(--neo-text-muted);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
 }
 
-/* Style the separator link */
 .masthead__menu-item.separator a {
-    text-decoration: none !important;
-    color: inherit !important;
-    transition: color 0.2s ease;
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
-/* Add hover effect */
-.masthead__menu-item.separator a:hover {
-    color: #000 !important;
-}
-
-/* Style project links */
 .masthead__menu-item.project-link {
-    margin-left: 0.5em;
+  margin-left: 0.5rem;
 }
 
 .masthead__menu-item.project-link a {
-    color: #00008B !important;
-    font-weight: 500;
-    text-decoration: none !important;
-    transition: all 0.2s ease;
+  color: var(--neo-accent) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  letter-spacing: 0.25em;
 }
 
 .masthead__menu-item.project-link a:hover {
-    color: #000066 !important;
-    text-decoration: underline !important;
+  color: var(--neo-cyan) !important;
 }
 
-/* Ensure right-aligned item maintains spacing */
-.masthead__menu-item.project-link.align-right {
-    margin-left: auto;
-    margin-right: 0;
-}
+/* Media coverage cards ------------------------------------------------------- */
 
-/* Media coverage styles for individual publication pages */
 .media-coverage-single {
-    margin: 2em 0;
-    padding: 1.5em;
-    background-color: #f8f9fa;
-    border-left: 4px solid #17a2b8;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin: 2rem 0;
+  padding: 1.75rem;
+  border-radius: 12px;
+  background: var(--neo-card);
+  border: 1px solid var(--neo-border);
+  box-shadow: var(--neo-shadow);
 }
 
 .media-coverage-single h3 {
-    color: #17a2b8;
-    margin-top: 0;
-    margin-bottom: 1em;
-    font-size: 1.3em;
-    font-weight: 600;
+  margin: 0 0 1rem;
+  color: var(--neo-accent);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
 }
 
 .media-coverage-single ul {
-    padding-left: 0;
-    list-style-type: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .media-coverage-single li {
-    margin-bottom: 1.5em;
-    padding-bottom: 1.5em;
-    border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem 0;
 }
 
 .media-coverage-single li:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-}
-
-.media-outlet {
-    margin-bottom: 0.5em;
+  border-bottom: 0;
 }
 
 .media-outlet a {
-    font-weight: 600;
-    color: #0056b3;
-    font-size: 1.1em;
-    text-decoration: none;
-}
-
-.media-outlet a:hover {
-    text-decoration: underline;
+  color: var(--neo-text);
+  text-decoration: none;
+  font-size: 1rem;
 }
 
 .media-title {
-    font-size: 1.1em;
-    font-style: italic;
-    margin-bottom: 0.75em;
-    color: #495057;
+  color: var(--neo-text-muted);
+  font-style: italic;
+  margin: 0.25rem 0 0.75rem;
 }
 
 .media-excerpt blockquote {
-    margin: 0;
-    padding: 0.5em 1em;
-    font-size: 0.95em;
-    line-height: 1.5;
-    color: #6c757d;
-    border-left: 3px solid #dee2e6;
+  margin: 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--neo-accent);
+  color: var(--neo-text-muted);
 }
 
-/* Research Map Styles */
+/* Research map --------------------------------------------------------------- */
+
 .research-map-container {
-  margin: 2rem 0;
+  margin: 3rem 0;
 }
 
 .research-map-container h2 {
-  margin-bottom: 1.2rem;
-  color: #0056b3;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--neo-accent);
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  padding-bottom: 0.75rem;
 }
 
 .research-map-container h2:after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -8px;
-  height: 3px;
-  width: 60px;
-  background: linear-gradient(90deg, #0056b3, #00a0e9);
-  border-radius: 2px;
+  bottom: 0;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--neo-accent), transparent);
 }
 
-#research-map {
-  transition: all 0.3s ease;
+#research-map,
+.responsive-map {
+  width: 100%;
+  height: 620px;
+  border: 1px solid var(--neo-border);
+  border-radius: 18px;
+  box-shadow: var(--neo-shadow);
+  transition: var(--neo-transition);
+  overflow: hidden;
 }
 
 #research-map:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 35px 65px rgba(0, 0, 0, 0.85);
+  transform: translateY(-4px);
 }
 
-/* Marker Styles */
 .custom-marker {
   background: transparent;
 }
 
 .marker-pin {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  position: relative;
-  cursor: pointer;
-  border: 2px solid #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.45);
+  transition: var(--neo-transition);
 }
 
 .marker-pin:hover {
-  transform: translate(-50%, -50%) scale(1.2);
+  transform: translate(-50%, -50%) scale(1.18);
 }
 
 .current-marker .marker-pin {
-  background-color: #e74c3c;
+  background: var(--neo-accent);
+  box-shadow: 0 0 14px rgba(155, 255, 31, 0.8);
 }
 
 .project-marker .marker-pin {
-  background-color: #3498db;
+  background: var(--neo-cyan);
+  box-shadow: 0 0 14px rgba(98, 255, 198, 0.8);
 }
 
 .education-marker .marker-pin {
-  background-color: #2ecc71;
+  background: var(--neo-amber);
+  box-shadow: 0 0 14px rgba(255, 216, 107, 0.8);
 }
 
-/* Popup Styles */
 .leaflet-popup-content {
-  font-family: 'Roboto', sans-serif;
-  min-width: 200px;
+  font-family: var(--neo-font);
+  min-width: 220px;
+  color: var(--neo-text);
+  max-height: 320px;
+  overflow-y: auto;
 }
 
 .leaflet-popup-content h3 {
-  margin: 0 0 10px 0;
-  color: #333;
-  font-size: 1.1em;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 8px;
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--neo-accent);
 }
 
 .leaflet-popup-content p {
-  margin: 0 0 10px 0;
-  color: #666;
-  font-size: 0.9em;
+  margin: 0 0 0.5rem;
+  color: var(--neo-text-muted);
+  line-height: 1.5;
 }
 
-.marker-link {
-  display: inline-block;
-  background: #0056b3;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.8em;
-  transition: background 0.3s ease;
+.leaflet-popup-content::-webkit-scrollbar {
+  width: 6px;
 }
 
-.marker-link:hover {
-  background: #003d7a;
-  text-decoration: none;
+.leaflet-popup-content::-webkit-scrollbar-thumb {
+  background: var(--neo-accent-soft);
+  border-radius: 999px;
 }
 
-/* Legend Styles */
-.legend {
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-.legend-item {
-  margin-bottom: 5px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-}
-
-.legend-icon {
+.marker-link,
+.popup-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--neo-border);
+  color: var(--neo-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.65rem;
+  text-decoration: none;
+}
+
+.marker-link:hover,
+.popup-link:hover {
+  background: var(--neo-accent);
+  color: var(--neo-bg);
+}
+
+.legend,
+.legend-container {
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(5, 19, 13, 0.92);
+  border: 1px solid var(--neo-border);
+  box-shadow: var(--neo-shadow);
+  color: var(--neo-text-muted);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.legend-icon {
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  border: 1px solid #ccc;
-  background-color: white;
-  font-size: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
 .legend-icon.current {
-  background-color: #e74c3c;
+  background: var(--neo-accent);
 }
 
 .legend-icon.project {
-  background-color: #3498db;
+  background: var(--neo-cyan);
 }
 
 .legend-icon.education {
-  color: #38a800;
+  background: var(--neo-amber);
 }
 
 .legend-icon.coauthor {
-  color: #9c2bdc;
+  background: var(--neo-magenta);
 }
 
 .legend-icon.talk {
-  color: #ff8c00;
+  background: #ff914d;
 }
 
-/* Research Statistics Visualization */
+.leaflet-popup-content-wrapper {
+  background: rgba(5, 19, 13, 0.95);
+  border-radius: 16px;
+  border: 1px solid var(--neo-border);
+  box-shadow: var(--neo-shadow);
+}
+
+.leaflet-tooltip {
+  background: rgba(5, 19, 13, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--neo-text);
+  font-family: var(--neo-font);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  padding: 0.4rem 0.75rem;
+}
+
+.leaflet-control-layers {
+  border-radius: 16px !important;
+  background: rgba(5, 19, 13, 0.95) !important;
+  border: 1px solid var(--neo-border) !important;
+  color: var(--neo-text) !important;
+}
+
+.leaflet-control-layers-expanded {
+  padding: 1rem !important;
+  font-family: var(--neo-font);
+  letter-spacing: 0.12em;
+}
+
+.leaflet-control-layers-overlays label,
+.leaflet-control-layers-base label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+}
+
+.education-section,
+.coauthor-section,
+.talk-section {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.education-section i,
+.coauthor-section i,
+.talk-section i {
+  color: var(--neo-accent);
+  width: 20px;
+  text-align: center;
+  margin-right: 0.35rem;
+}
+
+.education-popup-header,
+.coauthor-popup-header,
+.talk-popup-header {
+  border-bottom: 1px solid var(--neo-border);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Research stats + imagery --------------------------------------------------- */
+
 .research-stats-container {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  background: linear-gradient(to bottom right, #f8f9fa, #ffffff);
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
-}
-
-.research-stats-container:hover {
-  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-  transform: translateY(-5px);
+  margin: 3rem 0;
+  padding: 2rem;
+  border-radius: 18px;
+  border: 1px solid var(--neo-border);
+  background: var(--neo-card);
+  box-shadow: var(--neo-shadow);
 }
 
 .research-stats-container h3 {
-  color: #0056b3;
-  margin-bottom: 1.2rem;
-  font-size: 1.3rem;
-  position: relative;
-  display: inline-block;
-}
-
-.research-stats-container h3:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-  height: 3px;
-  width: 60px;
-  background: linear-gradient(90deg, #0056b3, #00a0e9);
-  border-radius: 2px;
+  margin: 0 0 1.5rem;
+  color: var(--neo-accent);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
 }
 
 .research-stats-visualization {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: 2rem;
-  margin-top: 1.5rem;
 }
 
-.stats-chart-container {
-  flex: 1;
-  min-width: 300px;
-  height: 300px;
-  position: relative;
-}
-
+.stats-chart-container,
 .stats-description {
-  flex: 1;
-  min-width: 250px;
+  flex: 1 1 280px;
 }
 
 .stats-description p {
-  color: #555;
-  line-height: 1.6;
-  font-size: 0.95rem;
+  color: var(--neo-text-muted);
+  line-height: 1.8;
 }
 
-@media (max-width: 768px) {
-  .research-stats-visualization {
-    flex-direction: column;
-  }
-  
-  .stats-chart-container {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-}
-
-/* Modern Color Scheme and Global Improvements */
-:root {
-  --primary-color: #0056b3;
-  --primary-light: #007bff;
-  --primary-dark: #003d7a;
-  --secondary-color: #28a745;
-  --accent-color: #f8f9fa;
-  --text-color: #333333;
-  --text-light: #6c757d;
-  --border-color: #dee2e6;
-  --hover-bg: #f8f9fa;
-  --link-color: #0056b3;
-  --link-hover: #003d7a;
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
-  --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --transition: all 0.3s ease;
-  --font-primary: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  --font-heading: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-}
-
-body {
-  font-family: var(--font-primary);
-  color: var(--text-color);
-  line-height: 1.6;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  color: var(--primary-color);
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-
-a {
-  color: var(--link-color);
-  transition: var(--transition);
-}
-
-a:hover {
-  color: var(--link-hover);
-  text-decoration: none;
-}
-
-/* Card Style Improvements */
-.archive__item, 
-.page__content .archive__item,
-.list__item,
-.page__content .feature__item {
-  display: block;
-  transition: var(--transition);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border: 1px solid var(--border-color);
-  background: white;
-  box-shadow: var(--shadow-sm);
-  width: 100%;
-}
-
-.archive__item:hover,
-.page__content .archive__item:hover,
-.list__item:hover,
-.page__content .feature__item:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-5px);
-}
-
-/* Fix for grid layouts that might rely on the outer container */
-.grid__item {
-  margin-bottom: 2em;
-}
-
-.grid__item .archive__item {
-  margin-bottom: 0;
-  height: 100%;
-}
-
-/* Make sure the archive pages style is preserved */
-.archive {
-  margin-top: 1em;
-  margin-bottom: 2em;
-}
-
-.archive__subtitle {
-  margin: 1.414em 0 0.5em;
-  padding-bottom: 0.5em;
-  font-size: 1em;
-  color: var(--text-light);
-  border-bottom: 1px solid var(--border-color);
-}
-
-/* Research section specific styles */
-.research-projects-section,
-.research-assistance-section {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 768px) {
-  .research-projects-section,
-  .research-assistance-section {
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-  }
-}
-
-/* Button Improvements */
-.btn, 
-.btn--primary,
-.btn--inverse,
-.btn--light-outline,
-.btn--info,
-.btn--danger,
-.btn--success,
-.btn--warning {
-  padding: 0.75rem 1.5rem;
-  font-weight: 500;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
-  border: none;
-  text-transform: none;
-  letter-spacing: 0.5px;
-}
-
-.btn:hover,
-.btn--primary:hover,
-.btn--inverse:hover,
-.btn--light-outline:hover,
-.btn--info:hover,
-.btn--danger:hover,
-.btn--success:hover,
-.btn--warning:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-
-/* Animation Effects */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideInUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.page__content {
-  animation: fadeIn 0.6s ease-out;
-}
-
-.page__content > *:not(style) {
-  animation: slideInUp 0.5s ease-out forwards;
-  opacity: 0;
-}
-
-.page__content > *:nth-child(1) { animation-delay: 0.1s; }
-.page__content > *:nth-child(2) { animation-delay: 0.2s; }
-.page__content > *:nth-child(3) { animation-delay: 0.3s; }
-.page__content > *:nth-child(4) { animation-delay: 0.4s; }
-.page__content > *:nth-child(5) { animation-delay: 0.5s; }
-
-/* Navigation Improvements */
-.masthead {
-  background-color: white;
-  box-shadow: var(--shadow-sm);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.greedy-nav {
-  background: transparent;
-}
-
-.greedy-nav a.site-title {
-  font-weight: 700;
-}
-
-.greedy-nav .visible-links a:before {
-  height: 3px;
-  background: var(--primary-color);
-}
-
-.greedy-nav .visible-links a:hover {
-  color: var(--primary-color);
-}
-
-/* Research Map Custom Styles */
-.custom-popup h3 {
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  color: #333;
-}
-
-.custom-popup p {
-  margin: 0;
-  color: #555;
-  font-size: 14px;
-}
-
-.marker-cluster-custom {
-  background: transparent;
-}
-
-.custom-cluster {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-.current-cluster {
-  background-color: rgba(0, 120, 255, 0.7);
-}
-
-.education-cluster {
-  background-color: rgba(0, 180, 0, 0.7);
-}
-
-.coauthor-cluster {
-  background-color: rgba(160, 32, 240, 0.7);
-}
-
-.talk-cluster {
-  background-color: rgba(255, 140, 0, 0.7);
-}
-
-.legend-container {
-  padding: 10px;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.2);
-}
-
-.legend-container h4 {
-  margin: 0 0 10px 0;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.legend-item {
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-}
-
-.legend-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-  border-radius: 50%;
-  border: 1px solid #ccc;
-  background-color: white;
-  font-size: 12px;
-}
-
-.legend-icon.current {
-  background-color: #e74c3c;
-}
-
-.legend-icon.education {
-  color: #38a800;
-}
-
-.legend-icon.coauthor {
-  color: #9c2bdc;
-}
-
-.legend-icon.talk {
-  color: #ff8c00;
-}
-
-.leaflet-popup-content-wrapper {
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-
-.leaflet-container a.leaflet-popup-close-button {
-  color: #333;
-  font-weight: normal;
-}
-
-.leaflet-control-layers {
-  border-radius: 8px !important;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
-}
-
-.leaflet-control-layers-toggle {
-  width: 36px !important;
-  height: 36px !important;
-}
-
-.leaflet-control-layers-expanded {
-  padding: 10px !important;
-  background-color: white !important;
-  border-radius: 8px !important;
-  font-size: 13px !important;
-}
-
-/* Improved layer control styles */
-.wider-layer-control.leaflet-control-layers-expanded {
-  min-width: 250px !important;
-  max-width: 300px !important;
-  padding: 15px !important;
-}
-
-.wider-layer-control .leaflet-control-layers-list {
-  margin-bottom: 10px !important;
-}
-
-.wider-layer-control .leaflet-control-layers-selector {
-  margin-right: 10px !important;
-  vertical-align: middle !important;
-}
-
-.wider-layer-control .leaflet-control-layers-overlays label {
-  font-weight: 500 !important;
-  margin-bottom: 8px !important;
-  display: flex !important;
-  align-items: center !important;
-  white-space: nowrap !important;
-  width: 100% !important;
-}
-
-/* Fix the checkbox alignment */
-.wider-layer-control input[type="checkbox"] {
-  flex-shrink: 0 !important;
-  margin-top: 0 !important;
-}
-
-/* Fix layer labels to prevent wrapping */
-.layer-label {
-  display: inline-block;
-  font-weight: bold;
-  font-size: 14px;
-  padding-left: 5px;
-  white-space: nowrap !important;
-}
-
-.education-label {
-  color: #38a800;
-}
-
-.coauthor-label {
-  color: #9c2bdc;
-}
-
-.talk-label {
-  color: #ff8c00;
-}
-
-.wider-layer-control .leaflet-control-layers-overlays input[type="checkbox"] {
-  margin-right: 8px !important;
-  margin-left: 0 !important;
-}
-
-/* Fix the width of layer control and ensure horizontal layout */
-.wider-layer-control .leaflet-control-layers-overlays label {
-  display: flex !important;
-  align-items: center !important;
-  flex-direction: row !important;
-  margin-bottom: 10px !important;
-  padding: 5px 0 !important;
-}
-
-.leaflet-control-layers-overlays {
-  column-gap: 0 !important;
-}
-
-/* Custom Font Awesome marker icons */
-.custom-marker-icon {
-  background: transparent;
-  border: none;
-}
-
-.custom-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: white;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-  font-size: 18px;
-  color: white;
-  border: 2px solid white;
-  transition: all 0.3s ease;
-}
-
-.custom-icon:hover {
-  transform: scale(1.1);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.education-icon {
-  background-color: #38a800;
-}
-
-.coauthor-icon {
-  background-color: #9c2bdc;
-}
-
-.talk-icon {
-  background-color: #ff8c00;
-}
-
-/* Enhanced Map Popup Styles */
-.custom-popup {
-  padding: 5px;
-}
-
-.custom-popup h3 {
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  color: #333;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 8px;
-  font-weight: 600;
-}
-
-.custom-popup p {
-  margin: 0 0 8px 0;
-  color: #555;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.custom-popup .popup-meta {
-  margin-top: 12px;
-  font-size: 12px;
-  color: #777;
-  font-style: italic;
-}
-
-.custom-popup .popup-links {
-  margin-top: 15px;
-  padding-top: 10px;
-  border-top: 1px solid #eee;
-}
-
-.custom-popup .popup-link {
-  display: inline-block;
-  padding: 6px 12px;
-  background-color: #f8f9fa;
-  border-radius: 4px;
-  color: #555;
-  text-decoration: none;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  font-size: 12px;
-  border: 1px solid #e9ecef;
-  transition: all 0.2s ease;
-}
-
-.custom-popup .popup-link:hover {
-  background-color: #e9ecef;
-  color: #333;
-  text-decoration: none;
-}
-
-.custom-popup .popup-link i {
-  margin-right: 5px;
-}
-
-.leaflet-tooltip {
-  padding: 8px 12px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 500;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
-}
-
-.leaflet-tooltip:before {
-  border-right-color: rgba(0, 0, 0, 0.7);
-}
-
-.leaflet-tooltip.leaflet-tooltip-left:before {
-  border-left-color: rgba(0, 0, 0, 0.7);
-}
-
-.leaflet-tooltip.leaflet-tooltip-right:before {
-  border-right-color: rgba(0, 0, 0, 0.7);
-}
-
-.leaflet-tooltip.education-tooltip {
-  border-left: 3px solid #38a800;
-}
-
-.leaflet-tooltip.coauthor-tooltip {
-  border-left: 3px solid #9c2bdc;
-}
-
-.leaflet-tooltip.talk-tooltip {
-  border-left: 3px solid #ff8c00;
-}
-
-.popup-image {
-  width: 100%;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
-
-/* Fix Leaflet layer control specific issues */
-.leaflet-control-layers-overlays label {
-  display: flex !important;
-}
-
-.leaflet-control-layers-overlays span {
-  white-space: nowrap;
-  overflow: visible;
-}
-
-/* Force proper display in Leaflet controls */
-.leaflet-control-layers-overlays {
-  display: block !important;
-}
-
-.leaflet-control-layers-selector {
-  float: left;
-  margin-top: 2px !important;
-}
-
-/* Ensure layer control is properly laid out */
-.wider-layer-control .leaflet-control-layers-base,
-.wider-layer-control .leaflet-control-layers-overlays {
-  column-count: 1 !important;
-  column-gap: 0 !important;
-}
-
-/* Education popup enhancements */
-.education-popup {
-  overflow: hidden;
-}
-
-.education-popup-header {
-  margin-bottom: 10px;
-  border-bottom: 2px solid #38a800;
-  padding-bottom: 8px;
-}
-
-.education-popup-header h3 {
-  margin: 0 0 5px 0;
-  color: #2c6b00;
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.education-years {
-  color: #666;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.education-section {
-  margin-bottom: 10px;
-  padding: 8px;
-  background-color: rgba(56, 168, 0, 0.05);
-  border-radius: 6px;
-  border-left: 3px solid #38a800;
-}
-
-.education-section:last-child {
-  margin-bottom: 0;
-}
-
-.section-title {
-  font-weight: 600;
-  color: #2c6b00;
-  margin-bottom: 5px;
-  font-size: 13px;
-  border-bottom: 1px dashed rgba(56, 168, 0, 0.3);
-  padding-bottom: 3px;
-}
-
-.education-degree {
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 5px;
-  font-size: 13px;
-}
-
-.education-department, 
-.education-details,
-.education-majors,
-.education-concentrations, 
-.education-affiliations {
-  color: #555;
-  font-size: 12px;
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
-
-.education-gpa {
-  font-weight: 600;
-  color: #d4ac0d;
-  margin-top: 5px;
-  font-size: 12px;
-}
-
-.education-honors {
-  margin: 5px 0 3px 0;
-  padding-left: 18px;
-}
-
-.education-honors li {
-  margin-bottom: 3px;
-  color: #555;
-  font-size: 12px;
-  line-height: 1.3;
-}
-
-/* Make popups larger and more readable */
-.leaflet-popup-content {
-  margin: 12px 10px;
-  line-height: 1.4;
-  max-height: 300px; /* Reduced maximum height */
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(56, 168, 0, 0.5) rgba(0, 0, 0, 0.05);
-}
-
-/* Reduce popup widths */
-.leaflet-popup.education-popup {
-  max-width: 280px !important;
-}
-
-.leaflet-popup.cornell-popup {
-  max-width: 280px !important;
-}
-
-/* Icons styling */
-.education-section i {
-  width: 20px;
-  text-align: center;
-  margin-right: 5px;
-  color: #38a800;
-}
-
-.education-popup-header i {
-  color: #777;
-}
-
-/* Custom scrollbar for WebKit browsers */
-.leaflet-popup-content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.leaflet-popup-content::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-}
-
-.leaflet-popup-content::-webkit-scrollbar-thumb {
-  background-color: rgba(56, 168, 0, 0.5);
-  border-radius: 4px;
-  border: 2px solid rgba(0, 0, 0, 0.05);
-}
-
-/* Add different scrollbar colors for different popup types */
-.education-popup .leaflet-popup-content::-webkit-scrollbar-thumb {
-  background-color: rgba(56, 168, 0, 0.5);
-}
-
-.coauthor-popup .leaflet-popup-content::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 43, 220, 0.5);
-}
-
-.talk-popup .leaflet-popup-content::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 140, 0, 0.5);
-}
-
-/* Firefox scrollbar colors */
-.education-popup .leaflet-popup-content {
-  scrollbar-color: rgba(56, 168, 0, 0.5) rgba(0, 0, 0, 0.05);
-}
-
-.coauthor-popup .leaflet-popup-content {
-  scrollbar-color: rgba(156, 43, 220, 0.5) rgba(0, 0, 0, 0.05);
-}
-
-.talk-popup .leaflet-popup-content {
-  scrollbar-color: rgba(255, 140, 0, 0.5) rgba(0, 0, 0, 0.05);
-}
-
-.leaflet-popup-content-wrapper {
-  padding: 0;
-  overflow: hidden;
-}
-
-/* Slightly different styling for each institution to give them identity */
-.leaflet-popup.mit-popup .leaflet-popup-content-wrapper {
-  border-top: 4px solid #a31f34;
-}
-
-.leaflet-popup.cornell-popup .leaflet-popup-content-wrapper {
-  border-top: 4px solid #b31b1b;
-}
-
-.leaflet-popup.doon-popup .leaflet-popup-content-wrapper {
-  border-top: 4px solid #003366;
-}
-
-.education-honors li i {
-  color: #d4ac0d;
-  margin-right: 5px;
-}
-
-/* Coauthor popup enhancements */
-.coauthor-popup {
-  overflow: hidden;
-}
-
-.coauthor-popup-header {
-  margin-bottom: 10px;
-  border-bottom: 2px solid #9c2bdc;
-  padding-bottom: 8px;
-}
-
-.coauthor-popup-header h3 {
-  margin: 0 0 5px 0;
-  color: #651e8e;
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.coauthor-section {
-  margin-bottom: 10px;
-  padding: 8px;
-  background-color: rgba(156, 43, 220, 0.05);
-  border-radius: 6px;
-  border-left: 3px solid #9c2bdc;
-}
-
-.coauthor-section:last-child {
-  margin-bottom: 0;
-}
-
-.coauthor-designation {
-  font-weight: 600;
-  color: #333;
-  font-size: 13px;
-  margin-bottom: 5px;
-}
-
-.coauthor-department {
-  color: #555;
-  font-size: 12px;
-  line-height: 1.3;
-  margin-bottom: 4px;
-}
-
-.coauthor-section i {
-  width: 20px;
-  text-align: center;
-  margin-right: 5px;
-  color: #9c2bdc;
-}
-
-.coauthor-popup-header i {
-  color: #777;
-}
-
-/* Talk popup enhancements */
-.talk-popup {
-  overflow: hidden;
-}
-
-.talk-popup-header {
-  margin-bottom: 10px;
-  border-bottom: 2px solid #ff8c00;
-  padding-bottom: 8px;
-}
-
-.talk-popup-header h3 {
-  margin: 0 0 5px 0;
-  color: #d47200;
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.talk-date {
-  color: #666;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.talk-section {
-  margin-bottom: 10px;
-  padding: 8px;
-  background-color: rgba(255, 140, 0, 0.05);
-  border-radius: 6px;
-  border-left: 3px solid #ff8c00;
-}
-
-.talk-section:last-child {
-  margin-bottom: 0;
-}
-
-.talk-venue {
-  font-weight: 600;
-  color: #333;
-  font-size: 13px;
-  margin-bottom: 5px;
-}
-
-.talk-details {
-  color: #555;
-  font-size: 12px;
-  line-height: 1.3;
-  margin-bottom: 4px;
-}
-
-.talk-section i {
-  width: 20px;
-  text-align: center;
-  margin-right: 5px;
-  color: #ff8c00;
-}
-
-.talk-popup-header i {
-  color: #777;
-}
-
-/* Refine popup link styles to match new theme */
-.coauthor-popup .popup-link {
-  background-color: rgba(156, 43, 220, 0.08);
-  border: 1px solid rgba(156, 43, 220, 0.2);
-  color: #651e8e;
-}
-
-.coauthor-popup .popup-link:hover {
-  background-color: rgba(156, 43, 220, 0.15);
-  color: #4a1768;
-}
-
-.coauthor-popup .popup-meta {
-  color: #651e8e;
-}
-
-.talk-popup .popup-link {
-  background-color: rgba(255, 140, 0, 0.08);
-  border: 1px solid rgba(255, 140, 0, 0.2);
-  color: #d47200;
-}
-
-.talk-popup .popup-link:hover {
-  background-color: rgba(255, 140, 0, 0.15);
-  color: #b36200;
-}
-
-.talk-popup .popup-meta {
-  color: #d47200;
-}
-
-/* Popup borders based on institution */
-.leaflet-popup.columbia-popup .leaflet-popup-content-wrapper {
-  border-top: 4px solid #75aadb;
-}
-
-.leaflet-popup.harvard-popup .leaflet-popup-content-wrapper {
-  border-top: 4px solid #a51c30;
-}
-
-.leaflet-popup.ie-popup .leaflet-popup-content-wrapper {
-  border-top: 4px solid #5b298f;
-}
-
-.leaflet-popup.worldbank-popup .leaflet-popup-content-wrapper {
-  border-top: 4px solid #009cde;
-}
-
-/* Mobile-friendly map adjustments */
-@media screen and (max-width: 768px) {
-  #research-map {
-    height: 500px !important; /* Taller map on mobile */
-  }
-  
-  .leaflet-popup {
-    max-width: 90vw !important;
-  }
-  
-  .leaflet-popup-content {
-    max-height: 250px;
-    margin: 10px 8px;
-    font-size: 13px;
-  }
-  
-  .wider-layer-control.leaflet-control-layers-expanded {
-    min-width: 200px !important;
-    max-width: 250px !important;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-  
-  .leaflet-control-layers-toggle {
-    width: 40px !important;
-    height: 40px !important;
-    background-size: 24px !important;
-  }
-  
-  .legend-container {
-    max-width: 160px;
-    padding: 8px;
-  }
-  
-  .legend-container h4 {
-    font-size: 12px;
-  }
-  
-  .legend-item {
-    font-size: 11px;
-  }
-  
-  /* Make touch targets larger */
-  .custom-icon {
-    width: 44px;
-    height: 44px;
-    font-size: 20px;
-  }
-  
-  .popup-link {
-    padding: 8px 12px !important;
-    margin-bottom: 10px !important;
-    display: block !important;
-    text-align: center;
-  }
-  
-  /* Improve scrolling on touch devices */
-  .leaflet-popup-content {
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .coauthor-section, .education-section, .talk-section {
-    padding: 10px;
-  }
-}
-
-/* Further adjustments for very small screens */
-@media screen and (max-width: 480px) {
-  #research-map {
-    height: 400px !important;
-  }
-  
-  .leaflet-control-zoom {
-    display: none; /* Hide zoom buttons on very small screens */
-  }
-  
-  .leaflet-popup-content {
-    max-height: 220px;
-  }
-}
-
-/* Better touch interaction */
-@media (hover: none) {
-  .custom-icon:active {
-    transform: scale(1.2);
-  }
-  
-  .popup-link:active {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-}
-
-/* Responsive map */
-.responsive-map {
-  width: 100%;
-  transition: height 0.3s ease;
-}
-
-@media screen and (max-width: 768px) {
-  .responsive-map {
-    height: 500px !important;
-  }
-  
-  .research-map-container {
-    margin: 1rem 0;
-  }
-  
-  .research-map-container h2 {
-    font-size: 1.5rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .responsive-map {
-    height: 400px !important;
-  }
-}
-
-/* Responsive image styling */
 .img-responsive {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   display: block;
-}
-
-.image-wrapper {
-  margin-bottom: 1em;
+  border-radius: 14px;
+  border: 1px solid var(--neo-border);
 }
 
 .image-wrapper figcaption {
-  font-style: italic;
-  font-size: 0.9em;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--neo-text-muted);
   text-align: center;
-  color: #555;
-  margin-top: 0.5em;
 }
 
-/* Add srcset support for different screen sizes */
-@media (max-width: 767px) {
-  .img-responsive {
-    max-width: 100%;
-    width: auto;
+/* Responsive tweaks ---------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  #research-map,
+  .responsive-map {
+    height: 540px;
   }
-} 
+}
+
+@media (max-width: 768px) {
+  #research-map,
+  .responsive-map {
+    height: 480px !important;
+  }
+
+  .legend,
+  .legend-container {
+    max-width: 180px;
+  }
+
+  .research-stats-visualization {
+    flex-direction: column;
+  }
+
+  .popup-link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  #research-map,
+  .responsive-map {
+    height: 380px !important;
+  }
+
+  .leaflet-control-zoom {
+    display: none;
+  }
+}
+
+@media (hover: none) {
+  .marker-pin:active {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+
+  .popup-link:active {
+    transform: scale(0.98);
+  }

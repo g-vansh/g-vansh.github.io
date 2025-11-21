@@ -7,16 +7,44 @@
    ========================================================================== */
 
 html {
-  background-color: $background-color;
+  background: $background-gradient;
   color: $text-color;
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: $background-color;
+  background: $background-gradient;
   color: $text-color;
   font-family: $global-font-family;
+  letter-spacing: 0.015em;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+
+  &:before,
+  &:after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  &:before {
+    background-image: linear-gradient(90deg, $gridline-color 1px, transparent 1px), linear-gradient(0deg, $gridline-color 1px, transparent 1px);
+    background-size: 120px 120px;
+    opacity: 0.3;
+    mix-blend-mode: screen;
+    transform: translateZ(0);
+  }
+
+  &:after {
+    background-image: radial-gradient(circle, rgba(#fff, 0.08) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: 0.12;
+  }
 }
 
 /* ==========================================================================
@@ -25,27 +53,50 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $header-font-family;
-  font-weight: 800;
-  font-stretch: 125%;
+  font-weight: 700;
   color: $text-color;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.05;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 8vw, 6rem);
-  font-weight: 900;
+  font-size: clamp(2.75rem, 7vw, 6rem);
 }
 
 h2 {
-  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
 }
 
 h3 {
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
-/* Metadata (dates, tags, etc.) */
+body,
+p,
+li {
+  color: rgba($text-color, 0.9);
+  line-height: 1.7;
+}
+
+strong {
+  color: $text-color;
+}
+
+em {
+  color: rgba($text-color, 0.75);
+}
+
+.mono-label {
+  font-family: $metadata-font-family;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: $terminal-muted;
+}
+
 .page__meta,
 .archive__item-meta,
 time,
@@ -54,7 +105,7 @@ time,
   font-family: $metadata-font-family;
   font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   color: rgba($text-color, 0.6);
 }
 
@@ -85,30 +136,32 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 6rem 2rem 4rem;
   overflow: hidden;
-  padding: 2rem;
-  background: $background-color;
-  margin-top: -6rem; // Offset fixed nav
-  padding-top: 8rem; // Add space for nav
+  text-align: center;
+  gap: 1.5rem;
 
-  @include breakpoint($small) {
-    margin-top: -5rem;
-    padding-top: 7rem;
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 10%;
+    border: 1px solid rgba($accent-color, 0.15);
+    border-radius: 40px;
+    box-shadow: $hud-glow;
+    pointer-events: none;
   }
 }
 
 .hero-name {
   font-family: $header-font-family;
-  font-size: clamp(4rem, 15vw, 12rem);
-  font-weight: 900;
-  font-stretch: 125%;
-  line-height: 0.9;
+  font-size: clamp(3.5rem, 15vw, 10rem);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
   color: $text-color;
   margin: 0;
-  white-space: nowrap;
-  overflow: visible;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  text-shadow: 0 0 35px rgba($accent-color, 0.2);
 
   &.kinetic-text {
     will-change: transform;
@@ -117,23 +170,39 @@ a {
 
 .hero-subtitle {
   font-family: $metadata-font-family;
-  font-size: clamp(0.875rem, 2vw, 1.25rem);
+  font-size: clamp(0.8rem, 2vw, 1rem);
   color: rgba($text-color, 0.7);
-  margin-top: 1rem;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.35em;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 
   &::before,
   &::after {
-    content: '[';
+    content: '//';
     color: $accent-color;
     margin: 0 0.5rem;
   }
+}
 
-  &::after {
-    content: ']';
+.hero-meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 2;
+
+  span {
+    font-family: $metadata-font-family;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid rgba($accent-color, 0.35);
+    border-radius: $border-radius-pill;
+    background: rgba($surface-color, 0.6);
   }
 }
 
@@ -496,42 +565,36 @@ a {
 }
 
 .page__content {
-  color: rgba($text-color, 0.9);
-  line-height: 1.8;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 4vw, 3.5rem);
+  color: rgba($text-color, 0.9);
+  line-height: 1.9;
 
   p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
   }
 
-  strong {
-    color: $text-color;
-    font-weight: 600;
-  }
-
-  em {
-    color: rgba($text-color, 0.8);
-    font-style: italic;
-  }
-
-  ul, ol {
-    color: rgba($text-color, 0.9);
-    margin-bottom: 1.5rem;
-    padding-left: 2rem;
+  ul,
+  ol {
+    margin-bottom: 2rem;
+    padding-left: 1.75rem;
 
     li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.35rem;
     }
   }
 
   blockquote {
-    border-left: 2px solid $accent-color;
-    padding-left: 1.5rem;
-    margin: 2rem 0;
-    color: rgba($text-color, 0.8);
+    margin: 2.5rem 0;
+    padding: 1.5rem 2rem;
+    border: 1px solid rgba($accent-color, 0.35);
+    border-left-width: 4px;
+    border-radius: $border-radius;
+    background: rgba($surface-color, 0.4);
+    box-shadow: inset 0 0 50px rgba($accent-color, 0.08);
     font-style: italic;
+    color: $terminal-muted;
   }
 }
 
@@ -562,26 +625,8 @@ code {
    Buttons
    ========================================================================== */
 
-.btn,
 .button {
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  font-family: $metadata-font-family;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border: 1px solid $accent-color;
-  background: transparent;
-  color: $accent-color;
-  transition: $kinetic-transition;
-  cursor: pointer;
-
-  &:hover {
-    background: $accent-color;
-    color: $background-color;
-    transform: translateY(-2px);
-    box-shadow: $box-shadow-hover;
-  }
+  @extend .btn;
 }
 
 /* ==========================================================================
@@ -589,12 +634,25 @@ code {
    ========================================================================== */
 
 .page__footer {
-  background: $surface-color;
-  border-top: 1px solid $border-color;
-  padding: 3rem 2rem;
+  background: rgba($surface-color-alt, 0.95);
+  border-top: 1px solid rgba($accent-color, 0.3);
+  padding: 4rem 2rem;
   margin-top: 4rem;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(90deg, rgba($gridline-color, 0.6) 1px, transparent 1px);
+    background-size: 120px 120px;
+    opacity: 0.08;
+  }
 
   footer {
+    position: relative;
+    z-index: 1;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
@@ -602,7 +660,7 @@ code {
     font-family: $metadata-font-family;
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
   }
 }
 
@@ -621,6 +679,125 @@ code {
 
 .parallax-image {
   will-change: transform;
+}
+
+/* ==========================================================================
+   Navigation Chips, Taxonomy & Structured Metadata
+   ========================================================================== */
+
+.breadcrumbs {
+  border: 1px solid rgba($accent-color, 0.2);
+  border-radius: $border-radius-pill;
+  padding: 0.75rem 1.5rem;
+  margin: 0 auto 2rem;
+  background: rgba($surface-color, 0.6);
+  font-family: $metadata-font-family;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $terminal-muted;
+  box-shadow: inset 0 0 0 1px rgba(#fff, 0.02), $box-shadow;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  li {
+    list-style: none;
+  }
+
+  a,
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    padding: 0.65rem 1.2rem;
+    border: 1px solid rgba($accent-color, 0.3);
+    border-radius: $border-radius;
+    font-family: $metadata-font-family;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: rgba($text-color, 0.8);
+    text-transform: uppercase;
+    transition: $global-transition;
+    background: rgba($surface-color, 0.7);
+
+    &:hover,
+    &.current {
+      color: $background-color;
+      background: $accent-color;
+      border-color: $accent-color;
+      box-shadow: $box-shadow-hover;
+    }
+  }
+}
+
+.toc {
+  background: rgba($surface-color-alt, 0.85);
+  border: 1px solid rgba($accent-color, 0.2);
+  border-radius: $border-radius;
+  box-shadow: inset 0 0 0 1px rgba(#fff, 0.02), $box-shadow;
+  padding: 1.5rem;
+
+  .nav__title {
+    font-family: $metadata-font-family;
+    font-size: 0.75rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: $accent-color;
+    margin-bottom: 0.75rem;
+  }
+}
+
+.toc__menu {
+  font-family: $global-font-family;
+
+  a {
+    border: 1px solid transparent;
+    border-radius: $border-radius;
+
+    &:hover {
+      border-color: rgba($accent-color, 0.4);
+      background: rgba($accent-color, 0.08);
+    }
+  }
+}
+
+.page__taxonomy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 2rem 0 0;
+}
+
+.page__taxonomy-item,
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: $border-radius-pill;
+  border: 1px dashed rgba($accent-color, 0.35);
+  font-family: $metadata-font-family;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba($text-color, 0.85);
+  background: rgba($surface-color, 0.6);
+
+  &:before {
+    content: '#';
+    color: $accent-color;
+  }
+
+  &:hover {
+    color: $background-color;
+    background: $accent-color;
+    border-style: solid;
+  }
 }
 
 /* ==========================================================================
