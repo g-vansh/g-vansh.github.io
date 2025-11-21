@@ -29,6 +29,9 @@
       return;
     }
 
+    // Mobile detection - must be early for use in texture creation and canvas setup
+    const isMobile = window.innerWidth < 768;
+
     // Create canvas container
     const canvas = document.createElement('canvas');
     canvas.id = 'three-bg-canvas';
@@ -39,7 +42,9 @@
     canvas.style.height = '100%';
     canvas.style.zIndex = '0';
     canvas.style.pointerEvents = 'none';
-    canvas.style.opacity = '0.6'; // Increased opacity for better visibility
+    // Mobile gets higher opacity for better visibility
+    const canvasOpacity = isMobile ? '0.85' : '0.6';
+    canvas.style.opacity = canvasOpacity;
     document.body.insertBefore(canvas, document.body.firstChild);
 
     // Scene setup
@@ -56,7 +61,6 @@
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     // Particle system
-    const isMobile = window.innerWidth < 768;
     const baseParticleCount = isMobile ? 300 : 800; 
     let particleCount = baseParticleCount;
     
@@ -118,11 +122,11 @@
     initParticles();
     
     const normalMaterial = new ThreeLib.PointsMaterial({
-      size: isMobile ? 0.8 : 1.5,
+      size: isMobile ? 1.2 : 1.5, // Slightly larger particles on mobile
       vertexColors: true,
       map: createSquareTexture(),
       transparent: true,
-      opacity: 0.8,
+      opacity: isMobile ? 1.0 : 0.8, // Full opacity on mobile
       blending: ThreeLib.AdditiveBlending,
       sizeAttenuation: true,
       depthWrite: false
@@ -142,23 +146,30 @@
 
     function createEmojiTexture(emoji, glowColor = 'rgba(255, 216, 107, 0.9)') {
       const canvas = document.createElement('canvas');
-      canvas.width = 128;
-      canvas.height = 128;
+      // Larger texture size for mobile to improve emoji quality
+      const textureSize = isMobile ? 256 : 128;
+      canvas.width = textureSize;
+      canvas.height = textureSize;
       const ctx = canvas.getContext('2d');
       
-      // Draw glowing background
-      const gradient = ctx.createRadialGradient(64, 64, 10, 64, 64, 64);
-      gradient.addColorStop(0, glowColor);
-      gradient.addColorStop(0.5, glowColor.replace('0.9)', '0.5)'));
+      const center = textureSize / 2;
+      const radius = textureSize / 2;
+      
+      // Draw glowing background - stronger glow on mobile
+      const gradient = ctx.createRadialGradient(center, center, 10, center, center, radius);
+      const glowIntensity = isMobile ? '1.0' : '0.9';
+      gradient.addColorStop(0, glowColor.replace('0.9)', glowIntensity + ')'));
+      gradient.addColorStop(0.5, glowColor.replace('0.9)', isMobile ? '0.6)' : '0.5)'));
       gradient.addColorStop(1, glowColor.replace('0.9)', '0)'));
       ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, 128, 128);
+      ctx.fillRect(0, 0, textureSize, textureSize);
       
-      // Draw emoji with high quality settings
-      ctx.font = 'bold 100px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif';
+      // Draw emoji with high quality settings - larger font on mobile
+      const fontSize = isMobile ? 200 : 100;
+      ctx.font = `bold ${fontSize}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(emoji, 64, 64);
+      ctx.fillText(emoji, center, center);
       
       const texture = new ThreeLib.CanvasTexture(canvas);
       texture.needsUpdate = true;
@@ -186,7 +197,7 @@
     }
     
     const ideaMaterial = new ThreeLib.PointsMaterial({
-      size: isMobile ? 12.0 : 20.0, // Significantly larger for visibility
+      size: isMobile ? 20.0 : 20.0, // Same size on mobile for better visibility
       color: 0xffffff, // Bright white to stand out
       map: createLightbulbTexture(),
       transparent: true,
@@ -216,7 +227,7 @@
           depthTest: false,
           sizeAttenuation: false
         }));
-        sprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1);
+        sprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
         sprite.renderOrder = 999;
         scene.add(sprite);
         typeOverlays.scientists.push({ sprite, particleIdx: i });
@@ -229,7 +240,7 @@
           depthTest: false,
           sizeAttenuation: false
         }));
-        sprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1);
+        sprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
         sprite.renderOrder = 999;
         scene.add(sprite);
         typeOverlays.entrepreneurs.push({ sprite, particleIdx: i });
@@ -265,7 +276,7 @@
         depthWrite: false,
         sizeAttenuation: false
       }));
-      bulbSprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1);
+      bulbSprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
       bulbSprite.visible = false;
       bulbSprite.renderOrder = 1000;
       scene.add(bulbSprite);
@@ -281,7 +292,7 @@
         depthWrite: false,
         sizeAttenuation: false
       }));
-      paperSprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1); // Same as lightbulb
+      paperSprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
       paperSprite.visible = false;
       paperSprite.renderOrder = 1000;
       scene.add(paperSprite);
@@ -297,7 +308,7 @@
         depthWrite: false,
         sizeAttenuation: false
       }));
-      bizSprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1); // Same as lightbulb
+      bizSprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
       bizSprite.visible = false;
       bizSprite.renderOrder = 1000;
       scene.add(bizSprite);
@@ -306,13 +317,14 @@
     
     // Connection lines rendered as animated cylinders for better visibility
     const maxSignals = isMobile ? 15 : 35;
-    const signalGeometry = new ThreeLib.CylinderGeometry(0.12, 0.12, 1, 8, 1, true);
+    const signalRadius = isMobile ? 0.18 : 0.12; // Thicker lines on mobile
+    const signalGeometry = new ThreeLib.CylinderGeometry(signalRadius, signalRadius, 1, 8, 1, true);
     signalGeometry.translate(0, 0.5, 0);
     
     const signalMaterial = new ThreeLib.MeshBasicMaterial({
       color: 0x9bff1f,
       transparent: true,
-      opacity: 0.7,
+      opacity: isMobile ? 0.9 : 0.7, // More visible on mobile
       blending: ThreeLib.AdditiveBlending,
       depthWrite: false
     });
@@ -394,13 +406,13 @@
       let pool, baseSize;
       if (particleType === 1) { // scientist -> paper
         pool = ideaSpritePool.papers;
-        baseSize = isMobile ? 0.053 : 0.1;
+        baseSize = isMobile ? 0.12 : 0.1; // Larger on mobile
       } else if (particleType === 2) { // entrepreneur -> business
         pool = ideaSpritePool.businesses;
-        baseSize = isMobile ? 0.053 : 0.1;
+        baseSize = isMobile ? 0.12 : 0.1; // Larger on mobile
       } else { // normal -> lightbulb
         pool = ideaSpritePool.lightbulbs;
-        baseSize = isMobile ? 0.053 : 0.1;
+        baseSize = isMobile ? 0.12 : 0.1; // Larger on mobile
       }
       
       if (pool.length === 0) return;
