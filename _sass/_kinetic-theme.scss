@@ -166,9 +166,47 @@ a {
   position: relative;
   z-index: 2;
   text-shadow: 0 0 35px rgba($accent-color, 0.2);
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(0.08em, 1vw, 0.18em);
+  line-height: 1;
+  text-align: center;
 
   &.kinetic-text {
     will-change: transform;
+    background-image: linear-gradient(
+      120deg,
+      rgba($accent-color, 0.95),
+      rgba($accent-color-strong, 0.85),
+      rgba($terminal-amber, 0.75),
+      rgba($accent-color, 0.95)
+    );
+    background-size: 280% 100%;
+    animation: heroSpectrum 18s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    @supports (-webkit-background-clip: text) {
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba($accent-color, 0.35), transparent 70%);
+    mix-blend-mode: screen;
+    opacity: 0;
+    animation: heroSheen 6s linear infinite;
+    pointer-events: none;
+  }
+
+  &.hero-name--static {
+    animation: none;
   }
 
     @include breakpoint($medium) {
@@ -200,6 +238,60 @@ a {
     color: $accent-color;
     margin: 0 0.5rem;
   }
+}
+
+.hero-char {
+  display: inline-block;
+  min-width: 0.35em;
+  letter-spacing: 0.08em;
+  transform-origin: 50% 80%;
+  filter: drop-shadow(0 0 12px rgba($accent-color, 0.35));
+
+  &--space {
+    min-width: 0.5em;
+  }
+}
+
+@keyframes heroSpectrum {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 140% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes heroSheen {
+  0%,
+  25% {
+    opacity: 0;
+    transform: translateX(-65%);
+  }
+
+  45% {
+    opacity: 0.85;
+    transform: translateX(0);
+  }
+
+  70%,
+  100% {
+    opacity: 0;
+    transform: translateX(65%);
+  }
+}
+
+body:not(.motion-ready) .hero-name.kinetic-text {
+  animation: none;
+}
+
+body:not(.motion-ready) .hero-name::after {
+  animation: none;
+  opacity: 0;
 }
 
 .hero-meta {
@@ -456,6 +548,10 @@ a {
     background: transparent;
       min-width: auto;
       width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
 
     .visible-links {
       display: flex;
@@ -466,10 +562,13 @@ a {
       padding: 0;
         flex-wrap: nowrap;
         justify-content: center;
+        flex: 1 1 auto;
+        min-width: 0;
 
       @include breakpoint($small) {
           gap: 0.5rem;
           flex-wrap: wrap;
+          justify-content: flex-start;
       }
 
       li {
@@ -516,23 +615,37 @@ a {
     }
 
     button {
-      background: transparent;
+      position: relative;
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba($surface-color, 0.8);
       color: $text-color;
-      border: 1px solid $border-color;
-      border-radius: 4px;
-      padding: 0.5rem;
+      border: 1px solid rgba($accent-color, 0.35);
+      border-radius: $border-radius-pill;
+      padding: 0.4rem 0.85rem;
+      min-height: 42px;
+      box-shadow: inset 0 0 0 1px rgba(#fff, 0.02), 0 10px 25px rgba(0, 0, 0, 0.35);
+      transition: $global-transition;
+      z-index: 2;
 
       &:hover {
         border-color: $accent-color;
         color: $accent-color;
+        box-shadow: $box-shadow;
       }
     }
 
     .hidden-links {
       background: $surface-color;
       border: 1px solid $border-color;
-      border-radius: 0;
+      border-radius: 18px;
       box-shadow: $box-shadow;
+      right: 0;
+      left: auto;
+      min-width: clamp(220px, 50vw, 320px);
+      padding: 0.5rem;
 
       a {
         color: $text-color;
@@ -541,6 +654,21 @@ a {
           color: $accent-color;
           background: rgba($accent-color, 0.1);
         }
+      }
+    }
+
+    @media (max-width: 640px) {
+      gap: 0.5rem;
+
+      button {
+        width: 100%;
+        order: 3;
+      }
+
+      .hidden-links {
+        width: calc(100% - 1.5rem);
+        right: 0.75rem;
+        left: 0.75rem;
       }
     }
   }

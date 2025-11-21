@@ -3,6 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const mapElement = document.getElementById('research-map');
   if (!mapElement) return;
 
+  const debounce = (func, wait = 150) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(null, args), wait);
+    };
+  };
+
   // Initialize the map with a more zoomed-out view
   const map = L.map('research-map', {
     minZoom: 2,
@@ -10,6 +18,20 @@ document.addEventListener('DOMContentLoaded', function() {
     zoomControl: false
   }).setView([30, 0], 2);
   
+  const setResponsiveMapHeight = () => {
+    const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobileViewport) {
+      const viewportHeight = Math.max(window.innerHeight || 0, document.documentElement.clientHeight || 0);
+      const computedHeight = Math.max(360, Math.min(viewportHeight * 0.75, 600));
+      mapElement.style.setProperty('--research-map-height', `${Math.round(computedHeight)}px`);
+    } else {
+      mapElement.style.removeProperty('--research-map-height');
+    }
+    map.invalidateSize();
+  };
+
+  setResponsiveMapHeight();
+
   // Add zoom control to top-right
   L.control.zoom({
     position: 'topright'
@@ -21,6 +43,23 @@ document.addEventListener('DOMContentLoaded', function() {
     subdomains: 'abcd',
     maxZoom: 20
   }).addTo(map);
+
+  const debouncedResize = debounce(setResponsiveMapHeight, 180);
+  window.addEventListener('resize', debouncedResize);
+  window.addEventListener('orientationchange', setResponsiveMapHeight);
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      setResponsiveMapHeight();
+    }
+  });
+
+  if (typeof ResizeObserver !== 'undefined') {
+    const resizeObserver = new ResizeObserver(() => {
+      map.invalidateSize();
+    });
+    resizeObserver.observe(mapElement);
+  }
 
   // Create marker groups
   const educationGroup = L.markerClusterGroup({
@@ -34,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   });
-  
+
   const coauthorsGroup = L.markerClusterGroup({
     showCoverageOnHover: false,
     maxClusterRadius: 50,
