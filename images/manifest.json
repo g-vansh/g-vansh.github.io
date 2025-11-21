@@ -1,0 +1,16 @@
+{
+  "name": "Vansh Gupta",
+  "short_name": "Vansh",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/images/profile.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

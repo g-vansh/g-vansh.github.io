@@ -8,8 +8,8 @@
   'use strict';
 
   // Check dependencies and motion preferences
-  if (typeof gsap === 'undefined' || typeof THREE === 'undefined') {
-    console.warn('Hero Animation: Dependencies not loaded');
+  if (typeof gsap === 'undefined') {
+    console.warn('Hero Animation: GSAP not loaded');
     return;
   }
 
@@ -124,6 +124,8 @@
   class GridConvergence {
     constructor(container) {
       this.container = container;
+      this.verticalLines = [];
+      this.horizontalLines = [];
       this.init();
     }
 
@@ -149,6 +151,10 @@
     createGrid() {
       const width = this.container.offsetWidth;
       const height = this.container.offsetHeight;
+      this.width = width;
+      this.height = height;
+      this.centerX = width / 2;
+      this.centerY = height / 2;
       const lines = isMobile ? 15 : 30;
       
       // Vertical lines
@@ -164,6 +170,7 @@
         line.setAttribute('opacity', '0.3');
         line.classList.add('grid-line', 'grid-vertical');
         this.svg.appendChild(line);
+        this.verticalLines.push(line);
       }
       
       // Horizontal lines
@@ -179,11 +186,16 @@
         line.setAttribute('opacity', '0.3');
         line.classList.add('grid-line', 'grid-horizontal');
         this.svg.appendChild(line);
+        this.horizontalLines.push(line);
       }
     }
 
     animateGrid() {
       const tl = gsap.timeline();
+      const verticalLines = this.verticalLines.length ? this.verticalLines : this.svg.querySelectorAll('.grid-vertical');
+      const horizontalLines = this.horizontalLines.length ? this.horizontalLines : this.svg.querySelectorAll('.grid-horizontal');
+      const centerX = typeof this.centerX === 'number' ? this.centerX : this.container.offsetWidth / 2;
+      const centerY = typeof this.centerY === 'number' ? this.centerY : this.container.offsetHeight / 2;
       
       tl.to(this.svg, {
         opacity: 1,
@@ -192,8 +204,8 @@
       });
 
       // Converge vertical lines
-      tl.to('.grid-vertical', {
-        x2: window.innerWidth / 2,
+      tl.to(verticalLines, {
+        attr: { x1: centerX, x2: centerX },
         duration: 1.2,
         stagger: 0.02,
         ease: 'power3.inOut',
@@ -201,8 +213,8 @@
       }, 0.3);
 
       // Converge horizontal lines
-      tl.to('.grid-horizontal', {
-        y2: window.innerHeight / 2,
+      tl.to(horizontalLines, {
+        attr: { y1: centerY, y2: centerY },
         duration: 1.2,
         stagger: 0.02,
         ease: 'power3.inOut',
@@ -258,7 +270,7 @@
         bar.style.height = '2px';
         bar.style.background = colors[Math.floor(Math.random() * colors.length)];
         bar.style.boxShadow = `0 0 10px ${colors[i % colors.length]}`;
-        bar.style.transformOrigin = 'left center';
+        bar.style.transformOrigin = 'center center';
         bar.style.opacity = '0.7';
         
         // Randomize position
@@ -282,33 +294,58 @@
           bar.style.height = '100%';
           bar.style.width = '2px';
         }
-        
+        bar.style.transform = 'translate3d(0, 0, 0)';
+        bar.style.willChange = 'transform, opacity';
+        bar.style.opacity = '0.85';
         this.barsContainer.appendChild(bar);
       }
     }
 
     animate() {
       const tl = gsap.timeline({ delay: 0.5 });
+      const bars = Array.from(this.barsContainer.querySelectorAll('.telemetry-bar'));
+      const containerRect = this.container.getBoundingClientRect();
+      const containerCenterX = containerRect.left + containerRect.width / 2;
+      const containerCenterY = containerRect.top + containerRect.height / 2;
       
       tl.to(this.barsContainer, {
         opacity: 1,
         duration: 0.3
       });
 
-      tl.to('.telemetry-bar', {
-        scaleX: 0,
-        scaleY: 0,
-        duration: 0.8,
-        stagger: {
-          amount: 0.4,
-          from: 'random'
-        },
-        ease: 'power2.inOut'
-      }, 0.5);
+      tl.add(() => {
+        bars.forEach((bar, index) => {
+          const barRect = bar.getBoundingClientRect();
+          const barCenterX = barRect.left + barRect.width / 2;
+          const barCenterY = barRect.top + barRect.height / 2;
+          const deltaX = containerCenterX - barCenterX;
+          const deltaY = containerCenterY - barCenterY;
+
+          gsap.to(bar, {
+            x: deltaX,
+            y: deltaY,
+            scaleX: 0.2,
+            scaleY: 0.2,
+            duration: 1.1,
+            ease: 'power3.inOut',
+            delay: index * 0.02
+          });
+
+          gsap.to(bar, {
+            opacity: 0,
+            duration: 0.4,
+            ease: 'power2.in',
+            delay: 1.2 + index * 0.015
+          });
+        });
+      }, 0.3);
 
       tl.to(this.barsContainer, {
         opacity: 0,
-        duration: 0.3
+        duration: 0.3,
+        ease: 'power2.out',
+        delay: 1.6,
+        onComplete: () => this.barsContainer.remove()
       });
     }
   }
@@ -416,8 +453,26 @@
   function enhancedHeroAnimation() {
     const heroName = document.querySelector('.hero-name');
     const heroSubtitle = document.querySelector('.hero-subtitle');
+    const scanlinesOverlay = document.querySelector('.scanlines');
+    const datapoints = document.querySelectorAll('.hero-datapoints .datapoint');
     
     if (!heroName) return;
+
+    if (scanlinesOverlay) {
+      gsap.set(scanlinesOverlay, { opacity: 0 });
+      gsap.to(scanlinesOverlay, {
+        opacity: 0.28,
+        duration: 0.6,
+        delay: 0.1,
+        ease: 'power2.out'
+      });
+      gsap.to(scanlinesOverlay, {
+        opacity: 0.12,
+        duration: 1,
+        delay: 2.6,
+        ease: 'power2.out'
+      });
+    }
 
     // Create container for effects
     const effectsContainer = document.createElement('div');
@@ -458,6 +513,11 @@
       duration: 0.5,
       ease: 'elastic.out(1, 0.5)'
     });
+    
+    masterTimeline.call(() => {
+      heroName.style.filter = 'none';
+      heroName.style.webkitFilter = 'none';
+    });
 
     // Subtitle entrance
     masterTimeline.fromTo(heroSubtitle, {
@@ -481,6 +541,17 @@
       ease: 'sine.inOut',
       delay: 3
     });
+
+    if (datapoints.length) {
+      gsap.from(datapoints, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: 0.12,
+        delay: 2.1
+      });
+    }
 
     // Perspective shift on mouse move
     if (!isMobile) {

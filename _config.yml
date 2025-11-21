@@ -130,6 +130,7 @@ include:
   - .htaccess
   - _pages
   - files
+  - assets/js/vendor
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -146,7 +147,6 @@ exclude:
   - Rakefile
   - assets/js/_main.js
   - assets/js/plugins
-  - assets/js/vendor
   - config
   - gulpfile.js
   - log
