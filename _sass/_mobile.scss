@@ -71,17 +71,46 @@
   /* Hero Subtitle Mobile */
   .hero-subtitle,
   .epic-subtitle {
-    display: flex !important;
+    display: grid !important;
+    grid-template-columns: auto 1fr auto !important;
+    align-items: center !important;
     opacity: 1 !important;
     visibility: visible !important;
     font-size: 0.65rem !important;
     letter-spacing: 0.15em !important;
     padding: 0.6rem 1rem !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
     text-align: center !important;
     margin: 0 auto !important;
     max-width: 90% !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    
+    .subtitle-icon {
+      flex-shrink: 0 !important;
+      white-space: nowrap !important;
+      position: relative !important;
+      z-index: 1 !important;
+      
+      &:first-of-type {
+        grid-column: 1 !important;
+        justify-self: start !important;
+      }
+      
+      &:last-of-type {
+        grid-column: 3 !important;
+        justify-self: end !important;
+      }
+    }
+    
+    .subtitle-text {
+      grid-column: 2 !important;
+      text-align: center !important;
+      min-width: 0 !important;
+      word-wrap: break-word !important;
+      overflow-wrap: break-word !important;
+      hyphens: auto !important;
+      justify-self: center !important;
+    }
   }
 
   /* Scroll Indicator Mobile */

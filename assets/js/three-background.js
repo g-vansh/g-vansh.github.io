@@ -31,6 +31,12 @@
 
     // Mobile detection - must be early for use in texture creation and canvas setup
     const isMobile = window.innerWidth < 768;
+    
+    // iOS Safari detection - needed for emoji rendering workaround
+    const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && 
+                        !window.MSStream && 
+                        /Safari/.test(navigator.userAgent) && 
+                        !/Chrome|CriOS|FxiOS/.test(navigator.userAgent);
 
     // Create canvas container
     const canvas = document.createElement('canvas');
@@ -146,6 +152,62 @@
       return texture;
     }
 
+    // Helper function to create emoji texture via SVG (for iOS Safari compatibility)
+    function createEmojiTextureFromSVG(emoji, glowColor = 'rgba(255, 216, 107, 0.9)', textureSize) {
+      return new Promise((resolve) => {
+        const canvas = document.createElement('canvas');
+        canvas.width = textureSize;
+        canvas.height = textureSize;
+        const ctx = canvas.getContext('2d');
+        
+        const center = textureSize / 2;
+        const radius = textureSize / 2;
+        
+        // Draw glowing background - stronger glow on mobile
+        const gradient = ctx.createRadialGradient(center, center, 10, center, center, radius);
+        const glowIntensity = isMobile ? '1.0' : '0.9';
+        gradient.addColorStop(0, glowColor.replace('0.9)', glowIntensity + ')'));
+        gradient.addColorStop(0.5, glowColor.replace('0.9)', isMobile ? '0.6)' : '0.5)'));
+        gradient.addColorStop(1, glowColor.replace('0.9)', '0)'));
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, textureSize, textureSize);
+        
+        // Create SVG with emoji
+        const fontSize = isMobile ? 200 : 100;
+        const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="${textureSize}" height="${textureSize}">
+          <text x="50%" y="50%" font-size="${fontSize}" font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif" 
+                text-anchor="middle" dominant-baseline="central" font-weight="bold">${emoji}</text>
+        </svg>`;
+        
+        // Convert SVG to data URL - encode properly for emojis
+        const encodedSvg = encodeURIComponent(svgString);
+        const url = 'data:image/svg+xml;charset=utf-8,' + encodedSvg;
+        
+        // Create image from SVG
+        const img = new Image();
+        img.onload = () => {
+          // Draw the emoji image to canvas
+          ctx.drawImage(img, 0, 0, textureSize, textureSize);
+          
+          const texture = new ThreeLib.CanvasTexture(canvas);
+          texture.needsUpdate = true;
+          resolve(texture);
+        };
+        img.onerror = () => {
+          // Fallback: try fillText anyway
+          ctx.font = `bold ${fontSize}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(emoji, center, center);
+          
+          const texture = new ThreeLib.CanvasTexture(canvas);
+          texture.needsUpdate = true;
+          resolve(texture);
+        };
+        img.src = url;
+      });
+    }
+
     function createEmojiTexture(emoji, glowColor = 'rgba(255, 216, 107, 0.9)') {
       const canvas = document.createElement('canvas');
       // Larger texture size for mobile to improve emoji quality
@@ -183,10 +245,21 @@
     }
     
     function createScientistTexture() {
+      // Use SVG rendering for iOS Safari to fix compound emoji rendering
+      if (isIOSSafari) {
+        const textureSize = isMobile ? 256 : 128;
+        // Return a promise that will be handled during initialization
+        return createEmojiTextureFromSVG('👩‍🔬', 'rgba(99, 255, 157, 0.9)', textureSize);
+      }
       return createEmojiTexture('👩‍🔬', 'rgba(99, 255, 157, 0.9)');
     }
     
     function createEntrepreneurTexture() {
+      // Use SVG rendering for iOS Safari to fix compound emoji rendering
+      if (isIOSSafari) {
+        const textureSize = isMobile ? 256 : 128;
+        return createEmojiTextureFromSVG('👨‍💼', 'rgba(155, 255, 31, 0.9)', textureSize);
+      }
       return createEmojiTexture('👨‍💼', 'rgba(155, 255, 31, 0.9)');
     }
     
@@ -199,6 +272,11 @@
     }
     
     function createCoderTexture() {
+      // Use SVG rendering for iOS Safari to fix compound emoji rendering
+      if (isIOSSafari) {
+        const textureSize = isMobile ? 256 : 128;
+        return createEmojiTextureFromSVG('👩‍💻', 'rgba(155, 255, 31, 0.9)', textureSize);
+      }
       return createEmojiTexture('👩‍💻', 'rgba(155, 255, 31, 0.9)'); // Same green halo as entrepreneur
     }
     
@@ -226,52 +304,75 @@
     scene.add(particleSystem);
     
     // PARTICLE TYPE OVERLAYS - Scientist, Entrepreneur, and Coder emojis
-    const scientistTexture = createScientistTexture();
-    const entrepreneurTexture = createEntrepreneurTexture();
-    const coderTexture = createCoderTexture();
+    // Handle async texture loading for iOS Safari
+    let scientistTexture, entrepreneurTexture, coderTexture;
+    let typeOverlays = { scientists: [], entrepreneurs: [], coders: [] }; // Initialize empty, will be populated
     
-    const typeOverlays = { scientists: [], entrepreneurs: [], coders: [] };
+    if (isIOSSafari) {
+      // iOS Safari: textures are Promises, need to await them
+      Promise.all([
+        createScientistTexture(),
+        createEntrepreneurTexture(),
+        createCoderTexture()
+      ]).then((textures) => {
+        scientistTexture = textures[0];
+        entrepreneurTexture = textures[1];
+        coderTexture = textures[2];
+        initializeTypeOverlays();
+      });
+    } else {
+      // Other browsers: textures are synchronous
+      scientistTexture = createScientistTexture();
+      entrepreneurTexture = createEntrepreneurTexture();
+      coderTexture = createCoderTexture();
+      initializeTypeOverlays();
+    }
     
-    for (let i = 0; i < particleCount; i++) {
-      if (particleTypes[i] === 1) { // scientist
-        const sprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
-          map: scientistTexture,
-          transparent: true,
-          opacity: 1.0,
-          blending: ThreeLib.NormalBlending,
-          depthTest: false,
-          sizeAttenuation: false
-        }));
-        sprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
-        sprite.renderOrder = 999;
-        scene.add(sprite);
-        typeOverlays.scientists.push({ sprite, particleIdx: i });
-      } else if (particleTypes[i] === 2) { // entrepreneur
-        const sprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
-          map: entrepreneurTexture,
-          transparent: true,
-          opacity: 1.0,
-          blending: ThreeLib.NormalBlending,
-          depthTest: false,
-          sizeAttenuation: false
-        }));
-        sprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
-        sprite.renderOrder = 999;
-        scene.add(sprite);
-        typeOverlays.entrepreneurs.push({ sprite, particleIdx: i });
-      } else if (particleTypes[i] === 3) { // coder
-        const sprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
-          map: coderTexture,
-          transparent: true,
-          opacity: 1.0,
-          blending: ThreeLib.NormalBlending,
-          depthTest: false,
-          sizeAttenuation: false
-        }));
-        sprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
-        sprite.renderOrder = 999;
-        scene.add(sprite);
-        typeOverlays.coders.push({ sprite, particleIdx: i });
+    function initializeTypeOverlays() {
+      // Clear existing overlays
+      typeOverlays = { scientists: [], entrepreneurs: [], coders: [] };
+      
+      for (let i = 0; i < particleCount; i++) {
+        if (particleTypes[i] === 1) { // scientist
+          const sprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+            map: scientistTexture,
+            transparent: true,
+            opacity: 1.0,
+            blending: ThreeLib.NormalBlending,
+            depthTest: false,
+            sizeAttenuation: false
+          }));
+          sprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
+          sprite.renderOrder = 999;
+          scene.add(sprite);
+          typeOverlays.scientists.push({ sprite, particleIdx: i });
+        } else if (particleTypes[i] === 2) { // entrepreneur
+          const sprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+            map: entrepreneurTexture,
+            transparent: true,
+            opacity: 1.0,
+            blending: ThreeLib.NormalBlending,
+            depthTest: false,
+            sizeAttenuation: false
+          }));
+          sprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
+          sprite.renderOrder = 999;
+          scene.add(sprite);
+          typeOverlays.entrepreneurs.push({ sprite, particleIdx: i });
+        } else if (particleTypes[i] === 3) { // coder
+          const sprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+            map: coderTexture,
+            transparent: true,
+            opacity: 1.0,
+            blending: ThreeLib.NormalBlending,
+            depthTest: false,
+            sizeAttenuation: false
+          }));
+          sprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
+          sprite.renderOrder = 999;
+          scene.add(sprite);
+          typeOverlays.coders.push({ sprite, particleIdx: i });
+        }
       }
     }
     
