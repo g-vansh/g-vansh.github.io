@@ -2,7 +2,35 @@
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="{{ base_path }}/assets/js/vendor/three.min.js"></script>
+<script>
+  window.__threeReady = window.__threeReady || new Promise((resolve, reject) => {
+    window.__resolveThreeReady = resolve;
+    window.__rejectThreeReady = reject;
+  });
+</script>
+<script type="module">
+  (async () => {
+    let THREE;
+    try {
+      THREE = await import('{{ base_path }}/assets/js/vendor/three.module.js');
+    } catch (error) {
+      console.error('Local Three.js module failed to load. Falling back to CDN.', error);
+      THREE = await import('https://unpkg.com/three@0.159.0/build/three.module.js');
+    }
+
+    window.THREE = THREE;
+    if (window.__resolveThreeReady) {
+      window.__resolveThreeReady(THREE);
+    }
+    window.dispatchEvent(new CustomEvent('three:ready', { detail: { THREE } }));
+  })().catch((error) => {
+    console.error('Three.js module initialization failed.', error);
+    if (window.__rejectThreeReady) {
+      window.__rejectThreeReady(error);
+    }
+  });
+</script>
+<script nomodule src="{{ base_path }}/assets/js/vendor/three.min.js"></script>
 
 <script src="{{ base_path }}/assets/js/main.min.js"></script>
 <script src="{{ base_path }}/assets/js/motion-core.js"></script>
