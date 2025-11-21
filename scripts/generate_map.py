@@ -145,10 +145,10 @@ def generate_map():
         }
     )
     
-    # Custom icon HTML with shadow
+    # Custom icon HTML with shadow - LARGER AND MORE VISIBLE
     icon_html = '''
-    <div style="background-color: #00008B; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-        <i class="fa-solid fa-user"></i>
+    <div style="background-color: #00008B; color: white; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 8px rgba(0,0,0,0.35); border: 2px solid rgba(255,255,255,0.9); transition: transform 0.2s;">
+        <i class="fa-solid fa-user" style="font-size: 16px;"></i>
     </div>
     '''
     
@@ -179,11 +179,11 @@ def generate_map():
         
         popup_html += '</div>'
         
-        # Create custom icon
+        # Create custom icon with larger size
         icon = folium.DivIcon(
             html=icon_html,
-            icon_size=(24, 24),
-            icon_anchor=(12, 12)
+            icon_size=(36, 36),
+            icon_anchor=(18, 18)
         )
         
         # Create marker with tooltip and batch tag
@@ -208,7 +208,7 @@ def generate_map():
         button_height=30
     ).add_to(m)
     
-    # Add custom CSS
+    # Add custom CSS with mobile responsiveness
     custom_css = '''
     <style>
         .leaflet-popup-content-wrapper {
@@ -246,6 +246,70 @@ def generate_map():
             background-color: white !important;
             border-radius: 4px !important;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+        }
+        
+        /* Marker hover effect */
+        .leaflet-marker-icon:hover {
+            transform: scale(1.1);
+            z-index: 1000 !important;
+        }
+        
+        /* Mobile-specific styles */
+        @media screen and (max-width: 768px) {
+            .leaflet-popup-content-wrapper {
+                max-width: calc(100vw - 40px) !important;
+            }
+            
+            .leaflet-popup-content {
+                margin: 10px;
+                font-size: 14px;
+            }
+            
+            .leaflet-popup-content h4 {
+                font-size: 16px !important;
+            }
+            
+            .leaflet-tooltip {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+            
+            /* Larger touch targets for mobile */
+            .leaflet-control-zoom a {
+                width: 36px !important;
+                height: 36px !important;
+                line-height: 36px !important;
+                font-size: 20px !important;
+            }
+            
+            .easy-button-button {
+                width: 36px !important;
+                height: 36px !important;
+                font-size: 16px !important;
+            }
+            
+            /* Better marker visibility on mobile */
+            .leaflet-marker-icon {
+                filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+            }
+        }
+        
+        /* Improve marker visibility */
+        .leaflet-marker-icon {
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+        
+        /* Pulse animation on marker hover */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 0, 139, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 0, 139, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 0, 139, 0);
+            }
         }
     </style>
     '''
