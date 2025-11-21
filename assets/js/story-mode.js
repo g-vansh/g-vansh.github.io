@@ -73,6 +73,23 @@
         dot.classList.remove('active');
       }
     });
+    
+    // Update scroll hint visibility
+    updateScrollHint(sectionIndex);
+  }
+  
+  // Update scroll hint visibility
+  function updateScrollHint(sectionIndex) {
+    const scrollHint = document.querySelector('.story-scroll-hint');
+    if (!scrollHint) return;
+    
+    // Show hint on all sections except the last one
+    if (sectionIndex < totalSections - 1) {
+      scrollHint.classList.add('visible');
+    } else {
+      // Hide hint on last section
+      scrollHint.classList.remove('visible');
+    }
   }
 
   // Show section with smooth snap animation
@@ -454,9 +471,9 @@
     });
   }
 
-  // Auto-advance functionality - move to next section every 8 seconds if idle
+  // Auto-advance functionality - move to next section every 10 seconds if idle
   let autoAdvanceTimer = null;
-  const AUTO_ADVANCE_DELAY = 8000; // 8 seconds
+  const AUTO_ADVANCE_DELAY = 10000; // 10 seconds
   
   function startAutoAdvance() {
     stopAutoAdvance(); // Clear any existing timer

@@ -597,7 +597,7 @@ a {
 }
 
 .leaflet-popup-content-wrapper {
-  background: rgba(5, 19, 13, 0.95);
+  background: rgba(0, 0, 0, 0.95);
   border-radius: 16px;
   border: 1px solid var(--neo-border);
   box-shadow: var(--neo-shadow);
@@ -612,16 +612,17 @@ a {
   font-family: var(--neo-font);
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  padding: 0.5rem 0.85rem;
+  padding: 0.75rem 0.85rem;
   font-size: 0.7rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  max-width: 250px;
+  max-width: 300px;
+  min-height: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
   text-align: center;
-  line-height: 1.4;
+  line-height: 1.6;
   backdrop-filter: blur(10px);
 }
 
@@ -639,6 +640,11 @@ a {
 
 .leaflet-tooltip-right::before {
   border-right-color: rgba(5, 19, 13, 0.95);
+}
+
+/* Research network map popup - darker background */
+.research-popup .leaflet-popup-content-wrapper {
+  background: rgba(0, 0, 0, 0.95) !important;
 }
 
 .leaflet-control-layers {
@@ -1014,10 +1020,10 @@ a {
     max-width: calc(100vw - 60px) !important;
     min-width: 150px !important;
     font-size: 0.68rem !important;
-    padding: 0.45rem 0.75rem !important;
+    padding: 0.65rem 0.75rem !important;
     letter-spacing: 0.18em !important;
     border-radius: 10px !important;
-    line-height: 1.45 !important;
+    line-height: 1.6 !important;
   }
   
   /* Research marker icons - slightly smaller on mobile */
@@ -1214,8 +1220,9 @@ a {
     max-width: calc(100vw - 50px) !important;
     min-width: 140px !important;
     font-size: 0.65rem !important;
-    padding: 0.4rem 0.65rem !important;
+    padding: 0.6rem 0.65rem !important;
     letter-spacing: 0.15em !important;
+    line-height: 1.6 !important;
   }
   
   /* Extra small research clusters */
