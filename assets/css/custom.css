@@ -140,7 +140,8 @@ a {
 #research-map,
 .responsive-map {
   width: 100%;
-  height: 620px;
+  min-height: 360px;
+  height: clamp(360px, 55vh, 600px);
   border: 1px solid var(--neo-border);
   border-radius: 18px;
   box-shadow: var(--neo-shadow);
@@ -409,14 +410,14 @@ a {
 @media (max-width: 1024px) {
   #research-map,
   .responsive-map {
-    height: 540px;
+    height: clamp(340px, 60vh, 520px);
   }
 }
 
 @media (max-width: 768px) {
   #research-map,
   .responsive-map {
-    height: 480px !important;
+    height: min(460px, 60vh);
   }
 
   .legend,
@@ -437,7 +438,7 @@ a {
 @media (max-width: 480px) {
   #research-map,
   .responsive-map {
-    height: 380px !important;
+    height: min(380px, 65vh);
   }
 
   .leaflet-control-zoom {

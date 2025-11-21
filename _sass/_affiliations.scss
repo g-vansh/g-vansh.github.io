@@ -9,7 +9,7 @@
   border: 1px solid var(--border-color, #dee2e6);
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .affiliations-container::before {
@@ -138,7 +138,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid transparent;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  overflow: hidden;
+  overflow: visible;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -254,6 +254,14 @@
 /* CSS-Only Tooltip Styles */
 .affiliation-item[data-tooltip-content] {
   position: relative;
+}
+
+.affiliation-item[data-tooltip-content]::after {
+  pointer-events: none;
+}
+
+.affiliation-item[data-tooltip-content]::before {
+  pointer-events: none;
 }
 
 .affiliation-item[data-tooltip-content]:hover::after {

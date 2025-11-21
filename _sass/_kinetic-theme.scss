@@ -12,6 +12,10 @@ html {
   scroll-behavior: smooth;
 }
 
+html.lenis-active {
+  scroll-behavior: auto;
+}
+
 body {
   background: $background-gradient;
   color: $text-color;
@@ -587,10 +591,17 @@ a {
    ========================================================================== */
 
 #main {
-  padding-top: 6rem; // Space for fixed navigation
+  padding-top: clamp(6rem, 4.5rem + 2vw, 8.5rem); // Space for fixed navigation across viewports
+  scroll-padding-top: clamp(6rem, 4.5rem + 2vw, 8.5rem);
+
+  @include breakpoint($medium) {
+    padding-top: 8.5rem;
+    scroll-padding-top: 8.5rem;
+  }
 
   @include breakpoint($small) {
-    padding-top: 5rem;
+    padding-top: 11rem;
+    scroll-padding-top: 11rem;
   }
 }
 

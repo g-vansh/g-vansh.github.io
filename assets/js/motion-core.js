@@ -6,6 +6,9 @@
 (function() {
   'use strict';
 
+  const root = document.documentElement;
+  const body = document.body;
+
   const ensureVisible = () => {
     const elements = document.querySelectorAll('.reveal-on-scroll');
     elements.forEach((element) => {
@@ -14,15 +17,43 @@
     });
   };
 
-  // Wait for DOM and dependencies
-  if (typeof Lenis === 'undefined' || typeof gsap === 'undefined') {
-    document.body && document.body.classList.add('motion-disabled');
+  const disableMotion = (reason, level = 'warn') => {
+    if (body) {
+      body.classList.add('motion-disabled');
+      body.classList.remove('motion-ready');
+    }
+    if (root) {
+      root.classList.remove('lenis-active');
+    }
     ensureVisible();
-    console.warn('Academic Kinetic: Lenis or GSAP not loaded. Motion disabled.');
+    if (reason && console[level]) {
+      console[level](reason);
+    }
+  };
+
+  if (!body || !root) {
+    disableMotion('Academic Kinetic: document not ready. Motion disabled.');
     return;
   }
 
-  document.body && document.body.classList.add('motion-ready');
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia
+    ? window.matchMedia('(prefers-reduced-motion: reduce)')
+    : null;
+
+  if (prefersReducedMotion && prefersReducedMotion.matches) {
+    disableMotion('Academic Kinetic: prefers-reduced-motion detected. Motion disabled.');
+    return;
+  }
+
+  // Wait for DOM and dependencies
+  if (typeof Lenis === 'undefined' || typeof gsap === 'undefined') {
+    disableMotion('Academic Kinetic: Lenis or GSAP not loaded. Motion disabled.');
+    return;
+  }
+
+  body.classList.add('motion-ready');
+  body.classList.remove('motion-disabled');
+  root.classList.add('lenis-active');
 
   // Initialize Lenis smooth scroll with Apple-like inertia
   const lenis = new Lenis({
@@ -144,8 +175,23 @@
     destroy: () => {
       lenis.destroy();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      disableMotion('Academic Kinetic: Motion engine destroyed.', 'info');
     },
   };
+
+  if (prefersReducedMotion) {
+    const handleMotionPreference = (event) => {
+      if (event.matches && window.academicKinetic && window.academicKinetic.lenis) {
+        window.academicKinetic.destroy();
+      }
+    };
+
+    if (typeof prefersReducedMotion.addEventListener === 'function') {
+      prefersReducedMotion.addEventListener('change', handleMotionPreference);
+    } else if (typeof prefersReducedMotion.addListener === 'function') {
+      prefersReducedMotion.addListener(handleMotionPreference);
+    }
+  }
 
   console.log('Academic Kinetic Motion Engine initialized');
 })();
