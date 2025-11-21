@@ -21,6 +21,7 @@ $monospace                  : Monaco, Consolas, "Lucida Console", monospace;
 $mona-sans                  : 'Mona Sans', -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
 $inter                      : 'Inter', -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
 $jetbrains-mono             : 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+$azeret-mono                : 'Azeret Mono', 'JetBrains Mono', 'Space Mono', 'IBM Plex Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
 
 /* sans serif typefaces */
 $sans-serif-narrow          : $sans-serif;
@@ -34,9 +35,9 @@ $calisto                    : "Calisto MT", serif;
 $garamond                   : Garamond, serif;
 
 /* Academic Kinetic Font Assignments */
-$global-font-family         : $inter;
-$header-font-family         : $mona-sans;
-$caption-font-family        : $jetbrains-mono;
+$global-font-family         : $azeret-mono;
+$header-font-family         : $azeret-mono;
+$caption-font-family        : $azeret-mono;
 $metadata-font-family       : $jetbrains-mono;
 
 /* type scale */
@@ -62,14 +63,20 @@ $light-gray                 : mix(#fff, $gray, 50%);
 $lighter-gray               : mix(#fff, $gray, 90%);
 
 /* Academic Kinetic Dark Mode Colors */
-$background-color           : #050505;  // Near Black
-$surface-color              : #1A1A1A;  // Card backgrounds
-$text-color                 : #F2F2F2;  // Off-White
+$background-color           : #020a06;  // Starless black with green tint
+$background-gradient        : radial-gradient(circle at 20% 20%, rgba(155, 255, 49, 0.1), transparent 55%), radial-gradient(circle at 80% 0%, rgba(86, 255, 198, 0.12), transparent 45%), #020a06;
+$surface-color              : #06130c;  // Primary card surface
+$surface-color-alt          : #0b1f13;  // Elevated cards
+$text-color                 : #f1ffe9;  // Off-white with green tint
 $body-color                 : $text-color;
-$accent-color               : #D2FF00;  // Electric Lime (Lando Norris style)
-$accent-color-hover         : #B8E600;  // Slightly darker lime for hover
-$border-color               : rgba(255, 255, 255, 0.1);  // Subtle borders
-$border-color-hover         : rgba(210, 255, 0, 0.3);  // Lime glow on hover
+$accent-color               : #9bff1f;  // Neon pixel green
+$accent-color-strong        : #63ff9d;  // Cyan-leaning accent
+$accent-color-hover         : #7beb19;  // Slightly darker lime for hover
+$border-color               : rgba(155, 255, 31, 0.25);  // Neon borders
+$border-color-hover         : rgba(155, 255, 31, 0.55);  // Lime glow on hover
+$gridline-color             : rgba(155, 255, 31, 0.08);
+$terminal-amber             : #f7f4d6;
+$terminal-muted             : rgba(241, 255, 233, 0.6);
 
 /* Code blocks */
 $code-background-color      : #0E0E0E;
@@ -163,15 +170,19 @@ $susy: (
    ========================================================================== */
 
 /* Academic Kinetic Design Tokens */
-$border-radius              : 0px;  // Brutalist: no rounded corners
-$box-shadow                 : 0 2px 8px rgba(0, 0, 0, 0.3);
-$box-shadow-hover           : 0 4px 16px rgba(210, 255, 0, 0.2);
+$border-radius              : 6px;
+$border-radius-pill         : 999px;
+$box-shadow                 : 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(155, 255, 31, 0.08);
+$box-shadow-hover           : 0 30px 55px rgba(0, 0, 0, 0.75), 0 0 35px rgba(155, 255, 31, 0.35);
 $navicon-width              : 28px;
 $navicon-height             : 4px;
 $global-transition          : all 0.3s cubic-bezier(0.4, 0, 0.2, 1);  // Smooth easing
-$kinetic-transition         : all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);  // Apple-like inertia
+$kinetic-transition         : all 0.45s cubic-bezier(0.22, 1, 0.36, 1);  // Apple-like inertia
 
 /* Glassmorphism */
-$glass-bg                   : rgba(26, 26, 26, 0.7);
-$glass-border               : rgba(255, 255, 255, 0.1);
-$glass-blur                 : 10px;
+$glass-bg                   : rgba(8, 19, 12, 0.75);
+$glass-border               : rgba(155, 255, 31, 0.25);
+$glass-blur                 : 14px;
+$hud-glow                   : 0 0 25px rgba(155, 255, 31, 0.45);
+$focus-outline              : 0 0 0 2px rgba(155, 255, 31, 0.7);
+$noise-filter               : url('#noise');

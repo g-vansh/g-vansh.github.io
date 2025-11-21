@@ -1,50 +1,48 @@
 /* ==========================================================================
-   Forms
+   FORMS — GLOWING TERMINAL PANELS
    ========================================================================== */
 
 form {
-  margin: 0 0 5px 0;
+  margin: 0 0 1.5rem 0;
+  padding: 1.5rem;
+  background: rgba($surface-color-alt, 0.9);
+  border: 1px solid rgba($accent-color, 0.12);
+  border-radius: $border-radius;
+  box-shadow: inset 0 0 0 1px rgba(#fff, 0.02), $box-shadow;
+  backdrop-filter: blur($glass-blur);
+  position: relative;
 
   fieldset {
-    margin-bottom: 5px;
+    margin: 0;
     padding: 0;
-    border-width: 0;
+    border: 0;
   }
 
   legend {
-    display: block;
     width: 100%;
-    margin-bottom: 5px * 2;
-    *margin-left: -7px;
-    padding: 0;
-    color: $text-color;
-    border: 0;
-    border-bottom: 1px solid mix(#fff, #000, 80%);
-    white-space: normal;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    font-family: $metadata-font-family;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: $terminal-muted;
+    border-bottom: 1px solid rgba($accent-color, 0.35);
   }
 
   p {
-    margin-bottom: 5px / 2;
-  }
-
-  ul {
-    list-style-type: none;
-    margin: 0 0 5px 0;
-    padding: 0;
-  }
-
-  br {
-    display: none;
+    margin-bottom: 1rem;
   }
 }
 
-label,
-input,
-button,
-select,
-textarea {
-  vertical-align: baseline;
-  *vertical-align: middle;
+label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-family: $metadata-font-family;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba($text-color, 0.8);
 }
 
 input,
@@ -52,157 +50,86 @@ button,
 select,
 textarea {
   box-sizing: border-box;
-  font-family: $sans-serif;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.25em;
-  color: $text-color;
-  cursor: pointer;
-
-  small {
-    font-size: $type-size-6;
-  }
-
-  input,
-  textarea,
-  select {
-    display: block;
-  }
+  font-family: $global-font-family;
 }
 
 input,
 textarea,
 select {
-  display: inline-block;
   width: 100%;
-  padding: 0.25em;
-  margin-bottom: 0.5em;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
   color: $text-color;
-  background-color: #fff;
-  border: 1px solid mix(#fff, #000, 80%);
+  background: rgba(#000, 0.25);
+  border: 1px solid rgba($accent-color, 0.25);
   border-radius: $border-radius;
-  box-shadow: $box-shadow;
+  box-shadow: inset 0 0 0 1px rgba(#fff, 0.02);
+  outline: none;
+  transition: $global-transition;
+
+  &::placeholder {
+    color: rgba($text-color, 0.45);
+    letter-spacing: 0.05em;
+  }
 
   &:hover {
-    border-color: mix(#fff, $primary-color, 50%);
+    border-color: rgba($accent-color, 0.45);
   }
-}
 
-.input-mini {
-  width: 60px;
-}
-
-.input-small {
-  width: 90px;
-}
-
-input[type="image"],
-input[type="checkbox"],
-input[type="radio"] {
-  width: auto;
-  height: auto;
-  padding: 0;
-  margin: 3px 0;
-  *margin-top: 0;
-  line-height: normal;
-  cursor: pointer;
-  border-radius: 0;
-  border: 0 \9;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-  box-sizing: border-box;
-  padding: 0;
-  *width: 13px;
-  *height: 13px;
-}
-
-input[type="image"] {
-  border: 0;
-  box-shadow: none;
-}
-
-input[type="file"] {
-  width: auto;
-  padding: initial;
-  line-height: initial;
-  border: initial;
-  background-color: transparent;
-  background-color: initial;
-  box-shadow: none;
-}
-
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  width: auto;
-  height: auto;
-  cursor: pointer;
-  *overflow: visible;
-}
-
-select,
-input[type="file"] {
-  *margin-top: 4px;
-}
-
-select {
-  width: auto;
-  background-color: #fff;
-}
-
-select[multiple],
-select[size] {
-  height: auto;
+  &:focus {
+    border-color: $accent-color;
+    box-shadow: 0 0 0 2px rgba($accent-color, 0.2);
+    background: rgba(#000, 0.35);
+  }
 }
 
 textarea {
   resize: vertical;
-  height: auto;
-  overflow: auto;
-  vertical-align: top;
+  min-height: 150px;
 }
 
-input[type="hidden"] {
-  display: none;
+select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, $accent-color 50%), linear-gradient(135deg, $accent-color 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1.1rem + 2px), calc(100% - 15px) calc(1.1rem + 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 3rem;
 }
 
-.form {
-  position: relative;
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  margin: 0 0.5rem 0 0;
+  accent-color: $accent-color;
+  box-shadow: none;
 }
 
-.radio,
-.checkbox {
-  padding-left: 18px;
-  font-weight: normal;
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-.radio input[type="radio"],
-.checkbox input[type="checkbox"] {
-  float: left;
-  margin-left: -18px;
+.help-block,
+.help-inline {
+  font-family: $metadata-font-family;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba($accent-color-strong, 0.8);
 }
 
-.radio.inline,
-.checkbox.inline {
-  display: inline-block;
-  padding-top: 5px;
-  margin-bottom: 0;
-  vertical-align: middle;
+.help-block {
+  display: block;
+  margin-top: -0.75rem;
+  margin-bottom: 1.25rem;
 }
-
-.radio.inline + .radio.inline,
-.checkbox.inline + .checkbox.inline {
-  margin-left: 10px;
-}
-
-
-/*
-   Disabled state
-   ========================================================================== */
 
 input[disabled],
 select[disabled],
@@ -210,140 +137,57 @@ textarea[disabled],
 input[readonly],
 select[readonly],
 textarea[readonly] {
-  opacity: 0.5;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
+.form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
 
-/*
-   Focus & active state
-   ========================================================================== */
+  label {
+    margin-bottom: 0.25rem;
+  }
 
-input:focus,
-textarea:focus {
-  border-color: $primary-color;
-  outline: 0;
-  outline: thin dotted \9;
+  input,
+  textarea,
+  select {
+    margin-bottom: 0;
+  }
 }
 
-input[type="file"]:focus,
-input[type="radio"]:focus,
-input[type="checkbox"]:focus,
-select:focus {
-  box-shadow: none;
+.form-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+
+  .search-query {
+    flex: 1 1 260px;
+    border-radius: $border-radius-pill;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
+.form {
+  position: relative;
 
-/*
-   Help text
-   ========================================================================== */
+  &--loading:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba($background-color, 0.85);
+    border-radius: inherit;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+  }
 
-.help-block,
-.help-inline {
-  color: $info-color;
-}
-
-.help-block {
-  display: block;
-  margin-bottom: 1em;
-  line-height: 1em;
-}
-
-.help-inline {
-  display: inline-block;
-  vertical-align: middle;
-  padding-left: 5px;
-}
-
-
-/*
-   .form-inline
-   ========================================================================== */
-
-.form-inline input,
-.form-inline textarea,
-.form-inline select {
-  display: inline-block;
-  margin-bottom: 0;
-}
-
-.form-inline label {
-  display: inline-block;
-}
-
-.form-inline .radio,
-.form-inline .checkbox,
-.form-inline .radio {
-  padding-left: 0;
-  margin-bottom: 0;
-  vertical-align: middle;
-}
-
-.form-inline .radio input[type="radio"],
-.form-inline .checkbox input[type="checkbox"] {
-  float: left;
-  margin-left: 0;
-  margin-right: 3px; }
-
-
-/*
-   .form-search
-   ========================================================================== */
-
-.form-search input,
-.form-search textarea,
-.form-search select {
-  display: inline-block;
-  margin-bottom: 0;
-}
-
-.form-search .search-query {
-  padding-left: 14px;
-  padding-right: 14px;
-  margin-bottom: 0;
-  border-radius: 14px;
-}
-
-.form-search label {
-  display: inline-block;
-}
-
-.form-search .radio,
-.form-search .checkbox,
-.form-inline .radio {
-  padding-left: 0;
-  margin-bottom: 0;
-  vertical-align: middle;
-}
-
-.form-search .radio input[type="radio"],
-.form-search .checkbox input[type="checkbox"] {
-  float: left;
-  margin-left: 0;
-  margin-right: 3px;
-}
-
-
-/*
-   .form--loading
-   ========================================================================== */
-
-.form--loading:before {
-  content: '';
-}
-
-.form--loading .form__spinner {
-  display: block;
-}
-
-.form:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
-  z-index: 10;
+  &--loading .form__spinner {
+    display: block;
+  }
 }
 
 .form__spinner {
@@ -351,20 +195,28 @@ select:focus {
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border-radius: 50%;
+  border: 3px solid rgba($accent-color, 0.2);
+  border-top-color: $accent-color;
+  animation: spin 0.8s linear infinite;
   z-index: 11;
 }
 
-
-
-/*
-   Google search form
-   ========================================================================== */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 #goog-fixurl {
   ul {
     list-style: none;
     margin-left: 0;
     padding-left: 0;
+
     li {
       list-style-type: none;
     }
@@ -375,15 +227,15 @@ select:focus {
   width: auto;
   margin-right: 10px;
   margin-bottom: 20px;
-  padding: 8px 20px;
+  padding: 0.75rem 1.75rem;
   display: inline-block;
   font-size: $type-size-6;
-  background-color: #fff;
-  color: #000;
+  background-color: rgba(#000, 0.35);
+  color: $text-color;
   border-width: 2px !important;
   border-style: solid !important;
-  border-color: lighten(#000,50);
-  border-radius: $border-radius;
+  border-color: rgba($accent-color, 0.4);
+  border-radius: $border-radius-pill;
 }
 
 #goog-wm-sb {
