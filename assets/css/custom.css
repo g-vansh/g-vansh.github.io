@@ -160,6 +160,38 @@ a {
   background: transparent;
 }
 
+.custom-marker-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: rgba(5, 19, 13, 0.95);
+  border: 1px solid var(--neo-border);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55), inset 0 0 25px rgba(155, 255, 31, 0.08);
+}
+
+.custom-icon {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  color: var(--neo-text);
+}
+
+.custom-icon.education-icon i {
+  color: var(--neo-amber);
+}
+
+.custom-icon.coauthor-icon i {
+  color: var(--neo-cyan);
+}
+
+.custom-icon.talk-icon i {
+  color: var(--neo-magenta);
+}
+
 .marker-pin {
   width: 22px;
   height: 22px;
@@ -250,6 +282,40 @@ a {
   border: 1px solid var(--neo-border);
   box-shadow: var(--neo-shadow);
   color: var(--neo-text-muted);
+}
+
+.marker-cluster-custom {
+  background: transparent;
+}
+
+.custom-cluster {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--neo-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--neo-font);
+  font-size: 0.85rem;
+  color: var(--neo-text);
+  background: rgba(5, 19, 13, 0.95);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.custom-cluster.education-cluster {
+  border-color: rgba(255, 216, 107, 0.6);
+  color: var(--neo-amber);
+}
+
+.custom-cluster.coauthor-cluster {
+  border-color: rgba(98, 255, 198, 0.6);
+  color: var(--neo-cyan);
+}
+
+.custom-cluster.talk-cluster {
+  border-color: rgba(255, 107, 243, 0.6);
+  color: var(--neo-magenta);
 }
 
 .legend-item {
