@@ -236,6 +236,9 @@
       }
     }
     
+    // Story mode particle visibility control - REMOVED as requested
+    // No longer responding to story section changes
+    
     // IDEA SYSTEM - Using Sprites for reliable rendering
     const maxIdeas = 50;
     const lightbulbTexture = createLightbulbTexture();
