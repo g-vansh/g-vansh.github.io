@@ -591,8 +591,8 @@ a {
    ========================================================================== */
 
 #main {
-  padding-top: clamp(6rem, 4.5rem + 2vw, 8.5rem); // Space for fixed navigation across viewports
-  scroll-padding-top: clamp(6rem, 4.5rem + 2vw, 8.5rem);
+  padding-top: clamp(6rem, unquote("calc(4.5rem + 2vw)"), 8.5rem); // Space for fixed navigation across viewports
+  scroll-padding-top: clamp(6rem, unquote("calc(4.5rem + 2vw)"), 8.5rem);
 
   @include breakpoint($medium) {
     padding-top: 8.5rem;
