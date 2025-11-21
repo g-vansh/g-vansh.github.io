@@ -581,6 +581,80 @@ body:not(.motion-ready) .hero-name::after {
     backface-visibility: hidden;
   }
 
+  // Ensure desktop shows full menu bar
+  @media (min-width: 901px) {
+    background: $glass-bg;
+    backdrop-filter: blur($glass-blur);
+    -webkit-backdrop-filter: blur($glass-blur);
+    border: 1px solid $glass-border;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
+                0 0 0 1px rgba(155, 255, 31, 0.1) inset;
+    padding: 0.75rem 2rem;
+    width: calc(100% - 4rem);
+    max-width: 960px;
+    top: 2rem;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    border-radius: 50px;
+    min-width: auto;
+    height: auto;
+    
+    .masthead__inner-wrap {
+      width: 100%;
+      padding: 0;
+      display: block;
+      justify-content: flex-start;
+      margin: 0;
+    }
+
+    .masthead__menu {
+      width: 100%;
+      display: block;
+      justify-content: flex-start;
+      margin: 0;
+    }
+  }
+
+  // Hide masthead bar on mobile, only show menu button
+  @media (max-width: 900px) {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    width: auto !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    left: auto !important;
+    transform: none !important;
+    border-radius: 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    
+    &:hover {
+      box-shadow: none !important;
+      border-color: transparent !important;
+    }
+
+    .masthead__inner-wrap {
+      width: auto !important;
+      padding: 0 !important;
+      display: flex !important;
+      justify-content: flex-end !important;
+      margin: 0 !important;
+    }
+
+    .masthead__menu {
+      width: auto !important;
+      display: flex !important;
+      justify-content: flex-end !important;
+      margin: 0 !important;
+    }
+  }
+
   .masthead__inner-wrap {
       width: 100%;
     padding: 0;
