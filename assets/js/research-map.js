@@ -396,19 +396,18 @@ document.addEventListener('DOMContentLoaded', function() {
         icon: markerIcons[type]
       });
       
-      // Create tooltip based on location type
+      // Create tooltip based on location type with responsive sizing
+      const tooltipOptions = {
+        permanent: false,
+        direction: 'top',
+        className: `${type}-tooltip research-tooltip`,
+        offset: [0, -10]
+      };
+      
       if (type === 'coauthor') {
-        marker.bindTooltip(`${loc.name} - ${loc.institution}`, {
-          permanent: false,
-          direction: 'top',
-          className: `${type}-tooltip`
-        });
+        marker.bindTooltip(`${loc.name} - ${loc.institution}`, tooltipOptions);
       } else if (loc.tooltipText) {
-        marker.bindTooltip(loc.tooltipText, {
-          permanent: false,
-          direction: 'top',
-          className: `${type}-tooltip`
-        });
+        marker.bindTooltip(loc.tooltipText, tooltipOptions);
       }
       
       // Create popup content based on location type
@@ -549,18 +548,37 @@ document.addEventListener('DOMContentLoaded', function() {
         popupClass += " worldbank-popup";
       }
       
-      // Adjust popup size based on screen size
-      const popupMaxWidth = isMobile ? 240 : 280;
-      const popupMinWidth = isMobile ? 180 : 200;
+      // Adjust popup size based on screen size - more responsive
+      const viewportWidth = window.innerWidth;
+      let popupMaxWidth, popupMinWidth;
+      
+      if (viewportWidth <= 480) {
+        // Extra small mobile
+        popupMaxWidth = Math.min(viewportWidth - 30, 300);
+        popupMinWidth = 180;
+      } else if (viewportWidth <= 768) {
+        // Mobile/tablet
+        popupMaxWidth = Math.min(viewportWidth - 40, 320);
+        popupMinWidth = 200;
+      } else if (viewportWidth <= 1024) {
+        // Small desktop
+        popupMaxWidth = 320;
+        popupMinWidth = 220;
+      } else {
+        // Desktop
+        popupMaxWidth = 360;
+        popupMinWidth = 240;
+      }
       
       marker.bindPopup(popupContent, {
         maxWidth: popupMaxWidth,
         minWidth: popupMinWidth,
         className: popupClass + ' research-popup',
         autoPan: true,
-        autoPanPadding: isMobile ? [10, 10] : [20, 20],
+        autoPanPadding: isMobile ? [15, 15] : [25, 25],
         keepInView: true,
-        closeButton: true
+        closeButton: true,
+        closeOnClick: false
       });
       
       group.addLayer(marker);

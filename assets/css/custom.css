@@ -231,9 +231,12 @@ a {
 .leaflet-popup-content {
   font-family: var(--neo-font);
   min-width: 220px;
+  max-width: 100%;
   color: var(--neo-text);
-  max-height: 320px;
+  max-height: 70vh;
   overflow-y: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .leaflet-popup-content h3 {
@@ -242,12 +245,17 @@ a {
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--neo-accent);
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .leaflet-popup-content p {
   margin: 0 0 0.5rem;
   color: var(--neo-text-muted);
   line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .leaflet-popup-content::-webkit-scrollbar {
@@ -257,6 +265,196 @@ a {
 .leaflet-popup-content::-webkit-scrollbar-thumb {
   background: var(--neo-accent-soft);
   border-radius: 999px;
+}
+
+/* Custom popup container */
+.custom-popup {
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Education popup specific styles */
+.education-years {
+  font-size: 0.75rem;
+  color: var(--neo-text-muted);
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  letter-spacing: 0.1em;
+}
+
+.education-years i {
+  color: var(--neo-accent);
+  font-size: 0.7rem;
+}
+
+.education-degree,
+.education-majors,
+.education-gpa {
+  font-size: 0.8rem;
+  color: var(--neo-text);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.education-degree:last-child,
+.education-majors:last-child,
+.education-gpa:last-child {
+  margin-bottom: 0;
+}
+
+.education-degree i,
+.education-majors i,
+.education-gpa i {
+  color: var(--neo-amber);
+  font-size: 0.75rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.education-majors {
+  color: var(--neo-text-muted);
+}
+
+.education-gpa {
+  color: var(--neo-text);
+  font-weight: 500;
+}
+
+.section-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--neo-accent);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.education-honors {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.education-honors li {
+  font-size: 0.8rem;
+  color: var(--neo-text-muted);
+  line-height: 1.6;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.education-honors li:last-child {
+  margin-bottom: 0;
+}
+
+.education-honors li i {
+  color: var(--neo-amber);
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.education-concentrations,
+.education-affiliations {
+  font-size: 0.8rem;
+  color: var(--neo-text-muted);
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Coauthor popup specific styles */
+.coauthor-designation,
+.coauthor-department {
+  font-size: 0.8rem;
+  color: var(--neo-text);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.coauthor-designation:last-child,
+.coauthor-department:last-child {
+  margin-bottom: 0;
+}
+
+.coauthor-designation i,
+.coauthor-department i {
+  color: var(--neo-cyan);
+  font-size: 0.75rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.coauthor-department {
+  color: var(--neo-text-muted);
+}
+
+/* Talk popup specific styles */
+.talk-date {
+  font-size: 0.75rem;
+  color: var(--neo-text-muted);
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  letter-spacing: 0.1em;
+}
+
+.talk-date i {
+  color: var(--neo-accent);
+  font-size: 0.7rem;
+}
+
+.talk-venue {
+  font-size: 0.8rem;
+  color: var(--neo-text);
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.talk-venue i {
+  color: var(--neo-magenta);
+  font-size: 0.75rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+/* Popup meta and links */
+.popup-meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--neo-text-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.popup-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .marker-link,
@@ -403,6 +601,8 @@ a {
   border-radius: 16px;
   border: 1px solid var(--neo-border);
   box-shadow: var(--neo-shadow);
+  max-width: 90vw;
+  backdrop-filter: blur(10px);
 }
 
 .leaflet-tooltip {
@@ -412,7 +612,33 @@ a {
   font-family: var(--neo-font);
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  padding: 0.4rem 0.75rem;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.7rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  max-width: 250px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.4;
+  backdrop-filter: blur(10px);
+}
+
+.leaflet-tooltip-top::before {
+  border-top-color: rgba(5, 19, 13, 0.95);
+}
+
+.leaflet-tooltip-bottom::before {
+  border-bottom-color: rgba(5, 19, 13, 0.95);
+}
+
+.leaflet-tooltip-left::before {
+  border-left-color: rgba(5, 19, 13, 0.95);
+}
+
+.leaflet-tooltip-right::before {
+  border-right-color: rgba(5, 19, 13, 0.95);
 }
 
 .leaflet-control-layers {
@@ -463,6 +689,112 @@ a {
   border-bottom: 1px solid var(--neo-border);
   padding-bottom: 0.75rem;
   margin-bottom: 0.75rem;
+}
+
+.education-popup-header h3,
+.coauthor-popup-header h3,
+.talk-popup-header h3 {
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Tooltip classes for different types */
+.research-tooltip {
+  font-weight: 500;
+}
+
+.coauthor-tooltip {
+  border-color: rgba(98, 255, 198, 0.3);
+}
+
+.education-tooltip {
+  border-color: rgba(255, 216, 107, 0.3);
+}
+
+.talk-tooltip {
+  border-color: rgba(255, 107, 243, 0.3);
+}
+
+/* Desktop popup improvements */
+@media (min-width: 769px) {
+  .research-popup .leaflet-popup-content-wrapper {
+    max-width: 380px !important;
+    min-width: 260px !important;
+    border-radius: 18px !important;
+  }
+  
+  .research-popup .leaflet-popup-content {
+    margin: 16px !important;
+    max-height: 70vh !important;
+    min-width: auto !important;
+  }
+  
+  .research-popup .leaflet-popup-content h3 {
+    font-size: 0.95rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .research-popup .education-section,
+  .research-popup .coauthor-section,
+  .research-popup .talk-section {
+    padding: 0.9rem !important;
+    margin-bottom: 0.9rem !important;
+  }
+  
+  .research-popup .education-degree,
+  .research-popup .education-majors,
+  .research-popup .education-gpa,
+  .research-popup .coauthor-designation,
+  .research-popup .coauthor-department,
+  .research-popup .talk-venue {
+    font-size: 0.85rem !important;
+    line-height: 1.65 !important;
+  }
+  
+  .research-popup .education-years,
+  .research-popup .talk-date {
+    font-size: 0.8rem !important;
+  }
+  
+  .research-popup .section-title {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.6rem !important;
+  }
+  
+  .research-popup .education-honors li {
+    font-size: 0.85rem !important;
+    line-height: 1.6 !important;
+  }
+  
+  .research-popup .education-concentrations,
+  .research-popup .education-affiliations {
+    font-size: 0.85rem !important;
+    line-height: 1.65 !important;
+  }
+  
+  .research-popup .popup-meta {
+    font-size: 0.72rem !important;
+    margin-bottom: 0.6rem !important;
+  }
+  
+  .research-popup .popup-link {
+    font-size: 0.7rem !important;
+    padding: 0.5rem 1rem !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+  
+  .research-popup .popup-links {
+    gap: 0.6rem !important;
+  }
+  
+  .leaflet-tooltip {
+    max-width: 300px !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 1rem !important;
+    border-radius: 10px !important;
+  }
 }
 
 /* Research stats + imagery --------------------------------------------------- */
@@ -583,34 +915,109 @@ a {
     margin-right: 0.25rem !important;
   }
 
-  /* Research map popups - smaller on mobile */
+  /* Research map popups - mobile optimized design */
   .research-popup .leaflet-popup-content-wrapper {
-    max-width: 240px !important;
-    border-radius: 10px !important;
+    max-width: calc(100vw - 32px) !important;
+    min-width: 200px !important;
+    border-radius: 14px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
   }
   
   .research-popup .leaflet-popup-content {
-    margin: 10px !important;
+    margin: 14px !important;
     font-size: 0.8rem !important;
-    line-height: 1.4 !important;
+    line-height: 1.55 !important;
+    min-width: auto !important;
+    max-height: 65vh !important;
   }
   
   .research-popup .leaflet-popup-content h3 {
-    font-size: 0.8rem !important;
-    margin-bottom: 0.45rem !important;
+    font-size: 0.85rem !important;
+    margin-bottom: 0.6rem !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.2em !important;
+  }
+  
+  .research-popup .education-popup-header,
+  .research-popup .coauthor-popup-header,
+  .research-popup .talk-popup-header {
+    padding-bottom: 0.7rem !important;
+    margin-bottom: 0.7rem !important;
   }
   
   .research-popup .education-section,
   .research-popup .coauthor-section,
   .research-popup .talk-section {
-    padding: 0.6rem !important;
-    margin-bottom: 0.6rem !important;
-    font-size: 0.75rem !important;
+    padding: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+    border-radius: 12px !important;
+  }
+  
+  .research-popup .education-degree,
+  .research-popup .education-majors,
+  .research-popup .education-gpa,
+  .research-popup .coauthor-designation,
+  .research-popup .coauthor-department,
+  .research-popup .talk-venue {
+    font-size: 0.78rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 0.45rem !important;
+  }
+  
+  .research-popup .education-years,
+  .research-popup .talk-date {
+    font-size: 0.72rem !important;
+    margin-top: 0.35rem !important;
+  }
+  
+  .research-popup .section-title {
+    font-size: 0.68rem !important;
+    margin-bottom: 0.5rem !important;
+    letter-spacing: 0.18em !important;
+  }
+  
+  .research-popup .education-honors li {
+    font-size: 0.78rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 0.35rem !important;
+  }
+  
+  .research-popup .education-concentrations,
+  .research-popup .education-affiliations {
+    font-size: 0.78rem !important;
+    line-height: 1.55 !important;
+  }
+  
+  .research-popup .popup-meta {
+    font-size: 0.68rem !important;
+    margin-bottom: 0.5rem !important;
+    letter-spacing: 0.12em !important;
   }
   
   .research-popup .popup-link {
-    font-size: 0.65rem !important;
-    padding: 0.4rem 0.75rem !important;
+    font-size: 0.68rem !important;
+    padding: 0.5rem 0.85rem !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    text-align: center !important;
+    letter-spacing: 0.2em !important;
+    line-height: 1.4 !important;
+  }
+  
+  .research-popup .popup-links {
+    gap: 0.5rem !important;
+  }
+  
+  /* Tooltips on mobile - compact design */
+  .leaflet-tooltip {
+    max-width: calc(100vw - 60px) !important;
+    min-width: 150px !important;
+    font-size: 0.68rem !important;
+    padding: 0.45rem 0.75rem !important;
+    letter-spacing: 0.18em !important;
+    border-radius: 10px !important;
+    line-height: 1.45 !important;
   }
   
   /* Research marker icons - slightly smaller on mobile */
@@ -730,17 +1137,85 @@ a {
     font-size: 0.6rem !important;
   }
   
-  /* Extra small research popups */
+  /* Extra small mobile devices - compact design */
   .research-popup .leaflet-popup-content-wrapper {
-    max-width: 220px !important;
+    max-width: calc(100vw - 24px) !important;
+    min-width: 180px !important;
+    border-radius: 12px !important;
   }
   
   .research-popup .leaflet-popup-content {
     font-size: 0.75rem !important;
+    margin: 12px !important;
+    max-height: 60vh !important;
+    line-height: 1.5 !important;
   }
   
   .research-popup .leaflet-popup-content h3 {
-    font-size: 0.75rem !important;
+    font-size: 0.8rem !important;
+    margin-bottom: 0.5rem !important;
+    letter-spacing: 0.18em !important;
+  }
+  
+  .research-popup .education-popup-header,
+  .research-popup .coauthor-popup-header,
+  .research-popup .talk-popup-header {
+    padding-bottom: 0.6rem !important;
+    margin-bottom: 0.6rem !important;
+  }
+  
+  .research-popup .education-section,
+  .research-popup .coauthor-section,
+  .research-popup .talk-section {
+    padding: 0.65rem !important;
+    margin-bottom: 0.65rem !important;
+    border-radius: 10px !important;
+  }
+  
+  .research-popup .education-degree,
+  .research-popup .education-majors,
+  .research-popup .education-gpa,
+  .research-popup .coauthor-designation,
+  .research-popup .coauthor-department,
+  .research-popup .talk-venue {
+    font-size: 0.72rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0.4rem !important;
+  }
+  
+  .research-popup .education-years,
+  .research-popup .talk-date {
+    font-size: 0.68rem !important;
+  }
+  
+  .research-popup .section-title {
+    font-size: 0.65rem !important;
+    margin-bottom: 0.45rem !important;
+  }
+  
+  .research-popup .education-honors li {
+    font-size: 0.72rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  .research-popup .popup-meta {
+    font-size: 0.65rem !important;
+    margin-bottom: 0.45rem !important;
+  }
+  
+  .research-popup .popup-link {
+    font-size: 0.65rem !important;
+    padding: 0.45rem 0.75rem !important;
+    letter-spacing: 0.18em !important;
+  }
+  
+  /* Tooltips on extra small screens */
+  .leaflet-tooltip {
+    max-width: calc(100vw - 50px) !important;
+    min-width: 140px !important;
+    font-size: 0.65rem !important;
+    padding: 0.4rem 0.65rem !important;
+    letter-spacing: 0.15em !important;
   }
   
   /* Extra small research clusters */
