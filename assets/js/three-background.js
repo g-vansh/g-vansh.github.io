@@ -241,6 +241,11 @@
     }
     
     function createLightbulbTexture() {
+      // Use SVG rendering for iOS Safari for better emoji quality
+      if (isIOSSafari) {
+        const textureSize = isMobile ? 256 : 128;
+        return createEmojiTextureFromSVG('💡', 'rgba(255, 216, 107, 0.9)', textureSize);
+      }
       return createEmojiTexture('💡', 'rgba(255, 216, 107, 0.9)');
     }
     
@@ -268,6 +273,11 @@
     }
     
     function createBusinessTexture() {
+      // Use SVG rendering for iOS Safari for better emoji quality
+      if (isIOSSafari) {
+        const textureSize = isMobile ? 256 : 128;
+        return createEmojiTextureFromSVG('📈', 'rgba(255, 216, 107, 0.9)', textureSize);
+      }
       return createEmojiTexture('📈', 'rgba(255, 216, 107, 0.9)'); // Same yellow halo as lightbulb
     }
     
@@ -281,10 +291,20 @@
     }
     
     function createCodeTexture() {
+      // Use SVG rendering for iOS Safari for better emoji quality
+      if (isIOSSafari) {
+        const textureSize = isMobile ? 256 : 128;
+        return createEmojiTextureFromSVG('👾', 'rgba(255, 216, 107, 0.9)', textureSize);
+      }
       return createEmojiTexture('👾', 'rgba(255, 216, 107, 0.9)'); // Same yellow halo as lightbulb
     }
     
     function createConversationTexture() {
+      // Use SVG rendering for iOS Safari for better emoji quality
+      if (isIOSSafari) {
+        const textureSize = isMobile ? 256 : 128;
+        return createEmojiTextureFromSVG('💬', 'rgba(99, 255, 157, 0.9)', textureSize);
+      }
       return createEmojiTexture('💬', 'rgba(99, 255, 157, 0.9)'); // Cyan halo for conversations
     }
     
@@ -381,10 +401,7 @@
     
     // IDEA SYSTEM - Using Sprites for reliable rendering
     const maxIdeas = 50;
-    const lightbulbTexture = createLightbulbTexture();
-    const paperTexture = createPaperTexture();
-    const businessTexture = createBusinessTexture();
-    const codeTexture = createCodeTexture();
+    let lightbulbTexture, paperTexture, businessTexture, codeTexture;
     
     const ideaSpritePool = {
       lightbulbs: [],
@@ -395,8 +412,35 @@
     
     const activeIdeas = [];
     
-    // Create sprite pools for each idea type
-    for (let i = 0; i < maxIdeas; i++) {
+    // Initialize idea textures - handle async loading for iOS Safari
+    function initializeIdeaTextures() {
+      if (isIOSSafari) {
+        // iOS Safari: textures are Promises, need to await them
+        Promise.all([
+          createLightbulbTexture(),
+          createPaperTexture(),
+          createBusinessTexture(),
+          createCodeTexture()
+        ]).then((textures) => {
+          lightbulbTexture = textures[0];
+          paperTexture = textures[1];
+          businessTexture = textures[2];
+          codeTexture = textures[3];
+          createIdeaSpritePools();
+        });
+      } else {
+        // Other browsers: textures are synchronous
+        lightbulbTexture = createLightbulbTexture();
+        paperTexture = createPaperTexture();
+        businessTexture = createBusinessTexture();
+        codeTexture = createCodeTexture();
+        createIdeaSpritePools();
+      }
+    }
+    
+    function createIdeaSpritePools() {
+      // Create sprite pools for each idea type
+      for (let i = 0; i < maxIdeas; i++) {
       // Lightbulb sprites
       const bulbSprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
         map: lightbulbTexture,
@@ -460,7 +504,11 @@
       codeSprite.renderOrder = 1000;
       scene.add(codeSprite);
       ideaSpritePool.codes.push(codeSprite);
+      }
     }
+    
+    // Initialize idea textures
+    initializeIdeaTextures();
     
     // Connection lines rendered as animated cylinders for better visibility
     const maxSignals = isMobile ? 15 : 35;
@@ -494,29 +542,49 @@
     // CONVERSATION SYSTEM - Emojis that appear when special nodes cross paths
     const CONVERSATION_DURATION = 2000; // 2 seconds
     const CONVERSATION_DISTANCE = 8; // Distance threshold for collision detection
-    const conversationTexture = createConversationTexture();
+    let conversationTexture;
     const maxConversations = 20;
     const conversationSpritePool = [];
     const activeConversations = []; // { sprite, position, expiresAt, baseSize }
     const collisionPairs = new Set(); // Track pairs that are currently in conversation to avoid duplicates
     
-    // Create conversation sprite pool
-    for (let i = 0; i < maxConversations; i++) {
-      const convSprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
-        map: conversationTexture,
-        transparent: true,
-        opacity: 1.0,
-        blending: ThreeLib.NormalBlending,
-        depthTest: false,
-        depthWrite: false,
-        sizeAttenuation: false
-      }));
-      convSprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Same size as other halos
-      convSprite.visible = false;
-      convSprite.renderOrder = 1001; // Above other sprites
-      scene.add(convSprite);
-      conversationSpritePool.push(convSprite);
+    // Initialize conversation texture - handle async loading for iOS Safari
+    function initializeConversationTexture() {
+      if (isIOSSafari) {
+        // iOS Safari: texture is a Promise, need to await it
+        createConversationTexture().then((texture) => {
+          conversationTexture = texture;
+          createConversationSpritePool();
+        });
+      } else {
+        // Other browsers: texture is synchronous
+        conversationTexture = createConversationTexture();
+        createConversationSpritePool();
+      }
     }
+    
+    function createConversationSpritePool() {
+      // Create conversation sprite pool
+      for (let i = 0; i < maxConversations; i++) {
+        const convSprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+          map: conversationTexture,
+          transparent: true,
+          opacity: 1.0,
+          blending: ThreeLib.NormalBlending,
+          depthTest: false,
+          depthWrite: false,
+          sizeAttenuation: false
+        }));
+        convSprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Same size as other halos
+        convSprite.visible = false;
+        convSprite.renderOrder = 1001; // Above other sprites
+        scene.add(convSprite);
+        conversationSpritePool.push(convSprite);
+      }
+    }
+    
+    // Initialize conversation texture
+    initializeConversationTexture();
 
     // Mouse interaction
     let mouseX = 0;
