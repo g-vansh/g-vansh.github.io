@@ -62,26 +62,14 @@ layout: default
     <!-- Dynamic Energy Field -->
     <div class="hero-energy-field" aria-hidden="true"></div>
     
-    <!-- Corner Brackets -->
-    <div class="hero-corner hero-corner--tl"></div>
-    <div class="hero-corner hero-corner--tr"></div>
-    <div class="hero-corner hero-corner--bl"></div>
-    <div class="hero-corner hero-corner--br"></div>
-    
     <!-- Scanlines Overlay -->
     <div class="scanlines"></div>
     
     <!-- Hero Content -->
     <div class="hero-content">
-      {% assign hero_name_parts = site.name | split: ' ' %}
-      {% assign hero_primary = hero_name_parts | first | upcase %}
-      {% assign hero_secondary = hero_name_parts | last | upcase %}
-      {% if hero_secondary == hero_primary %}
-        {% assign hero_secondary = '' %}
-      {% endif %}
-      <h1 class="hero-name kinetic-text epic-name" data-speed="0.3">
-        <span style="display: block;">{{ hero_primary | strip }}</span>
-        <span style="display: block;">{{ hero_secondary | strip }}</span>
+      <h1 class="hero-name epic-name">
+        <span class="hero-name-line">VANSH</span>
+        <span class="hero-name-line">GUPTA</span>
       </h1>
       <p class="hero-subtitle epic-subtitle">
         <span class="subtitle-icon">▸</span>

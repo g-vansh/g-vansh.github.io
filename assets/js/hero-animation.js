@@ -412,36 +412,8 @@
   }
 
   function animateCorners() {
-    const corners = gsap.utils.toArray('.hero-corner');
-    if (!corners.length) return;
-
-    gsap.set(corners, {
-      autoAlpha: 0,
-      scale: 0.8,
-      filter: 'blur(6px)',
-    });
-
-    gsap.to(corners, {
-      autoAlpha: 1,
-      scale: 1,
-      filter: 'blur(0px)',
-      duration: 0.8,
-      ease: 'expo.out',
-      stagger: 0.08,
-      delay: 0.4,
-    });
-
-    gsap.to(corners, {
-      y: '+=8',
-      repeat: -1,
-      yoyo: true,
-      duration: 3,
-      ease: 'sine.inOut',
-      stagger: {
-        each: 0.2,
-        yoyo: true,
-      },
-    });
+    // Corner boxes removed - function disabled
+    return;
   }
 
   function enhancedHeroAnimation() {
@@ -498,23 +470,16 @@
       }
     });
     
-    // Start with everything hidden
-    gsap.set([heroName, heroSubtitle], { opacity: 0 });
-    
-    // Dramatic entrance after grid convergence
-    masterTimeline.to(heroName, {
-      opacity: 1,
-      scale: 1.1,
-      duration: 0.8,
-      ease: 'power3.out',
-      delay: 1.2
-    });
-
-    masterTimeline.to(heroName, {
+    // Name is always visible - no animations
+    gsap.set(heroName, { 
+      opacity: 1, 
+      filter: 'none',
       scale: 1,
-      duration: 0.5,
-      ease: 'elastic.out(1, 0.5)'
+      transform: 'none'
     });
+    gsap.set(heroSubtitle, { opacity: 0 });
+    
+    // Skip all name animations - just show it immediately
 
     masterTimeline.add(() => {
       shockwavePulse.trigger();
@@ -537,15 +502,7 @@
       ease: 'power3.out'
     }, '-=0.3');
 
-    // Add pulsing glow effect
-    gsap.to(heroName, {
-      textShadow: '0 0 80px rgba(155, 255, 31, 0.8), 0 0 40px rgba(155, 255, 31, 0.6)',
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
-      delay: 3
-    });
+    // No pulsing glow effect - name is static
 
     if (datapoints.length) {
       gsap.from(datapoints, {

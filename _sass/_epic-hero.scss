@@ -15,6 +15,8 @@
   justify-content: center;
   overflow: hidden;
   perspective: 1000px;
+  filter: none !important;
+  backdrop-filter: none !important;
   
   // Add depth with layered backgrounds
   &::before {
@@ -25,6 +27,8 @@
     opacity: 0;
     animation: pulseGlow 4s ease-in-out infinite;
     animation-delay: 3s;
+    z-index: 0;
+    pointer-events: none;
   }
   
   @media (max-width: 768px) {
@@ -162,19 +166,20 @@ body.hero-sequence-complete .hero-loader {
   position: absolute;
   inset: -20%;
   background:
-    radial-gradient(circle at 30% 20%, rgba($accent-color, 0.28), transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(#63ff9d, 0.3), transparent 55%),
-    conic-gradient(from 180deg at 50% 50%, rgba($accent-color, 0.05), transparent 40%);
-  filter: blur(40px);
-  opacity: 0.55;
+    radial-gradient(circle at 30% 20%, rgba($accent-color, 0.18), transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(#63ff9d, 0.2), transparent 55%),
+    conic-gradient(from 180deg at 50% 50%, rgba($accent-color, 0.03), transparent 40%);
+  filter: blur(60px);
+  opacity: 0.4;
   z-index: 0;
   pointer-events: none;
   animation: energyShift 16s linear infinite;
+  mix-blend-mode: screen;
 
   @media (max-width: 768px) {
     inset: -40%;
-    filter: blur(55px);
-    opacity: 0.35;
+    filter: blur(70px);
+    opacity: 0.25;
   }
 }
 
@@ -201,6 +206,9 @@ body.hero-sequence-complete .hero-loader {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
+  isolation: isolate; // Create new stacking context
+  backdrop-filter: none !important;
+  filter: none !important;
   
   @media (max-width: 768px) {
     padding: 0 1.5rem;
@@ -218,46 +226,52 @@ body.hero-sequence-complete .hero-loader {
   letter-spacing: 0.15em;
   margin: 0 0 1.5rem 0;
   line-height: 1;
-  transform-style: preserve-3d;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
-  white-space: pre-line;
-  filter: blur(18px);
-  transition: filter 3s ease-in-out, opacity 0.6s ease;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  flex-wrap: nowrap !important;
+  filter: none !important;
+  opacity: 1 !important;
+  z-index: 999;
+  isolation: isolate;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+  width: 100% !important;
   
-  // Add metallic gradient
-  background: linear-gradient(
-    135deg,
-    #9bff1f 0%,
-    #63ff9d 25%,
-    #9bff1f 50%,
-    #ffd86b 75%,
-    #9bff1f 100%
-  );
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 8s linear infinite;
+  // Override base hero-name styles
+  text-align: center !important;
+  min-height: auto !important;
   
-  // Ensure fallback visibility
-  @supports not (-webkit-background-clip: text) {
-    color: $accent-color;
-    -webkit-text-fill-color: $accent-color;
-  }
+  // Simple solid color - no gradient, no animation
+  color: #9bff1f !important;
+  -webkit-text-fill-color: #9bff1f !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
   
-  // Add 3D depth
+  // Minimal text shadow for readability
   text-shadow: 
-    0 0 30px rgba($accent-color, 0.5),
-    0 0 60px rgba($accent-color, 0.3),
-    0 0 90px rgba($accent-color, 0.1);
+    0 0 20px rgba(155, 255, 31, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  
+  // Prevent character splitting from breaking the layout
+  .hero-char {
+    display: inline !important;
+    white-space: normal !important;
+    position: static !important;
+    transform: none !important;
+    min-width: auto !important;
+  }
   
   @media (max-width: 768px) {
     font-size: clamp(2.5rem, 12vw, 5rem) !important;
     letter-spacing: 0.1em;
     margin-bottom: 2rem;
-    word-break: break-word;
-    hyphens: none;
   }
   
   @media (max-width: 480px) {
@@ -272,6 +286,21 @@ body.hero-sequence-complete .hero-loader {
   -webkit-font-smoothing: antialiased;
 }
 
+// Ensure hero-name-line elements are not affected by character splitting
+.epic-name .hero-name-line {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  
+  // Prevent any character-level styling from breaking the layout
+  .hero-char {
+    display: inline !important;
+    position: static !important;
+    transform: none !important;
+    min-width: auto !important;
+  }
+}
+
 .hero-line-break {
   display: block;
   width: 100%;
@@ -281,21 +310,53 @@ body.hero-sequence-complete .hero-loader {
   margin: clamp(0.2rem, 1vw, 0.45rem) 0;
 }
 
-body:not(.hero-name-revealed) .epic-name {
-  filter: blur(18px);
+.hero-name-line {
+  display: block;
+  width: 100%;
+  text-align: center;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  position: relative;
+  
+  // Ensure each line has the same styling as parent
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-shadow: inherit;
+  filter: none !important;
+  animation: none !important;
+  transform: none !important;
+  font-family: inherit;
+  font-weight: inherit;
+  text-transform: inherit;
+  
+  // Prevent character splitting from affecting these lines
+  .hero-char {
+    display: inline !important;
+    white-space: normal !important;
+  }
+  
+  // First line (VANSH)
+  &:first-child {
+    margin-bottom: 0;
+  }
+  
+  // Second line (GUPTA)
+  &:last-child {
+    margin-top: 0;
+  }
 }
 
+// Name is always visible - no state changes
+body:not(.hero-name-revealed) .epic-name,
 body.hero-name-revealed .epic-name {
-  filter: blur(0);
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 300% 50%;
-  }
+  filter: none !important;
+  opacity: 1 !important;
+  animation: none !important;
+  transform: none !important;
 }
 
 /* ==========================================================================
@@ -358,155 +419,12 @@ body.hero-name-revealed .epic-name {
 }
 
 /* ==========================================================================
-   Corner Brackets (F1 Style)
+   Corner Brackets (F1 Style) - REMOVED
    ========================================================================== */
 
 .hero-corner {
-  position: absolute;
-  width: clamp(60px, 8vw, 120px);
-  height: clamp(60px, 8vw, 120px);
-  border: 1.5px solid rgba($accent-color, 0.7);
-  opacity: 0;
-  z-index: 4;
-  mix-blend-mode: screen;
-  box-shadow: 0 0 25px rgba($accent-color, 0.35);
-  border-radius: 8px;
-  backdrop-filter: blur(2px);
-  background: radial-gradient(circle at 30% 30%, rgba($accent-color, 0.15), transparent);
-  animation: cornerFadeIn 1.2s ease-out forwards;
-  
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    background: linear-gradient(90deg, rgba($accent-color, 0), $accent-color, rgba($accent-color, 0));
-    box-shadow: 0 0 15px rgba($accent-color, 0.45);
-  }
-  
-  @media (max-width: 768px) {
-    width: clamp(40px, 8vw, 80px);
-    height: clamp(40px, 8vw, 80px);
-    border-width: 1.5px;
-  }
-}
-
-.hero-corner--tl {
-  top: clamp(2rem, 5vw, 4rem);
-  left: clamp(2rem, 5vw, 4rem);
-  border-right: none;
-  border-bottom: none;
-  animation-delay: 0.2s;
-  
-  &::before {
-    top: -2px;
-    left: -2px;
-    width: 30%;
-    height: 2px;
-  }
-  
-  &::after {
-    top: -2px;
-    left: -2px;
-    width: 2px;
-    height: 30%;
-  }
-  
-  @media (max-width: 768px) {
-    top: clamp(1rem, 4vw, 2rem);
-    left: clamp(1rem, 4vw, 2rem);
-  }
-}
-
-.hero-corner--tr {
-  top: clamp(2rem, 5vw, 4rem);
-  right: clamp(2rem, 5vw, 4rem);
-  border-left: none;
-  border-bottom: none;
-  animation-delay: 0.4s;
-  
-  &::before {
-    top: -2px;
-    right: -2px;
-    width: 30%;
-    height: 2px;
-  }
-  
-  &::after {
-    top: -2px;
-    right: -2px;
-    width: 2px;
-    height: 30%;
-  }
-  
-  @media (max-width: 768px) {
-    top: clamp(1rem, 4vw, 2rem);
-    right: clamp(1rem, 4vw, 2rem);
-  }
-}
-
-.hero-corner--bl {
-  bottom: clamp(2rem, 5vw, 4rem);
-  left: clamp(2rem, 5vw, 4rem);
-  border-right: none;
-  border-top: none;
-  animation-delay: 0.6s;
-  
-  &::before {
-    bottom: -2px;
-    left: -2px;
-    width: 30%;
-    height: 2px;
-  }
-  
-  &::after {
-    bottom: -2px;
-    left: -2px;
-    width: 2px;
-    height: 30%;
-  }
-  
-  @media (max-width: 768px) {
-    bottom: clamp(1rem, 4vw, 2rem);
-    left: clamp(1rem, 4vw, 2rem);
-  }
-}
-
-.hero-corner--br {
-  bottom: clamp(2rem, 5vw, 4rem);
-  right: clamp(2rem, 5vw, 4rem);
-  border-left: none;
-  border-top: none;
-  animation-delay: 0.8s;
-  
-  &::before {
-    bottom: -2px;
-    right: -2px;
-    width: 30%;
-    height: 2px;
-  }
-  
-  &::after {
-    bottom: -2px;
-    right: -2px;
-    width: 2px;
-    height: 30%;
-  }
-  
-  @media (max-width: 768px) {
-    bottom: clamp(1rem, 4vw, 2rem);
-    right: clamp(1rem, 4vw, 2rem);
-  }
-}
-
-@keyframes cornerFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.7);
-  }
-  to {
-    opacity: 0.85;
-    transform: scale(1);
-  }
+  display: none !important;
+  visibility: hidden !important;
 }
 
 /* ==========================================================================
@@ -773,12 +691,12 @@ body.hero-name-revealed .epic-name {
   }
 
   .hero-content {
-    backdrop-filter: blur(8px);
-    background: rgba($surface-color, 0.4);
-    border-radius: 24px;
+    backdrop-filter: none !important;
+    background: transparent;
+    border-radius: 0;
     padding: 2rem 1.5rem;
-    border: 1px solid rgba($accent-color, 0.2);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+    border: none;
+    box-shadow: none;
   }
 
   .hero-datapoints {
@@ -811,27 +729,48 @@ body.hero-name-revealed .epic-name {
   opacity: 1 !important;
   display: block !important;
   visibility: visible !important;
+  animation: none !important;
+  filter: none !important;
   
-  // Ensure text is never completely transparent
+  // Always use solid color - no gradients
   @media (max-width: 768px) {
-    // Fallback color for mobile
-    color: $accent-color;
-    -webkit-text-fill-color: $accent-color;
-    
-    // If gradient is supported, use it
-    @supports (-webkit-background-clip: text) {
-      -webkit-text-fill-color: transparent;
-    }
+    color: #9bff1f !important;
+    -webkit-text-fill-color: #9bff1f !important;
+    background: none !important;
   }
 }
 
-// JS failed - show name immediately
-body:not(.hero-animation-ready) .epic-name {
+// Always show name immediately - no animations, no blur
+body:not(.hero-animation-ready) .epic-name,
+body.hero-animation-ready .epic-name,
+.epic-name,
+.epic-name *,
+.hero-name.epic-name,
+.hero-name.epic-name.kinetic-text {
   opacity: 1 !important;
-  color: $accent-color !important;
-  -webkit-text-fill-color: $accent-color !important;
+  color: #9bff1f !important;
+  -webkit-text-fill-color: #9bff1f !important;
   animation: none !important;
   filter: none !important;
+  transform: none !important;
+  transition: none !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  will-change: auto !important;
+}
+
+// Override kinetic-text animations
+.epic-name.kinetic-text,
+.hero-name.epic-name.kinetic-text {
+  background-image: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  animation: none !important;
+  
+  &::after {
+    display: none !important;
+  }
 }
 
 /* ==========================================================================
@@ -856,6 +795,16 @@ body:not(.hero-animation-ready) .epic-name {
   .epic-name {
     opacity: 1 !important;
     filter: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    animation: none !important;
+    transform: none !important;
+    color: #9bff1f !important;
+    -webkit-text-fill-color: #9bff1f !important;
+    
+    .hero-name-line {
+      white-space: nowrap !important;
+    }
   }
   
   .scroll-indicator {

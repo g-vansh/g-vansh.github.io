@@ -107,6 +107,12 @@
   // Hero title kinetic animation
   const heroNameElement = document.querySelector('.hero-name');
   if (heroNameElement) {
+    // Skip character splitting for epic-name (two-line layout)
+    if (heroNameElement.classList.contains('epic-name')) {
+      // Don't split into characters - keep the two-line structure
+      return;
+    }
+    
     const heroText = heroNameElement.textContent.trim();
 
     if (heroText.length > 0) {
