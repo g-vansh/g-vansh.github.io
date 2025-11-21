@@ -21,6 +21,13 @@ body {
   font-family: var(--neo-font);
 }
 
+.epic-name,
+.epic-name .hero-char {
+  filter: none !important;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
 a {
   transition: var(--neo-transition);
 }

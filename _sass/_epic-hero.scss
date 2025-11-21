@@ -73,6 +73,9 @@
   margin: 0 0 1.5rem 0;
   line-height: 1;
   transform-style: preserve-3d;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  filter: none !important;
   
   // Add metallic gradient
   background: linear-gradient(
@@ -113,6 +116,13 @@
     font-size: clamp(2rem, 13vw, 4rem) !important;
     letter-spacing: 0.08em;
   }
+}
+
+.epic-name,
+.epic-name .hero-char {
+  filter: none !important;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
 }
 
 @keyframes shimmer {
