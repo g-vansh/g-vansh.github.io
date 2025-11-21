@@ -153,6 +153,17 @@ a {
     border-radius: 40px;
     box-shadow: $hud-glow;
     pointer-events: none;
+    animation: glow 3s ease-in-out infinite;
+  }
+  
+  @media (max-width: 768px) {
+    min-height: 85vh;
+    padding: 5rem 1.5rem 3rem;
+    
+    &:before {
+      inset: 5%;
+      border-radius: 20px;
+    }
   }
 }
 
@@ -173,6 +184,8 @@ a {
   gap: clamp(0.08em, 1vw, 0.18em);
   line-height: 1;
   text-align: center;
+  opacity: 1; // Ensure visibility
+  min-height: 1em; // Reserve space
 
   &.kinetic-text {
     will-change: transform;
@@ -191,6 +204,11 @@ a {
     @supports (-webkit-background-clip: text) {
       -webkit-text-fill-color: transparent;
       color: transparent;
+    }
+    
+    // Fallback if animation doesn't load
+    @supports not (-webkit-background-clip: text) {
+      color: $accent-color;
     }
   }
 
@@ -287,11 +305,20 @@ a {
 
 body:not(.motion-ready) .hero-name.kinetic-text {
   animation: none;
+  opacity: 1 !important; // Ensure visibility even if motion fails
+  color: $accent-color !important;
+  -webkit-text-fill-color: $accent-color !important;
 }
 
 body:not(.motion-ready) .hero-name::after {
   animation: none;
   opacity: 0;
+}
+
+// Ensure hero name is always visible
+.hero-name .hero-char {
+  opacity: 1 !important; // Force visibility for fallback
+  display: inline-block;
 }
 
 .hero-meta {
@@ -509,31 +536,50 @@ body:not(.motion-ready) .hero-name::after {
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-    width: calc(100% - 4rem);
-    max-width: 960px;
+  width: calc(100% - 4rem);
+  max-width: 960px;
   background: $glass-bg;
   backdrop-filter: blur($glass-blur);
   -webkit-backdrop-filter: blur($glass-blur);
   border: 1px solid $glass-border;
   border-radius: 50px;
   padding: 0.75rem 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  -webkit-animation: intro 0.3s both;
-  animation: intro 0.3s both;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
+              0 0 0 1px rgba(155, 255, 31, 0.1) inset;
+  -webkit-animation: mastheadSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: mastheadSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
   -webkit-animation-delay: 0.15s;
   animation-delay: 0.15s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    box-shadow: 0 12px 42px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(155, 255, 31, 0.2) inset,
+                0 0 20px rgba(155, 255, 31, 0.15);
+    border-color: rgba(155, 255, 31, 0.35);
+  }
 
-    @include breakpoint($small) {
-      top: 1.5rem;
-      padding: 0.5rem 1rem;
-      width: calc(100% - 1.5rem);
-      max-width: none;
-    }
+  @include breakpoint($small) {
+    top: 1rem;
+    padding: 0.65rem 1.25rem;
+    width: calc(100% - 2rem);
+    max-width: none;
+    border-radius: 40px;
+  }
 
-    @media (max-width: 480px) {
-      padding: 0.45rem 0.75rem;
-      border-radius: 30px;
-    }
+  @media (max-width: 480px) {
+    top: 0.75rem;
+    padding: 0.55rem 1rem;
+    border-radius: 35px;
+    width: calc(100% - 1.5rem);
+  }
+  
+  // Performance optimization for mobile
+  @media (max-width: 768px) {
+    will-change: transform;
+    transform: translateX(-50%) translateZ(0);
+    backface-visibility: hidden;
+  }
 
   .masthead__inner-wrap {
       width: 100%;
@@ -560,21 +606,22 @@ body:not(.motion-ready) .hero-name::after {
       list-style: none;
       margin: 0;
       padding: 0;
-        flex-wrap: nowrap;
-        justify-content: center;
-        flex: 1 1 auto;
-        min-width: 0;
+      flex-wrap: nowrap;
+      justify-content: center;
+      flex: 1 1 auto;
+      min-width: 0;
 
       @include breakpoint($small) {
-          gap: 0.5rem;
-          flex-wrap: wrap;
-          justify-content: flex-start;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: flex-start;
       }
 
       li {
         display: flex;
         align-items: center;
         list-style: none;
+        position: relative;
 
         a {
           font-family: $metadata-font-family;
@@ -584,18 +631,39 @@ body:not(.motion-ready) .hero-name::after {
           color: $text-color;
           padding: 0.5rem 1rem;
           margin: 0;
-          transition: $global-transition;
+          transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
           text-decoration: none;
+          position: relative;
+          overflow: hidden;
+          border-radius: 20px;
 
-            @include breakpoint($small) {
-              padding: 0.35rem 0.75rem;
-              letter-spacing: 0.08em;
-            }
+          @include breakpoint($small) {
+            padding: 0.45rem 0.85rem;
+            letter-spacing: 0.08em;
+            font-size: 0.7rem;
+          }
+
+          // Animated underline effect
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 0.25rem;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: $accent-color;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateX(-50%);
+          }
 
           &:hover {
             color: $accent-color;
-            background: rgba($accent-color, 0.1);
-            border-radius: 20px;
+            background: rgba($accent-color, 0.12);
+            transform: translateY(-1px);
+            
+            &::after {
+              width: 70%;
+            }
           }
 
           &::before {
@@ -609,6 +677,15 @@ body:not(.motion-ready) .hero-name::after {
             font-weight: 800;
             font-size: 0.875rem;
             color: $accent-color;
+            text-shadow: 0 0 10px rgba($accent-color, 0.3);
+            
+            @include breakpoint($small) {
+              font-size: 0.8rem;
+            }
+            
+            &::after {
+              display: none; // No underline for logo
+            }
           }
         }
       }
@@ -991,5 +1068,20 @@ body:not(.motion-ready) .reveal-on-scroll {
 @include breakpoint($medium) {
   .masthead {
     top: 2rem;
+  }
+}
+
+/* ==========================================================================
+   Masthead Animation
+   ========================================================================== */
+
+@keyframes mastheadSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 }
