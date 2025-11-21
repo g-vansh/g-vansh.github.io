@@ -62,14 +62,16 @@
         <a href="{{ base_path }}/">Home</a>
       </li>
       {% for link in site.data.navigation.main %}
-        {% if link.url contains 'http' %}
-          {% assign nav_domain = '' %}
-          {% else %}
-          {% assign nav_domain = base_path %}
-        {% endif %}
-        <li>
-          <a href="{{ nav_domain }}{{ link.url }}">{{ link.title }}</a>
-        </li>
+        {% unless link.title == "Nizam Map" or link.url contains "community-map" %}
+          {% if link.url contains 'http' %}
+            {% assign nav_domain = '' %}
+            {% else %}
+            {% assign nav_domain = base_path %}
+          {% endif %}
+          <li>
+            <a href="{{ nav_domain }}{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endunless %}
       {% endfor %}
     </ul>
 
