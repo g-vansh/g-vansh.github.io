@@ -6,11 +6,23 @@
 (function() {
   'use strict';
 
+  const ensureVisible = () => {
+    const elements = document.querySelectorAll('.reveal-on-scroll');
+    elements.forEach((element) => {
+      element.style.opacity = 1;
+      element.style.transform = 'none';
+    });
+  };
+
   // Wait for DOM and dependencies
   if (typeof Lenis === 'undefined' || typeof gsap === 'undefined') {
+    document.body && document.body.classList.add('motion-disabled');
+    ensureVisible();
     console.warn('Academic Kinetic: Lenis or GSAP not loaded. Motion disabled.');
     return;
   }
+
+  document.body && document.body.classList.add('motion-ready');
 
   // Initialize Lenis smooth scroll with Apple-like inertia
   const lenis = new Lenis({
