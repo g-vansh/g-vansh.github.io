@@ -18,6 +18,75 @@
         </ul>
         <ul class="hidden-links hidden"></ul>
       </nav>
+
+      <button class="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-nav-panel">
+        <span class="mobile-menu-toggle__label">Menu</span>
+        <span class="mobile-menu-toggle__icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+{% assign linkedin_href = site.author.linkedin %}
+{% if linkedin_href %}
+  {% unless linkedin_href contains 'http' %}
+    {% assign linkedin_href = 'https://www.linkedin.com/in/' | append: linkedin_href %}
+  {% endunless %}
+{% endif %}
+{% assign github_href = site.author.github %}
+{% if github_href %}
+  {% unless github_href contains 'http' %}
+    {% assign github_href = 'https://github.com/' | append: github_href %}
+  {% endunless %}
+{% endif %}
+{% assign twitter_handle = site.author.twitter | default: site.twitter.username %}
+{% if twitter_handle %}
+  {% assign twitter_href = 'https://twitter.com/' | append: twitter_handle %}
+{% endif %}
+
+<div class="mobile-nav-overlay" id="mobile-nav-panel" aria-hidden="true">
+  <div class="mobile-nav-overlay__inner">
+    <div class="mobile-nav-overlay__header">
+      <p class="mobile-nav-overlay__eyebrow">Vansh Gupta</p>
+      <p class="mobile-nav-overlay__tagline">Innovation Economics @ MIT</p>
+    </div>
+
+    <ul class="mobile-nav-overlay__links">
+      {% for link in site.data.navigation.main %}
+        {% if link.url contains 'http' %}
+          {% assign nav_domain = '' %}
+          {% else %}
+          {% assign nav_domain = base_path %}
+        {% endif %}
+        <li>
+          <a href="{{ nav_domain }}{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="mobile-nav-overlay__cta">
+      {% if site.author.email %}
+        <a class="mobile-nav-chip" href="mailto:{{ site.author.email }}">Email Vansh</a>
+      {% endif %}
+      <a class="mobile-nav-chip mobile-nav-chip--accent" href="{{ base_path }}/files/CV___Vansh_Gupta.pdf" target="_blank" rel="noopener">Download CV</a>
+    </div>
+
+    <div class="mobile-nav-overlay__social">
+      <span>Follow</span>
+      <div class="mobile-nav-overlay__social-links">
+        {% if linkedin_href %}
+          <a href="{{ linkedin_href }}" target="_blank" rel="noopener">LinkedIn</a>
+        {% endif %}
+        {% if github_href %}
+          <a href="{{ github_href }}" target="_blank" rel="noopener">GitHub</a>
+        {% endif %}
+        {% if twitter_href %}
+          <a href="{{ twitter_href }}" target="_blank" rel="noopener">Twitter</a>
+        {% endif %}
+      </div>
     </div>
   </div>
 </div>

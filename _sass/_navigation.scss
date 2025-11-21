@@ -430,3 +430,209 @@
     }
   }
 }
+
+/* ==========================================================================
+   Mobile Command Menu (Lando Norris Inspired)
+   ========================================================================== */
+
+.mobile-menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba($accent-color, 0.5);
+  background: rgba($surface-color, 0.8);
+  color: $accent-color;
+  font-family: $metadata-font-family;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+  margin-left: auto;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba($accent-color, 0.08);
+    color: #fff;
+    outline: none;
+  }
+
+  @media (max-width: 900px) {
+    display: flex;
+  }
+}
+
+.mobile-menu-toggle__icon {
+  width: 28px;
+  height: 18px;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    border-radius: 999px;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+}
+
+body.mobile-nav-open {
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .masthead__menu .greedy-nav {
+    display: none;
+  }
+}
+
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba($accent-color, 0.2), transparent 45%),
+    radial-gradient(circle at 80% 10%, rgba(#63ff9d, 0.25), transparent 55%),
+    rgba(#030303, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 4000;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  color: #fff;
+
+  @media (min-width: 901px) {
+    display: none;
+  }
+}
+
+.mobile-nav-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mobile-nav-overlay__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 4rem 1.5rem;
+  gap: 2rem;
+}
+
+.mobile-nav-overlay__header {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+
+  .mobile-nav-overlay__eyebrow {
+    font-size: 0.85rem;
+    color: rgba(#fff, 0.8);
+    margin-bottom: 0.35rem;
+  }
+
+  .mobile-nav-overlay__tagline {
+    font-size: 1.1rem;
+    letter-spacing: 0.25em;
+    color: $accent-color;
+  }
+}
+
+.mobile-nav-overlay__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+
+  a {
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.25s ease, transform 0.25s ease;
+
+    &:hover {
+      color: $accent-color;
+      transform: translateY(-4px);
+    }
+  }
+}
+
+.mobile-nav-overlay__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.mobile-nav-chip {
+  border: 1px solid rgba($accent-color, 0.4);
+  padding: 0.65rem 1.5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  color: rgba(#fff, 0.8);
+  text-decoration: none;
+  background: rgba(#000, 0.35);
+  transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+  &:hover {
+    color: #fff;
+    background: rgba($accent-color, 0.15);
+    border-color: rgba($accent-color, 0.9);
+  }
+}
+
+.mobile-nav-chip--accent {
+  background: linear-gradient(120deg, $accent-color, #63ff9d);
+  color: #030303;
+  border-color: transparent;
+
+  &:hover {
+    background: linear-gradient(120deg, lighten($accent-color, 5%), lighten(#63ff9d, 5%));
+  }
+}
+
+.mobile-nav-overlay__social {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  color: rgba(#fff, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobile-nav-overlay__social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 0.25rem;
+    transition: border-color 0.3s ease;
+
+    &:hover {
+      border-color: $accent-color;
+    }
+  }
+}

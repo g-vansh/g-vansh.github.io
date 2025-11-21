@@ -45,6 +45,152 @@
 }
 
 /* ==========================================================================
+   Tactical Loader Overlay
+   ========================================================================== */
+
+.hero-loader {
+  position: absolute;
+  top: clamp(1rem, 4vw, 3rem);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-radius: 18px;
+  background: rgba($surface-color, 0.8);
+  border: 1px solid rgba($accent-color, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+  width: min(420px, 90vw);
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  translate: 0 20px;
+  filter: drop-shadow(0 0 25px rgba($accent-color, 0.4));
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+    padding: 0.85rem 1.2rem;
+    border-radius: 14px;
+  }
+}
+
+body.hero-sequence-pending .hero-loader {
+  opacity: 1;
+  translate: 0 0;
+  transition: opacity 0.6s ease, translate 0.6s ease;
+}
+
+body.hero-sequence-complete .hero-loader {
+  opacity: 0;
+  translate: 0 -10px;
+  transition: opacity 0.4s ease-in, translate 0.4s ease-in;
+}
+
+.hero-loader__beam {
+  position: relative;
+  height: 4px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba($text-color, 0.2);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba($accent-color, 0.85), transparent);
+    animation: loaderSheen 2.8s linear infinite;
+  }
+}
+
+.hero-loader__pulse {
+  display: block;
+  width: 28%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba($accent-color, 0), $accent-color, rgba($accent-color, 0));
+  animation: loaderPulse 1s ease-in-out infinite;
+}
+
+.hero-loader__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hero-loader__label {
+  font-family: $metadata-font-family;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  color: rgba($text-color, 0.8);
+
+  @media (max-width: 480px) {
+    letter-spacing: 0.2em;
+    font-size: 0.65rem;
+  }
+}
+
+.hero-loader__meta {
+  font-size: 0.9rem;
+  color: rgba($text-color, 0.65);
+  letter-spacing: 0.08em;
+}
+
+@keyframes loaderPulse {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+@keyframes loaderSheen {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ==========================================================================
+   Energy Field Overlay
+   ========================================================================== */
+
+.hero-energy-field {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 30% 20%, rgba($accent-color, 0.28), transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(#63ff9d, 0.3), transparent 55%),
+    conic-gradient(from 180deg at 50% 50%, rgba($accent-color, 0.05), transparent 40%);
+  filter: blur(40px);
+  opacity: 0.55;
+  z-index: 0;
+  pointer-events: none;
+  animation: energyShift 16s linear infinite;
+
+  @media (max-width: 768px) {
+    inset: -40%;
+    filter: blur(55px);
+    opacity: 0.35;
+  }
+}
+
+@keyframes energyShift {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* ==========================================================================
    Hero Content Container
    ========================================================================== */
 
@@ -75,7 +221,9 @@
   transform-style: preserve-3d;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
-  filter: none !important;
+  white-space: pre-line;
+  filter: blur(18px);
+  transition: filter 1.8s ease-in-out, opacity 0.6s ease;
   
   // Add metallic gradient
   background: linear-gradient(
@@ -120,9 +268,25 @@
 
 .epic-name,
 .epic-name .hero-char {
-  filter: none !important;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
+}
+
+.hero-line-break {
+  display: block;
+  width: 100%;
+  height: 0;
+  flex-basis: 100%;
+  pointer-events: none;
+  margin: clamp(0.2rem, 1vw, 0.45rem) 0;
+}
+
+body:not(.hero-name-revealed) .epic-name {
+  filter: blur(18px);
+}
+
+body.hero-name-revealed .epic-name {
+  filter: blur(0);
 }
 
 @keyframes shimmer {
@@ -201,18 +365,22 @@
   position: absolute;
   width: clamp(60px, 8vw, 120px);
   height: clamp(60px, 8vw, 120px);
-  border: 2px solid $accent-color;
+  border: 1.5px solid rgba($accent-color, 0.7);
   opacity: 0;
-  z-index: 1;
-  animation: cornerFadeIn 1s ease-out forwards;
-  box-shadow: 0 0 20px rgba($accent-color, 0.5);
+  z-index: 4;
+  mix-blend-mode: screen;
+  box-shadow: 0 0 25px rgba($accent-color, 0.35);
+  border-radius: 8px;
+  backdrop-filter: blur(2px);
+  background: radial-gradient(circle at 30% 30%, rgba($accent-color, 0.15), transparent);
+  animation: cornerFadeIn 1.2s ease-out forwards;
   
   &::before,
   &::after {
     content: '';
     position: absolute;
-    background: $accent-color;
-    box-shadow: 0 0 10px rgba($accent-color, 0.8);
+    background: linear-gradient(90deg, rgba($accent-color, 0), $accent-color, rgba($accent-color, 0));
+    box-shadow: 0 0 15px rgba($accent-color, 0.45);
   }
   
   @media (max-width: 768px) {
@@ -333,11 +501,52 @@
 @keyframes cornerFadeIn {
   from {
     opacity: 0;
-    transform: scale(0.5);
+    transform: scale(0.7);
   }
   to {
-    opacity: 0.6;
+    opacity: 0.85;
     transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   Hero Shockwave Rings
+   ========================================================================== */
+
+.hero-shockwave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 1px solid rgba($accent-color, 0.6);
+  transform: translate(-50%, -50%) scale(0.2);
+  opacity: 0.9;
+  box-shadow: 0 0 40px rgba($accent-color, 0.45);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 3;
+  animation: shockwave 1.2s ease-out forwards;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 15%;
+    border-radius: 50%;
+    border: 1px dashed rgba(#63ff9d, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@keyframes shockwave {
+  to {
+    transform: translate(-50%, -50%) scale(2.8);
+    opacity: 0;
   }
 }
 
@@ -562,6 +771,35 @@
       animation: none;
     }
   }
+
+  .hero-content {
+    backdrop-filter: blur(8px);
+    background: rgba($surface-color, 0.4);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba($accent-color, 0.2);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+  }
+
+  .hero-datapoints {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .datapoint {
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: auto;
+  }
+
+  .hero-loader {
+    position: fixed;
+    top: auto;
+    bottom: 1.5rem;
+    translate: -50% 0;
+    backdrop-filter: blur(12px);
+  }
 }
 
 /* ==========================================================================
@@ -593,6 +831,7 @@ body:not(.hero-animation-ready) .epic-name {
   color: $accent-color !important;
   -webkit-text-fill-color: $accent-color !important;
   animation: none !important;
+  filter: none !important;
 }
 
 /* ==========================================================================
@@ -616,6 +855,7 @@ body:not(.hero-animation-ready) .epic-name {
   
   .epic-name {
     opacity: 1 !important;
+    filter: none !important;
   }
   
   .scroll-indicator {

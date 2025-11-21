@@ -115,6 +115,14 @@
       const fragment = document.createDocumentFragment();
 
       heroText.split('').forEach((char, index) => {
+        if (char === '\n' || char === '\r') {
+          const breaker = document.createElement('span');
+          breaker.className = 'hero-line-break';
+          breaker.setAttribute('aria-hidden', 'true');
+          fragment.appendChild(breaker);
+          return;
+        }
+
         const span = document.createElement('span');
         span.className = 'hero-char';
         if (char === ' ') {
@@ -142,17 +150,17 @@
         heroIntro.fromTo(
           heroChars,
           {
-            yPercent: 130,
-            rotateX: -65,
+            yPercent: 60,
+            rotateX: -25,
             opacity: 0,
-            filter: 'blur(8px)',
+            filter: 'blur(3px)',
           },
           {
             yPercent: 0,
             rotateX: 0,
             opacity: 1,
             filter: 'blur(0px)',
-            duration: 1.1,
+            duration: 0.9,
             stagger: {
               amount: 0.85,
               from: 'start',

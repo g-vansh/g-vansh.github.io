@@ -7,6 +7,20 @@ layout: default
 <div id="main" role="main">
   <!-- Epic Hero Section with Advanced Animations -->
   <section class="hero-section epic-hero">
+    <!-- Tactical Loader Overlay -->
+    <div class="hero-loader" role="status" aria-live="polite">
+      <div class="hero-loader__beam">
+        <span class="hero-loader__pulse"></span>
+      </div>
+      <div class="hero-loader__text">
+        <span class="hero-loader__label">Calibrating telemetry</span>
+        <span class="hero-loader__meta">Systems online • Launch imminent</span>
+      </div>
+    </div>
+
+    <!-- Dynamic Energy Field -->
+    <div class="hero-energy-field" aria-hidden="true"></div>
+    
     <!-- Corner Brackets -->
     <div class="hero-corner hero-corner--tl"></div>
     <div class="hero-corner hero-corner--tr"></div>
@@ -18,7 +32,15 @@ layout: default
     
     <!-- Hero Content -->
     <div class="hero-content">
-      <h1 class="hero-name kinetic-text epic-name" data-speed="0.3">{{ site.name | upcase }}</h1>
+      {% assign hero_name_parts = site.name | split: ' ' %}
+      {% assign hero_primary = hero_name_parts | first | upcase %}
+      {% assign hero_secondary = hero_name_parts | last | upcase %}
+      {% if hero_secondary == hero_primary %}
+        {% assign hero_secondary = '' %}
+      {% endif %}
+      <h1 class="hero-name kinetic-text epic-name" data-speed="0.3">
+        {{ hero_primary | strip }}{% if hero_secondary != '' %}{{ '\n' }}{{ hero_secondary | strip }}{% endif %}
+      </h1>
       <p class="hero-subtitle epic-subtitle">
         <span class="subtitle-icon">▸</span>
         <span class="subtitle-text">Innovation Economics @ MIT</span>

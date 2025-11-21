@@ -22,6 +22,42 @@
   const heroSection = document.querySelector('.hero-section');
   if (!heroSection) return;
 
+  const body = document.body;
+  if (body && !body.classList.contains('hero-sequence-pending')) {
+    body.classList.add('hero-sequence-pending');
+  }
+
+  const heroNameRevealController = {
+    unlocked: false,
+    timeoutId: null,
+    scrollHandler: null,
+  };
+
+  function revealHeroName(trigger = 'direct') {
+    if (heroNameRevealController.unlocked) {
+      return;
+    }
+    heroNameRevealController.unlocked = true;
+    if (heroNameRevealController.timeoutId) {
+      clearTimeout(heroNameRevealController.timeoutId);
+      heroNameRevealController.timeoutId = null;
+    }
+    if (heroNameRevealController.scrollHandler) {
+      window.removeEventListener('scroll', heroNameRevealController.scrollHandler);
+      heroNameRevealController.scrollHandler = null;
+    }
+    document.body.classList.add('hero-name-revealed');
+  }
+
+  function armHeroNameReveal() {
+    if (!heroNameRevealController.timeoutId) {
+      heroNameRevealController.timeoutId = window.setTimeout(() => revealHeroName('timer'), 2600);
+    }
+    const handler = () => revealHeroName('scroll');
+    heroNameRevealController.scrollHandler = handler;
+    window.addEventListener('scroll', handler, { passive: true, once: true });
+  }
+
   const isMobile = window.innerWidth < 768;
   const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
 
@@ -33,19 +69,25 @@
     constructor(container) {
       this.container = container;
       this.particles = [];
+       this.signals = [];
+      this.animating = false;
+       this.maxSignals = isMobile ? 10 : 18;
+       this.lightbulbIcon = '💡';
       this.init();
     }
 
     init() {
       const canvas = document.createElement('canvas');
       canvas.id = 'particle-explosion-canvas';
-      canvas.style.position = 'absolute';
-      canvas.style.top = '0';
-      canvas.style.left = '0';
-      canvas.style.width = '100%';
-      canvas.style.height = '100%';
-      canvas.style.pointerEvents = 'none';
-      canvas.style.zIndex = '1';
+      Object.assign(canvas.style, {
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: '2',
+      });
       this.container.appendChild(canvas);
 
       this.canvas = canvas;
@@ -53,8 +95,6 @@
       this.resize();
 
       window.addEventListener('resize', () => this.resize());
-      this.createParticles();
-      this.animate();
     }
 
     resize() {
@@ -63,56 +103,210 @@
       this.canvas.height = rect.height * window.devicePixelRatio;
       this.canvas.style.width = rect.width + 'px';
       this.canvas.style.height = rect.height + 'px';
+      this.ctx.setTransform(1, 0, 0, 1, 0, 0);
       this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
       this.centerX = rect.width / 2;
       this.centerY = rect.height / 2;
     }
 
-    createParticles() {
-      const count = isMobile ? 40 : 80;
-      const colors = ['#9bff1f', '#63ff9d', '#ffd86b'];
+    createParticles(options = {}) {
+      const {
+        count = isMobile ? 50 : 110,
+        velocity = isMobile ? 1.8 : 3.2,
+        colorSet = ['#9bff1f', '#63ff9d', '#ffd86b'],
+      } = options;
 
       for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 * i) / count;
-        const velocity = isMobile ? 2 : 3;
-        
+        const angle = (Math.PI * 2 * i) / count + Math.random() * 0.4;
+        const spreadVelocity = velocity + Math.random() * 0.8;
+        const baseRadius = Math.random() * 2.6 + 1;
+
         this.particles.push({
           x: this.centerX,
           y: this.centerY,
-          vx: Math.cos(angle) * velocity,
-          vy: Math.sin(angle) * velocity,
-          radius: Math.random() * 3 + 1,
-          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: Math.cos(angle) * spreadVelocity,
+          vy: Math.sin(angle) * spreadVelocity,
+          radius: baseRadius,
+          baseRadius,
+          color: colorSet[Math.floor(Math.random() * colorSet.length)],
           life: 1,
-          decay: 0.01 + Math.random() * 0.01
+          decay: 0.012 + Math.random() * 0.015,
+          isIdea: false,
+          ideaLife: 0,
         });
       }
+    }
+
+    detonate(options = {}) {
+      this.createParticles(options);
+      if (!this.animating) {
+        this.animating = true;
+        this.animate();
+      }
+    }
+
+    drawStandardParticle(particle) {
+      this.ctx.save();
+      this.ctx.beginPath();
+      this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      this.ctx.fillStyle = particle.color;
+      this.ctx.globalAlpha = particle.life;
+      this.ctx.fill();
+      this.ctx.restore();
+    }
+
+    drawIdeaParticle(particle) {
+      this.ctx.save();
+      this.ctx.globalAlpha = Math.max(0.4, particle.life);
+      const glowRadius = particle.baseRadius * 2.4;
+      const gradient = this.ctx.createRadialGradient(
+        particle.x,
+        particle.y,
+        0,
+        particle.x,
+        particle.y,
+        glowRadius
+      );
+      gradient.addColorStop(0, particle.color);
+      gradient.addColorStop(1, 'rgba(155, 255, 31, 0)');
+      this.ctx.fillStyle = gradient;
+      this.ctx.beginPath();
+      this.ctx.arc(particle.x, particle.y, glowRadius, 0, Math.PI * 2);
+      this.ctx.fill();
+
+      this.ctx.font = `${isMobile ? 15 : 18}px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif`;
+      this.ctx.textAlign = 'center';
+      this.ctx.textBaseline = 'middle';
+      this.ctx.fillStyle = '#fdf5a6';
+      this.ctx.fillText(this.lightbulbIcon, particle.x, particle.y + (isMobile ? 1 : 2));
+      this.ctx.restore();
+    }
+
+    promoteParticleToIdea(particle) {
+      if (!particle || particle.isIdea) {
+        return;
+      }
+      particle.isIdea = true;
+      particle.ideaLife = 0.9 + Math.random() * 0.6;
+    }
+
+    spawnSignal() {
+      if (this.particles.length < 2) {
+        return;
+      }
+
+      const source = this.particles[Math.floor(Math.random() * this.particles.length)];
+      if (!source) return;
+
+      let target = null;
+      for (let attempt = 0; attempt < 8; attempt++) {
+        const candidate = this.particles[Math.floor(Math.random() * this.particles.length)];
+        if (!candidate || candidate === source) continue;
+        const dx = candidate.x - source.x;
+        const dy = candidate.y - source.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance <= (isMobile ? 22 : 32)) {
+          target = candidate;
+          break;
+        }
+      }
+
+      if (target) {
+        this.signals.push({
+          source,
+          target,
+          progress: 0,
+          speed: 0.018 + Math.random() * 0.03,
+        });
+        if (this.signals.length > this.maxSignals) {
+          this.signals.shift();
+        }
+      }
+    }
+
+    drawSignals() {
+      if (!this.signals.length) {
+        return;
+      }
+
+      this.signals = this.signals.filter((signal) => {
+        const { source, target } = signal;
+        if (!source || !target || source.life <= 0 || target.life <= 0) {
+          return false;
+        }
+
+        signal.progress += signal.speed;
+        const completion = Math.min(signal.progress, 1);
+        const sx = source.x;
+        const sy = source.y;
+        const tx = target.x;
+        const ty = target.y;
+        const cx = sx + (tx - sx) * completion;
+        const cy = sy + (ty - sy) * completion;
+
+        this.ctx.save();
+        const gradient = this.ctx.createLinearGradient(sx, sy, tx, ty);
+        gradient.addColorStop(0, source.color);
+        gradient.addColorStop(1, target.color);
+        this.ctx.strokeStyle = gradient;
+        this.ctx.lineWidth = isMobile ? 0.6 : 0.9;
+        this.ctx.globalAlpha = 0.25 + 0.4 * (1 - Math.abs(completion - 0.5));
+        this.ctx.beginPath();
+        this.ctx.moveTo(sx, sy);
+        this.ctx.lineTo(cx, cy);
+        this.ctx.stroke();
+        this.ctx.restore();
+
+        if (signal.progress >= 1) {
+          if (Math.random() < 0.45) {
+            this.promoteParticleToIdea(target);
+          }
+          return false;
+        }
+        return true;
+      });
     }
 
     animate() {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-      this.particles.forEach((particle, index) => {
-        if (particle.life <= 0) {
-          this.particles.splice(index, 1);
-          return;
-        }
-
+      this.particles = this.particles.filter((particle) => {
         particle.x += particle.vx;
         particle.y += particle.vy;
         particle.life -= particle.decay;
 
-        this.ctx.beginPath();
-        this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        this.ctx.fillStyle = particle.color;
-        this.ctx.globalAlpha = particle.life;
-        this.ctx.fill();
+        if (particle.life <= 0) {
+          return false;
+        }
+
+        if (particle.isIdea) {
+          particle.ideaLife -= 0.01;
+          if (particle.ideaLife <= 0) {
+            particle.isIdea = false;
+            particle.ideaLife = 0;
+          }
+        }
+
+        if (particle.isIdea) {
+          this.drawIdeaParticle(particle);
+        } else {
+          this.drawStandardParticle(particle);
+        }
+
+        return true;
       });
 
+      if (this.particles.length > 1 && Math.random() < 0.08) {
+        this.spawnSignal();
+      }
+
+      this.drawSignals();
       this.ctx.globalAlpha = 1;
 
       if (this.particles.length > 0) {
         requestAnimationFrame(() => this.animate());
+      } else {
+        this.animating = false;
       }
     }
   }
@@ -450,6 +644,54 @@
   // ENHANCED HERO NAME ANIMATION
   // ============================================================================
   
+  class ShockwavePulse {
+    constructor(container) {
+      this.container = container;
+    }
+
+    trigger(delay = 0) {
+      setTimeout(() => {
+        const ring = document.createElement('div');
+        ring.className = 'hero-shockwave';
+        this.container.appendChild(ring);
+        ring.addEventListener('animationend', () => ring.remove());
+      }, delay * 1000);
+    }
+  }
+
+  function animateCorners() {
+    const corners = gsap.utils.toArray('.hero-corner');
+    if (!corners.length) return;
+
+    gsap.set(corners, {
+      autoAlpha: 0,
+      scale: 0.8,
+      filter: 'blur(6px)',
+    });
+
+    gsap.to(corners, {
+      autoAlpha: 1,
+      scale: 1,
+      filter: 'blur(0px)',
+      duration: 0.8,
+      ease: 'expo.out',
+      stagger: 0.08,
+      delay: 0.4,
+    });
+
+    gsap.to(corners, {
+      y: '+=8',
+      repeat: -1,
+      yoyo: true,
+      duration: 3,
+      ease: 'sine.inOut',
+      stagger: {
+        each: 0.2,
+        yoyo: true,
+      },
+    });
+  }
+
   function enhancedHeroAnimation() {
     const heroName = document.querySelector('.hero-name');
     const heroSubtitle = document.querySelector('.hero-subtitle');
@@ -457,6 +699,7 @@
     const datapoints = document.querySelectorAll('.hero-datapoints .datapoint');
     
     if (!heroName) return;
+    armHeroNameReveal();
 
     if (scanlinesOverlay) {
       gsap.set(scanlinesOverlay, { opacity: 0 });
@@ -484,6 +727,7 @@
     effectsContainer.style.height = '100%';
     effectsContainer.style.pointerEvents = 'none';
     effectsContainer.style.overflow = 'hidden';
+    effectsContainer.style.zIndex = '2';
     heroSection.insertBefore(effectsContainer, heroSection.firstChild);
 
     // Initialize all effects
@@ -492,9 +736,16 @@
     const particleExplosion = new ParticleExplosion(effectsContainer);
     const glitchEffect = new GlitchEffect(heroName);
     const holographicScanner = new HolographicScanner(effectsContainer);
+    const shockwavePulse = new ShockwavePulse(effectsContainer);
 
     // Enhanced text entrance
     const masterTimeline = gsap.timeline();
+    masterTimeline.eventCallback('onComplete', () => {
+      if (body) {
+        body.classList.remove('hero-sequence-pending');
+        body.classList.add('hero-sequence-complete');
+      }
+    });
     
     // Start with everything hidden
     gsap.set([heroName, heroSubtitle], { opacity: 0 });
@@ -505,7 +756,7 @@
       scale: 1.1,
       duration: 0.8,
       ease: 'power3.out',
-      delay: 1.8
+      delay: 1.2
     });
 
     masterTimeline.to(heroName, {
@@ -513,11 +764,13 @@
       duration: 0.5,
       ease: 'elastic.out(1, 0.5)'
     });
+
+    masterTimeline.add(() => {
+      particleExplosion.detonate();
+      shockwavePulse.trigger();
+    }, '-=0.2');
     
-    masterTimeline.call(() => {
-      heroName.style.filter = 'none';
-      heroName.style.webkitFilter = 'none';
-    });
+    masterTimeline.call(() => revealHeroName('timeline'));
 
     // Subtitle entrance
     masterTimeline.fromTo(heroSubtitle, {
@@ -549,9 +802,19 @@
         duration: 0.8,
         ease: 'power3.out',
         stagger: 0.12,
-        delay: 2.1
+        delay: 1.9
       });
     }
+
+    animateCorners();
+
+    heroSection.addEventListener('click', () => {
+      particleExplosion.detonate({
+        count: isMobile ? 35 : 90,
+        velocity: isMobile ? 1.5 : 3.5,
+      });
+      shockwavePulse.trigger();
+    });
 
     // Perspective shift on mouse move
     if (!isMobile) {
@@ -584,10 +847,12 @@
   // ============================================================================
   
   function setupScrollEffects() {
+    if (isMobile) return;
+
     // Parallax scroll for hero section
     gsap.to('.hero-section', {
-      opacity: 0.3,
-      scale: 0.95,
+      opacity: 0.6,
+      scale: 0.97,
       scrollTrigger: {
         trigger: '.hero-section',
         start: 'top top',
@@ -656,12 +921,18 @@
     document.body.classList.add('hero-animation-ready');
     
     // Wait for fonts and images to load
-    document.fonts.ready.then(() => {
+    const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+
+    fontsReady.then(() => {
       enhancedHeroAnimation();
       setupScrollEffects();
       setupMobileOptimizations();
       
       console.log('🏎️ Epic Hero Animation Initialized');
+    }).catch(() => {
+      enhancedHeroAnimation();
+      setupScrollEffects();
+      setupMobileOptimizations();
     });
   }
 
