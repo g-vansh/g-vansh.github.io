@@ -575,17 +575,17 @@ body.mobile-nav-open {
 .mobile-nav-overlay {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba($accent-color, 0.2), transparent 45%),
-    radial-gradient(circle at 80% 10%, rgba(#63ff9d, 0.25), transparent 55%),
-    rgba(#030303, 0.96);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: radial-gradient(circle at 20% 20%, rgba($accent-color, 0.15), transparent 45%),
+    radial-gradient(circle at 80% 10%, rgba(#63ff9d, 0.2), transparent 55%),
+    rgba(#030303, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   z-index: 4000;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(4%) scale(0.98);
-  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), 
-              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(2%) scale(0.99);
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+              transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   color: #fff;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -606,32 +606,49 @@ body.mobile-nav-open {
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  padding: 4rem 1.5rem;
-  gap: 2rem;
+  padding: 3rem 1.5rem 2rem;
+  gap: 1.5rem;
+  max-width: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-nav-overlay__header {
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.25em;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba($accent-color, 0.2);
-  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba($accent-color, 0.15);
+  margin-bottom: 0.75rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeInDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
 
   .mobile-nav-overlay__eyebrow {
-    font-size: 0.85rem;
-    color: rgba(#fff, 0.9);
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    letter-spacing: 0.3em;
+    font-size: 0.75rem; // Reduced from 0.85rem
+    color: rgba(#fff, 0.85);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
   }
 
   .mobile-nav-overlay__tagline {
-    font-size: 1.1rem;
-    letter-spacing: 0.25em;
+    font-size: 0.95rem; // Reduced from 1.1rem
+    letter-spacing: 0.2em;
     color: $accent-color;
-    font-weight: 700;
-    text-shadow: 0 0 20px rgba($accent-color, 0.3);
+    font-weight: 600; // Reduced from 700
+    text-shadow: 0 0 15px rgba($accent-color, 0.25);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -641,141 +658,340 @@ body.mobile-nav-open {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
   text-align: center;
 
   li {
     position: relative;
     overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    
+    // Staggered animation delay
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 0.05}s;
+      }
+    }
   }
 
   a {
-    font-size: clamp(1.6rem, 8vw, 2.4rem);
-    font-weight: 700;
-    letter-spacing: 0.25em;
+    // Optimized font size: 16-18px (mobile best practice)
+    font-size: clamp(1rem, 4vw, 1.125rem); // 16px-18px instead of 25.6px-38.4px
+    font-weight: 600; // Reduced from 700 for better readability
+    letter-spacing: 0.15em; // Reduced from 0.25em
     text-transform: uppercase;
-    color: #fff;
+    color: rgba(#fff, 0.95);
     text-decoration: none;
-    display: block;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    position: relative;
-    min-height: 60px; // Touch-friendly size
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem 1.25rem; // Increased padding for better touch targets
+    border-radius: 10px;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    min-height: 48px; // Touch-friendly size (44px minimum + padding)
+    background: rgba(#fff, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid transparent;
+    
+    // Subtle glow effect
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba($accent-color, 0.3), rgba(#63ff9d, 0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
     
     // Underline effect
     &::after {
       content: '';
       position: absolute;
-      bottom: 0.5rem;
+      bottom: 0.75rem;
       left: 50%;
       width: 0;
       height: 2px;
       background: linear-gradient(90deg, $accent-color 0%, #63ff9d 100%);
       transform: translateX(-50%);
-      transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       border-radius: 2px;
+      box-shadow: 0 0 8px rgba($accent-color, 0.5);
     }
 
     &:hover,
-    &:focus-visible,
-    &:active {
+    &:focus-visible {
       color: $accent-color;
-      transform: translateY(-2px) scale(1.02);
-      background: rgba($accent-color, 0.1);
+      transform: translateY(-1px);
+      background: rgba($accent-color, 0.08);
+      border-color: rgba($accent-color, 0.2);
+      
+      &::before {
+        opacity: 1;
+      }
       
       &::after {
-        width: 60%;
+        width: 50%;
       }
     }
 
-    // Touch feedback
+    // Touch feedback with ripple effect
     &:active {
       transform: translateY(0) scale(0.98);
-      transition: transform 0.1s ease;
+      transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba($accent-color, 0.12);
+      
+      &::after {
+        width: 70%;
+      }
     }
   }
 }
 
-.mobile-nav-overlay__cta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
+// Slide-in animation for menu items
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.mobile-nav-chip {
-  border: 1px solid rgba($accent-color, 0.4);
-  padding: 0.75rem 1.75rem;
-  border-radius: 999px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: rgba(#fff, 0.9);
-  text-decoration: none;
-  background: rgba(#000, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
+// Legacy CTA - keeping for backwards compatibility but hidden
+.mobile-nav-overlay__cta {
+  display: none;
+}
+
+// New Action Buttons Section - Lando Norris Inspired
+.mobile-nav-overlay__action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba($accent-color, 0.15);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Sleek Action Buttons - Lando Norris Style
+.mobile-nav-action-btn {
+  display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px; // Touch-friendly size
-
-  // Ripple effect on tap
+  gap: 0.75rem;
+  padding: 1.125rem 1.75rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-family: $metadata-font-family;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  min-height: 56px; // Generous touch target
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  border: 2px solid transparent;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  
+  // Icon styling
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    flex-shrink: 0;
+    
+    svg {
+      width: 100%;
+      height: 100%;
+      stroke-width: 2.5;
+    }
+  }
+  
+  &__text {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  // Animated background gradient
   &::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba($accent-color, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
+    inset: 0;
+    background: linear-gradient(135deg, rgba($accent-color, 0.15), rgba(#63ff9d, 0.1));
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 0;
   }
-
-  &:active::before {
-    width: 300px;
-    height: 300px;
+  
+  // Shine effect
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(#fff, 0.1) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 1;
   }
-
+  
   &:hover,
   &:focus-visible {
-    color: #fff;
-    background: rgba($accent-color, 0.2);
-    border-color: rgba($accent-color, 0.9);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba($accent-color, 0.3);
+    transform: translateY(-2px) scale(1.02);
+    
+    &::before {
+      opacity: 1;
+    }
+    
+    &::after {
+      transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+    
+    .mobile-nav-action-btn__icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .mobile-nav-action-btn__text {
+      transform: translateX(2px);
+    }
+  }
+  
+  &:active {
+    transform: translateY(0) scale(0.98);
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-.mobile-nav-chip--accent {
-  background: linear-gradient(120deg, $accent-color, #63ff9d);
-  color: #030303;
-  border-color: transparent;
-
-  &:hover {
-    background: linear-gradient(120deg, lighten($accent-color, 5%), lighten(#63ff9d, 5%));
+// Contact Button - Primary Style
+.mobile-nav-action-btn--contact {
+  background: linear-gradient(135deg, 
+    rgba($accent-color, 0.2) 0%, 
+    rgba(#63ff9d, 0.15) 100%);
+  border-color: rgba($accent-color, 0.4);
+  color: $accent-color;
+  box-shadow: 
+    0 4px 20px rgba($accent-color, 0.2),
+    0 0 0 1px rgba($accent-color, 0.1) inset,
+    0 0 30px rgba($accent-color, 0.1);
+  
+  .mobile-nav-action-btn__icon {
+    color: $accent-color;
   }
+  
+  &:hover,
+  &:focus-visible {
+    background: linear-gradient(135deg, 
+      rgba($accent-color, 0.3) 0%, 
+      rgba(#63ff9d, 0.25) 100%);
+    border-color: rgba($accent-color, 0.6);
+    box-shadow: 
+      0 8px 32px rgba($accent-color, 0.35),
+      0 0 0 2px rgba($accent-color, 0.2) inset,
+      0 0 40px rgba($accent-color, 0.2);
+    color: lighten($accent-color, 10%);
+  }
+  
+  &:active {
+    box-shadow: 
+      0 4px 16px rgba($accent-color, 0.3),
+      0 0 0 1px rgba($accent-color, 0.15) inset;
+  }
+}
+
+// Download CV Button - Accent Style (Bold Gradient)
+.mobile-nav-action-btn--download {
+  background: linear-gradient(135deg, $accent-color 0%, #63ff9d 100%);
+  border-color: transparent;
+  color: #030303;
+  box-shadow: 
+    0 4px 24px rgba($accent-color, 0.4),
+    0 0 0 1px rgba($accent-color, 0.2) inset,
+    0 0 40px rgba($accent-color, 0.25);
+  font-weight: 700;
+  
+  .mobile-nav-action-btn__icon {
+    color: #030303;
+  }
+  
+  &::before {
+    background: linear-gradient(135deg, 
+      rgba(#fff, 0.2) 0%, 
+      rgba(#fff, 0.15) 100%);
+  }
+  
+  &:hover,
+  &:focus-visible {
+    background: linear-gradient(135deg, 
+      lighten($accent-color, 5%) 0%, 
+      lighten(#63ff9d, 5%) 100%);
+    box-shadow: 
+      0 8px 36px rgba($accent-color, 0.5),
+      0 0 0 2px rgba($accent-color, 0.3) inset,
+      0 0 50px rgba($accent-color, 0.35);
+    transform: translateY(-3px) scale(1.03);
+  }
+  
+  &:active {
+    box-shadow: 
+      0 4px 20px rgba($accent-color, 0.4),
+      0 0 0 1px rgba($accent-color, 0.25) inset;
+  }
+}
+
+// Legacy chip styles - keeping for backwards compatibility
+.mobile-nav-chip {
+  display: none;
 }
 
 .mobile-nav-overlay__social {
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
-  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  font-size: 0.7rem; // Reduced from 0.75rem
   color: rgba(#fff, 0.7);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
 }
 
 .mobile-nav-overlay__social-links {
@@ -787,19 +1003,20 @@ body.mobile-nav-open {
   a {
     color: rgba(#fff, 0.9);
     text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    padding: 0.5rem 1rem;
+    font-size: 0.75rem; // Reduced from 0.85rem
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    padding: 0.625rem 1rem;
     border-radius: 8px;
     border: 1px solid transparent;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    min-height: 44px; // Touch-friendly
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    min-height: 44px; // Touch-friendly (WCAG minimum)
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    background: rgba(#fff, 0.02);
 
     // Hover effect
     &::before {
@@ -812,15 +1029,16 @@ body.mobile-nav-open {
       background: linear-gradient(90deg, $accent-color 0%, #63ff9d 100%);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 0 6px rgba($accent-color, 0.4);
     }
 
     &:hover,
     &:focus-visible {
       color: $accent-color;
-      border-color: rgba($accent-color, 0.3);
-      background: rgba($accent-color, 0.1);
-      transform: translateY(-2px);
+      border-color: rgba($accent-color, 0.25);
+      background: rgba($accent-color, 0.08);
+      transform: translateY(-1px);
       
       &::before {
         transform: scaleX(1);
@@ -829,7 +1047,8 @@ body.mobile-nav-open {
 
     &:active {
       transform: translateY(0) scale(0.98);
-      transition: transform 0.1s ease;
+      transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba($accent-color, 0.12);
     }
   }
 }

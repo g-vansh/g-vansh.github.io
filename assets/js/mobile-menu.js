@@ -14,31 +14,38 @@
   }
 
   const focusableSelectors = 'a[href], button:not([disabled])';
-  const animatedSelectors = '.mobile-nav-overlay__links li, .mobile-nav-chip, .mobile-nav-overlay__social-links a';
+  const animatedSelectors = '.mobile-nav-overlay__links li, .mobile-nav-action-btn, .mobile-nav-overlay__social-links a';
   let lastFocusElement = null;
 
   function animateOverlayIn() {
-    if (typeof gsap === 'undefined') {
-      return;
+    // CSS animations handle the entrance now, but we can enhance with GSAP if available
+    if (typeof gsap !== 'undefined') {
+      const animatedTargets = overlay.querySelectorAll(animatedSelectors);
+      if (!animatedTargets.length) return;
+
+      // Reset any previous animations
+      gsap.set(animatedTargets, { clearProps: 'all' });
+
+      gsap.fromTo(
+        animatedTargets,
+        {
+          opacity: 0,
+          y: 20,
+          scale: 0.95,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: 'power2.out',
+          stagger: {
+            amount: 0.3,
+            from: 'start',
+          },
+        }
+      );
     }
-
-    const animatedTargets = overlay.querySelectorAll(animatedSelectors);
-    if (!animatedTargets.length) return;
-
-    gsap.fromTo(
-      animatedTargets,
-      {
-        opacity: 0,
-        y: 25,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.65,
-        ease: 'power3.out',
-        stagger: 0.05,
-      }
-    );
   }
 
   function getFocusableElements() {
