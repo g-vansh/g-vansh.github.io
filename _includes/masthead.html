@@ -49,13 +49,18 @@
 {% endif %}
 
 <div class="mobile-nav-overlay" id="mobile-nav-panel" aria-hidden="true">
-  <div class="mobile-nav-overlay__inner">
-    <div class="mobile-nav-overlay__header">
+  <div class="mobile-nav-overlay__header">
+    <div class="mobile-nav-overlay__header-content">
       <p class="mobile-nav-overlay__eyebrow">Vansh Gupta</p>
-      <p class="mobile-nav-overlay__tagline">Innovation Economics @ MIT</p>
+      <p class="mobile-nav-overlay__tagline">Innovation Econ @ MIT</p>
     </div>
-
+  </div>
+  
+  <div class="mobile-nav-overlay__inner">
     <ul class="mobile-nav-overlay__links">
+      <li>
+        <a href="{{ base_path }}/">Home</a>
+      </li>
       {% for link in site.data.navigation.main %}
         {% if link.url contains 'http' %}
           {% assign nav_domain = '' %}
