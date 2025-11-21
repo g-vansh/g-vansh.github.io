@@ -1,47 +1,91 @@
-<div class="affiliations-container" id="affiliations-container">
-  <div class="affiliations-header">
-    <h3>Affiliations</h3>
+{% assign sorted_affiliations = site.data.affiliations.affiliations | sort: 'order' %}
+{% assign current_affiliations = sorted_affiliations | where: "type", "current" %}
+{% assign past_affiliations = sorted_affiliations | where: "type", "past" %}
+
+<section class="affiliations-container" id="affiliations-container" data-affiliations>
+  <div class="affiliations-backdrop" aria-hidden="true">
+    <canvas id="affiliations-lattice"></canvas>
+    <div class="affiliations-backdrop__gradient"></div>
+    <div class="affiliations-backdrop__glare"></div>
   </div>
-  
-  <div class="affiliations-grid">
-      {% assign sorted_affiliations = site.data.affiliations.affiliations | sort: 'order' %}
+
+  <div class="affiliations-shell">
+    <header class="affiliations-header">
+      <div class="affiliations-header__text">
+        <p class="affiliations-eyebrow">Network Alignment</p>
+        <h3>Affiliations</h3>
+        <p class="affiliations-subtitle">
+          A living ecosystem of labs, institutes, and firms that shape my research orbit across MIT, Cornell, the Innovation Growth Lab, and industry collaborators.
+        </p>
+      </div>
+      <div class="affiliations-stats">
+        <div class="affiliations-stat" data-count-up>
+          <span class="label">Active</span>
+          <span class="value">{{ current_affiliations | size }}</span>
+        </div>
+        <div class="affiliations-stat" data-count-up>
+          <span class="label">Legacy</span>
+          <span class="value">{{ past_affiliations | size }}</span>
+        </div>
+        <div class="affiliations-stat">
+          <span class="label">Network Map</span>
+          <span class="value value--accent">Synced</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="affiliations-grid">
       {% for affiliation in sorted_affiliations %}
         {% assign affiliation_page = site.affiliations | where: 'slug', affiliation.description_file | first %}
-        {% if affiliation.id == "mit-sloan" %}
-          <a href="{{ affiliation.website }}" class="affiliation-link" target="_blank" rel="noopener noreferrer">
-        {% else %}
-          <a href="{{ affiliation_page.url | relative_url }}" class="affiliation-link">
-        {% endif %}
-          <div class="affiliation-item {{ affiliation.type }}" 
-               data-affiliation="{{ affiliation.id }}"
-               data-tooltip-content="{{ affiliation_page.content | strip_html | truncatewords: 30, '...' }} Click to read more →"
-               role="button"
-               tabindex="0"
-               aria-label="Learn more about {{ affiliation.name }}"
-               title="{{ affiliation.name }}">
-          
-          <div class="affiliation-logo">
-            {% if affiliation.logo %}
-              <img src="{{ affiliation.logo | relative_url }}" 
-                   alt="{{ affiliation.logo_alt }}" 
-                   loading="lazy"
-                   onerror="this.style.display='none';">
-            {% else %}
-              <div class="affiliation-logo-fallback">
-                <i class="fas fa-university" aria-hidden="true"></i>
-                <span class="affiliation-short-name">{{ affiliation.short_name }}</span>
-              </div>
-            {% endif %}
-          </div>
-          
-          <div class="affiliation-info">
-            <h3 class="affiliation-name">{{ affiliation.name }}</h3>
-            <span class="affiliation-type-badge {{ affiliation.type }}">
-              {{ affiliation.type | capitalize }}
+        {% capture affiliation_url %}
+          {% if affiliation.id == "mit-sloan" and affiliation.website %}
+            {{ affiliation.website }}
+          {% else %}
+            {{ affiliation_page.url | relative_url }}
+          {% endif %}
+        {% endcapture %}
+
+        <a 
+          href="{{ affiliation_url | strip }}" 
+          class="affiliation-card" 
+          data-card-type="{{ affiliation.type }}" 
+          aria-label="Explore {{ affiliation.name }}"
+          {% if affiliation.id == "mit-sloan" %}target="_blank" rel="noopener noreferrer"{% endif %}>
+          <span class="affiliation-card__pulse" aria-hidden="true"></span>
+          <span class="affiliation-card__glow" aria-hidden="true"></span>
+
+          <div class="affiliation-card__topline">
+            <span class="affiliation-tier">
+              {% if affiliation.type == "current" %}Current Focus{% else %}Past Impact{% endif %}
             </span>
+            <span class="affiliation-arrow" aria-hidden="true">↗</span>
           </div>
-        </div>
+
+          <div class="affiliation-card__body">
+            <div class="affiliation-logo">
+              {% if affiliation.logo %}
+                <img 
+                  src="{{ affiliation.logo | relative_url }}" 
+                  alt="{{ affiliation.logo_alt }}" 
+                  loading="lazy" 
+                  decoding="async">
+              {% else %}
+                <div class="affiliation-logo-fallback">
+                  <i class="fas fa-university" aria-hidden="true"></i>
+                  <span>{{ affiliation.short_name }}</span>
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="affiliation-info">
+              <h4 class="affiliation-name">{{ affiliation.name }}</h4>
+              <p class="affiliation-hint">Tap to align with research orbit</p>
+            </div>
+          </div>
+
+          <div class="affiliation-card__orbit" aria-hidden="true"></div>
         </a>
       {% endfor %}
+    </div>
   </div>
-</div>
+</section>

@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
     worldCopyJump: true,
     zoomControl: false
   }).setView([30, 0], 2);
+  mapElement.dataset.mapTheme = 'dark';
+  mapElement.classList.add('research-map--neo');
   
   const setResponsiveMapHeight = () => {
     const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
@@ -36,13 +38,45 @@ document.addEventListener('DOMContentLoaded', function() {
   L.control.zoom({
     position: 'topright'
   }).addTo(map);
-  
-  // Add a beautiful map layer - CartoDB Positron style
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 20
-  }).addTo(map);
+
+  // Neo dark + responsive map tiles
+  const tileLayers = {
+    dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 20
+    }),
+    light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 20
+    })
+  };
+
+  const prefersDark = typeof window.matchMedia === 'function'
+    ? window.matchMedia('(prefers-color-scheme: dark)')
+    : null;
+  let currentTiles = null;
+
+  const setTileLayer = (isDark = true) => {
+    const nextLayer = isDark ? tileLayers.dark : tileLayers.light;
+    if (currentTiles) {
+      map.removeLayer(currentTiles);
+    }
+    nextLayer.addTo(map);
+    currentTiles = nextLayer;
+    mapElement.dataset.mapTheme = isDark ? 'dark' : 'light';
+  };
+
+  setTileLayer(prefersDark ? prefersDark.matches : true);
+
+  if (prefersDark) {
+    if (typeof prefersDark.addEventListener === 'function') {
+      prefersDark.addEventListener('change', (event) => setTileLayer(event.matches));
+    } else if (typeof prefersDark.addListener === 'function') {
+      prefersDark.addListener((event) => setTileLayer(event.matches));
+    }
+  }
 
   const debouncedResize = debounce(setResponsiveMapHeight, 180);
   window.addEventListener('resize', debouncedResize);
