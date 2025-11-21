@@ -14,6 +14,7 @@
   --neo-shadow: 0 25px 45px rgba(0, 0, 0, 0.7);
   --neo-transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   --neo-font: 'Azeret Mono', 'JetBrains Mono', 'Space Mono', monospace;
+  --research-map-height: clamp(360px, 55vh, 600px);
 }
 
 body {
@@ -141,7 +142,8 @@ a {
 .responsive-map {
   width: 100%;
   min-height: 360px;
-  height: clamp(360px, 55vh, 600px);
+  height: var(--research-map-height);
+  max-height: 680px;
   border: 1px solid var(--neo-border);
   border-radius: 18px;
   box-shadow: var(--neo-shadow);
@@ -408,16 +410,14 @@ a {
 /* Responsive tweaks ---------------------------------------------------------- */
 
 @media (max-width: 1024px) {
-  #research-map,
-  .responsive-map {
-    height: clamp(340px, 60vh, 520px);
+  :root {
+    --research-map-height: clamp(340px, 60vh, 540px);
   }
 }
 
 @media (max-width: 768px) {
-  #research-map,
-  .responsive-map {
-    height: min(460px, 60vh);
+  :root {
+    --research-map-height: min(520px, 70vh);
   }
 
   .legend,
@@ -436,9 +436,8 @@ a {
 }
 
 @media (max-width: 480px) {
-  #research-map,
-  .responsive-map {
-    height: min(380px, 65vh);
+  :root {
+    --research-map-height: min(560px, 82vh);
   }
 
   .leaflet-control-zoom {

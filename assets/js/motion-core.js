@@ -104,6 +104,102 @@
     });
   }
 
+  // Hero title kinetic animation
+  const heroNameElement = document.querySelector('.hero-name');
+  if (heroNameElement) {
+    const heroText = heroNameElement.textContent.trim();
+
+    if (heroText.length > 0) {
+      heroNameElement.setAttribute('aria-label', heroText);
+
+      const fragment = document.createDocumentFragment();
+
+      heroText.split('').forEach((char, index) => {
+        const span = document.createElement('span');
+        span.className = 'hero-char';
+        if (char === ' ') {
+          span.classList.add('hero-char--space');
+          span.textContent = '\u00A0';
+        } else {
+          span.textContent = char;
+        }
+        span.dataset.index = index;
+        fragment.appendChild(span);
+      });
+
+      heroNameElement.textContent = '';
+      heroNameElement.appendChild(fragment);
+
+      const heroChars = heroNameElement.querySelectorAll('.hero-char');
+
+      if (heroChars.length > 0) {
+        const heroIntro = gsap.timeline({
+          defaults: {
+            ease: 'expo.out',
+          },
+        });
+
+        heroIntro.fromTo(
+          heroChars,
+          {
+            yPercent: 130,
+            rotateX: -65,
+            opacity: 0,
+            filter: 'blur(8px)',
+          },
+          {
+            yPercent: 0,
+            rotateX: 0,
+            opacity: 1,
+            filter: 'blur(0px)',
+            duration: 1.1,
+            stagger: {
+              amount: 0.85,
+              from: 'start',
+            },
+          }
+        );
+
+        heroIntro.fromTo(
+          heroChars,
+          {
+            scaleY: 0.92,
+          },
+          {
+            scaleY: 1,
+            duration: 0.65,
+            ease: 'power2.out',
+            stagger: {
+              amount: 0.35,
+              from: 'center',
+            },
+          },
+          0.05
+        );
+
+        gsap.to(heroChars, {
+          yPercent: 4,
+          repeat: -1,
+          yoyo: true,
+          duration: () => gsap.utils.random(1.8, 2.6),
+          ease: 'sine.inOut',
+          stagger: {
+            each: 0.25,
+            from: 'random',
+          },
+        });
+
+        gsap.to(heroNameElement, {
+          textShadow: '0 0 60px rgba(155, 255, 31, 0.55)',
+          repeat: -1,
+          yoyo: true,
+          duration: 3.5,
+          ease: 'sine.inOut',
+        });
+      }
+    }
+  }
+
   // Kinetic Typography: Horizontal scroll-based movement
   const kineticTextElements = document.querySelectorAll('.kinetic-text');
   
