@@ -61,256 +61,8 @@
   const isMobile = window.innerWidth < 768;
   const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
 
-  // ============================================================================
-  // PARTICLE FIELD EXPLOSION SYSTEM
-  // ============================================================================
+// ParticleExplosion class removed - functionality moved to Three.js background system
   
-  class ParticleExplosion {
-    constructor(container) {
-      this.container = container;
-      this.particles = [];
-       this.signals = [];
-      this.animating = false;
-       this.maxSignals = isMobile ? 15 : 30;
-       this.lightbulbIcon = '💡';
-      this.init();
-    }
-
-    init() {
-      const canvas = document.createElement('canvas');
-      canvas.id = 'particle-explosion-canvas';
-      Object.assign(canvas.style, {
-        position: 'absolute',
-        top: '0',
-        left: '0',
-        width: '100%',
-        height: '100%',
-        pointerEvents: 'none',
-        zIndex: '2',
-      });
-      this.container.appendChild(canvas);
-
-      this.canvas = canvas;
-      this.ctx = canvas.getContext('2d');
-      this.resize();
-
-      window.addEventListener('resize', () => this.resize());
-    }
-
-    resize() {
-      const rect = this.container.getBoundingClientRect();
-      this.canvas.width = rect.width * window.devicePixelRatio;
-      this.canvas.height = rect.height * window.devicePixelRatio;
-      this.canvas.style.width = rect.width + 'px';
-      this.canvas.style.height = rect.height + 'px';
-      this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-      this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-      this.centerX = rect.width / 2;
-      this.centerY = rect.height / 2;
-    }
-
-    createParticles(options = {}) {
-      const {
-        count = isMobile ? 50 : 110,
-        velocity = isMobile ? 1.8 : 3.2,
-        colorSet = ['#9bff1f', '#63ff9d', '#ffd86b'],
-      } = options;
-
-      for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 * i) / count + Math.random() * 0.4;
-        const spreadVelocity = velocity + Math.random() * 0.8;
-        const baseRadius = Math.random() * 2.6 + 1;
-
-        this.particles.push({
-          x: this.centerX,
-          y: this.centerY,
-          vx: Math.cos(angle) * spreadVelocity,
-          vy: Math.sin(angle) * spreadVelocity,
-          radius: baseRadius,
-          baseRadius,
-          color: colorSet[Math.floor(Math.random() * colorSet.length)],
-          life: 1,
-          decay: 0.012 + Math.random() * 0.015,
-          isIdea: false,
-          ideaLife: 0,
-        });
-      }
-    }
-
-    detonate(options = {}) {
-      this.createParticles(options);
-      if (!this.animating) {
-        this.animating = true;
-        this.animate();
-      }
-    }
-
-    drawStandardParticle(particle) {
-      this.ctx.save();
-      this.ctx.beginPath();
-      this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = particle.color;
-      this.ctx.globalAlpha = particle.life;
-      this.ctx.fill();
-      this.ctx.restore();
-    }
-
-    drawIdeaParticle(particle) {
-      this.ctx.save();
-      this.ctx.globalAlpha = Math.max(0.4, particle.life);
-      const glowRadius = particle.baseRadius * 2.4;
-      const gradient = this.ctx.createRadialGradient(
-        particle.x,
-        particle.y,
-        0,
-        particle.x,
-        particle.y,
-        glowRadius
-      );
-      gradient.addColorStop(0, particle.color);
-      gradient.addColorStop(1, 'rgba(155, 255, 31, 0)');
-      this.ctx.fillStyle = gradient;
-      this.ctx.beginPath();
-      this.ctx.arc(particle.x, particle.y, glowRadius, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      this.ctx.font = `${isMobile ? 20 : 28}px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif`;
-      this.ctx.textAlign = 'center';
-      this.ctx.textBaseline = 'middle';
-      this.ctx.fillStyle = '#fdf5a6';
-      this.ctx.fillText(this.lightbulbIcon, particle.x, particle.y + (isMobile ? 1 : 2));
-      this.ctx.restore();
-    }
-
-    promoteParticleToIdea(particle) {
-      if (!particle || particle.isIdea) {
-        return;
-      }
-      particle.isIdea = true;
-      particle.ideaLife = 1.5 + Math.random() * 1.0;
-    }
-
-    spawnSignal() {
-      if (this.particles.length < 2) {
-        return;
-      }
-
-      const source = this.particles[Math.floor(Math.random() * this.particles.length)];
-      if (!source) return;
-
-      let target = null;
-      for (let attempt = 0; attempt < 8; attempt++) {
-        const candidate = this.particles[Math.floor(Math.random() * this.particles.length)];
-        if (!candidate || candidate === source) continue;
-        const dx = candidate.x - source.x;
-        const dy = candidate.y - source.y;
-        const distance = Math.hypot(dx, dy);
-        if (distance <= (isMobile ? 50 : 100)) {
-          target = candidate;
-          break;
-        }
-      }
-
-      if (target) {
-        this.signals.push({
-          source,
-          target,
-          progress: 0,
-          speed: 0.018 + Math.random() * 0.03,
-        });
-        if (this.signals.length > this.maxSignals) {
-          this.signals.shift();
-        }
-      }
-    }
-
-    drawSignals() {
-      if (!this.signals.length) {
-        return;
-      }
-
-      this.signals = this.signals.filter((signal) => {
-        const { source, target } = signal;
-        if (!source || !target || source.life <= 0 || target.life <= 0) {
-          return false;
-        }
-
-        signal.progress += signal.speed;
-        const completion = Math.min(signal.progress, 1);
-        const sx = source.x;
-        const sy = source.y;
-        const tx = target.x;
-        const ty = target.y;
-        const cx = sx + (tx - sx) * completion;
-        const cy = sy + (ty - sy) * completion;
-
-        this.ctx.save();
-        const gradient = this.ctx.createLinearGradient(sx, sy, tx, ty);
-        gradient.addColorStop(0, source.color);
-        gradient.addColorStop(1, target.color);
-        this.ctx.strokeStyle = gradient;
-        this.ctx.lineWidth = isMobile ? 0.6 : 0.9;
-        this.ctx.globalAlpha = 0.25 + 0.4 * (1 - Math.abs(completion - 0.5));
-        this.ctx.beginPath();
-        this.ctx.moveTo(sx, sy);
-        this.ctx.lineTo(cx, cy);
-        this.ctx.stroke();
-        this.ctx.restore();
-
-        if (signal.progress >= 1) {
-          if (Math.random() < 0.45) {
-            this.promoteParticleToIdea(target);
-          }
-          return false;
-        }
-        return true;
-      });
-    }
-
-    animate() {
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-      this.particles = this.particles.filter((particle) => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-        particle.life -= particle.decay;
-
-        if (particle.life <= 0) {
-          return false;
-        }
-
-        if (particle.isIdea) {
-          particle.ideaLife -= 0.01;
-          if (particle.ideaLife <= 0) {
-            particle.isIdea = false;
-            particle.ideaLife = 0;
-          }
-        }
-
-        if (particle.isIdea) {
-          this.drawIdeaParticle(particle);
-        } else {
-          this.drawStandardParticle(particle);
-        }
-
-        return true;
-      });
-
-      if (this.particles.length > 1 && Math.random() < 0.15) {
-        this.spawnSignal();
-      }
-
-      this.drawSignals();
-      this.ctx.globalAlpha = 1;
-
-      if (this.particles.length > 0) {
-        requestAnimationFrame(() => this.animate());
-      } else {
-        this.animating = false;
-      }
-    }
-  }
-
   // ============================================================================
   // GRID CONVERGENCE SYSTEM
   // ============================================================================
@@ -733,7 +485,6 @@
     // Initialize all effects
     const gridConvergence = new GridConvergence(effectsContainer);
     const telemetryBars = new TelemetryBars(effectsContainer);
-    const particleExplosion = new ParticleExplosion(effectsContainer);
     const glitchEffect = new GlitchEffect(heroName);
     const holographicScanner = new HolographicScanner(effectsContainer);
     const shockwavePulse = new ShockwavePulse(effectsContainer);
@@ -766,8 +517,9 @@
     });
 
     masterTimeline.add(() => {
-      particleExplosion.detonate();
       shockwavePulse.trigger();
+      // Trigger Three.js explosion via custom event
+      window.dispatchEvent(new CustomEvent('hero:explosion'));
     }, '-=0.2');
     
     masterTimeline.call(() => revealHeroName('timeline'));
@@ -809,10 +561,10 @@
     animateCorners();
 
     heroSection.addEventListener('click', () => {
-      particleExplosion.detonate({
-        count: isMobile ? 35 : 90,
-        velocity: isMobile ? 1.5 : 3.5,
-      });
+      // Trigger Three.js explosion via custom event
+      window.dispatchEvent(new CustomEvent('hero:explosion', { 
+        detail: { count: isMobile ? 35 : 90, velocity: isMobile ? 1.5 : 3.5 } 
+      }));
       shockwavePulse.trigger();
     });
 
