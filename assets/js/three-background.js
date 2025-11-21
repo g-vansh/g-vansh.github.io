@@ -68,7 +68,7 @@
     const positions = new Float32Array(particleCount * 3);
     const velocities = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
-    const particleTypes = new Uint8Array(particleCount); // 0: normal, 1: scientist, 2: entrepreneur
+    const particleTypes = new Uint8Array(particleCount); // 0: normal, 1: scientist, 2: entrepreneur, 3: coder
     
     // Accent colors
     const accentColor = new ThreeLib.Color(0x9bff1f);
@@ -104,12 +104,14 @@
         colors[i3 + 1] = color.g;
         colors[i3 + 2] = color.b;
         
-        // Assign particle types: 2.5% scientist, 2.5% entrepreneur, 95% normal
+        // Assign particle types: equal distribution of scientist, entrepreneur, and coder (~1.67% each), rest normal
         const typeRoll = Math.random();
-        if (typeRoll < 0.025) {
+        if (typeRoll < 0.0167) {
           particleTypes[i] = 1; // scientist
-        } else if (typeRoll < 0.05) {
+        } else if (typeRoll < 0.0334) {
           particleTypes[i] = 2; // entrepreneur
+        } else if (typeRoll < 0.05) {
+          particleTypes[i] = 3; // coder
         } else {
           particleTypes[i] = 0; // normal
         }
@@ -196,6 +198,18 @@
       return createEmojiTexture('📈', 'rgba(255, 216, 107, 0.9)'); // Same yellow halo as lightbulb
     }
     
+    function createCoderTexture() {
+      return createEmojiTexture('👩‍💻', 'rgba(155, 255, 31, 0.9)'); // Same green halo as entrepreneur
+    }
+    
+    function createCodeTexture() {
+      return createEmojiTexture('👾', 'rgba(255, 216, 107, 0.9)'); // Same yellow halo as lightbulb
+    }
+    
+    function createConversationTexture() {
+      return createEmojiTexture('💬', 'rgba(99, 255, 157, 0.9)'); // Cyan halo for conversations
+    }
+    
     const ideaMaterial = new ThreeLib.PointsMaterial({
       size: isMobile ? 20.0 : 20.0, // Same size on mobile for better visibility
       color: 0xffffff, // Bright white to stand out
@@ -211,11 +225,12 @@
     const particleSystem = new ThreeLib.Points(particlesGeometry, normalMaterial);
     scene.add(particleSystem);
     
-    // PARTICLE TYPE OVERLAYS - Scientist and Entrepreneur emojis
+    // PARTICLE TYPE OVERLAYS - Scientist, Entrepreneur, and Coder emojis
     const scientistTexture = createScientistTexture();
     const entrepreneurTexture = createEntrepreneurTexture();
+    const coderTexture = createCoderTexture();
     
-    const typeOverlays = { scientists: [], entrepreneurs: [] };
+    const typeOverlays = { scientists: [], entrepreneurs: [], coders: [] };
     
     for (let i = 0; i < particleCount; i++) {
       if (particleTypes[i] === 1) { // scientist
@@ -244,6 +259,19 @@
         sprite.renderOrder = 999;
         scene.add(sprite);
         typeOverlays.entrepreneurs.push({ sprite, particleIdx: i });
+      } else if (particleTypes[i] === 3) { // coder
+        const sprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+          map: coderTexture,
+          transparent: true,
+          opacity: 1.0,
+          blending: ThreeLib.NormalBlending,
+          depthTest: false,
+          sizeAttenuation: false
+        }));
+        sprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
+        sprite.renderOrder = 999;
+        scene.add(sprite);
+        typeOverlays.coders.push({ sprite, particleIdx: i });
       }
     }
     
@@ -255,11 +283,13 @@
     const lightbulbTexture = createLightbulbTexture();
     const paperTexture = createPaperTexture();
     const businessTexture = createBusinessTexture();
+    const codeTexture = createCodeTexture();
     
     const ideaSpritePool = {
       lightbulbs: [],
       papers: [],
-      businesses: []
+      businesses: [],
+      codes: []
     };
     
     const activeIdeas = [];
@@ -313,6 +343,22 @@
       bizSprite.renderOrder = 1000;
       scene.add(bizSprite);
       ideaSpritePool.businesses.push(bizSprite);
+      
+      // Code sprites (for coders) - same size as lightbulb
+      const codeSprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+        map: codeTexture,
+        transparent: true,
+        opacity: 1.0,
+        blending: ThreeLib.NormalBlending,
+        depthTest: false,
+        depthWrite: false,
+        sizeAttenuation: false
+      }));
+      codeSprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Larger on mobile
+      codeSprite.visible = false;
+      codeSprite.renderOrder = 1000;
+      scene.add(codeSprite);
+      ideaSpritePool.codes.push(codeSprite);
     }
     
     // Connection lines rendered as animated cylinders for better visibility
@@ -342,6 +388,33 @@
       mesh.visible = false;
       signalsGroup.add(mesh);
       signalPool.push(mesh);
+    }
+    
+    // CONVERSATION SYSTEM - Emojis that appear when special nodes cross paths
+    const CONVERSATION_DURATION = 2000; // 2 seconds
+    const CONVERSATION_DISTANCE = 8; // Distance threshold for collision detection
+    const conversationTexture = createConversationTexture();
+    const maxConversations = 20;
+    const conversationSpritePool = [];
+    const activeConversations = []; // { sprite, position, expiresAt, baseSize }
+    const collisionPairs = new Set(); // Track pairs that are currently in conversation to avoid duplicates
+    
+    // Create conversation sprite pool
+    for (let i = 0; i < maxConversations; i++) {
+      const convSprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+        map: conversationTexture,
+        transparent: true,
+        opacity: 1.0,
+        blending: ThreeLib.NormalBlending,
+        depthTest: false,
+        depthWrite: false,
+        sizeAttenuation: false
+      }));
+      convSprite.scale.set(isMobile ? 0.12 : 0.1, isMobile ? 0.12 : 0.1, 1); // Same size as other halos
+      convSprite.visible = false;
+      convSprite.renderOrder = 1001; // Above other sprites
+      scene.add(convSprite);
+      conversationSpritePool.push(convSprite);
     }
 
     // Mouse interaction
@@ -392,8 +465,8 @@
       
       // Different spawn probabilities based on type
       let shouldSpawn = false;
-      if (particleType === 1 || particleType === 2) {
-        // Scientist or Entrepreneur: 100% chance
+      if (particleType === 1 || particleType === 2 || particleType === 3) {
+        // Scientist, Entrepreneur, or Coder: 100% chance
         shouldSpawn = true;
       } else {
         // Normal: 30% chance (already rolled before calling this function)
@@ -409,6 +482,9 @@
         baseSize = isMobile ? 0.12 : 0.1; // Larger on mobile
       } else if (particleType === 2) { // entrepreneur -> business
         pool = ideaSpritePool.businesses;
+        baseSize = isMobile ? 0.12 : 0.1; // Larger on mobile
+      } else if (particleType === 3) { // coder -> code
+        pool = ideaSpritePool.codes;
         baseSize = isMobile ? 0.12 : 0.1; // Larger on mobile
       } else { // normal -> lightbulb
         pool = ideaSpritePool.lightbulbs;
@@ -463,7 +539,7 @@
       }
       particlesGeometry.attributes.position.needsUpdate = true;
       
-      // Update Type Overlays (Scientists and Entrepreneurs)
+      // Update Type Overlays (Scientists, Entrepreneurs, and Coders)
       for (let i = 0; i < typeOverlays.scientists.length; i++) {
         const overlay = typeOverlays.scientists[i];
         const pIdx = overlay.particleIdx * 3;
@@ -475,6 +551,15 @@
       }
       for (let i = 0; i < typeOverlays.entrepreneurs.length; i++) {
         const overlay = typeOverlays.entrepreneurs[i];
+        const pIdx = overlay.particleIdx * 3;
+        overlay.sprite.position.set(
+          currentPositions[pIdx],
+          currentPositions[pIdx + 1],
+          currentPositions[pIdx + 2]
+        );
+      }
+      for (let i = 0; i < typeOverlays.coders.length; i++) {
+        const overlay = typeOverlays.coders[i];
         const pIdx = overlay.particleIdx * 3;
         overlay.sprite.position.set(
           currentPositions[pIdx],
@@ -514,6 +599,135 @@
         );
       }
       
+      // --- COLLISION DETECTION & CONVERSATIONS ---
+      // Check for collisions between scientists, entrepreneurs, and coders
+      const specialParticles = [];
+      for (let i = 0; i < particleCount; i++) {
+        if (particleTypes[i] === 1 || particleTypes[i] === 2 || particleTypes[i] === 3) {
+          specialParticles.push(i);
+        }
+      }
+      
+      // Check each pair of special particles for collisions
+      for (let i = 0; i < specialParticles.length; i++) {
+        for (let j = i + 1; j < specialParticles.length; j++) {
+          const idx1 = specialParticles[i];
+          const idx2 = specialParticles[j];
+          
+          // Create a unique pair key (smaller index first)
+          const pairKey = idx1 < idx2 ? `${idx1}-${idx2}` : `${idx2}-${idx1}`;
+          
+          // Check if already in conversation
+          let alreadyInConversation = false;
+          for (let k = 0; k < activeConversations.length; k++) {
+            if (activeConversations[k].pairKey === pairKey) {
+              alreadyInConversation = true;
+              break;
+            }
+          }
+          
+          if (alreadyInConversation) continue;
+          
+          // Calculate distance
+          const dx = currentPositions[idx1 * 3] - currentPositions[idx2 * 3];
+          const dy = currentPositions[idx1 * 3 + 1] - currentPositions[idx2 * 3 + 1];
+          const dz = currentPositions[idx1 * 3 + 2] - currentPositions[idx2 * 3 + 2];
+          const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+          
+          // If particles are close enough, spawn conversation emoji
+          if (distance < CONVERSATION_DISTANCE && conversationSpritePool.length > 0) {
+            const sprite = conversationSpritePool.pop();
+            const midpointX = (currentPositions[idx1 * 3] + currentPositions[idx2 * 3]) / 2;
+            const midpointY = (currentPositions[idx1 * 3 + 1] + currentPositions[idx2 * 3 + 1]) / 2;
+            const midpointZ = (currentPositions[idx1 * 3 + 2] + currentPositions[idx2 * 3 + 2]) / 2;
+            
+            sprite.position.set(midpointX, midpointY, midpointZ);
+            sprite.visible = true;
+            const baseSize = isMobile ? 0.12 : 0.1;
+            sprite.scale.set(baseSize, baseSize, 1);
+            
+            // Apply repulsion force to push particles apart
+            const REPULSION_STRENGTH = 0.15; // Strength of the push
+            const safeDistance = Math.max(distance, 0.1); // Avoid division by zero
+            const repulsionFactor = REPULSION_STRENGTH / safeDistance;
+            
+            // Normalize direction vector
+            const dirX = dx / safeDistance;
+            const dirY = dy / safeDistance;
+            const dirZ = dz / safeDistance;
+            
+            // Apply repulsion to both particles (push them away from each other)
+            velocities[idx1 * 3] += dirX * repulsionFactor;
+            velocities[idx1 * 3 + 1] += dirY * repulsionFactor;
+            velocities[idx1 * 3 + 2] += dirZ * repulsionFactor;
+            
+            velocities[idx2 * 3] -= dirX * repulsionFactor;
+            velocities[idx2 * 3 + 1] -= dirY * repulsionFactor;
+            velocities[idx2 * 3 + 2] -= dirZ * repulsionFactor;
+            
+            activeConversations.push({
+              sprite,
+              pairKey,
+              idx1,
+              idx2,
+              expiresAt: nowMs + CONVERSATION_DURATION,
+              baseSize
+            });
+          }
+        }
+      }
+      
+      // Update and cleanup active conversations
+      for (let i = activeConversations.length - 1; i >= 0; i--) {
+        const conv = activeConversations[i];
+        
+        // Check if expired or particles moved too far apart
+        const dx = currentPositions[conv.idx1 * 3] - currentPositions[conv.idx2 * 3];
+        const dy = currentPositions[conv.idx1 * 3 + 1] - currentPositions[conv.idx2 * 3 + 1];
+        const dz = currentPositions[conv.idx1 * 3 + 2] - currentPositions[conv.idx2 * 3 + 2];
+        const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        
+        if (nowMs > conv.expiresAt || distance > CONVERSATION_DISTANCE * 1.5) {
+          conv.sprite.visible = false;
+          conversationSpritePool.push(conv.sprite);
+          activeConversations.splice(i, 1);
+          continue;
+        }
+        
+        // Update position to follow midpoint between particles
+        const midpointX = (currentPositions[conv.idx1 * 3] + currentPositions[conv.idx2 * 3]) / 2;
+        const midpointY = (currentPositions[conv.idx1 * 3 + 1] + currentPositions[conv.idx2 * 3 + 1]) / 2;
+        const midpointZ = (currentPositions[conv.idx1 * 3 + 2] + currentPositions[conv.idx2 * 3 + 2]) / 2;
+        conv.sprite.position.set(midpointX, midpointY, midpointZ);
+        
+        // Apply continuous gentle repulsion to maintain separation
+        const ONGOING_REPULSION = 0.03; // Weaker ongoing repulsion
+        const safeDistance = Math.max(distance, 0.1);
+        const repulsionFactor = ONGOING_REPULSION / safeDistance;
+        
+        // Normalize direction vector
+        const dirX = dx / safeDistance;
+        const dirY = dy / safeDistance;
+        const dirZ = dz / safeDistance;
+        
+        // Apply gentle ongoing repulsion
+        velocities[conv.idx1 * 3] += dirX * repulsionFactor;
+        velocities[conv.idx1 * 3 + 1] += dirY * repulsionFactor;
+        velocities[conv.idx1 * 3 + 2] += dirZ * repulsionFactor;
+        
+        velocities[conv.idx2 * 3] -= dirX * repulsionFactor;
+        velocities[conv.idx2 * 3 + 1] -= dirY * repulsionFactor;
+        velocities[conv.idx2 * 3 + 2] -= dirZ * repulsionFactor;
+        
+        // Pulse effect for conversation emoji
+        const age = nowMs - (conv.expiresAt - CONVERSATION_DURATION);
+        const pulse = 1 + Math.sin(age * 0.008) * 0.15;
+        conv.sprite.scale.set(
+          conv.baseSize * pulse,
+          conv.baseSize * pulse,
+          1
+        );
+      }
       
       // --- SIGNALS (Slow moving lines) ---
       
@@ -561,14 +775,14 @@
         
         if (sig.progress >= 1) {
           const targetType = particleTypes[sig.targetIdx];
-          // Normal particles: 30% chance, Scientists/Entrepreneurs: handled inside registerIdea (50%)
+          // Normal particles: 30% chance, Scientists/Entrepreneurs/Coders: always spawn ideas (100%)
           if (targetType === 0) {
             // Normal particle: 30% chance
             if (Math.random() < 0.3) {
               registerIdea(sig.targetIdx);
             }
-          } else {
-            // Scientist or Entrepreneur: always call (50% chance handled inside)
+          } else if (targetType === 1 || targetType === 2 || targetType === 3) {
+            // Scientist, Entrepreneur, or Coder: always call registerIdea (100% chance)
             registerIdea(sig.targetIdx);
           }
           sig.mesh.visible = false;
@@ -651,8 +865,11 @@
       lightbulbTexture.dispose();
       scientistTexture.dispose();
       entrepreneurTexture.dispose();
+      coderTexture.dispose();
       paperTexture.dispose();
       businessTexture.dispose();
+      codeTexture.dispose();
+      conversationTexture.dispose();
     });
 
     console.log('Three.js particle background initialized with LineSegments & ideas (fixed)');

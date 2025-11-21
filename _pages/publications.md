@@ -362,15 +362,56 @@ document.addEventListener('DOMContentLoaded', function() {
     flex-direction: row;
     gap: clamp(1.5rem, 4vw, 2.5rem);
     margin-top: 1em;
-    align-items: center;
+    align-items: flex-start;
+    overflow: visible;
   }
   
   .stats-chart-container {
     flex: 1;
     min-width: 0;
-    height: clamp(280px, 40vh, 360px);
+    min-height: clamp(380px, 50vh, 500px);
+    height: auto;
     position: relative;
     max-width: 100%;
+    padding: 10px;
+    overflow: visible !important;
+    width: 100%;
+  }
+  
+  .stats-chart-container canvas {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Ensure Chart.js legend doesn't get cut off */
+  .stats-chart-container .chartjs-legend,
+  .stats-chart-container > div {
+    overflow: visible !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  .stats-chart-container canvas + div {
+    overflow: visible !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-bottom: 10px;
+  }
+  
+  /* Ensure legend items wrap properly */
+  .stats-chart-container ul {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  
+  .stats-chart-container li {
+    margin: 5px 10px !important;
+    white-space: nowrap !important;
   }
   
   .stats-description {
@@ -400,8 +441,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     .stats-chart-container {
       width: 100%;
-      height: clamp(250px, 50vh, 320px);
+      min-height: clamp(380px, 60vh, 500px);
+      height: auto;
       max-width: 100%;
+      padding: 15px;
+      overflow: visible !important;
     }
     
     .stats-description {
@@ -444,7 +488,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     .stats-chart-container {
-      height: 360px;
+      min-height: 450px;
+      height: auto;
+      padding: 15px;
     }
     
     .scholar-stats iframe {
@@ -458,7 +504,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   @media (min-width: 1024px) {
     .stats-chart-container {
-      height: 400px;
+      min-height: 500px;
+      height: auto;
+      padding: 20px;
     }
     
     .scholar-stats iframe {

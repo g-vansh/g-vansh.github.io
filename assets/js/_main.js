@@ -51,10 +51,50 @@ $(document).ready(function(){
   });
 
   // Follow menu drop down
+  $(".author__urls-wrapper button").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Check if we're on mobile
+    if ($(window).width() <= 600) {
+      // Mobile: Toggle mobile dropdown overlay
+      const dropdown = $(".author__urls-mobile-overlay");
+      const button = $(this);
+      
+      if (dropdown.hasClass("is-open")) {
+        // Close dropdown
+        dropdown.removeClass("is-open");
+        button.removeClass("open");
+        $("body").removeClass("author-dropdown-open");
+      } else {
+        // Open dropdown
+        dropdown.addClass("is-open");
+        button.addClass("open");
+        $("body").addClass("author-dropdown-open");
+      }
+    } else {
+      // Desktop behavior: Toggle traditional dropdown
+      $(".author__urls").fadeToggle("fast", function() {});
+      $(".author__urls-wrapper button").toggleClass("open");
+    }
+  });
 
-  $(".author__urls-wrapper button").on("click", function() {
-    $(".author__urls").fadeToggle("fast", function() {});
-    $(".author__urls-wrapper button").toggleClass("open");
+  // Close mobile dropdown when clicking outside or on overlay background
+  $(document).on("click", ".author__urls-mobile-overlay.is-open", function(e) {
+    if ($(e.target).hasClass("author__urls-mobile-overlay")) {
+      $(".author__urls-mobile-overlay").removeClass("is-open");
+      $(".author__urls-wrapper button").removeClass("open");
+      $("body").removeClass("author-dropdown-open");
+    }
+  });
+
+  // Close mobile dropdown when clicking a link
+  $(document).on("click", ".author__urls-mobile-overlay a", function() {
+    setTimeout(function() {
+      $(".author__urls-mobile-overlay").removeClass("is-open");
+      $(".author__urls-wrapper button").removeClass("open");
+      $("body").removeClass("author-dropdown-open");
+    }, 300);
   });
 
   // init smooth scroll

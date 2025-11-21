@@ -60,6 +60,7 @@ a:hover {
     margin-bottom: 1.5rem;
     position: relative;
     padding-top: 0.75rem;
+    padding-bottom: 55px;
     border-radius: 0;
     background: linear-gradient(to bottom, rgba(155, 255, 31, 0.08) 0%, transparent 100%);
 }
@@ -72,6 +73,7 @@ a:hover {
     margin-left: clamp(30px, 8vw, 40px);
     position: relative;
     gap: clamp(1rem, 4vw, 2rem);
+    z-index: 2;
 }
 
 .y-axis {
@@ -82,6 +84,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    z-index: 3;
 }
 
 .y-label {
@@ -239,11 +242,43 @@ a:hover {
 
 .x-axis {
     height: 1px;
-    background-color: rgba(155, 255, 31, 0.25);
+    background-color: rgba(155, 255, 31, 0.4);
     width: calc(100% - clamp(30px, 8vw, 40px));
     position: absolute;
     bottom: 0;
     left: clamp(30px, 8vw, 40px);
+    z-index: 1;
+}
+
+.grid-lines {
+    position: absolute;
+    top: 0;
+    left: clamp(30px, 8vw, 40px);
+    width: calc(100% - clamp(30px, 8vw, 40px));
+    height: calc(100% - 30px);
+    pointer-events: none;
+}
+
+.grid-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(155, 255, 31, 0.2);
+    z-index: 0;
+}
+
+.grid-line.top {
+    top: 0;
+}
+
+.grid-line.middle {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.grid-line.bottom {
+    bottom: 0;
 }
 
 .highlight-pulse {
@@ -271,6 +306,7 @@ a:hover {
     .chart-container {
         height: clamp(140px, 30vh, 180px);
         margin-bottom: 1.25rem;
+        padding-bottom: 55px;
     }
     
     .chart-bars {
@@ -313,6 +349,7 @@ a:hover {
     
     .chart-container {
         height: 200px;
+        padding-bottom: 55px;
     }
     
     .chart-bars {
@@ -329,25 +366,30 @@ a:hover {
 
 <div class="citation-container">
     <div class="citation-header">
-        Cited by
+        Cited by 17
     </div>
     
     <!-- Chart Section -->
     <div class="chart-container">
+        <div class="grid-lines">
+            <div class="grid-line top"></div>
+            <div class="grid-line middle"></div>
+            <div class="grid-line bottom"></div>
+        </div>
         <div class="y-axis">
-            <div class="y-label">10</div>
-            <div class="y-label">5</div>
+            <div class="y-label">12</div>
+            <div class="y-label">6</div>
             <div class="y-label">0</div>
         </div>
         <div class="chart-bars">
             <div class="bar-container">
-                <div class="bar highlight-pulse" style="height: 98px;" onmouseover="showTooltip(this, '7 citations in 2024')" onmouseout="hideTooltip(this)"></div>
+                <div class="bar highlight-pulse" style="height: 82px;" onmouseover="showTooltip(this, '7 citations in 2024')" onmouseout="hideTooltip(this)"></div>
                 <div class="bar-label">2024</div>
                 <div class="bar-value">7</div>
                 <div class="tooltip">7 citations in 2024</div>
             </div>
             <div class="bar-container">
-            <div class="bar" style="height: 140px;" onmouseover="showTooltip(this, '10 citations in 2025')" onmouseout="hideTooltip(this)"></div>
+            <div class="bar" style="height: 117px;" onmouseover="showTooltip(this, '10 citations in 2025')" onmouseout="hideTooltip(this)"></div>
                 <div class="bar-label">2025</div>
             <div class="bar-value">10</div>
             <div class="tooltip">10 citations in 2025</div>
