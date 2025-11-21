@@ -69,20 +69,18 @@
     </ul>
 
     <div class="mobile-nav-overlay__action-buttons">
-      {% if site.author.email %}
-        <a class="mobile-nav-action-btn mobile-nav-action-btn--contact" href="mailto:{{ site.author.email }}">
-          <span class="mobile-nav-action-btn__icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-          </span>
-          <span class="mobile-nav-action-btn__text">Contact Me</span>
-        </a>
-      {% endif %}
-      <a class="mobile-nav-action-btn mobile-nav-action-btn--download" href="{{ base_path }}/files/CV___Vansh_Gupta.pdf" download>
-        <span class="mobile-nav-action-btn__icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <a class="mobile-nav-action-btn mobile-nav-action-btn--contact" href="mailto:vansh@mit.edu" aria-label="Contact Vansh Gupta via email">
+        <span class="mobile-nav-action-btn__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </span>
+        <span class="mobile-nav-action-btn__text">Contact Me</span>
+      </a>
+      <a class="mobile-nav-action-btn mobile-nav-action-btn--download" href="{{ base_path }}/files/CV___Vansh_Gupta.pdf" download aria-label="Download Vansh Gupta's CV">
+        <span class="mobile-nav-action-btn__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>

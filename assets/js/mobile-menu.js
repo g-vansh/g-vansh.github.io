@@ -82,6 +82,10 @@
     if (overlay.classList.contains('is-open')) return;
 
     lastFocusElement = document.activeElement;
+    
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = 'hidden';
+    
     overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden', 'false');
     toggle.setAttribute('aria-expanded', 'true');
@@ -90,10 +94,13 @@
     // Animate icon
     animateIcon(true);
 
-    const focusableElements = getFocusableElements();
-    if (focusableElements.length) {
-      focusableElements[0].focus();
-    }
+    // Focus management - delay to allow animation
+    setTimeout(() => {
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length) {
+        focusableElements[0].focus();
+      }
+    }, 100);
 
     animateOverlayIn();
   }
@@ -105,15 +112,21 @@
     overlay.setAttribute('aria-hidden', 'true');
     toggle.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('mobile-nav-open');
+    
+    // Restore body scroll
+    document.body.style.overflow = '';
 
     // Animate icon
     animateIcon(false);
 
-    if (lastFocusElement && typeof lastFocusElement.focus === 'function') {
-      lastFocusElement.focus();
-    } else {
-      toggle.focus();
-    }
+    // Return focus after animation
+    setTimeout(() => {
+      if (lastFocusElement && typeof lastFocusElement.focus === 'function') {
+        lastFocusElement.focus();
+      } else {
+        toggle.focus();
+      }
+    }, 300);
   }
 
   toggle.addEventListener('click', () => {
@@ -124,10 +137,22 @@
     }
   });
 
+  // Close menu when clicking on overlay background (not on links/buttons)
   overlay.addEventListener('click', (event) => {
     if (event.target === overlay) {
       closeMenu();
     }
+  });
+  
+  // Close menu when clicking on navigation links (optional - can be removed if you want links to navigate)
+  const navLinks = overlay.querySelectorAll('.mobile-nav-overlay__links a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      // Small delay to allow navigation
+      setTimeout(() => {
+        closeMenu();
+      }, 100);
+    });
   });
 
   window.addEventListener(

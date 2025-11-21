@@ -110,6 +110,14 @@
       overflow-wrap: break-word !important;
       hyphens: auto !important;
       justify-self: center !important;
+      
+      // Replace text content on mobile
+      font-size: 0 !important;
+      
+      &::before {
+        content: "Innovation Econ @ MIT";
+        font-size: 0.65rem !important;
+      }
     }
   }
 

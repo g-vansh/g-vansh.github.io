@@ -425,6 +425,14 @@ body.hero-name-revealed .epic-name {
       overflow-wrap: break-word;
       hyphens: auto;
       justify-self: center;
+      
+      // Replace text content on mobile
+      font-size: 0;
+      
+      &::before {
+        content: "Innovation Econ @ MIT";
+        font-size: clamp(0.7rem, 2vw, 0.9rem);
+      }
     }
   }
   
@@ -437,7 +445,12 @@ body.hero-name-revealed .epic-name {
     }
     
     .subtitle-text {
-      font-size: clamp(0.65rem, 2vw, 0.8rem) !important;
+      font-size: 0 !important;
+      
+      &::before {
+        content: "Innovation Econ @ MIT";
+        font-size: clamp(0.65rem, 2vw, 0.8rem) !important;
+      }
     }
   }
 }

@@ -572,92 +572,110 @@ body.mobile-nav-open {
   }
 }
 
+// Mobile Navigation Overlay - Lando Norris Inspired Full-Screen Design
 .mobile-nav-overlay {
   position: fixed;
-  inset: 0;
-  width: 100vw; // Explicit viewport width
-  max-width: 100vw; // Constrain to viewport
+  top: 0;
+  left: 0;
+  width: 100vw;
   height: 100vh;
+  height: 100dvh; // Dynamic viewport height for mobile
+  max-width: 100vw;
   max-height: 100vh;
-  background: radial-gradient(circle at 20% 20%, rgba($accent-color, 0.15), transparent 45%),
-    radial-gradient(circle at 80% 10%, rgba(#63ff9d, 0.2), transparent 55%),
-    rgba(#030303, 0.98);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  max-height: 100dvh;
+  background: linear-gradient(180deg, 
+    rgba(#030303, 0.99) 0%,
+    rgba(#0a0a0a, 0.98) 50%,
+    rgba(#030303, 0.99) 100%);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
   z-index: 4000;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transform: translateY(2%) scale(0.99);
-  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
-              transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(-100%);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   color: #fff;
-  overflow: hidden; // Prevent any overflow
+  overflow: hidden;
   -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  will-change: transform, opacity;
 
   @media (min-width: 901px) {
-    display: none;
+    display: none !important;
+    visibility: hidden !important;
   }
 }
 
 .mobile-nav-overlay.is-open {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
 .mobile-nav-overlay__inner {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch; // Ensure children respect width
+  justify-content: flex-start;
+  align-items: stretch;
   height: 100%;
-  padding: 1.25rem 1rem 1rem;
-  gap: 0.75rem;
+  padding: 5rem 1.5rem 2rem;
+  gap: 2.5rem;
   width: 100%;
   max-width: 100vw;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
   margin: 0;
+  
+  @media (max-height: 600px) {
+    padding: 3rem 1.5rem 1.5rem;
+    gap: 1.5rem;
+  }
 }
 
 .mobile-nav-overlay__header {
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  padding-bottom: 0.625rem;
-  border-bottom: 1px solid rgba($accent-color, 0.12);
-  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.15em;
+  padding-bottom: 1.5rem;
+  margin: 0 0 1rem 0;
   flex-shrink: 0;
   width: 100%;
   box-sizing: border-box;
   opacity: 0;
-  transform: translateY(-10px);
-  animation: fadeInDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  transform: translateY(-20px);
+  animation: menuHeaderFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
 
   .mobile-nav-overlay__eyebrow {
-    font-size: 0.65rem;
-    color: rgba(#fff, 0.8);
-    margin-bottom: 0.2rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
+    font-size: 0.7rem;
+    color: rgba(#fff, 0.6);
+    margin: 0 0 0.5rem 0;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
   }
 
   .mobile-nav-overlay__tagline {
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
     color: $accent-color;
-    font-weight: 600;
-    text-shadow: 0 0 10px rgba($accent-color, 0.2);
+    font-weight: 500;
+    margin: 0;
+    text-transform: uppercase;
   }
 }
 
-@keyframes fadeInDown {
+@keyframes menuHeaderFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-20px);
   }
   to {
     opacity: 1;
@@ -665,127 +683,95 @@ body.mobile-nav-open {
   }
 }
 
+// Navigation Links - Clean Minimalist Design
 .mobile-nav-overlay__links {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  text-align: center;
+  gap: 0.75rem;
+  text-align: left;
   flex: 1 1 auto;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   min-height: 0;
-  max-height: 100%;
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
 
   li {
     position: relative;
-    overflow: hidden;
     opacity: 0;
-    transform: translateY(20px);
-    animation: slideInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform: translateX(-30px);
+    animation: menuLinkSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     
-    // Staggered animation delay
-    @for $i from 1 through 10 {
+    // Staggered animation delay for smooth entrance
+    @for $i from 1 through 15 {
       &:nth-child(#{$i}) {
-        animation-delay: #{($i - 1) * 0.05}s;
+        animation-delay: #{0.1 + ($i - 1) * 0.05}s;
       }
     }
   }
 
   a {
-    font-size: clamp(0.9rem, 3vw, 1rem);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(#fff, 0.95);
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: rgba(#fff, 0.9);
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.7rem 0.875rem;
-    border-radius: 8px;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    display: block;
+    padding: 1rem 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    min-height: 44px;
-    background: rgba(#fff, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid transparent;
+    min-height: 56px;
     width: 100%;
     box-sizing: border-box;
+    border-bottom: 1px solid rgba(#fff, 0.08);
     
-    // Subtle glow effect
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 10px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba($accent-color, 0.3), rgba(#63ff9d, 0.2));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    
-    // Underline effect
+    // Underline effect on hover
     &::after {
       content: '';
       position: absolute;
-      bottom: 0.75rem;
-      left: 50%;
+      bottom: 0;
+      left: 0;
       width: 0;
       height: 2px;
       background: linear-gradient(90deg, $accent-color 0%, #63ff9d 100%);
-      transform: translateX(-50%);
-      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      border-radius: 2px;
-      box-shadow: 0 0 8px rgba($accent-color, 0.5);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 12px rgba($accent-color, 0.6);
     }
 
     &:hover,
     &:focus-visible {
       color: $accent-color;
-      transform: translateY(-1px);
-      background: rgba($accent-color, 0.08);
-      border-color: rgba($accent-color, 0.2);
-      
-      &::before {
-        opacity: 1;
-      }
+      padding-left: 1rem;
+      transform: translateX(0);
       
       &::after {
-        width: 50%;
+        width: 100%;
       }
     }
 
-    // Touch feedback with ripple effect
+    // Active state for touch feedback
     &:active {
-      transform: translateY(0) scale(0.98);
+      color: lighten($accent-color, 10%);
+      transform: translateX(4px);
       transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-      background: rgba($accent-color, 0.12);
-      
-      &::after {
-        width: 70%;
-      }
     }
   }
 }
 
-// Slide-in animation for menu items
-@keyframes slideInUp {
+// Slide-in animation for navigation links
+@keyframes menuLinkSlideIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateX(-30px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
@@ -794,27 +780,27 @@ body.mobile-nav-open {
   display: none;
 }
 
-// Action Buttons Section - Redesigned with proper layout
+// Action Buttons Section - Premium Full-Width Design
 .mobile-nav-overlay__action-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr; // Two equal columns
-  gap: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   margin: 0;
-  padding: 0.875rem 0 0 0;
-  border-top: 1px solid rgba($accent-color, 0.12);
+  padding: 2rem 0 0 0;
+  border-top: 1px solid rgba(#fff, 0.1);
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+  transform: translateY(30px);
+  animation: actionButtonsFadeIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
 }
 
-@keyframes fadeInUp {
+@keyframes actionButtonsFadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -822,40 +808,40 @@ body.mobile-nav-open {
   }
 }
 
-// Action Buttons - Redesigned for proper layout
+// Action Buttons - Premium Design with Icons
 .mobile-nav-action-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.875rem 0.75rem;
-  border-radius: 10px;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
   text-decoration: none;
   font-family: $metadata-font-family;
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
-  min-height: 48px;
+  min-height: 60px;
   width: 100%;
   max-width: 100%;
-  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  border: 2px solid transparent;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
   box-sizing: border-box;
+  cursor: pointer;
   
   // Icon styling
   &__icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    width: 20px;
+    height: 20px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     flex-shrink: 0;
+    z-index: 2;
     
     svg {
       width: 100%;
@@ -867,25 +853,12 @@ body.mobile-nav-open {
   &__text {
     position: relative;
     z-index: 2;
-    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
   
-  // Animated background gradient
+  // Shine effect on hover
   &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba($accent-color, 0.15), rgba(#63ff9d, 0.1));
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    z-index: 0;
-  }
-  
-  // Shine effect
-  &::after {
     content: '';
     position: absolute;
     top: -50%;
@@ -895,28 +868,24 @@ body.mobile-nav-open {
     background: linear-gradient(
       45deg,
       transparent 30%,
-      rgba(#fff, 0.1) 50%,
+      rgba(#fff, 0.15) 50%,
       transparent 70%
     );
     transform: translateX(-100%) translateY(-100%) rotate(45deg);
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
   }
   
   &:hover,
   &:focus-visible {
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-3px);
     
     &::before {
-      opacity: 1;
-    }
-    
-    &::after {
       transform: translateX(100%) translateY(100%) rotate(45deg);
     }
     
     .mobile-nav-action-btn__icon {
-      transform: scale(1.1) rotate(5deg);
+      transform: scale(1.15) rotate(5deg);
     }
     
     .mobile-nav-action-btn__text {
@@ -925,22 +894,20 @@ body.mobile-nav-open {
   }
   
   &:active {
-    transform: translateY(0) scale(0.98);
+    transform: translateY(-1px) scale(0.98);
     transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-// Contact Button - Primary Style
+// Contact Button - Elegant Outlined Style
 .mobile-nav-action-btn--contact {
-  background: linear-gradient(135deg, 
-    rgba($accent-color, 0.2) 0%, 
-    rgba(#63ff9d, 0.15) 100%);
-  border-color: rgba($accent-color, 0.4);
+  background: transparent;
+  border: 2px solid rgba($accent-color, 0.4);
   color: $accent-color;
   box-shadow: 
-    0 4px 20px rgba($accent-color, 0.2),
-    0 0 0 1px rgba($accent-color, 0.1) inset,
-    0 0 30px rgba($accent-color, 0.1);
+    0 0 0 0 rgba($accent-color, 0),
+    0 4px 20px rgba($accent-color, 0.15),
+    inset 0 0 0 0 rgba($accent-color, 0);
   
   .mobile-nav-action-btn__icon {
     color: $accent-color;
@@ -948,61 +915,66 @@ body.mobile-nav-open {
   
   &:hover,
   &:focus-visible {
-    background: linear-gradient(135deg, 
-      rgba($accent-color, 0.3) 0%, 
-      rgba(#63ff9d, 0.25) 100%);
-    border-color: rgba($accent-color, 0.6);
-    box-shadow: 
-      0 8px 32px rgba($accent-color, 0.35),
-      0 0 0 2px rgba($accent-color, 0.2) inset,
-      0 0 40px rgba($accent-color, 0.2);
+    background: rgba($accent-color, 0.1);
+    border-color: rgba($accent-color, 0.8);
     color: lighten($accent-color, 10%);
+    box-shadow: 
+      0 0 0 4px rgba($accent-color, 0.1),
+      0 8px 32px rgba($accent-color, 0.3),
+      inset 0 0 20px rgba($accent-color, 0.05);
   }
   
   &:active {
+    background: rgba($accent-color, 0.15);
+    border-color: rgba($accent-color, 1);
     box-shadow: 
-      0 4px 16px rgba($accent-color, 0.3),
-      0 0 0 1px rgba($accent-color, 0.15) inset;
+      0 0 0 2px rgba($accent-color, 0.2),
+      0 4px 16px rgba($accent-color, 0.25);
   }
 }
 
-// Download CV Button - Accent Style (Bold Gradient)
+// Download CV Button - Bold Gradient Style
 .mobile-nav-action-btn--download {
-  background: linear-gradient(135deg, $accent-color 0%, #63ff9d 100%);
-  border-color: transparent;
+  background: linear-gradient(135deg, $accent-color 0%, #63ff9d 50%, $accent-color 100%);
+  background-size: 200% 100%;
+  border: none;
   color: #030303;
   box-shadow: 
     0 4px 24px rgba($accent-color, 0.4),
-    0 0 0 1px rgba($accent-color, 0.2) inset,
-    0 0 40px rgba($accent-color, 0.25);
+    0 0 0 0 rgba($accent-color, 0),
+    inset 0 1px 0 rgba(#fff, 0.2);
   font-weight: 700;
+  animation: gradientShift 3s ease infinite;
   
   .mobile-nav-action-btn__icon {
     color: #030303;
   }
   
-  &::before {
-    background: linear-gradient(135deg, 
-      rgba(#fff, 0.2) 0%, 
-      rgba(#fff, 0.15) 100%);
-  }
-  
   &:hover,
   &:focus-visible {
-    background: linear-gradient(135deg, 
-      lighten($accent-color, 5%) 0%, 
-      lighten(#63ff9d, 5%) 100%);
+    background-position: 100% 0;
     box-shadow: 
-      0 8px 36px rgba($accent-color, 0.5),
-      0 0 0 2px rgba($accent-color, 0.3) inset,
-      0 0 50px rgba($accent-color, 0.35);
-    transform: translateY(-3px) scale(1.03);
+      0 8px 40px rgba($accent-color, 0.6),
+      0 0 0 4px rgba($accent-color, 0.2),
+      inset 0 1px 0 rgba(#fff, 0.3);
+    transform: translateY(-4px);
   }
   
   &:active {
+    background-position: 50% 0;
     box-shadow: 
-      0 4px 20px rgba($accent-color, 0.4),
-      0 0 0 1px rgba($accent-color, 0.25) inset;
+      0 4px 20px rgba($accent-color, 0.5),
+      0 0 0 2px rgba($accent-color, 0.3);
+    transform: translateY(-2px) scale(0.98);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 0;
+  }
+  50% {
+    background-position: 100% 0;
   }
 }
 
@@ -1014,23 +986,23 @@ body.mobile-nav-open {
 .mobile-nav-overlay__social {
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.6rem;
-  color: rgba(#fff, 0.7);
+  letter-spacing: 0.15em;
+  font-size: 0.65rem;
+  color: rgba(#fff, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   flex-shrink: 0;
-  margin: 0.625rem 0 0 0;
-  padding: 0.625rem 0 0 0;
-  border-top: 1px solid rgba($accent-color, 0.1);
+  margin: 1.5rem 0 0 0;
+  padding: 1.5rem 0 0 0;
+  border-top: 1px solid rgba(#fff, 0.08);
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   opacity: 0;
-  transform: translateY(15px);
-  animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+  transform: translateY(20px);
+  animation: socialFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
   
   // Center the "Follow" text span
   > span {
@@ -1041,6 +1013,18 @@ body.mobile-nav-open {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-weight: 500;
+  }
+}
+
+@keyframes socialFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -1048,7 +1032,7 @@ body.mobile-nav-open {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
   width: 100%;
   max-width: 100%;
@@ -1057,54 +1041,49 @@ body.mobile-nav-open {
   padding: 0;
 
   a {
-    color: rgba(#fff, 0.9);
+    color: rgba(#fff, 0.7);
     text-decoration: none;
-    font-size: 0.75rem; // Reduced from 0.85rem
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    padding: 0.625rem 1rem;
-    border-radius: 8px;
-    border: 1px solid transparent;
-    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    min-height: 44px; // Touch-friendly (WCAG minimum)
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 0;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
-    background: rgba(#fff, 0.02);
+    background: transparent;
 
-    // Hover effect
-    &::before {
+    // Underline effect on hover
+    &::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, $accent-color 0%, #63ff9d 100%);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: 0 0 6px rgba($accent-color, 0.4);
+      width: 0;
+      height: 1px;
+      background: $accent-color;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &:hover,
     &:focus-visible {
       color: $accent-color;
-      border-color: rgba($accent-color, 0.25);
-      background: rgba($accent-color, 0.08);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
       
-      &::before {
-        transform: scaleX(1);
+      &::after {
+        width: 100%;
       }
     }
 
     &:active {
-      transform: translateY(0) scale(0.98);
+      transform: translateY(0);
+      color: lighten($accent-color, 10%);
       transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-      background: rgba($accent-color, 0.12);
     }
   }
 }
