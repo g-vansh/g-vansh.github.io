@@ -503,102 +503,24 @@ body.hero-name-revealed .epic-name {
 }
 
 /* ==========================================================================
-   Data Points (Telemetry Display)
-   ========================================================================== */
-
-.hero-datapoints {
-  display: flex;
-  justify-content: center;
-  gap: clamp(1rem, 4vw, 3rem);
-  margin-top: 3rem;
-  flex-wrap: wrap;
-  
-  @media (max-width: 768px) {
-    margin-top: 2.5rem;
-    gap: clamp(0.75rem, 3vw, 1.5rem);
-  }
-}
-
-.datapoint {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 1.5rem;
-  background: rgba($surface-color, 0.4);
-  border: 1px solid rgba($accent-color, 0.3);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  min-width: clamp(100px, 15vw, 140px);
-  animation: dataPointFloat 3s ease-in-out infinite;
-  animation-delay: var(--delay, 0s);
-  
-  &:hover {
-    transform: translateY(-5px);
-    border-color: $accent-color;
-    box-shadow: 0 10px 30px rgba($accent-color, 0.3);
-  }
-  
-  @media (max-width: 768px) {
-    padding: 0.75rem 1rem;
-    min-width: clamp(80px, 25vw, 120px);
-    gap: 0.3rem;
-  }
-}
-
-.datapoint-label {
-  font-family: $metadata-font-family;
-  font-size: clamp(0.65rem, 1.5vw, 0.75rem);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: rgba($text-color, 0.6);
-  
-  @media (max-width: 768px) {
-    font-size: clamp(0.55rem, 1.2vw, 0.65rem);
-  }
-}
-
-.datapoint-value {
-  font-family: $header-font-family;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  color: $accent-color;
-  text-shadow: 0 0 20px rgba($accent-color, 0.5);
-  
-  @media (max-width: 768px) {
-    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-  }
-}
-
-@keyframes dataPointFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* ==========================================================================
    Scroll Indicator
    ========================================================================== */
 
 .scroll-indicator {
-  position: absolute;
-  bottom: clamp(2rem, 5vh, 4rem);
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin-top: clamp(5rem, 12vh, 10rem);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
   gap: 0.5rem;
   opacity: 0;
   animation: fadeInUp 1s ease-out forwards;
   animation-delay: 3s;
   
   @media (max-width: 768px) {
-    bottom: clamp(1.5rem, 4vh, 3rem);
+    margin-top: clamp(3.5rem, 10vh, 7rem);
   }
 }
 
@@ -699,18 +621,6 @@ body.hero-name-revealed .epic-name {
     box-shadow: none;
   }
 
-  .hero-datapoints {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-
-  .datapoint {
-    flex-direction: row;
-    justify-content: space-between;
-    min-width: auto;
-  }
-
   .hero-loader {
     position: fixed;
     top: auto;
@@ -782,7 +692,6 @@ body.hero-animation-ready .epic-name,
   .epic-hero *,
   .hero-corner,
   .scanlines,
-  .datapoint,
   .scroll-line::after {
     animation: none !important;
     transition: none !important;
@@ -818,8 +727,7 @@ body.hero-animation-ready .epic-name,
 
 .epic-hero,
 .hero-content,
-.epic-name,
-.datapoint {
+.epic-name {
   will-change: auto; // Let browser decide
   transform: translateZ(0); // Force GPU acceleration
   backface-visibility: hidden;

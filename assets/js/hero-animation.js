@@ -420,7 +420,6 @@
     const heroName = document.querySelector('.hero-name');
     const heroSubtitle = document.querySelector('.hero-subtitle');
     const scanlinesOverlay = document.querySelector('.scanlines');
-    const datapoints = document.querySelectorAll('.hero-datapoints .datapoint');
     
     if (!heroName) return;
     armHeroNameReveal();
@@ -503,17 +502,6 @@
     }, '-=0.3');
 
     // No pulsing glow effect - name is static
-
-    if (datapoints.length) {
-      gsap.from(datapoints, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: 'power3.out',
-        stagger: 0.12,
-        delay: 1.9
-      });
-    }
 
     animateCorners();
 

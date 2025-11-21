@@ -123,13 +123,13 @@ body:not(.story-complete) .story-mode {
 .story-content {
   max-width: 900px;
   text-align: center;
-  padding: 0 2rem;
+  padding: 0 1rem; // Reduced from 2rem to make content 10% wider on each side
   position: relative;
   z-index: 2;
   
   @media (max-width: 768px) {
     max-width: 100%;
-    padding: 0 1.5rem;
+    padding: 0 0.75rem; // Reduced from 1.5rem to make content 10% wider on each side
   }
 }
 

@@ -139,7 +139,12 @@
   
   // Helper function to check if current section requires resistance
   function requiresResistance(sectionIndex) {
-    // Both 3rd section (index 2) and 4th section (index 3) require resistance
+    // On mobile, don't apply resistance - make scrolling past sections 3 and 4 the same as 1 and 2
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      return false;
+    }
+    // Both 3rd section (index 2) and 4th section (index 3) require resistance on desktop
     return sectionIndex === 2 || sectionIndex === totalSections - 1;
   }
   
@@ -310,24 +315,15 @@
     const isLongDrag = Math.abs(deltaY) > TOUCH_THRESHOLD;
     
     if (isQuickSwipe || isLongDrag) {
-      // Resistance for 3rd and 4th sections on touch - require much more effort
-      if (requiresResistance(currentSection) && deltaY > 0) {
-        // Scrolling down on section with resistance - require significantly more effort
-        // Use a higher multiplier for touch since touch gestures are typically larger
-        if (Math.abs(deltaY) > LAST_SECTION_RESISTANCE * 1.2) {
-          // If on last section, complete story; otherwise move to next section
-          if (currentSection === totalSections - 1) {
-            completeStory();
-          } else {
-            showSection(currentSection + 1);
-          }
+      // On mobile, treat all sections the same - no special resistance for sections 3 and 4
+      if (deltaY > 0) {
+        if (currentSection < totalSections - 1) {
+          // Swipe up - next section
+          showSection(currentSection + 1);
+        } else {
+          // On last section, swipe down completes the story
+          completeStory();
         }
-        return;
-      }
-      
-      if (deltaY > 0 && currentSection < totalSections - 1) {
-        // Swipe up - next section
-        showSection(currentSection + 1);
       } else if (deltaY < 0 && currentSection > 0) {
         // Swipe down - previous section
         showSection(currentSection - 1);
