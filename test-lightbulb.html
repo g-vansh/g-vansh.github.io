@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lightbulb Test</title>
+  <style>
+    body { background: #0a0a0a; margin: 0; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.159.0/build/three.module.js';
+    
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 50;
+    
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+    
+    // Create lightbulb texture
+    const canvas = document.createElement('canvas');
+    canvas.width = 128;
+    canvas.height = 128;
+    const ctx = canvas.getContext('2d');
+    
+    const gradient = ctx.createRadialGradient(64, 64, 10, 64, 64, 60);
+    gradient.addColorStop(0, 'rgba(255, 216, 107, 0.8)');
+    gradient.addColorStop(1, 'rgba(255, 216, 107, 0)');
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(64, 64, 60, 0, Math.PI * 2);
+    ctx.fill();
+    
+    ctx.font = '90px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText('💡', 64, 68);
+    
+    const texture = new THREE.CanvasTexture(canvas);
+    
+    // Create particle system with lightbulbs
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(5 * 3);
+    positions[0] = 0; positions[1] = 0; positions[2] = 0;
+    positions[3] = 10; positions[4] = 10; positions[5] = 0;
+    positions[6] = -10; positions[7] = 10; positions[8] = 0;
+    positions[9] = 10; positions[10] = -10; positions[11] = 0;
+    positions[12] = -10; positions[13] = -10; positions[14] = 0;
+    
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    
+    const material = new THREE.PointsMaterial({
+      size: 10.0,
+      color: 0xffd86b,
+      map: texture,
+      transparent: true,
+      opacity: 1.0,
+      blending: THREE.NormalBlending,
+      sizeAttenuation: true,
+      depthWrite: false
+    });
+    
+    const points = new THREE.Points(geometry, material);
+    scene.add(points);
+    
+    function animate() {
+      requestAnimationFrame(animate);
+      points.rotation.z += 0.01;
+      renderer.render(scene, camera);
+    }
+    
+    animate();
+    console.log('Test: 5 lightbulbs should be visible');
+  </script>
+</body>
+</html>

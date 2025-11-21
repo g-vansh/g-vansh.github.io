@@ -117,32 +117,84 @@
       depthWrite: false
     });
     
+    // Helpers for textures MUST be defined before materials
+    function createSquareTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 32;
+      canvas.height = 32;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(8, 8, 16, 16); // Square
+      const texture = new ThreeLib.CanvasTexture(canvas);
+      return texture;
+    }
+
+    function createLightbulbTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 128;
+      canvas.height = 128;
+      const ctx = canvas.getContext('2d');
+      
+      // Draw glowing background
+      const gradient = ctx.createRadialGradient(64, 64, 10, 64, 64, 64);
+      gradient.addColorStop(0, 'rgba(255, 216, 107, 0.9)');
+      gradient.addColorStop(0.5, 'rgba(255, 216, 107, 0.5)');
+      gradient.addColorStop(1, 'rgba(255, 216, 107, 0)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 128, 128);
+      
+      // Draw emoji with high quality settings
+      ctx.font = 'bold 100px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('💡', 64, 64);
+      
+      const texture = new ThreeLib.CanvasTexture(canvas);
+      texture.needsUpdate = true;
+      return texture;
+    }
+    
     const ideaMaterial = new ThreeLib.PointsMaterial({
-      size: isMobile ? 6.0 : 10.0, // Increased size significantly
-      color: 0xffd86b, 
+      size: isMobile ? 12.0 : 20.0, // Significantly larger for visibility
+      color: 0xffffff, // Bright white to stand out
       map: createLightbulbTexture(),
       transparent: true,
       opacity: 1.0,
-      blending: ThreeLib.NormalBlending,
-      sizeAttenuation: true,
-      depthWrite: false
+      blending: ThreeLib.AdditiveBlending, // Changed to AdditiveBlending for glow
+      sizeAttenuation: false, // Size doesn't change with distance
+      depthWrite: false,
+      depthTest: false // Always render on top
     });
 
     const particleSystem = new ThreeLib.Points(particlesGeometry, normalMaterial);
     scene.add(particleSystem);
     
-    // Idea system - subset of particles that are currently "ideas"
-    const ideaGeometry = new ThreeLib.BufferGeometry();
+    // LIGHTBULB SYSTEM - Using Sprites for reliable rendering
     const maxIdeas = 50;
-    const ideaPositions = new Float32Array(maxIdeas * 3);
+    const lightbulbSprites = [];
+    const lightbulbPool = [];
     
-    // Initialize idea positions far away
-    for(let i=0; i<maxIdeas*3; i++) ideaPositions[i] = 9999;
+    const lightbulbTexture = createLightbulbTexture();
+    const spriteMaterial = new ThreeLib.SpriteMaterial({
+      map: lightbulbTexture,
+      transparent: true,
+      opacity: 1.0,
+      blending: ThreeLib.NormalBlending, // Normal blending for emoji
+      depthTest: false,
+      depthWrite: false,
+      sizeAttenuation: false // Constant size regardless of distance
+    });
     
-    ideaGeometry.setAttribute('position', new ThreeLib.BufferAttribute(ideaPositions, 3));
-    
-    const ideaSystem = new ThreeLib.Points(ideaGeometry, ideaMaterial);
-    scene.add(ideaSystem);
+    // Create sprite pool
+    for (let i = 0; i < maxIdeas; i++) {
+      const sprite = new ThreeLib.Sprite(spriteMaterial.clone());
+      sprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1); // 30x smaller
+      sprite.visible = false;
+      sprite.renderOrder = 1000; // Render on top
+      scene.add(sprite);
+      lightbulbSprites.push(sprite);
+      lightbulbPool.push(sprite);
+    }
     
     // Connection lines rendered as animated cylinders for better visibility
     const maxSignals = isMobile ? 15 : 35;
@@ -161,50 +213,15 @@
     scene.add(signalsGroup);
     
     const SIGNAL_TRAIL = 0.25;
+    const IDEA_DURATION = 2600;
     const signalPool = [];
     const activeSignals = []; // { mesh, sourceIdx, targetIdx, progress, speed }
+    const ideaEvents = []; // { targetIdx, expiresAt }
     for (let i = 0; i < maxSignals; i++) {
       const mesh = new ThreeLib.Mesh(signalGeometry, signalMaterial);
       mesh.visible = false;
       signalsGroup.add(mesh);
       signalPool.push(mesh);
-    }
-    
-    // Helpers for textures
-    function createSquareTexture() {
-      const canvas = document.createElement('canvas');
-      canvas.width = 32;
-      canvas.height = 32;
-      const ctx = canvas.getContext('2d');
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(8, 8, 16, 16); // Square
-      const texture = new ThreeLib.CanvasTexture(canvas);
-      return texture;
-    }
-
-    function createLightbulbTexture() {
-      const canvas = document.createElement('canvas');
-      canvas.width = 128; // Increased resolution
-      canvas.height = 128;
-      const ctx = canvas.getContext('2d');
-      
-      // Draw glowing background
-      const gradient = ctx.createRadialGradient(64, 64, 10, 64, 64, 60);
-      gradient.addColorStop(0, 'rgba(255, 216, 107, 0.8)');
-      gradient.addColorStop(1, 'rgba(255, 216, 107, 0)');
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(64, 64, 60, 0, Math.PI * 2);
-      ctx.fill();
-      
-      ctx.font = '90px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#ffffff'; // White core for bulb
-      ctx.fillText('💡', 64, 68);
-      
-      const texture = new ThreeLib.CanvasTexture(canvas);
-      return texture;
     }
 
     // Mouse interaction
@@ -241,7 +258,6 @@
     });
 
     // Animation loop
-    const activeIdeas = []; 
     const dummyVec3A = new ThreeLib.Vector3();
     const dummyVec3B = new ThreeLib.Vector3();
     const dummyDirection = new ThreeLib.Vector3();
@@ -249,17 +265,38 @@
     const tempStartVec = new ThreeLib.Vector3();
     const tempEndVec = new ThreeLib.Vector3();
     const cylinderUp = new ThreeLib.Vector3(0, 1, 0);
+    
+    const activeLightbulbs = []; // { sprite, targetIdx, expiresAt }
+    
+    function registerIdea(targetIdx) {
+      if (lightbulbPool.length === 0) return;
+      
+      const now = performance.now();
+      
+      // Check if this particle already has a lightbulb
+      for (let i = 0; i < activeLightbulbs.length; i++) {
+        if (activeLightbulbs[i].targetIdx === targetIdx) {
+          // Refresh the duration
+          activeLightbulbs[i].expiresAt = now + IDEA_DURATION;
+          return;
+        }
+      }
+      
+      // Spawn new lightbulb
+      const sprite = lightbulbPool.pop();
+      sprite.visible = true;
+      activeLightbulbs.push({
+        sprite,
+        targetIdx,
+        expiresAt: now + IDEA_DURATION
+      });
+    }
 
     function animate() {
       requestAnimationFrame(animate);
 
       const currentPositions = particlesGeometry.attributes.position.array;
-      const ideaPosAttr = ideaSystem.geometry.attributes.position;
-      const ideaPosArray = ideaPosAttr.array;
       
-      // Reset ideas positions
-      for(let k=0; k<maxIdeas*3; k++) ideaPosArray[k] = 9999;
-
       // Update Particles
       for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3;
@@ -280,39 +317,37 @@
       }
       particlesGeometry.attributes.position.needsUpdate = true;
       
-      // Handle Ideas
-      const now = Date.now();
-      if (activeIdeas.length < maxIdeas && Math.random() < 0.03) { // Increased spawn rate
-        const targetIdx = Math.floor(Math.random() * particleCount);
-        activeIdeas.push({
-          index: targetIdx,
-          startTime: now,
-          duration: 2000 + Math.random() * 1500
-        });
-      }
-      
-      let activeIdeaCount = 0;
-      for (let i = activeIdeas.length - 1; i >= 0; i--) {
-        const idea = activeIdeas[i];
-        const elapsed = now - idea.startTime;
+      // Update Lightbulbs (Sprites)
+      const nowMs = performance.now();
+      for (let i = activeLightbulbs.length - 1; i >= 0; i--) {
+        const bulb = activeLightbulbs[i];
         
-        if (elapsed > idea.duration) {
-          activeIdeas.splice(i, 1); 
+        // Check if expired
+        if (nowMs > bulb.expiresAt) {
+          bulb.sprite.visible = false;
+          lightbulbPool.push(bulb.sprite);
+          activeLightbulbs.splice(i, 1);
           continue;
         }
         
-        if (activeIdeaCount < maxIdeas) {
-          const pIdx = idea.index * 3;
-          const iIdx = activeIdeaCount * 3;
-          
-          ideaPosArray[iIdx] = currentPositions[pIdx];
-          ideaPosArray[iIdx+1] = currentPositions[pIdx+1];
-          ideaPosArray[iIdx+2] = currentPositions[pIdx+2];
-          
-          activeIdeaCount++;
-        }
+        // Update position to follow particle
+        const pIdx = bulb.targetIdx * 3;
+        bulb.sprite.position.set(
+          currentPositions[pIdx],
+          currentPositions[pIdx + 1],
+          currentPositions[pIdx + 2]
+        );
+        
+        // Pulse effect
+        const age = nowMs - (bulb.expiresAt - IDEA_DURATION);
+        const pulse = 1 + Math.sin(age * 0.005) * 0.2;
+        bulb.sprite.scale.set(
+          (isMobile ? 0.053 : 0.1) * pulse,
+          (isMobile ? 0.053 : 0.1) * pulse,
+          1
+        );
       }
-      ideaPosAttr.needsUpdate = true;
+      
       
       // --- SIGNALS (Slow moving lines) ---
       
@@ -360,11 +395,7 @@
         
         if (sig.progress >= 1) {
           if (Math.random() < 0.3) {
-             activeIdeas.push({
-              index: sig.targetIdx,
-              startTime: now,
-              duration: 2000
-            });
+            registerIdea(sig.targetIdx);
           }
           sig.mesh.visible = false;
           signalPool.push(sig.mesh);
@@ -416,15 +447,13 @@
         sig.mesh.quaternion.setFromUnitVectors(cylinderUp, dummyDirection);
       }
 
-      // Rotation
+      // Rotation (sprites automatically face camera, no need to rotate them)
       particleSystem.rotation.x += (targetRotationX - particleSystem.rotation.x) * 0.05;
       particleSystem.rotation.y += (targetRotationY - particleSystem.rotation.y) * 0.05;
       
-      ideaSystem.rotation.copy(particleSystem.rotation);
       signalsGroup.rotation.copy(particleSystem.rotation);
 
       particleSystem.rotation.z += 0.0002;
-      ideaSystem.rotation.z += 0.0002;
       signalsGroup.rotation.z += 0.0002;
 
       renderer.render(scene, camera);
@@ -444,11 +473,12 @@
       renderer.dispose();
       particlesGeometry.dispose();
       normalMaterial.dispose();
-      ideaMaterial.dispose();
       signalMaterial.dispose();
+      lightbulbTexture.dispose();
+      spriteMaterial.dispose();
     });
 
-    console.log('Three.js particle background initialized with LineSegments & ideas');
+    console.log('Three.js particle background initialized with LineSegments & ideas (fixed)');
   }
 
   function bootstrapThreeBackground() {
