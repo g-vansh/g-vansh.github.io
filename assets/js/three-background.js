@@ -64,6 +64,7 @@
     const positions = new Float32Array(particleCount * 3);
     const velocities = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
+    const particleTypes = new Uint8Array(particleCount); // 0: normal, 1: scientist, 2: entrepreneur
     
     // Accent colors
     const accentColor = new ThreeLib.Color(0x9bff1f);
@@ -98,6 +99,16 @@
         colors[i3] = color.r;
         colors[i3 + 1] = color.g;
         colors[i3 + 2] = color.b;
+        
+        // Assign particle types: 2.5% scientist, 2.5% entrepreneur, 95% normal
+        const typeRoll = Math.random();
+        if (typeRoll < 0.025) {
+          particleTypes[i] = 1; // scientist
+        } else if (typeRoll < 0.05) {
+          particleTypes[i] = 2; // entrepreneur
+        } else {
+          particleTypes[i] = 0; // normal
+        }
       }
 
       particlesGeometry.setAttribute('position', new ThreeLib.BufferAttribute(positions, 3));
@@ -129,7 +140,7 @@
       return texture;
     }
 
-    function createLightbulbTexture() {
+    function createEmojiTexture(emoji, glowColor = 'rgba(255, 216, 107, 0.9)') {
       const canvas = document.createElement('canvas');
       canvas.width = 128;
       canvas.height = 128;
@@ -137,9 +148,9 @@
       
       // Draw glowing background
       const gradient = ctx.createRadialGradient(64, 64, 10, 64, 64, 64);
-      gradient.addColorStop(0, 'rgba(255, 216, 107, 0.9)');
-      gradient.addColorStop(0.5, 'rgba(255, 216, 107, 0.5)');
-      gradient.addColorStop(1, 'rgba(255, 216, 107, 0)');
+      gradient.addColorStop(0, glowColor);
+      gradient.addColorStop(0.5, glowColor.replace('0.9)', '0.5)'));
+      gradient.addColorStop(1, glowColor.replace('0.9)', '0)'));
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 128, 128);
       
@@ -147,11 +158,31 @@
       ctx.font = 'bold 100px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText('💡', 64, 64);
+      ctx.fillText(emoji, 64, 64);
       
       const texture = new ThreeLib.CanvasTexture(canvas);
       texture.needsUpdate = true;
       return texture;
+    }
+    
+    function createLightbulbTexture() {
+      return createEmojiTexture('💡', 'rgba(255, 216, 107, 0.9)');
+    }
+    
+    function createScientistTexture() {
+      return createEmojiTexture('👩‍🔬', 'rgba(99, 255, 157, 0.9)');
+    }
+    
+    function createEntrepreneurTexture() {
+      return createEmojiTexture('👨‍💼', 'rgba(155, 255, 31, 0.9)');
+    }
+    
+    function createPaperTexture() {
+      return createEmojiTexture('📝', 'rgba(255, 216, 107, 0.9)'); // Same yellow halo as lightbulb
+    }
+    
+    function createBusinessTexture() {
+      return createEmojiTexture('📈', 'rgba(255, 216, 107, 0.9)'); // Same yellow halo as lightbulb
     }
     
     const ideaMaterial = new ThreeLib.PointsMaterial({
@@ -169,31 +200,105 @@
     const particleSystem = new ThreeLib.Points(particlesGeometry, normalMaterial);
     scene.add(particleSystem);
     
-    // LIGHTBULB SYSTEM - Using Sprites for reliable rendering
+    // PARTICLE TYPE OVERLAYS - Scientist and Entrepreneur emojis
+    const scientistTexture = createScientistTexture();
+    const entrepreneurTexture = createEntrepreneurTexture();
+    
+    const typeOverlays = { scientists: [], entrepreneurs: [] };
+    
+    for (let i = 0; i < particleCount; i++) {
+      if (particleTypes[i] === 1) { // scientist
+        const sprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+          map: scientistTexture,
+          transparent: true,
+          opacity: 1.0,
+          blending: ThreeLib.NormalBlending,
+          depthTest: false,
+          sizeAttenuation: false
+        }));
+        sprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1);
+        sprite.renderOrder = 999;
+        scene.add(sprite);
+        typeOverlays.scientists.push({ sprite, particleIdx: i });
+      } else if (particleTypes[i] === 2) { // entrepreneur
+        const sprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+          map: entrepreneurTexture,
+          transparent: true,
+          opacity: 1.0,
+          blending: ThreeLib.NormalBlending,
+          depthTest: false,
+          sizeAttenuation: false
+        }));
+        sprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1);
+        sprite.renderOrder = 999;
+        scene.add(sprite);
+        typeOverlays.entrepreneurs.push({ sprite, particleIdx: i });
+      }
+    }
+    
+    // IDEA SYSTEM - Using Sprites for reliable rendering
     const maxIdeas = 50;
-    const lightbulbSprites = [];
-    const lightbulbPool = [];
-    
     const lightbulbTexture = createLightbulbTexture();
-    const spriteMaterial = new ThreeLib.SpriteMaterial({
-      map: lightbulbTexture,
-      transparent: true,
-      opacity: 1.0,
-      blending: ThreeLib.NormalBlending, // Normal blending for emoji
-      depthTest: false,
-      depthWrite: false,
-      sizeAttenuation: false // Constant size regardless of distance
-    });
+    const paperTexture = createPaperTexture();
+    const businessTexture = createBusinessTexture();
     
-    // Create sprite pool
+    const ideaSpritePool = {
+      lightbulbs: [],
+      papers: [],
+      businesses: []
+    };
+    
+    const activeIdeas = [];
+    
+    // Create sprite pools for each idea type
     for (let i = 0; i < maxIdeas; i++) {
-      const sprite = new ThreeLib.Sprite(spriteMaterial.clone());
-      sprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1); // 30x smaller
-      sprite.visible = false;
-      sprite.renderOrder = 1000; // Render on top
-      scene.add(sprite);
-      lightbulbSprites.push(sprite);
-      lightbulbPool.push(sprite);
+      // Lightbulb sprites
+      const bulbSprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+        map: lightbulbTexture,
+        transparent: true,
+        opacity: 1.0,
+        blending: ThreeLib.NormalBlending,
+        depthTest: false,
+        depthWrite: false,
+        sizeAttenuation: false
+      }));
+      bulbSprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1);
+      bulbSprite.visible = false;
+      bulbSprite.renderOrder = 1000;
+      scene.add(bulbSprite);
+      ideaSpritePool.lightbulbs.push(bulbSprite);
+      
+      // Paper sprites (for scientists) - same size as lightbulb
+      const paperSprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+        map: paperTexture,
+        transparent: true,
+        opacity: 1.0,
+        blending: ThreeLib.NormalBlending,
+        depthTest: false,
+        depthWrite: false,
+        sizeAttenuation: false
+      }));
+      paperSprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1); // Same as lightbulb
+      paperSprite.visible = false;
+      paperSprite.renderOrder = 1000;
+      scene.add(paperSprite);
+      ideaSpritePool.papers.push(paperSprite);
+      
+      // Business sprites (for entrepreneurs) - same size as lightbulb
+      const bizSprite = new ThreeLib.Sprite(new ThreeLib.SpriteMaterial({
+        map: businessTexture,
+        transparent: true,
+        opacity: 1.0,
+        blending: ThreeLib.NormalBlending,
+        depthTest: false,
+        depthWrite: false,
+        sizeAttenuation: false
+      }));
+      bizSprite.scale.set(isMobile ? 0.053 : 0.1, isMobile ? 0.053 : 0.1, 1); // Same as lightbulb
+      bizSprite.visible = false;
+      bizSprite.renderOrder = 1000;
+      scene.add(bizSprite);
+      ideaSpritePool.businesses.push(bizSprite);
     }
     
     // Connection lines rendered as animated cylinders for better visibility
@@ -266,28 +371,54 @@
     const tempEndVec = new ThreeLib.Vector3();
     const cylinderUp = new ThreeLib.Vector3(0, 1, 0);
     
-    const activeLightbulbs = []; // { sprite, targetIdx, expiresAt }
-    
     function registerIdea(targetIdx) {
-      if (lightbulbPool.length === 0) return;
-      
       const now = performance.now();
+      const particleType = particleTypes[targetIdx];
       
-      // Check if this particle already has a lightbulb
-      for (let i = 0; i < activeLightbulbs.length; i++) {
-        if (activeLightbulbs[i].targetIdx === targetIdx) {
+      // Different spawn probabilities based on type
+      let shouldSpawn = false;
+      if (particleType === 1 || particleType === 2) {
+        // Scientist or Entrepreneur: 100% chance
+        shouldSpawn = true;
+      } else {
+        // Normal: 30% chance (already rolled before calling this function)
+        shouldSpawn = true;
+      }
+      
+      if (!shouldSpawn) return;
+      
+      // Determine which sprite pool to use
+      let pool, baseSize;
+      if (particleType === 1) { // scientist -> paper
+        pool = ideaSpritePool.papers;
+        baseSize = isMobile ? 0.053 : 0.1;
+      } else if (particleType === 2) { // entrepreneur -> business
+        pool = ideaSpritePool.businesses;
+        baseSize = isMobile ? 0.053 : 0.1;
+      } else { // normal -> lightbulb
+        pool = ideaSpritePool.lightbulbs;
+        baseSize = isMobile ? 0.053 : 0.1;
+      }
+      
+      if (pool.length === 0) return;
+      
+      // Check if this particle already has an idea
+      for (let i = 0; i < activeIdeas.length; i++) {
+        if (activeIdeas[i].targetIdx === targetIdx) {
           // Refresh the duration
-          activeLightbulbs[i].expiresAt = now + IDEA_DURATION;
+          activeIdeas[i].expiresAt = now + IDEA_DURATION;
           return;
         }
       }
       
-      // Spawn new lightbulb
-      const sprite = lightbulbPool.pop();
+      // Spawn new idea
+      const sprite = pool.pop();
       sprite.visible = true;
-      activeLightbulbs.push({
+      activeIdeas.push({
         sprite,
+        pool,
         targetIdx,
+        baseSize,
         expiresAt: now + IDEA_DURATION
       });
     }
@@ -317,33 +448,53 @@
       }
       particlesGeometry.attributes.position.needsUpdate = true;
       
-      // Update Lightbulbs (Sprites)
+      // Update Type Overlays (Scientists and Entrepreneurs)
+      for (let i = 0; i < typeOverlays.scientists.length; i++) {
+        const overlay = typeOverlays.scientists[i];
+        const pIdx = overlay.particleIdx * 3;
+        overlay.sprite.position.set(
+          currentPositions[pIdx],
+          currentPositions[pIdx + 1],
+          currentPositions[pIdx + 2]
+        );
+      }
+      for (let i = 0; i < typeOverlays.entrepreneurs.length; i++) {
+        const overlay = typeOverlays.entrepreneurs[i];
+        const pIdx = overlay.particleIdx * 3;
+        overlay.sprite.position.set(
+          currentPositions[pIdx],
+          currentPositions[pIdx + 1],
+          currentPositions[pIdx + 2]
+        );
+      }
+      
+      // Update Idea Sprites (Lightbulbs, Papers, Business Charts)
       const nowMs = performance.now();
-      for (let i = activeLightbulbs.length - 1; i >= 0; i--) {
-        const bulb = activeLightbulbs[i];
+      for (let i = activeIdeas.length - 1; i >= 0; i--) {
+        const idea = activeIdeas[i];
         
         // Check if expired
-        if (nowMs > bulb.expiresAt) {
-          bulb.sprite.visible = false;
-          lightbulbPool.push(bulb.sprite);
-          activeLightbulbs.splice(i, 1);
+        if (nowMs > idea.expiresAt) {
+          idea.sprite.visible = false;
+          idea.pool.push(idea.sprite);
+          activeIdeas.splice(i, 1);
           continue;
         }
         
         // Update position to follow particle
-        const pIdx = bulb.targetIdx * 3;
-        bulb.sprite.position.set(
+        const pIdx = idea.targetIdx * 3;
+        idea.sprite.position.set(
           currentPositions[pIdx],
           currentPositions[pIdx + 1],
           currentPositions[pIdx + 2]
         );
         
         // Pulse effect
-        const age = nowMs - (bulb.expiresAt - IDEA_DURATION);
+        const age = nowMs - (idea.expiresAt - IDEA_DURATION);
         const pulse = 1 + Math.sin(age * 0.005) * 0.2;
-        bulb.sprite.scale.set(
-          (isMobile ? 0.053 : 0.1) * pulse,
-          (isMobile ? 0.053 : 0.1) * pulse,
+        idea.sprite.scale.set(
+          idea.baseSize * pulse,
+          idea.baseSize * pulse,
           1
         );
       }
@@ -394,7 +545,15 @@
         sig.progress += sig.speed;
         
         if (sig.progress >= 1) {
-          if (Math.random() < 0.3) {
+          const targetType = particleTypes[sig.targetIdx];
+          // Normal particles: 30% chance, Scientists/Entrepreneurs: handled inside registerIdea (50%)
+          if (targetType === 0) {
+            // Normal particle: 30% chance
+            if (Math.random() < 0.3) {
+              registerIdea(sig.targetIdx);
+            }
+          } else {
+            // Scientist or Entrepreneur: always call (50% chance handled inside)
             registerIdea(sig.targetIdx);
           }
           sig.mesh.visible = false;
@@ -475,7 +634,10 @@
       normalMaterial.dispose();
       signalMaterial.dispose();
       lightbulbTexture.dispose();
-      spriteMaterial.dispose();
+      scientistTexture.dispose();
+      entrepreneurTexture.dispose();
+      paperTexture.dispose();
+      businessTexture.dispose();
     });
 
     console.log('Three.js particle background initialized with LineSegments & ideas (fixed)');
