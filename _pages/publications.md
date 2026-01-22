@@ -44,6 +44,17 @@ author_profile: true
 <div class="research-sections">
   <h2 class="section-heading reveal-on-scroll" style="text-align: center; margin: 4rem 0 3rem; font-size: clamp(1.5rem, 3vw, 2rem);">Research Projects</h2>
   
+  <h3 class="subsection-heading revise_and_resubmit reveal-on-scroll">Revise and Resubmit</h3>
+  <div class="bento-grid research-projects-section">
+    {% for post in site.publications reversed %}
+      {% if post.type == "project" and post.project_status == "revise_and_resubmit" and post.index != "No" %}
+        <div class="bento-item">
+          {% include archive-single.html %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  
   <h3 class="subsection-heading under_review reveal-on-scroll">Under Review</h3>
   <div class="bento-grid research-projects-section">
     {% for post in site.publications reversed %}
@@ -209,6 +220,10 @@ document.addEventListener('DOMContentLoaded', function() {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+  }
+  
+  .research-projects-section h3.subsection-heading[class*="revise_and_resubmit"] {
+    border-left-color: #ffc107;
   }
   
   .research-projects-section h3.subsection-heading[class*="under_review"] {
