@@ -39,7 +39,9 @@
     {% endif %}
     {% if post.type == "project" %}
       <span class="tech-badge">Research Project</span>
-      {% if post.project_status == "under_review" %}
+      {% if post.project_status == "revise_and_resubmit" %}
+        <span class="tech-badge" style="border-color: #ffc107; color: #ffc107;">Revise and Resubmit</span>
+      {% elsif post.project_status == "under_review" %}
         <span class="tech-badge" style="border-color: #dc3545; color: #dc3545;">Under Review</span>
       {% elsif post.project_status == "in_progress" %}
         <span class="tech-badge" style="border-color: #fd7e14; color: #fd7e14;">In Progress</span>
