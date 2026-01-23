@@ -3,14 +3,14 @@ title: "Better Keep the Twenty Dollars: Incentivizing Innovation in Open Source"
 collection: publications
 permalink: /publication/Sponsoring-Innovation
 excerpt: 'This paper seeks to understand the effects of the introduction of GitHub Sponsorships on digital innovation.'
-date: 2024-01-15
+date: 2026-01-15
 author: 
 authorurl: 
 authors:
 paperurl: 
 citation: 'Conti, A., Gupta, V., Guzman, J., & Roche, M. (2023). Incentivizing Innovation in Open Source: Evidence from the GitHub Sponsors Program. National Bureau of Economic Research. https://doi.org/10.3386/w31668'
 coauthors: <a href="https://sites.google.com/view/annamariaconti/home-page">Annamaria Conti</a>, <a href="https://www.jorgeguzman.co/">Jorge Guzman</a>, & <a href="https://www.hbs.edu/faculty/Pages/profile.aspx?facId=1284955">Maria Roche</a>
-venue: Revision Requested at Management Science, 2026
+venue: Revision Requested at Management Science
 wp: true
 type: "project"
 project_status: "revise_and_resubmit"
