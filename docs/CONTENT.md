@@ -13,7 +13,9 @@ All facts verified against the old site, MIT Sloan profile, NBER, Scholar
   Scholar VLDgDyAAAAAJ · ORCID 0000-0002-6221-1247
 - Domain: www.vansh-gupta.com (CNAME — do not touch)
 - Cambridge, MA. Coordinates for footer: 42.3608 N / 71.0843 W.
-- IGL Research Affiliate (Nesta/BSE). UK Biobank Approved Researcher. NBER page.
+- Affiliations to show: MIT Sloan (TIES), IGL Research Affiliate (Nesta/BSE),
+  UK Biobank Approved Researcher. Do NOT list NBER as an affiliation
+  (paper links to NBER WPs are fine).
 - Fellowships: Kalim Family Fund (2025), MIT Sloan Doctoral Fellowship (2026–30).
 
 ## Timeline (CV page)
@@ -21,12 +23,13 @@ All facts verified against the old site, MIT Sloan profile, NBER, Scholar
 - 2023–25 Charles River Associates — Associate & Data Scientist, Antitrust
   (healthcare mergers; Innovation Award 2024 AND 2025 for geospatial tooling)
 - 2022 Dean's Summer Research Fellow, Columbia Business School (Jorge Guzman)
-- 2019–23 Cornell — dual B.S.: Biometry & Statistics (3.95) + Applied Economics
+- 2020–23 Cornell — dual B.S.: Biometry & Statistics (3.95) + Applied Economics
   & Management (3.92), magna cum laude, research honors thesis w/ distinction
 - 2021 AEA Data Reproducibility Researcher (Lars Vilhuber)
-- 2019–23 Founder, Ascenta Management Consulting (pro-bono; CEOInsights
-  India Top-10 business consultants, 2022)
-- The Doon School before that
+- 2019–23 Founder, Ascenta Management Consulting — pro-bono consulting in
+  India only. Keep LOW-KEY: not on the CV page, small station on the map;
+  never mention "started at seventeen" or CEOInsights.
+- The Doon School: NOT on the CV page (map terminus only)
 
 ## Research (research.html) — order matters
 
@@ -67,6 +70,16 @@ All facts verified against the old site, MIT Sloan profile, NBER, Scholar
   (40+ RAs). github.com/AEADataEditor/Upload-to-Zenodo
 - LLM measurement pipeline for the Brazil project (16.4M paragraphs labelled,
   cascade + silver standard) — describe, link to paper when public.
+
+## Coauthor homepages (verified June 2026 — link names to these everywhere)
+- Annamaria Conti — https://sites.google.com/view/annamariaconti/home-page
+- Jorge Guzman — https://www.jorgeguzman.co/
+- Maria Roche — https://sites.google.com/view/mariaproche
+- Michael Best — https://michaelcbest.github.io/
+- Renata Lemos — https://renatalemos.com/
+- Daniela Scur — https://danielascur.com/
+- Lars Vilhuber — https://lars.vilhuber.com/
+- Reza Moghimi — https://www.rmoghimi.com/
 
 ## Voice
 First person, direct, curious, a little wry. No "passionate about leveraging".

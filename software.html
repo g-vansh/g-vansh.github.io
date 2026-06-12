@@ -8,13 +8,72 @@
   <meta property="og:title" content="Software — Vansh Gupta">
   <meta property="og:description" content="The instruments: open-source tools built because the questions worth asking can't be measured with existing ones.">
   <meta property="og:url" content="https://www.vansh-gupta.com/software.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.vansh-gupta.com/images/profile.png">
+  <meta property="og:site_name" content="Vansh Gupta">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@VanshG_">
+  <meta name="twitter:creator" content="@VanshG_">
+  <meta name="author" content="Vansh Gupta">
   <link rel="canonical" href="https://www.vansh-gupta.com/software.html">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="stylesheet" href="/assets/css/site.css">
   <script src="/assets/js/atlas.js" defer></script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MW8X3NXK');</script>
+  <!-- End Google Tag Manager -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://www.vansh-gupta.com/software.html",
+    "url": "https://www.vansh-gupta.com/software.html",
+    "name": "Software — Vansh Gupta",
+    "description": "Open-source research software by Vansh Gupta: the STE R package for strategic treatment effects, Upload-to-Zenodo, and LLM measurement pipelines.",
+    "isPartOf": { "@id": "https://www.vansh-gupta.com/#website" },
+    "about": { "@id": "https://www.vansh-gupta.com/#person" },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "STE — Strategic Treatment Effects",
+            "codeRepository": "https://github.com/g-vansh/STE",
+            "programmingLanguage": "R",
+            "description": "R package estimating heterogeneous treatment effects of strategic choices from high-dimensional observational data, using random forests and LASSO under the Rubin causal model.",
+            "author": { "@id": "https://www.vansh-gupta.com/#person" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "name": "Upload-to-Zenodo",
+            "codeRepository": "https://github.com/AEADataEditor/Upload-to-Zenodo",
+            "programmingLanguage": "Python",
+            "description": "Python utility that synchronizes research archives between local storage and Zenodo; used by the AEA Data Editor's replication lab.",
+            "author": { "@id": "https://www.vansh-gupta.com/#person" }
+          }
+        }
+      ]
+    }
+  }
+  </script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MW8X3NXK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <div class="survey-line" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to content</a>
@@ -38,8 +97,8 @@
     <div class="band-inner">
       <p class="plate m"><span class="tick">⊕</span>&nbsp; The instruments · Sheet 03</p>
       <h1>Tools built <em>en route</em></h1>
-      <p class="standfirst">Surveyors make their own instruments. I write code so that economics
-        can answer questions existing tools can't measure — all of it open source at
+      <p class="standfirst">Surveyors make their own instruments. Most of these started the same way:
+        a question we couldn't answer until we built the tool. Everything is open source at
         <a href="https://github.com/g-vansh">github.com/g-vansh</a>.</p>
     </div>
   </div>
@@ -57,7 +116,7 @@
           <p class="meta m-lc">R package · random forests + LASSO under the Rubin causal model</p>
           <p class="hook">Estimates which firms benefit from a strategic choice — and which are hurt by it —
             from high-dimensional observational data. Built from scratch as the companion to
-            Guzman's <em>Treatment Effects in Managerial Strategies</em>; propensity scores from
+            <a href="https://www.jorgeguzman.co/">Guzman</a>'s <em>Treatment Effects in Managerial Strategies</em>; propensity scores from
             out-of-fold random forests, local regressions for the effects, LASSO for the determinants.</p>
           <p class="links m"><a href="https://github.com/g-vansh/STE">GitHub</a>
             <a href="http://dx.doi.org/10.2139/ssrn.3915606">The paper it serves</a></p>

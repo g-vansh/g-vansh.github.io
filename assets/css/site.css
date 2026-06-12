@@ -461,6 +461,46 @@ h2.display em { font-style: italic; color: var(--vermillion); }
 .paper.compact::before { top: 1.68rem; }
 .paper.compact h3 { font-size: 1.15rem; }
 
+/* hand-sketched field figures beside survey entries */
+.paper.has-fig {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 13rem;
+  column-gap: 2.6rem;
+}
+.paper.has-fig > :not(.fig) { grid-column: 1; }
+.paper.has-fig > .fig {
+  grid-column: 2;
+  grid-row: 1 / 9;
+  align-self: center;
+  margin: 0;
+}
+.paper.compact.has-fig { grid-template-columns: minmax(0, 1fr) 9.5rem; }
+.fig svg { display: block; width: 100%; height: auto; overflow: visible; }
+.fig .ax { stroke: var(--graphite); stroke-width: 1.1; fill: none; }
+.fig .ln { stroke: var(--ink); stroke-width: 1.5; fill: none; }
+.fig .ev { stroke: var(--graphite); stroke-width: 1; stroke-dasharray: 3 4; fill: none; }
+.fig .vm { stroke: var(--vermillion); fill: var(--vermillion); }
+.fig .bar { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+.fig text {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  fill: var(--graphite);
+}
+.fig figcaption {
+  margin-top: 0.55rem;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+@media (max-width: 740px) {
+  .paper.has-fig { display: block; }
+  .paper.has-fig > .fig { max-width: 14rem; margin-top: 1.2rem; }
+}
+
 /* "see the full survey" link */
 .lead-out { margin-top: 2.2rem; }
 .lead-out a {
@@ -750,6 +790,10 @@ html.io-reveal .rv.seen { opacity: 1; transform: none; }
 .lg-genes-i { stroke: var(--paper-deep); stroke-width: 2.2; }
 .lg-minor  { stroke: var(--graphite); stroke-width: 2.2; }
 
+/* rolling stock: JS-built capsules riding the rails */
+.train rect { fill: var(--ink); stroke: var(--paper); stroke-width: 1.5; }
+.train circle { fill: var(--paper); }
+
 /* focus mode: hovering a line dims the rest of the network */
 .ln { transition: opacity 240ms ease; }
 #net.focus .ln { opacity: 0.22; }
@@ -775,6 +819,23 @@ html.io-reveal .rv.seen { opacity: 1; transform: none; }
   transition: opacity 560ms ease;
 }
 .descent.gone { opacity: 0; }
+.descent-hud {
+  position: fixed; left: 50%; bottom: 8vh; transform: translateX(-50%);
+  z-index: 61; margin: 0; pointer-events: none; white-space: nowrap;
+  font-size: 0.64rem; letter-spacing: 0.16em; color: var(--graphite);
+  font-variant-numeric: tabular-nums;
+  transition: opacity 560ms ease;
+}
+@media (max-width: 700px) { .descent-hud { font-size: 0.52rem; letter-spacing: 0.1em; } }
+
+/* big desks get the full drafting table: only the plate widens */
+@media (min-width: 1480px) {
+  .section--plate { max-width: 96rem; }
+  .net-wrap { grid-template-columns: minmax(0, 1fr) 235px; gap: 3.2rem; }
+}
+@media (min-width: 1800px) {
+  .section--plate { max-width: 110rem; }
+}
 
 @media (max-width: 940px) {
   .net-wrap { grid-template-columns: 1fr; }
@@ -782,6 +843,16 @@ html.io-reveal .rv.seen { opacity: 1; transform: none; }
   .net-plate { overflow-x: auto; }
   .net-svg { min-width: 880px; }
   .net-plate figcaption::after { content: " · DRAG THE SHEET SIDEWAYS TO PAN"; }
+}
+
+/* touch: invisible halo widens small tap targets without moving any ink */
+@media (pointer: coarse) {
+  .site-nav a, .reach a, .paper .links a, .lead-out a { position: relative; }
+  .site-nav a::after, .reach a::after, .paper .links a::after, .lead-out a::after {
+    content: '';
+    position: absolute;
+    inset: -10px -6px;
+  }
 }
 
 /* ---------- print: the site IS a document ---------- */

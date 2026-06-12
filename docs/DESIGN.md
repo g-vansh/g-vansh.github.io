@@ -104,11 +104,16 @@ transform/opacity only, and degrades to a fully static page.
 - **The relief (index hero):** the flat contour sheet rises into a 3D
   topographic survey — Three.js plane, custom contour shader (iso-lines via
   fwidth with Golus grazing-angle clamping, 1:5 index-line convention,
-  depth haze, vermillion benchmark pulsing on the NE summit). Sequenced
-  reveal ~2.6s: relief rises first, camera tilts to ≈56° overlapping from
-  30%. Cursor steers the camera (lerp 0.06); scroll adds pitch. Pauses
-  off-screen and on hidden tabs. Falls back to the hand-drawn SVG when
-  WebGL/modules/motion are unavailable.
+  depth haze, vermillion benchmark pulsing on the NE summit). The terrain
+  is erosion-weighted fBm with ridged, domain-warped crests, computed on
+  the CPU at load (cooperatively yielded) and baked into one heightfield
+  texture that drives displacement, contours, and an Imhof-style NW
+  hillshade with ray-marched soft cast shadows — relief shading under the
+  linework, fading in with the morph so the flat sheet stays unshaded.
+  Sequenced reveal ~2.6s: relief rises first, camera tilts to ≈56°
+  overlapping from 30%. Cursor steers the camera (lerp 0.06); scroll adds
+  pitch. Pauses off-screen and on hidden tabs. Falls back to the
+  hand-drawn SVG when WebGL/modules/motion are unavailable.
 - Contour SVG (fallback only): 140s drift loop + cursor deflection — inner
   rings drift up to 6px, lerp-damped (fine pointers only).
 - Cursor readout (site-wide): a small mono `⊕ lat/long` label follows the
@@ -133,7 +138,12 @@ transform/opacity only, and degrades to a fully static page.
   the transit diagram fades in — Three.js again, ~3.4s, seeded bearing so
   the approach differs per visit, once per session (`sessionStorage`),
   skippable (Esc / wheel / touch), and skipped entirely under
-  reduced-motion, hidden tabs, or missing WebGL.
+  reduced-motion, hidden tabs, or missing WebGL. The country below uses
+  the same baked-relief pipeline as the hero (erosion fBm + ridged
+  crests; one grid feeds the GPU mesh and the JS benchmark height), with
+  a darkening-only Lambert hillshade wash — no shadow march, because at
+  map scale no slope outpaces a 45° sun. The landing plain is kept calm
+  so the final approach reads as a settled valley.
 - Seeded sheet variation: the map plate's rotation/offset, impression
   number, north-arrow bearing and label jitter re-roll on every load
   (mulberry32; presentation only — the network layout never moves).
@@ -148,7 +158,19 @@ transform/opacity only, and degrades to a fully static page.
   three vanilla JS files (`assets/js/atlas.js`: scroll-line and surfacing
   fallbacks, coordinate decode, cursor readout; `assets/js/terrain.js`:
   the hero relief; `assets/js/network.js`: the map sheet — seeded plate
-  variation, station rail panel, cloud descent). Jekyll removed.
+  variation, station rail panel, rolling stock (small trains running the
+  lines, reduced-motion gated, paused off-screen and on hidden tabs),
+  cloud descent with a mono altitude/bearing HUD). Jekyll removed.
+- **Analytics**: one GTM container (`GTM-MW8X3NXK`) in the `<head>` of all
+  six pages + noscript iframe after `<body>`. Nothing else. Ported from
+  master, where GA4 lives inside the container.
+- **SEO/GEO**: JSON-LD on every page — index carries an `@graph` of
+  `WebSite` (`/#website`) + `Person` (`/#person`); the other sheets
+  reference those nodes by `@id` (research = `CollectionPage` of
+  `ScholarlyArticle`, software = `CollectionPage` of `SoftwareSourceCode`,
+  cv = `ProfilePage`, map = `WebPage`). Plus `sitemap.xml`, `robots.txt`
+  (AI crawlers explicitly welcomed; CSS/JS left crawlable) and `llms.txt`
+  (plain-markdown site guide for language models).
 - **One rendering dependency**: three.js, self-hosted as ES modules in
   `/assets/vendor/` (~180KB gz), loaded only by `terrain.js` (index hero)
   and `network.js` (map descent). No other libraries, ever.
@@ -163,7 +185,7 @@ transform/opacity only, and degrades to a fully static page.
 | Page | Purpose |
 |---|---|
 | `index.html` | Hero question → who I am (3 short paragraphs, human voice) → THE LEGEND (4 lenses) → selected work (3 items) → colophon |
-| `research.html` | Full typeset paper list: R&R / working papers / earlier & assistance work. Scholar link. |
+| `research.html` | Full typeset paper list: R&R / working papers / earlier & assistance work. Scholar link. Each project carries a hand-sketched SVG "field figure" (fig. 01–06): a stylized sketch of the headline finding, one vermillion mark each, `aria-hidden` (it restates the adjacent prose). |
 | `software.html` | STE R package, Upload-to-Zenodo, the gazette-reading machine, the builder-researcher story |
 | `cv.html` | Timeline (HTML) + PDF download |
 | `map.html` | THE NETWORK — the career drawn as a Beck-style transit diagram (octolinear SVG, five lines, monochrome stroke grammar, one vermillion capsule at MIT). Entry via the cloud descent. |
