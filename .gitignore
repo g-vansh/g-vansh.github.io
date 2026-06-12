@@ -1,8 +1,9 @@
 _site/
 .bundle/
-vendor/
+/vendor/
+assets/js/vendor/
 node_modules/
 tmp/screens/
 tmp/*.png
 tmp/*.json
-
+.DS_Store

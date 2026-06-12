@@ -65,8 +65,6 @@ All facts verified against the old site, MIT Sloan profile, NBER, Scholar
   LASSO, Rubin causal model). github.com/g-vansh/STE
 - **Upload-to-Zenodo** — Python; adopted by AEA Data Editor's replication team
   (40+ RAs). github.com/AEADataEditor/Upload-to-Zenodo
-- **Nizam Map** — privacy-preserving community map for Doon School alumni
-  (Folium; locations jittered 1.5 km). Lives at /map.
 - LLM measurement pipeline for the Brazil project (16.4M paragraphs labelled,
   cascade + silver standard) — describe, link to paper when public.
 
@@ -79,6 +77,5 @@ bike hands-free.
 ## Assets carried over from old site
 - `files/CV___Vansh_Gupta.pdf` (check files/ for newer)
 - `images/profile.png`
-- `assets/maps/community_map.html` (Folium map embed)
 - Affiliation logos in `images/affiliations/` (probably unused — legend
   replaces logo wall; logos are a template tell)

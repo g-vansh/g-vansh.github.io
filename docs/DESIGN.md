@@ -95,19 +95,66 @@ Dark hero + light body alternation = Lando energy without sporty cosplay.
 
 ## 6. Motion
 
-- Page load: single 1.2s fade-rise on hero text (staggered ~80ms across 3 elements max).
-- Contour SVG: 120s linear drift loop (translate, not parallax). Paused under
-  reduced-motion.
-- Hover: links get vermillion underline thickening; paper-list items indent
-  2px with a benchmark mark `⊙` appearing in the margin. 150ms ease.
-- Nothing else. No scroll triggers.
+The site moves like a survey instrument: precise, damped, never decorative.
+Every effect is gated behind `prefers-reduced-motion: no-preference`, uses
+transform/opacity only, and degrades to a fully static page.
+
+- Page load: single 1.1s fade-rise on hero text (staggered, 3 elements max);
+  the masthead coordinates scramble-decode once (~0.4s, mono glyphs only).
+- **The relief (index hero):** the flat contour sheet rises into a 3D
+  topographic survey — Three.js plane, custom contour shader (iso-lines via
+  fwidth with Golus grazing-angle clamping, 1:5 index-line convention,
+  depth haze, vermillion benchmark pulsing on the NE summit). Sequenced
+  reveal ~2.6s: relief rises first, camera tilts to ≈56° overlapping from
+  30%. Cursor steers the camera (lerp 0.06); scroll adds pitch. Pauses
+  off-screen and on hidden tabs. Falls back to the hand-drawn SVG when
+  WebGL/modules/motion are unavailable.
+- Contour SVG (fallback only): 140s drift loop + cursor deflection — inner
+  rings drift up to 6px, lerp-damped (fine pointers only).
+- Cursor readout (site-wide): a small mono `⊕ lat/long` label follows the
+  cursor on every page, ticking plausible coordinates around the Cambridge
+  benchmark — longitude tracks the cursor, latitude drifts south as you
+  scroll down the sheet. Exclusion-blended so it reads on ink and paper.
+- The survey line: 2px vermillion route line across the top of the viewport,
+  drawn by scroll progress (`animation-timeline: scroll(root)`; rAF fallback).
+- Surfacing: `.section-rule`, `.paper`, `.tl-row`, `.legend-row` rise 14px as
+  they enter the viewport — scroll-scrubbed natively (`view()` timeline),
+  IntersectionObserver fallback elsewhere.
+- The legend lives: on hover each symbol behaves like what it depicts —
+  benchmark pings, triangulation station re-draws (stroke-dashoffset),
+  river flows (dash march), built-up grid surveys itself in. Pure CSS.
+- Crossing between sheets: cross-document view transitions
+  (`@view-transition { navigation: auto }`), ~200ms crossfade; the ink
+  masthead holds still via `view-transition-name`.
+- Hover: links get vermillion underline thickening; paper-list benchmark
+  dots fill vermillion. 150ms ease.
+- **The descent (map sheet):** arriving at `/map.html` drops you through
+  a deck of paper-coloured billboard clouds onto a contour terrain before
+  the transit diagram fades in — Three.js again, ~3.4s, seeded bearing so
+  the approach differs per visit, once per session (`sessionStorage`),
+  skippable (Esc / wheel / touch), and skipped entirely under
+  reduced-motion, hidden tabs, or missing WebGL.
+- Seeded sheet variation: the map plate's rotation/offset, impression
+  number, north-arrow bearing and label jitter re-roll on every load
+  (mulberry32; presentation only — the network layout never moves).
+- Nothing else. No smooth-scroll libraries, no scroll-jacking, nothing
+  longer than ~700ms except the relief reveal, the map descent, and the
+  user-paced scroll-bound effects. WebGL exists in exactly two places:
+  the index hero and the map-sheet descent.
 
 ## 7. Tech rules
 
-- **Zero frameworks, zero build step.** Hand-written HTML + one CSS file +
-  ~60 lines of vanilla JS (mobile nav, footnote year). Jekyll removed.
+- **Zero UI frameworks, zero build step.** Hand-written HTML + one CSS file +
+  three vanilla JS files (`assets/js/atlas.js`: scroll-line and surfacing
+  fallbacks, coordinate decode, cursor readout; `assets/js/terrain.js`:
+  the hero relief; `assets/js/network.js`: the map sheet — seeded plate
+  variation, station rail panel, cloud descent). Jekyll removed.
+- **One rendering dependency**: three.js, self-hosted as ES modules in
+  `/assets/vendor/` (~180KB gz), loaded only by `terrain.js` (index hero)
+  and `network.js` (map descent). No other libraries, ever.
+- JS is progressive enhancement **only** — every page works with JS disabled
+  and with `atlas.js` deleted.
 - Self-hosted fonts in `/assets/fonts/`.
-- Every page works with JS disabled.
 - Lighthouse targets: 95+ across the board.
 - `.nojekyll` so GitHub Pages serves raw files.
 
@@ -117,7 +164,10 @@ Dark hero + light body alternation = Lando energy without sporty cosplay.
 |---|---|
 | `index.html` | Hero question → who I am (3 short paragraphs, human voice) → THE LEGEND (4 lenses) → selected work (3 items) → colophon |
 | `research.html` | Full typeset paper list: R&R / working papers / earlier & assistance work. Scholar link. |
-| `software.html` | STE R package, Upload-to-Zenodo, Nizam Map, the builder-researcher story |
+| `software.html` | STE R package, Upload-to-Zenodo, the gazette-reading machine, the builder-researcher story |
 | `cv.html` | Timeline (HTML) + PDF download |
-| `map.html` | Nizam community map (existing Folium embed) + form link |
+| `map.html` | THE NETWORK — the career drawn as a Beck-style transit diagram (octolinear SVG, five lines, monochrome stroke grammar, one vermillion capsule at MIT). Entry via the cloud descent. |
 | `404.html` | "Uncharted territory" |
+
+The Nizam community map page was removed (2026-06); the transit-map plate
+above replaced it (a map of Vansh's own).

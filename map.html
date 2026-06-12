@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Nizam Map — Vansh Gupta</title>
-  <meta name="description" content="The Nizam Map: a privacy-preserving community map of The Doon School's alumni, by Vansh Gupta.">
-  <meta property="og:title" content="The Nizam Map — Vansh Gupta">
+  <title>The Network — Vansh Gupta</title>
+  <meta name="description" content="The career of Vansh Gupta drawn as a transit diagram: five lines, four lenses, extensions under construction through 2030.">
+  <meta property="og:title" content="The Network — Vansh Gupta">
   <meta property="og:url" content="https://www.vansh-gupta.com/map.html">
   <link rel="canonical" href="https://www.vansh-gupta.com/map.html">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="stylesheet" href="/assets/css/site.css">
+  <script src="/assets/js/atlas.js" defer></script>
+  <script type="module" src="/assets/js/network.js"></script>
 </head>
 <body>
 
+<div class="survey-line" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="site-head">
@@ -33,23 +36,305 @@
 <main id="main">
   <div class="page-band">
     <div class="band-inner">
-      <p class="plate m"><span class="tick">⊕</span>&nbsp; An actual map, for once · Sheet 05</p>
-      <h1>The <em>Nizam</em> Map</h1>
-      <p class="standfirst">A living atlas of The Doon School's community, drawn so people can find each
-        other without exposing anyone: every pin is jittered up to 1.5 km from its true location.
-        Add yourself via <a href="https://docs.google.com/forms/d/e/1FAIpQLSckdn8nmTChKPMJKv_MDtUV-PvuzP7MeqPuDV84xPTRgu1VIg/viewform">the form</a> —
-        the map redraws itself.</p>
+      <p class="plate m"><span class="tick">⊕</span>&nbsp; The network · Sheet 05</p>
+      <h1>Every idea takes <em>a route</em>.</h1>
+      <p class="standfirst">The same territory as the CV, drawn the way I actually think about it:
+        a transit network. One solid line is the route itself; the four lenses run as their own
+        services; the eastern extensions are under construction through 2030. Hover any station.</p>
     </div>
   </div>
 
   <div class="sheet">
-    <section class="section" aria-label="Community map">
+    <section class="section" aria-label="The network diagram">
       <div class="section-rule m">
-        <span class="no">07</span><span class="ttl">The community</span>
-        <span class="note">pins jittered for privacy</span>
+        <span class="no">07</span><span class="ttl">The diagram</span>
+        <span class="note">good service on all lines</span>
       </div>
-      <iframe class="map-frame" src="/assets/maps/community_map.html" title="Nizam community map" loading="lazy"></iframe>
-      <p class="lead-out"><a href="https://docs.google.com/forms/d/e/1FAIpQLSckdn8nmTChKPMJKv_MDtUV-PvuzP7MeqPuDV84xPTRgu1VIg/viewform">Add yourself to the map <span class="arrow">→</span></a></p>
+
+      <div class="net-wrap">
+        <figure class="net-plate">
+          <svg class="net-svg" viewBox="0 0 1320 900" role="img"
+               aria-label="A schematic transit map of Vansh Gupta's career: the Surveyor's Line runs from The Doon School through Cornell, Columbia and Charles River Associates to MIT Sloan, where four research lines — Government, Place, Incentives and Genes — continue east under construction.">
+
+            <!-- ░ underprint: relief + graticule ░ -->
+            <g class="np-under" aria-hidden="true">
+              <g class="np-grat">
+                <path d="M112,32V868M192,32V868M272,32V868M352,32V868M432,32V868M512,32V868M592,32V868M672,32V868M752,32V868M832,32V868M912,32V868M992,32V868M1072,32V868M1152,32V868M1232,32V868"/>
+                <path d="M32,112H1288M32,192H1288M32,272H1288M32,352H1288M32,432H1288M32,512H1288M32,592H1288M32,672H1288M32,752H1288M32,832H1288"/>
+              </g>
+              <g class="np-contour">
+                <path d="M180,330c40,-70 150,-95 230,-60c80,35 95,120 40,175c-55,55 -175,60 -240,10c-55,-42 -65,-85 -30,-125z"/>
+                <path d="M225,345c30,-45 105,-62 160,-38c55,24 66,82 28,120c-38,38 -122,42 -167,7c-38,-29 -45,-58 -21,-89z"/>
+                <path d="M268,362c18,-26 60,-35 92,-21c32,14 38,47 16,69c-22,22 -70,24 -96,4c-22,-17 -26,-33 -12,-52z"/>
+                <path d="M880,640c55,-60 170,-70 240,-25c70,45 70,130 5,180c-65,50 -185,40 -240,-15c-47,-47 -45,-95 -5,-140z"/>
+                <path d="M920,665c38,-40 118,-47 166,-16c48,31 48,89 3,123c-45,34 -127,27 -165,-11c-32,-32 -31,-65 -4,-96z"/>
+                <path d="M560,140c30,-35 95,-42 140,-15c45,27 48,80 8,110c-40,30 -110,25 -145,-10c-29,-29 -28,-57 -3,-85z"/>
+              </g>
+            </g>
+
+            <!-- ░ plate frame ░ -->
+            <g class="np-frame" aria-hidden="true">
+              <rect x="24" y="24" width="1272" height="852"/>
+              <rect x="32" y="32" width="1256" height="836"/>
+              <path class="np-reg" d="M24,60H10M60,24V10M1296,60h14M1260,24V10M24,840H10M60,876v14M1296,840h14M1260,876v14"/>
+            </g>
+
+            <!-- ░ title block ░ -->
+            <g class="np-title" aria-hidden="true">
+              <text class="net-h" x="68" y="104">The Network</text>
+              <text class="m np-cap" x="68" y="130">EVERY IDEA TAKES A ROUTE</text>
+              <text class="m np-fine" x="68" y="156">LINES OF INQUIRY · STATIONS OF WORK</text>
+              <text class="m np-fine" x="68" y="172">SURVEYED 2018 — 2026 · EXTENSIONS UNDER CONSTRUCTION</text>
+              <text class="m np-fine" x="68" y="188">SHEET 05 · IMPRESSION <tspan id="impression">Nº 1209</tspan></text>
+            </g>
+
+            <!-- ░ north arrow (seeded rotation) ░ -->
+            <g id="north" class="np-north" transform="translate(1244,96)" aria-hidden="true">
+              <line x1="0" y1="26" x2="0" y2="-18"/>
+              <path d="M0,-26 L7,-8 L0,-13 L-7,-8 Z"/>
+              <text class="m" x="0" y="44">N</text>
+            </g>
+
+            <!-- ░ the network ░ -->
+            <g id="net">
+
+              <!-- local services: the Ascenta loop + the Cornell siding -->
+              <g class="ln ln-minor" data-line="loop">
+                <path class="rail" d="M230,690 L454,690 Q472,690 472,672 L472,556 Q472,542 480,534"/>
+                <a href="/cv.html" class="stn" data-t="Ascenta Management Consulting" data-m="FOUNDER · 2019 — 23 · LOOP SERVICE"
+                   data-d="Pro-bono, data-driven consulting across India and the USA, started at seventeen. CEOInsights' top-10 leaders in business consulting, 2022.">
+                  <title>Ascenta — founded at seventeen · 2019–23</title>
+                  <line class="tick-mk" x1="400" y1="690" x2="400" y2="700"/>
+                  <circle class="hit" cx="400" cy="690" r="14"/>
+                  <text class="nl" x="400" y="716" text-anchor="middle">Ascenta</text>
+                  <text class="ns" x="400" y="729" text-anchor="middle">founded at seventeen · 2019–23</text>
+                </a>
+              </g>
+
+              <g class="ln ln-minor" data-line="siding">
+                <path class="rail" d="M480,530 L547,597 Q560,610 578,610 L740,610"/>
+                <a href="https://github.com/AEADataEditor/Upload-to-Zenodo" class="stn" data-t="American Economic Association" data-m="DATA REPRODUCIBILITY · 2021 · w/ LARS VILHUBER"
+                   data-d="Replication checks for submitted manuscripts. Built Upload-to-Zenodo here — the 40-person replication team still runs on it.">
+                  <title>AEA · reproducibility · 2021 — built Upload-to-Zenodo</title>
+                  <line class="tick-mk" x1="600" y1="610" x2="600" y2="620"/>
+                  <rect class="depot" x="594" y="586" width="12" height="12"/>
+                  <circle class="hit" cx="600" cy="604" r="16"/>
+                  <text class="nl" x="600" y="638" text-anchor="middle">AEA</text>
+                  <text class="ns" x="600" y="651" text-anchor="middle">reproducibility · 2021</text>
+                </a>
+                <a href="/research.html" class="stn" data-t="Twitter sentiment &amp; markets" data-m="NLP EVENT STUDY · 2021 · w/ REZA MOGHIMI"
+                   data-d="An event-study design mining 100,000+ tweets against financial markets, at Cornell Dyson.">
+                  <title>Twitter &amp; markets (w/ Moghimi) · 2021</title>
+                  <line class="term-mk" x1="740" y1="604" x2="740" y2="616"/>
+                  <circle class="hit" cx="740" cy="610" r="14"/>
+                  <text class="nl" x="740" y="634" text-anchor="middle">Twitter &amp; markets</text>
+                  <text class="ns" x="740" y="647" text-anchor="middle">w/ Moghimi · 2021</text>
+                </a>
+              </g>
+
+              <!-- GOVERNMENT LINE · dash-dot -->
+              <g class="ln ln-gov" data-line="gov">
+                <path class="rail" d="M480,530 L480,458 Q480,440 492.7,427.3 L627.3,292.7 Q640,280 658,280 L1040,280"/>
+                <g class="ext">
+                  <path class="rail" d="M1040,280 L1078,280 Q1096,280 1108.7,267.3 L1196,180"/>
+                  <path class="arrow" d="M1188,172 L1200,176 L1196,188"/>
+                </g>
+                <a href="/software.html" class="stn" data-t="The gazette-reading machine" data-m="INSTRUMENT · LLM CASCADE · 16.4M PARAGRAPHS"
+                   data-d="The measurement engine of the Brazil agenda: a multi-stage LLM cascade reading every municipal gazette, kept honest by a silver-standard set.">
+                  <title>The gazette-reading machine · 16.4M paragraphs</title>
+                  <rect class="depot" x="554" y="354" width="12" height="12" transform="rotate(45 560 360)"/>
+                  <circle class="hit" cx="560" cy="360" r="16"/>
+                  <text class="nl" x="540" y="352" text-anchor="end">the gazette-reading machine</text>
+                  <text class="ns" x="540" y="365" text-anchor="end">16.4M paragraphs read · instrument</text>
+                </a>
+                <a href="/research.html#brazil" class="stn stn-wip" data-t="Local Government State Capacity" data-m="UNDER SURVEY · w/ BEST, LEMOS &amp; SCUR"
+                   data-d="What do local governments actually do all day? The first high-frequency measure of municipal state capacity, read out of Brazil's daily gazettes.">
+                  <title>Local government state capacity · in progress</title>
+                  <circle class="hollow" cx="1138" cy="238" r="6"/>
+                  <circle class="hit" cx="1138" cy="238" r="14"/>
+                  <text class="nl" x="1158" y="234">State capacity</text>
+                  <text class="ns" x="1158" y="247">w/ Best, Lemos &amp; Scur</text>
+                </a>
+                <a href="/research.html#brazil" class="stn stn-wip" data-t="Municipal Responses to Natural Disasters" data-m="UNDER SURVEY · w/ BEST, LEMOS &amp; SCUR"
+                   data-d="Brazil floods constantly and predictably. What disasters do to the day-to-day machinery of the local state — and how long recovery takes.">
+                  <title>Municipal responses to disasters · in progress</title>
+                  <circle class="hollow" cx="1178" cy="198" r="6"/>
+                  <circle class="hit" cx="1178" cy="198" r="14"/>
+                  <text class="nl" x="1162" y="190" text-anchor="end">Disaster response</text>
+                  <text class="ns" x="1162" y="203" text-anchor="end">floods × capacity</text>
+                </a>
+              </g>
+
+              <!-- PLACE LINE · dotted -->
+              <g class="ln ln-place" data-line="place">
+                <path class="rail" d="M480,530 L480,542 Q480,560 498,560 L762,560 Q780,560 792.7,547.3 L847.3,492.7 Q860,480 860,462 L860,338 Q860,320 878,320 L1026,320"/>
+                <g class="ext">
+                  <path class="rail" d="M1054,320 L1078,320 Q1096,320 1108.7,333 L1166,390"/>
+                  <path class="arrow" d="M1158,386 L1170,394 L1162,402"/>
+                </g>
+                <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4394638" class="stn" data-t="Schools &amp; resources — honors thesis" data-m="CORNELL · WITH DISTINCTION · 2023"
+                   data-d="Given fixed budgets, should Brazilian schools buy physical resources or human capital? Human capital wins, robustly. SSRN 4394638.">
+                  <title>Approaches and resources for student outcomes · honors thesis · 2023</title>
+                  <line class="tick-mk" x1="700" y1="560" x2="700" y2="570"/>
+                  <circle class="hit" cx="700" cy="560" r="14"/>
+                  <text class="nl" x="700" y="588" text-anchor="middle">Schools &amp; resources</text>
+                  <text class="ns" x="700" y="601" text-anchor="middle">honors thesis · 2023</text>
+                </a>
+                <a href="/research.html" class="stn stn-wip" data-t="Where ideas cluster" data-m="UNDER SURVEY · THE PLACE LENS"
+                   data-d="Ideas cluster on the map. How much of invention is the person, and how much is the place they landed in?">
+                  <title>Where ideas cluster · under survey</title>
+                  <circle class="hollow" cx="1142" cy="366" r="6"/>
+                  <circle class="hit" cx="1142" cy="366" r="14"/>
+                  <text class="nl" x="1158" y="370">Where ideas cluster</text>
+                </a>
+              </g>
+
+              <!-- INCENTIVES LINE · long dash -->
+              <g class="ln ln-incent" data-line="incent">
+                <path class="rail" d="M690,430 L690,452 Q690,470 708,470 L885,470 Q903,470 915.7,457.3 L1023.3,349.7 Q1033,340 1036,330"/>
+                <g class="ext">
+                  <path class="rail" d="M1040,352 L1040,366 Q1040,384 1058,384 L1238,384"/>
+                  <path class="arrow" d="M1230,376 L1242,384 L1230,392"/>
+                </g>
+                <a href="https://www.nber.org/papers/w31668" class="stn" data-t="Better Keep the Twenty Dollars" data-m="R&amp;R, MANAGEMENT SCIENCE · NBER WP 31668"
+                   data-d="100,000 GitHub users around the launch of Sponsors: opting in raises output, but getting paid durably lowers it. Money crowds out the motivation open source runs on. w/ Conti, Guzman &amp; Roche.">
+                  <title>Better Keep the Twenty Dollars · R&amp;R, Management Science</title>
+                  <line class="tick-mk" x1="730" y1="470" x2="730" y2="480"/>
+                  <circle class="hit" cx="730" cy="470" r="14"/>
+                  <text class="nl" x="730" y="498" text-anchor="middle">The Twenty Dollars</text>
+                  <text class="ns" x="730" y="511" text-anchor="middle">R&amp;R · Management Science</text>
+                </a>
+                <a href="/research.html#genes" class="stn stn-wip" data-t="Welfare economics of incentives" data-m="UNDER SURVEY · SOLO"
+                   data-d="If paying for public-goods innovation can backfire, what does the welfare-maximizing incentive scheme look like — and who should be paid nothing at all?">
+                  <title>Welfare economics of incentives · solo · in progress</title>
+                  <circle class="hollow" cx="1110" cy="384" r="6"/>
+                  <circle class="hit" cx="1110" cy="384" r="14"/>
+                  <text class="nl" x="1110" y="416" text-anchor="middle">Welfare of incentives</text>
+                  <text class="ns" x="1110" y="429" text-anchor="middle">solo · in progress</text>
+                </a>
+              </g>
+
+              <!-- GENES LINE · double track -->
+              <g class="ln ln-genes" data-line="genes">
+                <path class="rail rail-case" d="M1054,300 L1252,300"/>
+                <path class="rail rail-core" d="M1054,300 L1252,300"/>
+                <path class="arrow" d="M1246,292 L1258,300 L1246,308"/>
+                <a href="/research.html" class="stn stn-wip" data-t="UK Biobank" data-m="APPROVED RESEARCHER · 2026 · THE GENES LENS"
+                   data-d="Genes load the dice; the question is how much. Approved-researcher access to UK Biobank for the genetics of invention.">
+                  <title>UK Biobank · approved researcher · under survey</title>
+                  <circle class="hollow" cx="1150" cy="300" r="6"/>
+                  <circle class="hit" cx="1150" cy="300" r="14"/>
+                  <text class="nl" x="1150" y="282" text-anchor="middle">UK Biobank</text>
+                </a>
+              </g>
+
+              <!-- THE SURVEYOR'S LINE · solid, the route itself -->
+              <g class="ln ln-route" data-line="route">
+                <path class="rail" d="M150,770 L377,543 Q390,530 408,530 L542,530 Q560,530 572.7,517.3 L647.3,442.7 Q660,430 678,430 L702,430 Q720,430 732.7,417.3 L797.3,352.7 Q810,340 828,340 L912,340 Q930,340 942.7,327.3 L957.3,312.7 Q970,300 988,300 L1040,300"/>
+
+                <a href="/cv.html" class="stn" data-t="The Doon School" data-m="DEHRADUN · TERMINUS · UNTIL 2018"
+                   data-d="Where the route begins. Before all of it: The Doon School.">
+                  <title>The Doon School · Dehradun · until 2018</title>
+                  <line class="term-mk" x1="141" y1="761" x2="159" y2="779" transform="rotate(90 150 770)"/>
+                  <circle class="hit" cx="150" cy="770" r="16"/>
+                  <text class="nt" x="170" y="774">THE DOON SCHOOL</text>
+                  <text class="ns" x="170" y="788">Dehradun · terminus · until 2018</text>
+                </a>
+
+                <a href="/cv.html" class="stn" data-t="Grant Thornton International" data-m="RESEARCH TRAINEE · 2018 — 19"
+                   data-d="Global Research Centre — the first stop out of school.">
+                  <title>Grant Thornton · Global Research Centre · 2018–19</title>
+                  <line class="tick-mk" x1="266" y1="646" x2="259" y2="653" transform="rotate(0 270 650)"/>
+                  <circle class="hit" cx="270" cy="650" r="14"/>
+                  <text class="nl" x="288" y="654">Grant Thornton</text>
+                  <text class="ns" x="288" y="667">2018–19</text>
+                </a>
+
+                <a href="/cv.html" class="stn stn-int" data-t="Cornell University" data-m="INTERCHANGE · 2019 — 23 · MAGNA CUM LAUDE"
+                   data-d="Dual B.S. — Biometry &amp; Statistics (3.95) and Applied Economics &amp; Management (3.92). RA to Daniela Scur: the Government and Place lines open here.">
+                  <title>Cornell · dual B.S. · 2019–23 — Government &amp; Place lines open here</title>
+                  <circle class="roundel" cx="480" cy="530" r="9"/>
+                  <circle class="hit" cx="480" cy="530" r="18"/>
+                  <text class="nt" x="468" y="508" text-anchor="end">CORNELL</text>
+                  <text class="ns" x="468" y="521" text-anchor="end">dual B.S. · 2019–23</text>
+                </a>
+
+                <a href="/cv.html" class="stn stn-int" data-t="Columbia Business School" data-m="INTERCHANGE · SUMMER 2022 · w/ JORGE GUZMAN"
+                   data-d="Dean's Summer Research Fellow. Strategic treatment effects; the STE R package built here. The Incentives line opens.">
+                  <title>Columbia GSB · research fellow w/ Guzman · 2022 — Incentives line opens here</title>
+                  <circle class="roundel" cx="690" cy="430" r="8"/>
+                  <rect class="depot" x="664" y="444" width="12" height="12"/>
+                  <circle class="hit" cx="690" cy="430" r="17"/>
+                  <text class="nt" x="690" y="392" text-anchor="middle">COLUMBIA</text>
+                  <text class="ns" x="690" y="405" text-anchor="middle">w/ Guzman · 2022</text>
+                </a>
+
+                <a href="/cv.html" class="stn stn-int" data-t="Charles River Associates" data-m="INTERCHANGE · 2023 — 25 · ANTITRUST &amp; COMPETITION"
+                   data-d="Associate &amp; Data Scientist — healthcare mergers, correspondence with the DOJ. Geospatial tooling: CRA Innovation Award, 2024 and 2025.">
+                  <title>Charles River Associates · 2023–25 · two Innovation Awards</title>
+                  <circle class="roundel" cx="860" cy="340" r="8"/>
+                  <circle class="hit" cx="860" cy="340" r="17"/>
+                  <text class="nt" x="884" y="361">CHARLES RIVER</text>
+                  <text class="ns" x="884" y="374">antitrust · 2023–25</text>
+                </a>
+
+                <!-- MIT: the grand interchange -->
+                <a href="/cv.html" class="stn stn-mit" data-t="MIT Sloan" data-m="PhD, TIES · 2025 — 30 · ALL LINES CALL HERE"
+                   data-d="Behavioral &amp; Policy Sciences — Technological Innovation, Entrepreneurship &amp; Strategic Management. Kalim Family Fund Fellowship; Sloan Doctoral Fellowship. Every line on this map calls at this station.">
+                  <title>MIT Sloan · PhD · 2025–30 · you are here</title>
+                  <rect class="mit-capsule" x="1026" y="268" width="28" height="84" rx="14"/>
+                  <circle class="mit-pt" cx="1040" cy="280" r="3"/>
+                  <circle class="mit-pt" cx="1040" cy="300" r="3"/>
+                  <circle class="mit-pt" cx="1040" cy="320" r="3"/>
+                  <circle class="mit-pt" cx="1040" cy="340" r="3"/>
+                  <circle class="hit" cx="1040" cy="310" r="46"/>
+                  <text class="nt" x="1040" y="232" text-anchor="middle">MIT SLOAN</text>
+                  <text class="ns" x="1040" y="245" text-anchor="middle">PhD, TIES · 2025–30</text>
+                  <text class="vm-here m" x="1040" y="218" text-anchor="middle">⊕ YOU ARE HERE</text>
+                </a>
+              </g>
+            </g>
+
+            <!-- ░ legend ░ -->
+            <g class="np-legend" aria-hidden="true">
+              <rect class="np-box" x="978" y="560" width="308" height="296"/>
+              <text class="m np-cap" x="998" y="588">HOW TO READ THIS MAP</text>
+
+              <path class="lg lg-route"  d="M998,612 H1058"/><text class="ns" x="1070" y="616">Surveyor's Line — the route, 2018 →</text>
+              <path class="lg lg-gov"    d="M998,638 H1058"/><text class="ns" x="1070" y="642">Government Line</text>
+              <path class="lg lg-place"  d="M998,664 H1058"/><text class="ns" x="1070" y="668">Place Line</text>
+              <path class="lg lg-incent" d="M998,690 H1058"/><text class="ns" x="1070" y="694">Incentives Line</text>
+              <path class="lg lg-genes-c" d="M998,716 H1058"/><path class="lg lg-genes-i" d="M998,716 H1058"/><text class="ns" x="1070" y="720">Genes Line</text>
+              <path class="lg lg-minor"  d="M998,742 H1058"/><text class="ns" x="1070" y="746">Local services — consulting &amp; RA work</text>
+
+              <line class="tick-mk" x1="1004" y1="763" x2="1004" y2="773"/>
+              <circle class="roundel" cx="1026" cy="768" r="6"/>
+              <rect class="depot" x="1042" y="762" width="11" height="11"/>
+              <circle class="hollow" cx="1070" cy="768" r="5"/>
+              <text class="ns" x="1086" y="772">station · interchange · instrument · planned</text>
+
+              <path class="np-scale" d="M998,800 H1078 M998,795 V805 M1038,797 V803 M1078,795 V805"/>
+              <text class="ns" x="1090" y="804">one idea (approx.)</text>
+              <text class="m np-fine" x="998" y="830">SCHEMATIC, NOT TO SCALE · ALL TIMES LOCAL</text>
+              <text class="m np-fine" x="998" y="845">GOOD SERVICE ON ALL LINES</text>
+            </g>
+
+            <!-- ░ plate notes ░ -->
+            <text class="m np-fine" x="68" y="836" aria-hidden="true">DRAWN BY THE SURVEYOR'S OWN HAND · POSITIONS SCHEMATIC · DELAYS POSSIBLE ON ALL LINES</text>
+            <text class="m np-fine" x="68" y="852" aria-hidden="true">42.3608 N / 71.0843 W — THE NETWORK IS OPERATED FROM CAMBRIDGE, MASS.</text>
+          </svg>
+          <figcaption class="m">FIG. 5 — THE NETWORK. The career as rolling stock: hover a station for particulars; click to travel.</figcaption>
+        </figure>
+
+        <aside class="net-rail" aria-live="polite">
+          <div class="margin-note" id="net-info">
+            <span class="m" id="net-info-m">THE NETWORK</span>
+            <p id="net-info-t"><strong>Hover any station.</strong></p>
+            <p id="net-info-d">Five lines, four lenses, one question. Termini are open on the eastern
+              side — that territory is still being surveyed.</p>
+          </div>
+        </aside>
+      </div>
     </section>
   </div>
 </main>

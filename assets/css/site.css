@@ -74,6 +74,34 @@
 
 ::selection { background: var(--vermillion); color: var(--paper); }
 
+/* ---------- crossing between sheets (view transitions) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root) { animation-duration: 110ms; }
+  ::view-transition-new(root) { animation-duration: 190ms; }
+}
+.site-head { view-transition-name: site-head; }
+
+/* ---------- the survey line (route progress) ---------- */
+.survey-line {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--vermillion);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  z-index: 20;
+  pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+  .survey-line {
+    animation: survey-draw linear both;
+    animation-timeline: scroll(root);
+  }
+  @keyframes survey-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+}
+@media (prefers-reduced-motion: reduce) { .survey-line { display: none; } }
+
 .skip {
   position: absolute;
   left: -9999px;
@@ -210,6 +238,39 @@ a { color: inherit; }
   @keyframes rise { to { opacity: 1; transform: none; } }
 }
 
+/* the live relief: WebGL canvas takes over from the hand-drawn sheet */
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1100ms ease;
+}
+.hero--3d .hero-canvas { opacity: 1; }
+.hero--3d .contours { opacity: 0; transition: opacity 900ms ease; animation: none; }
+
+/* live coordinate readout that follows the cursor across the whole site;
+   exclusion blend keeps it legible on both ink and paper */
+.cursor-readout {
+  position: fixed;
+  left: 0; top: 0;
+  z-index: 30;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  color: #cfd0d6;
+  mix-blend-mode: exclusion;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 350ms ease;
+}
+.cursor-readout.on { opacity: 0.85; }
+@media print { .cursor-readout { display: none; } }
+
 /* ============================================================
    SECTIONS on paper
    ============================================================ */
@@ -319,6 +380,38 @@ h2.display em { font-style: italic; color: var(--vermillion); }
 .legend-row .sub { display: block; margin-top: 0.35rem; color: var(--graphite); }
 .legend-row p { color: var(--ink); font-size: 0.98rem; max-width: 52ch; }
 .legend-row p .qsub { color: var(--graphite); font-style: italic; }
+
+/* the legend lives: each symbol behaves like what it depicts, on hover */
+@media (prefers-reduced-motion: no-preference) {
+  .legend-sym .stroke circle,
+  .legend-sym .stroke path,
+  .legend-sym .stroke rect { transform-box: fill-box; transform-origin: center; }
+
+  /* incentives — the benchmark pings, like a struck instrument */
+  .legend-row:nth-of-type(1):hover .legend-sym .stroke circle {
+    animation: lg-ping 850ms ease-in-out infinite alternate;
+  }
+  /* place — the triangulation station re-draws itself */
+  .legend-row:nth-of-type(2):hover .legend-sym .stroke path {
+    stroke-dasharray: 97;
+    animation: lg-draw-97 700ms ease-out forwards;
+  }
+  /* genes — the river starts to flow */
+  .legend-row:nth-of-type(3):hover .legend-sym .stroke path:nth-of-type(-n+2) {
+    stroke-dasharray: 5 4;
+    animation: lg-flow 1.3s linear infinite;
+  }
+  /* government — the built-up grid is surveyed in (one continuous stroke) */
+  .legend-row:nth-of-type(4):hover .legend-sym .stroke path {
+    stroke-dasharray: 108;
+    animation: lg-draw-108 900ms ease-out forwards;
+  }
+
+  @keyframes lg-ping     { from { transform: scale(1); } to { transform: scale(1.16); } }
+  @keyframes lg-draw-97  { from { stroke-dashoffset: 97; } to { stroke-dashoffset: 0; } }
+  @keyframes lg-draw-108 { from { stroke-dashoffset: 108; } to { stroke-dashoffset: 0; } }
+  @keyframes lg-flow    { to { stroke-dashoffset: -18; } }
+}
 
 /* ============================================================
    PAPER LIST (typeset, hanging indent, no cards)
@@ -539,6 +632,31 @@ h2.display em { font-style: italic; color: var(--vermillion); }
 .lost a { color: var(--paper); }
 
 /* ============================================================
+   SURFACING — entries rise as they enter the sheet
+   ============================================================ */
+/* native: scroll-driven, scrubbed by the reader's own pace */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .section-rule, .paper, .tl-row, .legend-row {
+      animation: surface linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+/* fallback: IntersectionObserver (atlas.js) adds .rv then .seen */
+html.io-reveal .rv {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 600ms ease, transform 600ms cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+html.io-reveal .rv.seen { opacity: 1; transform: none; }
+@keyframes surface {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 880px) {
@@ -555,8 +673,119 @@ h2.display em { font-style: italic; color: var(--vermillion); }
   .hero { min-height: calc(96svh - 7rem); }
 }
 
+/* ---------- sheet 05: the network (map.html) ---------- */
+.net-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 215px; gap: 2.4rem; align-items: start; }
+.net-rail { position: sticky; top: 4.5rem; }
+#net-info p { margin: 0.3rem 0 0; }
+#net-info-d { font-size: 0.82rem; line-height: 1.5; color: var(--graphite); }
+
+.net-plate {
+  margin: 0;
+  border: 1px solid var(--hairline);
+  background: var(--paper);
+  padding: clamp(0.4rem, 1.4vw, 1.1rem);
+  transform: rotate(var(--sheet-rot, 0deg)) translate(var(--sheet-dx, 0px), var(--sheet-dy, 0px));
+}
+.net-plate figcaption { margin-top: 0.7rem; font-size: 0.66rem; letter-spacing: 0.09em; color: var(--graphite); }
+.net-svg { display: block; width: 100%; height: auto; }
+
+/* plate furniture */
+.net-svg text { font-family: var(--mono); }
+.net-h { font-family: var(--display); font-size: 42px; font-weight: 580; font-style: italic; fill: var(--ink); }
+.np-cap  { font-size: 12px; letter-spacing: 0.2em; fill: var(--ink); }
+.np-fine { font-size: 9.5px; letter-spacing: 0.1em; fill: var(--graphite); }
+.np-grat path { stroke: var(--ink); opacity: 0.045; stroke-width: 1; }
+.np-contour path { fill: none; stroke: var(--ink); opacity: 0.055; stroke-width: 1.4; }
+.np-frame rect { fill: none; stroke: var(--ink); }
+.np-frame rect:first-of-type { stroke-width: 1.5; }
+.np-frame rect:last-of-type { stroke-width: 0.6; opacity: 0.7; }
+.np-reg { stroke: var(--graphite); stroke-width: 1; opacity: 0.7; fill: none; }
+.np-north line { stroke: var(--ink); stroke-width: 1.6; }
+.np-north path { fill: var(--ink); }
+.np-north text { font-size: 11px; text-anchor: middle; fill: var(--ink); }
+.np-box { fill: var(--paper-deep); stroke: var(--hairline); }
+.np-scale { stroke: var(--ink); stroke-width: 1.2; fill: none; }
+
+/* the lines: one ink, five stroke grammars */
+.ln .rail { fill: none; stroke: var(--ink); stroke-linecap: round; stroke-linejoin: round; }
+.ln-route .rail  { stroke-width: 5; }
+.ln-gov .rail    { stroke-width: 3.4; stroke-dasharray: 13 5 2 5; }
+.ln-place .rail  { stroke-width: 3.6; stroke-dasharray: 0.1 8; }
+.ln-incent .rail { stroke-width: 3.4; stroke-dasharray: 11 6; }
+.ln-genes .rail-case { stroke-width: 5.4; }
+.ln-genes .rail-core { stroke: var(--paper); stroke-width: 2.2; }
+.ln-minor .rail { stroke: var(--graphite); stroke-width: 2.2; }
+.ln .ext .rail { opacity: 0.55; }
+.ln .arrow { fill: none; stroke: var(--ink); stroke-width: 2; opacity: 0.55; stroke-linejoin: round; }
+
+/* marks */
+.tick-mk { stroke: var(--ink); stroke-width: 2.2; }
+.ln-minor .tick-mk { stroke: var(--graphite); stroke-width: 2; }
+.term-mk { stroke: var(--ink); stroke-width: 4; }
+.ln-minor .term-mk { stroke: var(--graphite); stroke-width: 3; }
+.roundel { fill: var(--paper); stroke: var(--ink); stroke-width: 2.6; }
+.hollow  { fill: var(--paper); stroke: var(--graphite); stroke-width: 2; }
+.depot   { fill: var(--paper); stroke: var(--ink); stroke-width: 1.8; }
+.hit { fill: transparent; stroke: none; }
+.mit-capsule { fill: var(--paper); stroke: var(--vermillion); stroke-width: 3; }
+.mit-pt { fill: var(--ink); }
+.vm-here { fill: var(--vermillion); font-size: 10px; letter-spacing: 0.16em; }
+
+/* station type */
+.nl { font-size: 11px; fill: var(--ink); }
+.ns { font-size: 9.5px; fill: var(--graphite); }
+.nt { font-size: 11.5px; font-weight: 600; letter-spacing: 0.05em; fill: var(--ink); }
+.stn { cursor: pointer; }
+.stn:focus-visible { outline: 2px solid var(--vermillion); outline-offset: 3px; }
+.stn:hover .nl, .stn:focus .nl,
+.stn:hover .nt, .stn:focus .nt { fill: var(--vermillion); }
+
+/* legend samples mirror the line grammars */
+.lg { fill: none; stroke: var(--ink); stroke-linecap: round; }
+.lg-route  { stroke-width: 5; }
+.lg-gov    { stroke-width: 3.4; stroke-dasharray: 13 5 2 5; }
+.lg-place  { stroke-width: 3.6; stroke-dasharray: 0.1 8; }
+.lg-incent { stroke-width: 3.4; stroke-dasharray: 11 6; }
+.lg-genes-c { stroke-width: 5.4; }
+.lg-genes-i { stroke: var(--paper-deep); stroke-width: 2.2; }
+.lg-minor  { stroke: var(--graphite); stroke-width: 2.2; }
+
+/* focus mode: hovering a line dims the rest of the network */
+.ln { transition: opacity 240ms ease; }
+#net.focus .ln { opacity: 0.22; }
+#net.focus .ln.lit { opacity: 1; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .stn:hover :is(.roundel, .hollow, .depot, .mit-capsule),
+  .stn:focus :is(.roundel, .hollow, .depot, .mit-capsule) {
+    animation: net-ping 700ms ease;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  @keyframes net-ping { 50% { transform: scale(1.3); } }
+}
+
+/* the descent: WebGL overlay, JS-created */
+.descent {
+  position: fixed; inset: 0; z-index: 60;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  background: var(--paper);
+  opacity: 1;
+  transition: opacity 560ms ease;
+}
+.descent.gone { opacity: 0; }
+
+@media (max-width: 940px) {
+  .net-wrap { grid-template-columns: 1fr; }
+  .net-rail { position: static; }
+  .net-plate { overflow-x: auto; }
+  .net-svg { min-width: 880px; }
+  .net-plate figcaption::after { content: " · DRAG THE SHEET SIDEWAYS TO PAN"; }
+}
+
 /* ---------- print: the site IS a document ---------- */
 @media print {
-  .site-head, .colophon, .hero .contours { display: none; }
+  .site-head, .colophon, .hero .contours, .survey-line, .hero-readout, .descent, .net-rail { display: none; }
   body { background: #fff; }
 }
