@@ -174,8 +174,12 @@ if (net && infoT) {
   if (sessionStorage.getItem('netFlown')) return;   /* once per session */
   if (document.hidden) return;                      /* no flights from background tabs */
 
+  /* probe for WebGL2 first — three.js logs its own console.error if context
+     creation fails, so we check and skip the descent quietly (the plate is
+     already on the page). */
   let renderer;
   try {
+    if (!document.createElement('canvas').getContext('webgl2')) return;
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'low-power' });
   } catch (e) { return; }
   sessionStorage.setItem('netFlown', '1');

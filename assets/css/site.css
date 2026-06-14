@@ -329,6 +329,9 @@ h2.display em { font-style: italic; color: var(--vermillion); }
 /* portrait */
 .portrait {
   width: min(13rem, 40vw);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: cover;
   filter: grayscale(1) contrast(1.05);
   border: 1px solid var(--ink);
 }

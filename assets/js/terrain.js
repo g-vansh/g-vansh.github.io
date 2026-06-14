@@ -17,8 +17,12 @@ import * as THREE from '/assets/vendor/three.module.min.js';
   const hero = document.querySelector('.hero');
   if (!hero) return;
 
+  /* probe for WebGL2 before building the renderer — three.js logs its own
+     console.error if context creation fails, so we check first and bow out
+     quietly (the inline SVG contours stay). */
   let renderer;
   try {
+    if (!document.createElement('canvas').getContext('webgl2')) return;
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'low-power' });
   } catch (e) { return; }
 
