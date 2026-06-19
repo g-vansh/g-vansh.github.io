@@ -399,7 +399,7 @@ h2.display em { font-style: italic; color: var(--vermillion); }
     stroke-dasharray: 97;
     animation: lg-draw-97 700ms ease-out forwards;
   }
-  /* genes — the river starts to flow */
+  /* brains — the river starts to flow */
   .legend-row:nth-of-type(3):hover .legend-sym .stroke path:nth-of-type(-n+2) {
     stroke-dasharray: 5 4;
     animation: lg-flow 1.3s linear infinite;
@@ -755,8 +755,8 @@ html.io-reveal .rv.seen { opacity: 1; transform: none; }
 .ln-gov .rail    { stroke-width: 3.4; stroke-dasharray: 13 5 2 5; }
 .ln-place .rail  { stroke-width: 3.6; stroke-dasharray: 0.1 8; }
 .ln-incent .rail { stroke-width: 3.4; stroke-dasharray: 11 6; }
-.ln-genes .rail-case { stroke-width: 5.4; }
-.ln-genes .rail-core { stroke: var(--paper); stroke-width: 2.2; }
+.ln-brains .rail-case { stroke-width: 5.4; }
+.ln-brains .rail-core { stroke: var(--paper); stroke-width: 2.2; }
 .ln-minor .rail { stroke: var(--graphite); stroke-width: 2.2; }
 .ln .ext .rail { opacity: 0.55; }
 .ln .arrow { fill: none; stroke: var(--ink); stroke-width: 2; opacity: 0.55; stroke-linejoin: round; }
@@ -789,8 +789,8 @@ html.io-reveal .rv.seen { opacity: 1; transform: none; }
 .lg-gov    { stroke-width: 3.4; stroke-dasharray: 13 5 2 5; }
 .lg-place  { stroke-width: 3.6; stroke-dasharray: 0.1 8; }
 .lg-incent { stroke-width: 3.4; stroke-dasharray: 11 6; }
-.lg-genes-c { stroke-width: 5.4; }
-.lg-genes-i { stroke: var(--paper-deep); stroke-width: 2.2; }
+.lg-brains-c { stroke-width: 5.4; }
+.lg-brains-i { stroke: var(--paper-deep); stroke-width: 2.2; }
 .lg-minor  { stroke: var(--graphite); stroke-width: 2.2; }
 
 /* rolling stock: JS-built capsules riding the rails */

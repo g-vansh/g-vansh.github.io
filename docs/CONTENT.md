@@ -7,8 +7,8 @@ All facts verified against the old site, MIT Sloan profile, NBER, Scholar
 - **Vansh Gupta** — PhD student, MIT Sloan (TIES: Technological Innovation,
   Entrepreneurship & Strategic Management). Behavioral & Policy Sciences.
 - Research: innovation economics — *where do ideas come from?*
-  Four lenses: **incentives (money), place (geography/proximity), genes
-  (genoeconomics, UK Biobank), government (state capacity)**.
+  Four lenses: **incentives (money), place (geography/proximity), brains
+  (neural wiring, UK Biobank), government (state capacity)**.
 - Email: vansh@mit.edu · GitHub g-vansh · X @VanshG_ · LinkedIn vansh-g ·
   Scholar VLDgDyAAAAAJ · ORCID 0000-0002-6221-1247
 - Domain: www.vansh-gupta.com (CNAME — do not touch)

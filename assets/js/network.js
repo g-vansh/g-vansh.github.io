@@ -116,7 +116,7 @@ if (net && infoT) {
     const s = {
       rail, g, len,
       d: -FADE + rngPath() * (len + FADE),     /* staggered out of the depot */
-      v: (len < 320 ? 16 : 30) + rngPath() * 10, /* short genes shuttle dawdles */
+      v: (len < 320 ? 16 : 30) + rngPath() * 10, /* short brains shuttle dawdles */
     };
     services.push(s);
     pose(s);                                    /* on the rails before first paint */

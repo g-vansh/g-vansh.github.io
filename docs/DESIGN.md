@@ -6,7 +6,7 @@
 ## 1. The concept: AN ATLAS OF IDEAS
 
 Vansh's research question is *"where do ideas come from?"* — studied through four
-lenses (incentives, place, genes, government). He is also, personally, a map
+lenses (incentives, place, brains, government). He is also, personally, a map
 person: cartography, transit systems, urban design, the Nizam Map, two CRA
 Innovation Awards for geospatial tooling, Brazil municipality research.
 
