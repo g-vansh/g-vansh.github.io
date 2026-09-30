@@ -1,38 +1,38 @@
 # Vansh Gupta
 
-> Vansh Gupta is a PhD student in innovation economics at the MIT Sloan School of Management (Economics of Technological Innovation, Entrepreneurship & Strategic Management — TIES, 2025–2030). He studies where ideas come from — incentives, place, brains, and institutions — with particular focus on open-source innovation, public goods provision, the supply of expert service to public institutions, AI and human scientists, and state capacity. Fields: innovation, industrial organization, public institutions, incentives. Email: vansh@mit.edu.
+> Vansh Gupta is a PhD student at the MIT Sloan School of Management (2025–2030) who studies the economics of innovation: where new ideas come from, and how things that everyone uses but nobody has much reason to pay for, such as open-source software and internet standards, get made. Research fields: innovation, industrial organization, public institutions and incentives. Email: vansh@mit.edu.
 
-Key facts:
+## Key facts
 
-- PhD student, MIT Sloan School of Management (TIES group — economics of technological innovation, entrepreneurship & strategic management), 2025–2030. S.M. in Management Research expected 2027. MIT Sloan Doctoral Fellowship (2026–30); Kalim Family Fund Fellowship (2025).
-- Grant (2026): Unlocking Global Growth Through Indian Innovation & Patent Commercialization, funded by Analogue Group and The Good Science Project.
-- Research affiliate, Innovation Growth Lab (Nesta / Barcelona School of Economics). UK Biobank approved researcher.
-- Previously: Associate & Data Scientist at Charles River Associates (antitrust & competition, 2023–25, CRA Innovation Award 2024 and 2025); Dean's Summer Research Fellow at Columbia Business School with Jorge Guzman (2022); Data Reproducibility Researcher at the American Economic Association under Lars Vilhuber (2021).
-- Education: dual B.S. from Cornell University (2020–23) — Biometry & Statistics (Bowers CIS) and Applied Economics & Management (Dyson), magna cum laude, research honors thesis with distinction.
-- Talks (2026): East Coast Doctoral Conference; Econometric Society Interdisciplinary Frontiers (ESIF) Economics and AI+ML Meeting. Earlier: Columbia Business School (Management Division), Cornell (Dyson School; Department of Global Development), Charles River Associates.
-- Working languages: Python, R, Stata, Java, MATLAB, SQL. Methods: causal inference, multi-modal LLM inference for measurement, geospatial analysis.
+- PhD student at MIT Sloan, in the Technological Innovation, Entrepreneurship and Strategic Management (TIES) group, 2025–2030. S.M. in Management Research expected 2027. MIT Sloan Doctoral Fellowship (2026–30); Kalim Family Fund Fellowship (2025).
+- Grant (2026) from Analogue Group and The Good Science Project for "Unlocking Global Growth Through Indian Innovation & Patent Commercialization".
+- Research affiliate of the Innovation Growth Lab (led by Nesta). Approved researcher with UK Biobank.
+- Before the PhD: associate and data scientist in antitrust and competition at Charles River Associates (2023–25, working on US healthcare mergers; CRA Innovation Award in 2024 and 2025); Dean's Summer Research Fellow at Columbia Business School with Jorge Guzman (2022); data reproducibility researcher at the American Economic Association with Lars Vilhuber (2021).
+- Education: two bachelor's degrees from Cornell University (2023), in Biometry and Statistics and in Applied Economics and Management; magna cum laude, research honors thesis with distinction.
+- Talks in 2026: East Coast Doctoral Conference; Econometric Society Interdisciplinary Frontiers conference on Economics and AI+ML. Earlier: Columbia Business School, Cornell (Dyson School; Department of Global Development), Charles River Associates.
+- Tools: Python, R, Stata, Java, MATLAB, SQL. Methods: causal inference, language models for measurement, spatial analysis.
 
 ## Research
 
-- [Better Keep the Twenty Dollars: Incentivizing Innovation in Open Source](https://www.nber.org/papers/w31668): with Annamaria Conti, Jorge Guzman, and Maria Roche. Revise & Resubmit at Management Science; NBER Working Paper 31668. Using data on ~100,000 GitHub users around the launch of GitHub Sponsors: opting in to sponsorship (without money) raises output, but actually receiving sponsorship has a long-lasting negative effect on innovation — extrinsic rewards crowd out the intrinsic motivation open source runs on.
-- [Artificial intelligences and human scientists exhibit complementary strengths in theory building](https://arxiv.org/abs/2609.32562): with Ke Li (INSEAD) et al. Under review; arXiv 2609.32562. Compares 25 large language models with 13 senior researchers and 60 doctoral scholars at formulating theories of gender and race inequality, predicting novel empirical results, and revising theories: the AIs outperform most individual humans on most tasks and build more elaborate theories, but the extra complexity does not buy predictive accuracy; human theories are simpler, more diverse, gain more from aggregation, and are revised selectively in response to prediction errors.
-- Local Government State Capacity: Evidence from Brazil: with Michael Best, Renata Lemos, and Daniela Scur (in progress). Reads 16.4 million paragraphs of Brazilian municipal gazettes with a multi-stage LLM cascade to build the first high-frequency measure of municipal state capacity.
-- Municipal Responses to Natural Disasters: Evidence from Brazilian Municipalities: with Michael Best, Renata Lemos, and Daniela Scur (in progress). Pairs the gazette measure with flood records to trace what disasters do to local state capacity.
-- Persistence is Selection: How Serving Lowers the Supply of Experts: solo (in progress). Institutions that repeatedly fill expert seats see those who have served come back more often. Using three public lotteries into expert offices — the Internet Engineering Task Force's Nominating Committee and two Italian professorial bodies (national habilitation commissions and university hiring commissions) — shows that this persistence is selection, hiding an effect of the opposite sign: serving lowers the later supply of the same service.
-- [Approaches and Resources for Improved Student Outcomes: Evidence from Brazil](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4394638): Cornell research honors thesis, 2023.
+- [Better Keep the Twenty Dollars: Incentivizing Innovation in Open Source](https://www.nber.org/papers/w31668), with Annamaria Conti, Jorge Guzman and Maria Roche. Revise and resubmit at Management Science; NBER Working Paper 31668. Follows about 100,000 GitHub users around the launch of GitHub Sponsors. Signing up for sponsorship raised output before any money arrived, but receiving money had a lasting negative effect on innovation, driven by less community and service work rather than less coding.
+- [Artificial intelligences and human scientists exhibit complementary strengths in theory building](https://arxiv.org/abs/2609.32562), with Ke Li and coauthors. Under review; arXiv 2609.32562. Compares 25 AI language models with 13 senior researchers and 60 doctoral students at building theories of gender and racial inequality, predicting new findings, and revising theories. The models beat most individual people on most tasks and wrote more elaborate theories, but the extra detail did not improve their predictions. Human theories were simpler, more varied and gained more from pooling, and people revised them mostly where they had been wrong.
+- Local Government State Capacity: Evidence from Brazil, with Michael Best, Renata Lemos and Daniela Scur (in progress). Uses language models to read 16.4 million paragraphs of Brazilian municipal gazettes and build the first daily measure of what local governments do.
+- Municipal Responses to Natural Disasters: Evidence from Brazilian Municipalities, with Michael Best, Renata Lemos and Daniela Scur (in progress). Combines the gazette data with flood records to study how disasters disrupt local government and how long recovery takes.
+- Persistence is Selection: How Serving Lowers the Supply of Experts, sole author (in progress). Uses three institutions that fill committees by public lottery (the Internet Engineering Task Force's nominating committee, and Italy's committees that qualify and hire professors) to show that experts who have served come back more often because of selection, and that serving itself makes them less likely to serve again.
+- [Approaches and Resources for Improved Student Outcomes: Evidence from Brazil](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4394638). Cornell research honors thesis, 2023.
 
 ## Software
 
-- [STE — Strategic Treatment Effects](https://github.com/g-vansh/STE): open-source R package estimating heterogeneous treatment effects of strategic choices, companion to Guzman's "Treatment Effects in Managerial Strategies".
-- [Upload-to-Zenodo](https://github.com/AEADataEditor/Upload-to-Zenodo): Python utility syncing research archives to Zenodo; used by the AEA Data Editor's replication lab.
+- [STE: Strategic Treatment Effects](https://github.com/g-vansh/STE). R package for estimating who benefits from a strategic choice and who is harmed by it, written for Jorge Guzman's paper "Treatment Effects in Managerial Strategies". Documentation: https://www.vansh-gupta.com/STE/
+- [Upload-to-Zenodo](https://github.com/AEADataEditor/Upload-to-Zenodo). Python tool that keeps research files in sync with Zenodo; used by the AEA Data Editor's replication team.
 
 ## Pages
 
-- [Home](https://www.vansh-gupta.com/): overview and selected work.
-- [Research](https://www.vansh-gupta.com/research.html): all papers with abstracts and links.
-- [Software](https://www.vansh-gupta.com/software.html): open-source tools.
-- [CV](https://www.vansh-gupta.com/cv.html): timeline, talks, affiliations; full PDF at https://www.vansh-gupta.com/files/CV___Vansh_Gupta.pdf.
-- [Map](https://www.vansh-gupta.com/map.html): the career drawn as a transit diagram.
+- [Home](https://www.vansh-gupta.com/): overview and selected papers.
+- [Research](https://www.vansh-gupta.com/research.html): all papers, with summaries and links.
+- [Software](https://www.vansh-gupta.com/software.html): research tools.
+- [CV](https://www.vansh-gupta.com/cv.html): education, work, talks and affiliations. Full PDF: https://www.vansh-gupta.com/files/CV___Vansh_Gupta.pdf
+- [Map](https://www.vansh-gupta.com/map.html): education and work drawn as a transit map.
 
 ## Profiles
 

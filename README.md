@@ -1,75 +1,40 @@
-# vansh-gupta.com — An Atlas of Ideas
+# vansh-gupta.com
 
-Personal site of Vansh Gupta (MIT Sloan). Hand-built static HTML + one CSS
-file. No framework, no build step, no template.
+Source for [www.vansh-gupta.com](https://www.vansh-gupta.com), the personal site of Vansh Gupta
+(PhD student, MIT Sloan). It is plain HTML, one stylesheet and a little JavaScript. There is no
+framework and no build step; GitHub Pages serves the files as they are (`.nojekyll`).
 
-## The idea
+Because every file in this repository is published, keep notes, drafts and anything private
+out of it. A `private/` folder is git-ignored for local notes.
 
-The research question is *where do ideas come from?* — so the site is designed
-as a **field atlas**: survey-marker vermillion on cold paper, hand-drawn
-contour lines, the research agenda typeset as a map legend, monospace
-marginalia for dates and coordinates. Full rationale in
-[docs/DESIGN.md](docs/DESIGN.md); canonical content in
-[docs/CONTENT.md](docs/CONTENT.md).
-
-## Structure
+## Layout
 
 ```
-index.html          home: hero question → the surveyor → the legend → selected work
-research.html       full typeset paper list
-software.html       open-source instruments
-cv.html             timeline + PDF
-map.html            THE NETWORK: the career as a hand-drawn transit diagram
-404.html            uncharted territory
-assets/css/site.css the entire design system (~700 lines)
-assets/js/atlas.js  field instruments: survey line, surfacing, cursor readout
-assets/js/terrain.js the hero relief: 2D contour sheet rises into 3D (three.js)
-assets/js/network.js the map sheet: seeded plate variation, station rail, cloud descent (three.js)
-assets/vendor/      self-hosted three.js ES modules (the only dependency)
-assets/fonts/       self-hosted Fraunces, Source Serif 4, IBM Plex Mono (woff2)
-assets/favicon.svg  benchmark mark ⊕
-files/              CV PDF
-images/             profile photo
-publications/ publication/ cv/ teaching/ talks/ affiliations/
-community-map/ portfolio/
-                    meta-refresh stubs for old Jekyll-era URLs (the CV PDF
-                    still links /publication/*). /STE/ is served by the
-                    g-vansh/STE repo's Pages — don't add an STE/ folder here.
-.nojekyll           GitHub Pages serves raw files
+index.html        home page
+research.html     papers
+software.html     research software
+cv.html           CV summary (the full CV is files/CV___Vansh_Gupta.pdf)
+map.html          education and work drawn as a transit map
+404.html          not-found page
+assets/           stylesheet, fonts, favicon, JavaScript, three.js
+files/            CV and paper PDFs
+images/           portrait
+publication/, publications/, talks/, affiliations/, portfolio/, cv/, teaching/, community-map/
+                  redirects from old URLs (the CV PDF still links some of them)
+llms.txt, robots.txt, sitemap.xml
 ```
 
-## Working on it
+`/STE/` is not in this repository. It is the documentation site of the
+[STE package](https://github.com/g-vansh/STE), served from that repository's GitHub Pages.
+Don't create an `STE/` folder here or it will hide the package documentation.
 
-```sh
-python3 -m http.server 8741        # then open http://localhost:8741
-```
+## Editing
 
-Rules of the house (see docs/DESIGN.md before changing anything):
+Preview locally with `python3 -m http.server 8741` and open http://localhost:8741.
 
-- One display face (Fraunces), one text face (Source Serif 4), one mono
-  (IBM Plex Mono). No new fonts.
-- Vermillion `#d8260f` is the only accent and stays under ~5% of pixels.
-- No cards, no shadows, no gradients. Motion is instrument-like: damped,
-  scroll-paced or hover-triggered, always behind `prefers-reduced-motion`.
-- JavaScript (`atlas.js`, `terrain.js`, `network.js`) is progressive
-  enhancement only — every page must remain fully functional with JS
-  disabled; the hero falls back to the hand-drawn SVG contours and the map
-  sheet simply appears without the descent when WebGL is unavailable.
-- Update the colophon stamp ("Last surveyed · …") when making real changes.
-
-## Updating content
-
-- **New paper** → copy a `.paper` article block in `research.html` (and
-  `index.html` if it belongs in selected work).
-- **CV** → replace `files/CV___Vansh_Gupta.pdf` and touch the timeline in
-  `cv.html`.
-
-The Nizam community map (Folium embed) was removed 2026-06; it lives in git
-history if ever needed again. `map.html` is now the transit-map plate.
-
-## History
-
-The previous site (Jekyll / academicpages, with the F1 hero animation) lives
-in git history on `master` prior to the `redesign-2026` branch merge. The
-Jekyll sources still in this repo are inert (`.nojekyll`) and can be deleted
-once the redesign has been live for a while.
+- To add a paper, copy an `article.paper` block in `research.html` (and in `index.html` if it
+  should be on the home page). Update the JSON-LD at the top of the page and `llms.txt` too.
+- To update the CV, replace `files/CV___Vansh_Gupta.pdf` and the summary in `cv.html`.
+- Change the "Updated" stamp in the footer of each page when you make real changes, and the
+  dates in `sitemap.xml`.
+- The JavaScript is optional. Every page should still work with it turned off.

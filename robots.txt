@@ -1,11 +1,12 @@
-# www.vansh-gupta.com — all surveyors welcome, human or machine.
-# CSS/JS deliberately left crawlable so renderers see the real page.
+# www.vansh-gupta.com
+# All crawlers are welcome, including AI and search crawlers.
+# CSS and JS stay crawlable so pages render correctly.
 
 User-agent: *
 Allow: /
 Disallow: /404.html
 
-# AI / answer-engine crawlers, explicitly invited
+# AI and answer-engine crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -38,4 +39,4 @@ Allow: /
 
 Sitemap: https://www.vansh-gupta.com/sitemap.xml
 
-# A plain-text guide for language models lives at /llms.txt
+# A plain-text summary of the site for language models: /llms.txt
