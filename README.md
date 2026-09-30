@@ -35,6 +35,6 @@ Preview locally with `python3 -m http.server 8741` and open http://localhost:874
 - To add a paper, copy an `article.paper` block in `research.html` (and in `index.html` if it
   should be on the home page). Update the JSON-LD at the top of the page and `llms.txt` too.
 - To update the CV, replace `files/CV___Vansh_Gupta.pdf` and the summary in `cv.html`.
-- Change the "Updated" stamp in the footer of each page when you make real changes, and the
+- Change the "Last surveyed" stamp in the footer of each page when you make real changes, and the
   dates in `sitemap.xml`.
 - The JavaScript is optional. Every page should still work with it turned off.
