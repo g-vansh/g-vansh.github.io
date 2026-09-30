@@ -324,7 +324,7 @@ h2.display em { font-style: italic; color: var(--vermillion); }
 .margin-note { color: var(--graphite); line-height: 1.7; }
 .margin-note .m { display: block; color: var(--ink); margin-bottom: 0.4rem; }
 .margin-note p { font-size: 0.92rem; }
-.margin-note + .margin-note, .margin-block + .margin-block { margin-top: 1.6rem; }
+.margin-note + .margin-note, .margin-block + .margin-block, .margin-block + .margin-note { margin-top: 1.6rem; }
 
 /* portrait */
 .portrait {
@@ -484,6 +484,8 @@ h2.display em { font-style: italic; color: var(--vermillion); }
 .fig .ev { stroke: var(--graphite); stroke-width: 1; stroke-dasharray: 3 4; fill: none; }
 .fig .vm { stroke: var(--vermillion); fill: var(--vermillion); }
 .fig .bar { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+.fig .hu { fill: var(--paper); stroke: var(--ink); stroke-width: 1.2; }   /* hollow: human */
+.fig .ai { fill: var(--ink); }                                        /* solid: machine */
 .fig text {
   font-family: var(--mono);
   font-size: 8.5px;
@@ -705,7 +707,7 @@ html.io-reveal .rv.seen { opacity: 1; transform: none; }
 @media (max-width: 880px) {
   .cols { grid-template-columns: 1fr; }
   .margin-rail { display: flex; flex-wrap: wrap; gap: 1.6rem 2.6rem; border-top: 1px solid var(--hairline); padding-top: 1.6rem; }
-  .margin-note + .margin-note { margin-top: 0; }
+  .margin-note + .margin-note, .margin-block + .margin-note { margin-top: 0; }
   .legend-row { grid-template-columns: 3rem 1fr; }
   .legend-row p { grid-column: 1 / -1; }
   .colophon .stamp { position: static; display: inline-block; margin-top: 2rem; transform: rotate(-3deg); }

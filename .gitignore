@@ -1,9 +1,6 @@
-_site/
-.bundle/
-/vendor/
-assets/js/vendor/
+# Local-only files. Everything committed here is published on the website.
+private/
 node_modules/
-tmp/screens/
-tmp/*.png
-tmp/*.json
+tmp/
 .DS_Store
+*.log

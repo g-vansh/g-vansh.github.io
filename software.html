@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Software — Vansh Gupta</title>
-  <meta name="description" content="Open-source instruments by Vansh Gupta: the STE R package, Upload-to-Zenodo, and LLM measurement pipelines.">
-  <meta property="og:title" content="Software — Vansh Gupta">
-  <meta property="og:description" content="The instruments: open-source tools built because the questions worth asking can't be measured with existing ones.">
+  <title>Software · Vansh Gupta</title>
+  <meta name="description" content="Open-source research software by Vansh Gupta, including the STE R package and Upload-to-Zenodo.">
+  <meta property="og:title" content="Software · Vansh Gupta">
+  <meta property="og:description" content="Research tools, mostly written because a project needed something that didn't exist yet.">
   <meta property="og:url" content="https://www.vansh-gupta.com/software.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://www.vansh-gupta.com/images/profile.png">
@@ -33,8 +33,8 @@
     "@type": "CollectionPage",
     "@id": "https://www.vansh-gupta.com/software.html",
     "url": "https://www.vansh-gupta.com/software.html",
-    "name": "Software — Vansh Gupta",
-    "description": "Open-source research software by Vansh Gupta: the STE R package for strategic treatment effects, Upload-to-Zenodo, and LLM measurement pipelines.",
+    "name": "Software · Vansh Gupta",
+    "description": "Open-source research software by Vansh Gupta, including the STE R package for strategic treatment effects and Upload-to-Zenodo.",
     "isPartOf": { "@id": "https://www.vansh-gupta.com/#website" },
     "about": { "@id": "https://www.vansh-gupta.com/#person" },
     "mainEntity": {
@@ -45,7 +45,7 @@
           "position": 1,
           "item": {
             "@type": "SoftwareSourceCode",
-            "name": "STE — Strategic Treatment Effects",
+            "name": "STE: Strategic Treatment Effects",
             "codeRepository": "https://github.com/g-vansh/STE",
             "programmingLanguage": "R",
             "description": "R package estimating heterogeneous treatment effects of strategic choices from high-dimensional observational data, using random forests and LASSO under the Rubin causal model.",
@@ -60,7 +60,7 @@
             "name": "Upload-to-Zenodo",
             "codeRepository": "https://github.com/AEADataEditor/Upload-to-Zenodo",
             "programmingLanguage": "Python",
-            "description": "Python utility that synchronizes research archives between local storage and Zenodo; used by the AEA Data Editor's replication lab.",
+            "description": "Python tool that keeps research files in sync between a computer and Zenodo. Used by the AEA Data Editor's replication team.",
             "author": { "@id": "https://www.vansh-gupta.com/#person" }
           }
         }
@@ -81,10 +81,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header class="site-head">
   <p class="ident m">
     <a href="/"><span class="name">Vansh Gupta</span>
-    <span class="coords">42.3608 N / 71.0843 W — Cambridge, Mass.</span></a>
+    <span class="coords">42.3608 N, 71.0843 W · Cambridge, MA</span></a>
   </p>
   <nav class="site-nav m" aria-label="Site">
-    <a href="/">Index</a>
+    <a href="/">Home</a>
     <a href="/research.html">Research</a>
     <a href="/software.html" aria-current="page">Software</a>
     <a href="/cv.html">CV</a>
@@ -95,53 +95,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main id="main">
   <div class="page-band">
     <div class="band-inner">
-      <p class="plate m"><span class="tick">⊕</span>&nbsp; The instruments · Sheet 03</p>
+      <p class="plate m"><span class="tick">⊕</span>&nbsp; Software</p>
       <h1>Tools built <em>en route</em></h1>
-      <p class="standfirst">Surveyors make their own instruments. Most of these started the same way:
-        a question we couldn't answer until we built the tool. Everything is open source at
-        <a href="https://github.com/g-vansh">github.com/g-vansh</a>.</p>
+      <p class="standfirst">Most of these exist because a project needed data or a method I couldn't find
+        anywhere else. The code is on <a href="https://github.com/g-vansh">GitHub</a>.</p>
     </div>
   </div>
 
   <div class="sheet">
-    <section class="section" aria-label="Instruments">
+    <section class="section" aria-label="Tools">
       <div class="section-rule m">
-        <span class="no">04</span><span class="ttl">Instruments</span>
-        <span class="note">open source, in active use</span>
+        <span class="no">01</span><span class="ttl">Tools</span>
       </div>
 
       <div class="papers">
         <article class="paper">
-          <h3><a href="https://github.com/g-vansh/STE">STE — Strategic Treatment Effects</a></h3>
-          <p class="meta m-lc">R package · random forests + LASSO under the Rubin causal model</p>
-          <p class="hook">Estimates which firms benefit from a strategic choice — and which are hurt by it —
-            from high-dimensional observational data. The companion to
-            <a href="https://www.jorgeguzman.co/">Guzman</a>'s <em>Treatment Effects in Managerial Strategies</em>; propensity scores from
-            out-of-fold random forests, local regressions for the effects, LASSO for the determinants.</p>
+          <h3><a href="https://github.com/g-vansh/STE">STE: Strategic Treatment Effects</a></h3>
+          <p class="meta m-lc">R package · random forests and LASSO</p>
+          <p class="hook">The same business strategy can help one company and hurt another. STE estimates who
+            benefits from a choice and who is harmed by it, using observational data with many variables. It
+            goes with <a href="https://www.jorgeguzman.co/">Jorge Guzman</a>'s paper <em>Treatment Effects in
+            Managerial Strategies</em>. Random forests estimate how likely each firm was to make the choice, local
+            regressions estimate the effects, and LASSO picks out what drives the differences.</p>
           <p class="links m"><a href="https://github.com/g-vansh/STE">GitHub</a>
-            <a href="http://dx.doi.org/10.2139/ssrn.3915606">The paper it serves</a></p>
+            <a href="https://www.vansh-gupta.com/STE/">Documentation</a>
+            <a href="http://dx.doi.org/10.2139/ssrn.3915606">The paper</a></p>
         </article>
 
         <article class="paper">
           <h3><a href="https://github.com/AEADataEditor/Upload-to-Zenodo">Upload-to-Zenodo</a></h3>
-          <p class="meta m-lc">Python utility · adopted by the AEA Data Editor's replication lab</p>
-          <p class="hook">Synchronizes research archives between local storage and Zenodo. Started as a
-            side-project while running reproducibility checks for the American Economic Association;
-            the 40-person replication team still uses it.</p>
+          <p class="meta m-lc">Python · used by the AEA Data Editor's replication team</p>
+          <p class="hook">Keeps research files in sync between a computer and Zenodo, the public research
+            archive. I wrote it while checking papers for the American Economic Association, and their
+            replication team of about 40 people still uses it.</p>
           <p class="links m"><a href="https://github.com/AEADataEditor/Upload-to-Zenodo">GitHub</a></p>
         </article>
 
         <article class="paper">
-          <h3>The gazette-reading machine</h3>
-          <p class="meta m-lc">LLM cascade · 16.4 million paragraphs and counting</p>
-          <p class="hook">The measurement engine behind the <a href="/research.html#brazil">Brazil state-capacity
-            project</a>: a multi-stage cascade that reads municipal gazettes at scale — cheap models triage,
-            strong models adjudicate, a silver-standard set keeps everyone honest. Code released with
-            the papers.</p>
+          <h3>Gazette reader</h3>
+          <p class="meta m-lc">language-model pipeline · 16.4 million paragraphs so far</p>
+          <p class="hook">The measurement system behind the <a href="/research.html#brazil">Brazil
+            state-capacity project</a>. Cheaper language models sort the paragraphs first, stronger models
+            handle the hard cases, and a separate labeled set is used to check accuracy. The code will be
+            released with the papers.</p>
         </article>
       </div>
 
-      <p class="lead-out"><a href="/research.html">Back to the survey <span class="arrow">→</span></a></p>
+      <p class="lead-out"><a href="/research.html">Back to research <span class="arrow">→</span></a></p>
     </section>
   </div>
 </main>
@@ -157,11 +157,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://orcid.org/0000-0002-6221-1247">ORCID</a>
       <a href="/files/CV___Vansh_Gupta.pdf">CV (PDF)</a>
     </nav>
-    <p class="closing">If you're surveying nearby territory, <a href="mailto:vansh@mit.edu">write to me</a>.</p>
-    <p class="stamp" aria-hidden="true">Last surveyed · June MMXXVI</p>
+    <p class="closing">If you're working in nearby territory, <a href="mailto:vansh@mit.edu">write to me</a>.</p>
+    <p class="stamp" aria-hidden="true">Last surveyed · September MMXXVI</p>
     <div class="fine m">
-      <span>42.3608 N / 71.0843 W — Cambridge, Mass.</span>
-      <span>Set in Fraunces, Source Serif &amp; Plex Mono · drawn by hand, no template</span>
+      <span>Cambridge, Massachusetts</span>
+      <span>Set in Fraunces, Source Serif &amp; Plex Mono · drawn by hand</span>
       <span>© MMXXVI Vansh Gupta</span>
     </div>
   </div>
