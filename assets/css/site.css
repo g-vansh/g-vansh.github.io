@@ -484,6 +484,8 @@ h2.display em { font-style: italic; color: var(--vermillion); }
 .fig .ev { stroke: var(--graphite); stroke-width: 1; stroke-dasharray: 3 4; fill: none; }
 .fig .vm { stroke: var(--vermillion); fill: var(--vermillion); }
 .fig .bar { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+.fig .hu { fill: var(--paper); stroke: var(--ink); stroke-width: 1.2; }   /* hollow: human */
+.fig .ai { fill: var(--ink); }                                        /* solid: machine */
 .fig text {
   font-family: var(--mono);
   font-size: 8.5px;

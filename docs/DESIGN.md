@@ -6,7 +6,8 @@
 ## 1. The concept: AN ATLAS OF IDEAS
 
 Vansh's research question is *"where do ideas come from?"* — studied through four
-lenses (incentives, place, brains, government). He is also, personally, a map
+lenses (incentives, place, brains, institutions — the last renamed from
+"government" in Sept 2026 to cover expert institutions too). He is also, personally, a map
 person: cartography, transit systems, urban design, the Nizam Map, two CRA
 Innovation Awards for geospatial tooling, Brazil municipality research.
 
@@ -185,7 +186,7 @@ transform/opacity only, and degrades to a fully static page.
 | Page | Purpose |
 |---|---|
 | `index.html` | Hero question → who I am (3 short paragraphs, human voice) → THE LEGEND (4 lenses) → selected work (3 items) → colophon |
-| `research.html` | Full typeset paper list: R&R / working papers / earlier & assistance work. Scholar link. Each project carries a hand-sketched SVG "field figure" (fig. 01–06): a stylized sketch of the headline finding, one vermillion mark each, `aria-hidden` (it restates the adjacent prose). |
+| `research.html` | Full typeset paper list: under review (R&R + submitted) / working papers / earlier & assistance work. Scholar link. Each project carries a hand-sketched SVG "field figure" (fig. 01–07): a stylized sketch of the headline finding, one vermillion mark each, `aria-hidden` (it restates the adjacent prose). |
 | `software.html` | STE R package, Upload-to-Zenodo, the gazette-reading machine, the builder-researcher story |
 | `cv.html` | Timeline (HTML) + PDF download |
 | `map.html` | THE NETWORK — the career drawn as a Beck-style transit diagram (octolinear SVG, five lines, monochrome stroke grammar, one vermillion capsule at MIT). Entry via the cloud descent. |

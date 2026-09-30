@@ -1,21 +1,24 @@
 # Vansh Gupta
 
-> Vansh Gupta is a PhD student in innovation economics at the MIT Sloan School of Management (Technological Innovation, Entrepreneurship & Strategic Management — TIES, 2025–2030). He studies where ideas come from — incentives, place, brains, and government — with particular focus on open-source innovation, public goods provision, and state capacity. Email: vansh@mit.edu.
+> Vansh Gupta is a PhD student in innovation economics at the MIT Sloan School of Management (Economics of Technological Innovation, Entrepreneurship & Strategic Management — TIES, 2025–2030). He studies where ideas come from — incentives, place, brains, and institutions — with particular focus on open-source innovation, public goods provision, the supply of expert service to public institutions, AI and human scientists, and state capacity. Fields: innovation, industrial organization, public institutions, incentives. Email: vansh@mit.edu.
 
 Key facts:
 
-- PhD student, MIT Sloan School of Management, Behavioral & Policy Sciences (TIES group), 2025–2030. S.M. in Management Research expected 2027. Kalim Family Fund Fellowship (2025); MIT Sloan Doctoral Fellowship (2026–30).
+- PhD student, MIT Sloan School of Management (TIES group — economics of technological innovation, entrepreneurship & strategic management), 2025–2030. S.M. in Management Research expected 2027. MIT Sloan Doctoral Fellowship (2026–30); Kalim Family Fund Fellowship (2025).
+- Grant (2026): Unlocking Global Growth Through Indian Innovation & Patent Commercialization, funded by Analogue Group and The Good Science Project.
 - Research affiliate, Innovation Growth Lab (Nesta / Barcelona School of Economics). UK Biobank approved researcher.
 - Previously: Associate & Data Scientist at Charles River Associates (antitrust & competition, 2023–25, CRA Innovation Award 2024 and 2025); Dean's Summer Research Fellow at Columbia Business School with Jorge Guzman (2022); Data Reproducibility Researcher at the American Economic Association under Lars Vilhuber (2021).
 - Education: dual B.S. from Cornell University (2020–23) — Biometry & Statistics (Bowers CIS) and Applied Economics & Management (Dyson), magna cum laude, research honors thesis with distinction.
+- Talks (2026): East Coast Doctoral Conference; Econometric Society Interdisciplinary Frontiers (ESIF) Economics and AI+ML Meeting. Earlier: Columbia Business School (Management Division), Cornell (Dyson School; Department of Global Development), Charles River Associates.
 - Working languages: Python, R, Stata, Java, MATLAB, SQL. Methods: causal inference, multi-modal LLM inference for measurement, geospatial analysis.
 
 ## Research
 
 - [Better Keep the Twenty Dollars: Incentivizing Innovation in Open Source](https://www.nber.org/papers/w31668): with Annamaria Conti, Jorge Guzman, and Maria Roche. Revise & Resubmit at Management Science; NBER Working Paper 31668. Using data on ~100,000 GitHub users around the launch of GitHub Sponsors: opting in to sponsorship (without money) raises output, but actually receiving sponsorship has a long-lasting negative effect on innovation — extrinsic rewards crowd out the intrinsic motivation open source runs on.
+- [Artificial intelligences and human scientists exhibit complementary strengths in theory building](https://arxiv.org/abs/2609.32562): with Ke Li (INSEAD) et al. Under review; arXiv 2609.32562. Compares 25 large language models with 13 senior researchers and 60 doctoral scholars at formulating theories of gender and race inequality, predicting novel empirical results, and revising theories: the AIs outperform most individual humans on most tasks and build more elaborate theories, but the extra complexity does not buy predictive accuracy; human theories are simpler, more diverse, gain more from aggregation, and are revised selectively in response to prediction errors.
 - Local Government State Capacity: Evidence from Brazil: with Michael Best, Renata Lemos, and Daniela Scur (in progress). Reads 16.4 million paragraphs of Brazilian municipal gazettes with a multi-stage LLM cascade to build the first high-frequency measure of municipal state capacity.
 - Municipal Responses to Natural Disasters: Evidence from Brazilian Municipalities: with Michael Best, Renata Lemos, and Daniela Scur (in progress). Pairs the gazette measure with flood records to trace what disasters do to local state capacity.
-- Welfare Economics of Incentives and Innovations in Public Goods: solo (in progress). When does paying for public-goods innovation help, when does it crowd out, and who should be paid nothing at all?
+- Persistence is Selection: How Serving Lowers the Supply of Experts: solo (in progress). Institutions that repeatedly fill expert seats see those who have served come back more often. Using three public lotteries into expert offices — the Internet Engineering Task Force's Nominating Committee and two Italian professorial bodies (national habilitation commissions and university hiring commissions) — shows that this persistence is selection, hiding an effect of the opposite sign: serving lowers the later supply of the same service.
 - [Approaches and Resources for Improved Student Outcomes: Evidence from Brazil](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4394638): Cornell research honors thesis, 2023.
 
 ## Software
@@ -28,7 +31,7 @@ Key facts:
 - [Home](https://www.vansh-gupta.com/): overview and selected work.
 - [Research](https://www.vansh-gupta.com/research.html): all papers with abstracts and links.
 - [Software](https://www.vansh-gupta.com/software.html): open-source tools.
-- [CV](https://www.vansh-gupta.com/cv.html): timeline; full PDF at https://www.vansh-gupta.com/files/CV___Vansh_Gupta.pdf.
+- [CV](https://www.vansh-gupta.com/cv.html): timeline, talks, affiliations; full PDF at https://www.vansh-gupta.com/files/CV___Vansh_Gupta.pdf.
 - [Map](https://www.vansh-gupta.com/map.html): the career drawn as a transit diagram.
 
 ## Profiles

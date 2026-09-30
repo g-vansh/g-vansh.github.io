@@ -30,8 +30,11 @@ assets/fonts/       self-hosted Fraunces, Source Serif 4, IBM Plex Mono (woff2)
 assets/favicon.svg  benchmark mark ⊕
 files/              CV PDF
 images/             profile photo
-publications/ cv/ teaching/ community-map/ portfolio/
-                    meta-refresh stubs for old Jekyll-era URLs
+publications/ publication/ cv/ teaching/ talks/ affiliations/
+community-map/ portfolio/
+                    meta-refresh stubs for old Jekyll-era URLs (the CV PDF
+                    still links /publication/*). /STE/ is served by the
+                    g-vansh/STE repo's Pages — don't add an STE/ folder here.
 .nojekyll           GitHub Pages serves raw files
 ```
 
